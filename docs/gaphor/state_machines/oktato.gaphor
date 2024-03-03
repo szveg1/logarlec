@@ -25,19 +25,19 @@ controlflow {
 <ownedPresentation>
 <reflist>
 <ref refid="8b156794-d8a9-11ee-bf2e-b40ede95f096"/>
-<ref refid="0bb50ed2-d8ac-11ee-9d07-b40ede95f096"/>
-<ref refid="925f21e8-d8ae-11ee-bd7b-b40ede95f096"/>
 <ref refid="5cf0ad2f-d8ab-11ee-8e61-b40ede95f096"/>
 <ref refid="6101fd3d-d8ad-11ee-beee-b40ede95f096"/>
 <ref refid="3bc1afcf-d8ae-11ee-a2cd-b40ede95f096"/>
-<ref refid="87cdcb27-d8b4-11ee-af67-b40ede95f096"/>
+<ref refid="1cca8793-d8af-11ee-a413-b40ede95f096"/>
 <ref refid="7fa4dbe6-d8b4-11ee-bc5c-b40ede95f096"/>
 <ref refid="b33ba5aa-d8c6-11ee-ba42-88a4c2993845"/>
 <ref refid="d001bb59-d8c6-11ee-ac3f-88a4c2993845"/>
 <ref refid="0166a33a-d8c7-11ee-9f3e-88a4c2993845"/>
 <ref refid="cfde41d3-d8c7-11ee-a8c1-88a4c2993845"/>
+<ref refid="87cdcb27-d8b4-11ee-af67-b40ede95f096"/>
 <ref refid="d20a027f-d8b5-11ee-80d7-b40ede95f096"/>
-<ref refid="1cca8793-d8af-11ee-a413-b40ede95f096"/>
+<ref refid="0bb50ed2-d8ac-11ee-9d07-b40ede95f096"/>
+<ref refid="925f21e8-d8ae-11ee-bd7b-b40ede95f096"/>
 <ref refid="b5e10caa-d8a9-11ee-b157-b40ede95f096"/>
 <ref refid="c30ac7e1-d8a5-11ee-bfa9-b40ede95f096"/>
 <ref refid="0f593bcc-d8ac-11ee-bdeb-b40ede95f096"/>
@@ -60,6 +60,7 @@ controlflow {
 <ref refid="3fb66dc3-d8c8-11ee-a5e5-88a4c2993845"/>
 <ref refid="626713af-d8c9-11ee-b57c-88a4c2993845"/>
 <ref refid="cfeaa60b-d8c9-11ee-84c2-88a4c2993845"/>
+<ref refid="8617d85f-d975-11ee-9f14-88a4c2993845"/>
 </reflist>
 </ownedPresentation>
 </Diagram>
@@ -706,6 +707,7 @@ controlflow {
 <ref refid="4cd1ea17-d8b9-11ee-b8e5-b40ede95f096"/>
 <ref refid="70c9e41c-d8ba-11ee-8ef2-b40ede95f096"/>
 <ref refid="231f703d-d8bb-11ee-90f7-b40ede95f096"/>
+<ref refid="88ac5eae-d975-11ee-ac20-88a4c2993845"/>
 </reflist>
 </outgoing>
 <presentation>
@@ -759,6 +761,7 @@ controlflow {
 <ref refid="90476b4e-d8b4-11ee-8ffc-b40ede95f096"/>
 <ref refid="231f703d-d8bb-11ee-90f7-b40ede95f096"/>
 <ref refid="1d7be1b0-d8be-11ee-a948-b40ede95f096"/>
+<ref refid="88ac5eae-d975-11ee-ac20-88a4c2993845"/>
 </reflist>
 </incoming>
 <name>
@@ -1359,7 +1362,7 @@ controlflow {
 </Transition>
 <Constraint id="b9da4482-d8bd-11ee-a740-b40ede95f096">
 <specification>
-<val>!hátizsák.tartalmaz(FFP2)</val>
+<val>!zseb.tartalmaz(FFP2)</val>
 </specification>
 <transition>
 <ref refid="b9d8f7bf-d8bd-11ee-8fa5-b40ede95f096"/>
@@ -1648,6 +1651,9 @@ controlflow {
 <horizontal>
 <val>0</val>
 </horizontal>
+<orthogonal>
+<val>0</val>
+</orthogonal>
 <subject>
 <ref refid="77d9b50b-d8c7-11ee-bd47-88a4c2993845"/>
 </subject>
@@ -1655,7 +1661,7 @@ controlflow {
 <val>(1.0, 0.0, 0.0, 1.0, 225.80970530519448, -1125.6593124946246)</val>
 </matrix>
 <points>
-<val>[(-8.526512829121202e-14, 3.425681718851365), (0.0, 75.77113660980342), (-197.9964320692527, 75.77113660980342), (-197.99643206925285, 2.232382579563364)]</val>
+<val>[(0.0, 3.425681718851365), (0.0, 75.77113660980342), (-197.9964320692527, 75.77113660980342), (-197.99643206925285, 2.232382579563364)]</val>
 </points>
 <head-connection>
 <ref refid="0166a33a-d8c7-11ee-9f3e-88a4c2993845"/>
@@ -1950,6 +1956,62 @@ controlflow {
 </specification>
 <transition>
 <ref refid="d2517aff-d8c9-11ee-87c3-88a4c2993845"/>
+</transition>
+</Constraint>
+<TransitionItem id="8617d85f-d975-11ee-9f14-88a4c2993845">
+<diagram>
+<ref refid="9d93cc0b-d8a3-11ee-9565-b40ede95f096"/>
+</diagram>
+<horizontal>
+<val>0</val>
+</horizontal>
+<orthogonal>
+<val>0</val>
+</orthogonal>
+<subject>
+<ref refid="88ac5eae-d975-11ee-ac20-88a4c2993845"/>
+</subject>
+<matrix>
+<val>(1.0, 0.0, 0.0, 1.0, 1.7567809534719725, -1270.7813716868438)</val>
+</matrix>
+<points>
+<val>[(-33.28646168068022, 4.686207996514554), (-33.28646168068019, -108.62131840943107), (44.47652763516254, -108.62131840943107), (44.47652763516251, -180.49790267510872)]</val>
+</points>
+<head-connection>
+<ref refid="7fa4dbe6-d8b4-11ee-bc5c-b40ede95f096"/>
+</head-connection>
+<tail-connection>
+<ref refid="87cdcb27-d8b4-11ee-af67-b40ede95f096"/>
+</tail-connection>
+</TransitionItem>
+<Transition id="88ac5eae-d975-11ee-ac20-88a4c2993845">
+<container>
+<ref refid="ce6da487-d8ad-11ee-8c73-b40ede95f096"/>
+</container>
+<guard>
+<ref refid="88acae71-d975-11ee-b3ac-88a4c2993845"/>
+</guard>
+<name>
+<val>megbénítódik</val>
+</name>
+<presentation>
+<reflist>
+<ref refid="8617d85f-d975-11ee-9f14-88a4c2993845"/>
+</reflist>
+</presentation>
+<source>
+<ref refid="7fa48dc9-d8b4-11ee-b587-b40ede95f096"/>
+</source>
+<target>
+<ref refid="87cd55fa-d8b4-11ee-a32e-b40ede95f096"/>
+</target>
+</Transition>
+<Constraint id="88acae71-d975-11ee-b3ac-88a4c2993845">
+<specification>
+<val>nednes.rongy</val>
+</specification>
+<transition>
+<ref refid="88ac5eae-d975-11ee-ac20-88a4c2993845"/>
 </transition>
 </Constraint>
 </gaphor>
