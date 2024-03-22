@@ -1,16 +1,0 @@
-
-	java:S116	"^Rename this field "MAX_INVENTORY_MERET" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(è‰®§úÿÿÿÿ8÷¯Ñ»ä1
-v	java:S116"ZRename this field "TVSZAltalVedett" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÌÂš»8–µ»ä1
-w	java:S116"[Rename this field "RongyAltalVedett" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(í“ú½8¼·µ»ä1
-C
-java:S1170	"!Make this final field static too.(è‰®§úÿÿÿÿ8©ıñ ä1
-£
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ùÚÔÉÿÿÿÿÿ8ªıñ ä1
-£
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ö‚Åïúÿÿÿÿ8ªıñ ä1
-|
-java:S1450"_Remove the "RongyAltalVedett" field and declare it as a local variable in the relevant methods.(í“ú½8Ğ£¶»ä1
-x
-java:S3923*"[Remove this conditional structure or edit its code blocks so that they're not all the same.(ï‘Ÿş8¯ıñ ä1
-Q
-java:S1068"4Remove this unused "RongyAltalVedett" private field.(í“ú½8Ã·µ»ä1

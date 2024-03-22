@@ -1,28 +1,51 @@
 package pass.logarlec.labyrinth;
 
+import pass.logarlec.Idozitett;
 import pass.logarlec.human.Ember;
+import pass.logarlec.human.Hallgato;
+import pass.logarlec.human.Oktato;
 import pass.logarlec.item.Targy;
 
 import java.util.*;
 
-public class Szoba {
-    private boolean mergezett;
+public class Szoba implements Idozitett {
     private int meregIdo;
+    private boolean atkozott;
+    private int ferohely;
     private List<Targy> targyak;
     private List<Ember> bentlevok;
+    private List<Ajto> ajtok;
 
-    public Szoba() {
-        this.mergezett = false;
-        this.targyak = new ArrayList<>();
-        this.bentlevok = new ArrayList<>();
-    }
+    Map<Oktato, List<Hallgato>> immunisok = new HashMap<>();
 
-    public boolean MergezettE() {
-        return mergezett;
+    public Szoba(Szoba masikSzoba) {
+        this.meregIdo = masikSzoba.meregIdo;
+        this.ferohely = masikSzoba.ferohely;
+
+        // Szoba targyainak fele masik szobaba
+        int targyakFele = masikSzoba.targyak.size() / 2;
+        ArrayList<Targy> felezettTargyak = new ArrayList<>(masikSzoba.targyak.subList(0, targyakFele));
+
+        masikSzoba.targyak.removeAll(felezettTargyak);
+
+        // Notify the items about the room change
+        for (Targy targy : felezettTargyak) {
+            targy.szobaValtasrolErtesit(this);
+        }
+
+        this.targyak = felezettTargyak;
+
+        // Bentlevok fele masik szobaba
+        int bentlevokSzamaFele = masikSzoba.bentlevok.size() / 2;
+        ArrayList<Ember> felezettBentlevok = new ArrayList<>(masikSzoba.bentlevok.subList(0, bentlevokSzamaFele));
+        masikSzoba.bentlevok.removeAll(felezettBentlevok);
+        this.bentlevok = felezettBentlevok;
+        for(Ember ember : felezettBentlevok) {
+            ember.masikSzobabaLep(this);
+        }
     }
 
     public void setPoisonous(boolean mergezo, int meregIdo) {
-        mergezett = mergezo;
         this.meregIdo = meregIdo;
     }
 
@@ -35,23 +58,36 @@ public class Szoba {
         targyak.remove(targy);
     }
 
-    public void addOccupant(Ember ember) {
-        bentlevok.add(ember);
-    }
-
-    public void removeOccupant(Ember ember) {
-        bentlevok.remove(ember);
-    }
-
-    public void update() {
-        if (mergezett) {
-            meregIdo--;
-            if (meregIdo <= 0) {
-                mergezett = false;
-            }
-            for (Ember ember : bentlevok) {
+    public void emberBetesz(Ember ember) {
+        if(bentlevok.size()  + 1 > ferohely) {
+            return;
+        } else {
+            ember.kilepSzobajabol();
+            bentlevok.add(ember);
+            if(meregIdo > 0) {
                 ember.ajulas();
             }
         }
+    }
+
+    public void emberKivesz(Ember ember) {
+        bentlevok.remove(ember);
+    }
+
+    public List<Ember> getEmberek() {
+        return  bentlevok;
+    }
+
+    public void immunitastAd(Oktato oktato, Hallgato hallgato) {
+        if(immunisok.containsKey(oktato)) {
+            immunisok.get(oktato).add(hallgato);
+        } else {
+            immunisok.put(oktato, new ArrayList<>(Collections.singletonList(hallgato)));
+        }
+    }
+
+    @Override
+    public void tick() {
+
     }
 }

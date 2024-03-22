@@ -1,14 +1,14 @@
 package pass.logarlec.item;
 
+import pass.logarlec.human.Oktato;
 import pass.logarlec.human.TargyVisitor;
 import pass.logarlec.labyrinth.Szoba;
 
 public class Pohar implements Targy {
-    // HIANYOS!!!!
+    private int vedIdo = 3;
 
     @Override
-    public void hasznal() {
-        // Nem lehet "hasznalni"
+    public void hasznal(Oktato oktato) {
     }
 
     @Override
@@ -18,6 +18,15 @@ public class Pohar implements Targy {
 
     @Override
     public void szobaValtasrolErtesit(Szoba newSzoba) {
+
+    }
+
+    public boolean hasznalhatoE() {
+        return vedIdo > 0;
+    }
+
+    @Override
+    public void tick() {
 
     }
 }

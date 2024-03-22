@@ -3,10 +3,10 @@ package pass.logarlec.human;
 import pass.logarlec.item.*;
 
 public interface TargyVisitor {
-    void visitLogarlec(Logarlec logarlec);
-    void visitTVSZ(TVSZ tvsz);
-    void visitPohar(Pohar pohar);
-    void visitRongy(Rongy rongy);
-    void visitMaszk(Maszk maszk);
+    void visit(Logarlec logarlec);
+    void visit(TVSZ tvsz);
+    void visit(Pohar pohar);
+    void visit(Rongy rongy);
+    void visit(Maszk maszk);
 
 }

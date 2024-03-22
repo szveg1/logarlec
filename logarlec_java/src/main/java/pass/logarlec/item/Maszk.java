@@ -1,5 +1,6 @@
 package pass.logarlec.item;
 
+import pass.logarlec.human.Oktato;
 import pass.logarlec.human.TargyVisitor;
 import pass.logarlec.labyrinth.Szoba;
 
@@ -11,14 +12,14 @@ public class Maszk implements Targy {
     }
 
     @Override
-    public void hasznal() {
+    public void hasznal(Oktato oktato) {
         // Nem lehet "hasznalni"
     }
 
     @Override
     public void accept(TargyVisitor visitor) {
         if (vedIdo > 0) {
-            visitor.visitMaszk(this);
+            visitor.visit(this);
             vedIdo--;
         } else {
             // Tonkrement nem lehet mit kezdeni vele
@@ -33,5 +34,10 @@ public class Maszk implements Targy {
 
     public int getVedIdo() {
         return vedIdo;
+    }
+
+    @Override
+    public void tick() {
+
     }
 }

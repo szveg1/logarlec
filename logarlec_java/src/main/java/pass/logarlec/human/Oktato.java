@@ -7,37 +7,52 @@ import pass.logarlec.item.TVSZ;
 
 public class Oktato extends Ember {
     private static final int MAX_INVENTORY_MERET = 1;
-
+    private int meddigBena = 0;
+    private Hallgato kitTamad;
     @Override
     boolean inventoryTeleE() {
         return inventory.size() >= MAX_INVENTORY_MERET;
     }
 
     @Override
-    public void visitLogarlec(Logarlec logarlec) {
-        // Nem tortenik semmi, ha felveszi
+    public void rongyotElszenved(Rongy rongy) {
+        meddigBena = rongy.getMeddigNedves();
     }
 
     @Override
-    public void visitTVSZ(TVSZ tvsz) {
+    public void tick() {
+
+    }
+
+    @Override
+    public void visit(Logarlec logarlec) {
+        targyatEldob(logarlec);
+    }
+
+    @Override
+    public void visit(TVSZ tvsz) {
         // Nem ad vedelmet az oktatonak
     }
 
     @Override
-    public void visitPohar(Pohar pohar) {
+    public void visit(Pohar pohar) {
         // Nem ad vedelmet az oktatonak
     }
 
     @Override
-    public void visitRongy(Rongy rongy) {
+    public void visit(Rongy rongy) {
         // Nem ad vedelmet az oktatonak
-    }
-
-    public void hallgatoUldoz(Hallgato hallgato) {
-        // Valami uldozesi logika
     }
 
     public void hallgatotMegtamad(Hallgato hallgato) {
-        hallgato.tamadasElszenved();
+        if(meddigBena > 0) {
+            return;
+        }
+        hallgato.tamadasElszenved(this);
+        kitTamad = hallgato;
+    }
+
+    public Hallgato getKitTamad(){
+        return kitTamad;
     }
 }

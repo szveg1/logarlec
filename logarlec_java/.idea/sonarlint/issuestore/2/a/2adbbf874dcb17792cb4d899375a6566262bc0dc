@@ -1,14 +1,0 @@
-
-y	java:S116	"]Rename this field "MAX_INVENTORY_SIZE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(›γ¥ί8©ύρ δ1
->
-java:S1170	"!Make this final field static too.(›γ¥ί8©ύρ δ1
-£
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.( ·ητωÿÿÿÿ8ªύρ δ1
-£
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(ηΧκόόÿÿÿÿ8ªύρ δ1
-
-java:S1450"]Remove the "protectedByRag" field and declare it as a local variable in the relevant methods.(Η–Σωÿÿÿÿ8©ς δ1
-x
-java:S3923)"[Remove this conditional structure or edit its code blocks so that they're not all the same.(βΣ”8―ύρ δ1
-T
-java:S1068"2Remove this unused "protectedByRag" private field.(Η–Σωÿÿÿÿ8±ύρ δ1

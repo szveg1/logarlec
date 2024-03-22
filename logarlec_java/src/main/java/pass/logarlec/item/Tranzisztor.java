@@ -1,13 +1,14 @@
 package pass.logarlec.item;
 
+import pass.logarlec.human.Oktato;
 import pass.logarlec.human.TargyVisitor;
 import pass.logarlec.labyrinth.Szoba;
 
 public class Tranzisztor implements Targy {
-    // HIANYOS!!!!
+    Szoba jelenlegiSzoba;
 
     @Override
-    public void hasznal() {
+    public void hasznal(Oktato oktato) {
 
     }
 
@@ -18,6 +19,11 @@ public class Tranzisztor implements Targy {
 
     @Override
     public void szobaValtasrolErtesit(Szoba newSzoba) {
+        jelenlegiSzoba = newSzoba;
+    }
+
+    @Override
+    public void tick() {
 
     }
 }

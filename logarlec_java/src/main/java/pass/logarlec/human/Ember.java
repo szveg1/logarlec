@@ -1,12 +1,14 @@
 package pass.logarlec.human;
 
+import pass.logarlec.Idozitett;
+import pass.logarlec.item.Rongy;
 import pass.logarlec.labyrinth.Szoba;
 import pass.logarlec.item.Targy;
 import pass.logarlec.item.Maszk;
 
 import java.util.*;
 
-public abstract class Ember implements TargyVisitor {
+public abstract class Ember implements TargyVisitor, Idozitett {
     protected final List<Targy> inventory = new ArrayList<>();
     private Szoba jelenlegiSzoba = null;
     private boolean gazEllenVedett = false;
@@ -14,7 +16,7 @@ public abstract class Ember implements TargyVisitor {
 
     public void targyatFelvesz(Targy targy) {
         if(inventoryTeleE()) {
-            System.out.println("Inventory is full, cannot add item.");
+            // Valami figyelmeztetes h tele az inventory
             return;
         }
         jelenlegiSzoba.removeItem(targy);
@@ -24,43 +26,36 @@ public abstract class Ember implements TargyVisitor {
 
     public void targyatEldob(Targy targy) {
         if(inventory.isEmpty()){
-            System.out.println("Inventory is empty, cannot remove item.");
+            // Valami figyelmeztetes h ures az inventory
             return;
         }
         inventory.remove(targy);
         jelenlegiSzoba.addItem(targy);
     }
 
-
-    private void vedelmetHasznal() {
-        for (Targy targy : inventory) {
-            targy.accept(this);
-        }
-    }
-
-
     @Override
-    public void visitMaszk(Maszk maszk) {
+    public void visit(Maszk maszk) {
         setGazEllenVedett(maszk.getVedIdo() > 0);
     }
 
 
     public void ajulas() {
         ajult = true;
+        for(Targy targy : inventory) {
+            targyatEldob(targy);
+        }
     }
-
-
-    public void update() {
-        vedelmetHasznal();
-    }
-
 
     public void masikSzobabaLep(Szoba newSzoba) {
+        newSzoba.emberBetesz(this);
         for (Targy targy : inventory) {
             targy.szobaValtasrolErtesit(newSzoba);
         }
-        this.jelenlegiSzoba = newSzoba;
-        vedelmetHasznal();
+    }
+
+    public void kilepSzobajabol() {
+        jelenlegiSzoba.emberKivesz(this);
+        jelenlegiSzoba = null;
     }
 
     public boolean GazEllenVedettE() {
@@ -71,9 +66,14 @@ public abstract class Ember implements TargyVisitor {
         this.gazEllenVedett = isProtected;
     }
 
-    public boolean AjultE() {
-        return ajult;
+    public Szoba getJelenlegiSzoba() {
+        return jelenlegiSzoba;
     }
 
+
     abstract boolean inventoryTeleE();
+
+    public abstract void rongyotElszenved(Rongy rongy);
+
+    public abstract void tick();
 }
