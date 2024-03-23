@@ -56,6 +56,10 @@ public class Szoba implements Idozitett {
         this.meregIdo = meregIdo;
     }
 
+    public boolean isPoisonous() {
+        return meregIdo > 0;
+    }
+
     public void addItem(Targy targy) {
         targyak.add(targy);
         targy.szobaValtasrolErtesit(this);

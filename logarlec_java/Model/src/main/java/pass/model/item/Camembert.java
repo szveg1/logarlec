@@ -6,10 +6,14 @@ import pass.model.labyrinth.Szoba;
 
 public class Camembert implements Targy {
     private Szoba szoba;
+    private boolean poisonous = true;
 
     @Override
     public void hasznal(Oktato oktato) {
+        if (poisonous) {
         szoba.setPoisonous(true, 3);
+        poisonous = false;
+        }
     }
 
     @Override
