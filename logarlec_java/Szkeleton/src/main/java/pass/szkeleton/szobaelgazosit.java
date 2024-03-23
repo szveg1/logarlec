@@ -8,6 +8,7 @@ import java.util.Map;
 
 public class szobaelgazosit {
 
+<<<<<<< HEAD
     private static Map<String, Targy> map = new HashMap<>();
     private static Map<String, Ember> map2 = new HashMap<>();
 
@@ -27,6 +28,14 @@ public class szobaelgazosit {
 
     System.out.println("Szoba mérgezett ennyi ideig: " + sz.isPoisonous());
 
+=======
+    private static Map<String, Object> map = new HashMap<>();
+
+    public static void setUp() {
+    Szoba sz = new Szoba(10);
+    map.put("Hallgató", new Hallgato());
+    map.put("Camambert", new Camembert());
+>>>>>>> 4f746c606a1555357c27c42119c3cda11b4e4f58
     }
 
 

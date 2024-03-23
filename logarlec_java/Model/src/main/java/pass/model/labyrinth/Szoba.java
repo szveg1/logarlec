@@ -52,7 +52,7 @@ public class Szoba implements Idozitett {
         }
     }
 
-    public void setPoisonous(boolean mergezo, int meregIdo) {
+    public void setPoisonous(int meregIdo) {
         this.meregIdo = meregIdo;
     }
 
@@ -63,6 +63,14 @@ public class Szoba implements Idozitett {
     public void addItem(Targy targy) {
         targyak.add(targy);
         targy.szobaValtasrolErtesit(this);
+    }
+
+    public ArrayList<Targy> getItems() {
+        return targyak;
+    }
+
+    public void addEmber(Ember ember) {
+        bentlevok.add(ember);
     }
 
     public void removeItem(Targy targy) {
