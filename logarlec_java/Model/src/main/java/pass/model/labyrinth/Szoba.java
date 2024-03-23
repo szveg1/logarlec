@@ -52,7 +52,7 @@ public class Szoba implements Idozitett {
         }
     }
 
-    public void setPoisonous(boolean mergezo, int meregIdo) {
+    public void setPoisonous(int meregIdo) {
         this.meregIdo = meregIdo;
     }
 
