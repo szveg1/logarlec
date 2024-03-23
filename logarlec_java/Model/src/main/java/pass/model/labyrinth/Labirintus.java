@@ -1,18 +1,19 @@
-package pass.logarlec.labyrinth;
+package pass.model.labyrinth;
 
-import pass.logarlec.Idozitett;
-import pass.logarlec.human.Ember;
-import pass.logarlec.human.Hallgato;
-import pass.logarlec.human.Oktato;
+import pass.model.Idozitett;
+import pass.model.human.Hallgato;
+import pass.model.human.Oktato;
 
 import java.util.List;
-import java.util.Map;
 
 public class Labirintus implements Idozitett {
     // HIANYOS!!!!
     List<Szoba> szobak;
     List<Hallgato> hallgatok;
     List<Oktato> oktatok;
+    public void addSzoba(Szoba sz){
+        szobak.add(sz);
+    }
 
     public void szobaFeloszt(Szoba szoba) {
         Szoba ujSzoba = new Szoba(szoba);
@@ -20,7 +21,7 @@ public class Labirintus implements Idozitett {
     }
 
     public void szobakOsszevon(){
-        // TODO
+
     }
 
     @Override

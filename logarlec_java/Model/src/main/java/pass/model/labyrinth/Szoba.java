@@ -1,10 +1,10 @@
-package pass.logarlec.labyrinth;
+package pass.model.labyrinth;
 
-import pass.logarlec.Idozitett;
-import pass.logarlec.human.Ember;
-import pass.logarlec.human.Hallgato;
-import pass.logarlec.human.Oktato;
-import pass.logarlec.item.Targy;
+import pass.model.Idozitett;
+import pass.model.human.Ember;
+import pass.model.human.Hallgato;
+import pass.model.human.Oktato;
+import pass.model.item.Targy;
 
 import java.util.*;
 
@@ -17,6 +17,13 @@ public class Szoba implements Idozitett {
     private List<Ajto> ajtok;
 
     Map<Oktato, List<Hallgato>> immunisok = new HashMap<>();
+
+    public Szoba(int ferohely) {
+        this.ferohely = ferohely;
+        this.targyak = new ArrayList<>();
+        this.bentlevok = new ArrayList<>();
+        this.ajtok = new ArrayList<>();
+    }
 
     public Szoba(Szoba masikSzoba) {
         this.meregIdo = masikSzoba.meregIdo;

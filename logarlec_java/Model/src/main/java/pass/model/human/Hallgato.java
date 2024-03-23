@@ -1,12 +1,14 @@
-package pass.logarlec.human;
+package pass.model.human;
 
-import pass.logarlec.item.*;
+import pass.model.item.*;
 
 public class Hallgato extends Ember {
-    private final int MAX_INVENTORY_MERET = 5;
 
     private boolean tudVedekezni = false;
 
+    public boolean gettudVedekezni(){
+        return tudVedekezni;
+    }
 
     @Override
     public void visit(Logarlec logarlec) {
@@ -30,6 +32,7 @@ public class Hallgato extends Ember {
 
     @Override
     boolean inventoryTeleE() {
+        int MAX_INVENTORY_MERET = 5;
         return inventory.size() >= MAX_INVENTORY_MERET;
     }
 
@@ -39,6 +42,8 @@ public class Hallgato extends Ember {
     }
 
     // Rongy + Pohar hianyzik meg
+
+
     public void tamadasElszenved(Oktato oktato) {
         int hasznalniKivant = 0;
         for(Targy targy : inventory) {

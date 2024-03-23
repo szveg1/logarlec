@@ -1,10 +1,10 @@
-package pass.logarlec.human;
+package pass.model.human;
 
-import pass.logarlec.Idozitett;
-import pass.logarlec.item.Rongy;
-import pass.logarlec.labyrinth.Szoba;
-import pass.logarlec.item.Targy;
-import pass.logarlec.item.Maszk;
+import pass.model.Idozitett;
+import pass.model.item.Rongy;
+import pass.model.labyrinth.Szoba;
+import pass.model.item.Targy;
+import pass.model.item.Maszk;
 
 import java.util.*;
 

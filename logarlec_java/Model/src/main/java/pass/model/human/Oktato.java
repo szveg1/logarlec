@@ -1,9 +1,9 @@
-package pass.logarlec.human;
+package pass.model.human;
 
-import pass.logarlec.item.Logarlec;
-import pass.logarlec.item.Pohar;
-import pass.logarlec.item.Rongy;
-import pass.logarlec.item.TVSZ;
+import pass.model.item.Logarlec;
+import pass.model.item.Pohar;
+import pass.model.item.Rongy;
+import pass.model.item.TVSZ;
 
 public class Oktato extends Ember {
     private static final int MAX_INVENTORY_MERET = 1;

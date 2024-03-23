@@ -1,6 +1,6 @@
-package pass.logarlec.human;
+package pass.model.human;
 
-import pass.logarlec.item.*;
+import pass.model.item.*;
 
 public interface TargyVisitor {
     void visit(Logarlec logarlec);

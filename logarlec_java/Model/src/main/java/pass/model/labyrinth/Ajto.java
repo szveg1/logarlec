@@ -1,6 +1,6 @@
-package pass.logarlec.labyrinth;
+package pass.model.labyrinth;
 
-import pass.logarlec.human.Ember;
+import pass.model.human.Ember;
 
 import java.util.*;
 

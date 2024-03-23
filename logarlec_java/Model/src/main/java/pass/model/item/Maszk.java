@@ -1,8 +1,8 @@
-package pass.logarlec.item;
+package pass.model.item;
 
-import pass.logarlec.human.Oktato;
-import pass.logarlec.human.TargyVisitor;
-import pass.logarlec.labyrinth.Szoba;
+import pass.model.human.Oktato;
+import pass.model.human.TargyVisitor;
+import pass.model.labyrinth.Szoba;
 
 public class Maszk implements Targy {
     private int vedIdo = 3;
