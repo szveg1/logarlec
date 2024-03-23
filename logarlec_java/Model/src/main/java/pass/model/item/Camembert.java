@@ -10,14 +10,7 @@ public class Camembert implements Targy {
 
     @Override
     public void hasznal(Oktato oktato) {
-<<<<<<< HEAD
-        if (poisonous) {
-        szoba.setPoisonous(true, 3);
-        poisonous = false;
-        }
-=======
         szoba.setPoisonous(3);
->>>>>>> 4f746c606a1555357c27c42119c3cda11b4e4f58
     }
 
     @Override

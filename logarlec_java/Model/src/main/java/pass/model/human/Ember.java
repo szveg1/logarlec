@@ -15,6 +15,7 @@ public abstract class Ember implements TargyVisitor, Idozitett {
     private boolean ajult = false;
 
     public void targyatFelvesz(Targy targy) {
+        if (ajult) return;
         if(inventoryTeleE()) {
             // Valami figyelmeztetes h tele az inventory
             return;
@@ -25,6 +26,7 @@ public abstract class Ember implements TargyVisitor, Idozitett {
     }
 
     public void targyatEldob(Targy targy) {
+        if (ajult) return;
         if(inventory.isEmpty()){
             // Valami figyelmeztetes h ures az inventory
             return;
@@ -47,6 +49,7 @@ public abstract class Ember implements TargyVisitor, Idozitett {
     }
 
     public void masikSzobabaLep(Szoba newSzoba) {
+        if (ajult) return;
         newSzoba.emberBetesz(this);
         for (Targy targy : inventory) {
             targy.szobaValtasrolErtesit(newSzoba);
@@ -70,8 +73,20 @@ public abstract class Ember implements TargyVisitor, Idozitett {
         return jelenlegiSzoba;
     }
 
-    public ArrayList<Targy> getItems() {
+    public void setJelenlegiSzoba(Szoba sz) {
+        jelenlegiSzoba = sz;
+    }
+
+    public List<Targy> getItems() {
         return inventory;
+    }
+
+    public void addItem(Targy t) {
+        inventory.add(t);
+    }
+
+    public boolean getAjult() {
+        return ajult;
     }
 
     abstract boolean inventoryTeleE();
