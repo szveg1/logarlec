@@ -8,5 +8,7 @@ public class Main {
             TargyFelveszTest tft = new TargyFelveszTest();
             tft.setUp();
             tft.test();
+            TargyEldobTest tet = new TargyEldobTest();
+            tet.test();
     }
 }

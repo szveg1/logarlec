@@ -70,6 +70,9 @@ public abstract class Ember implements TargyVisitor, Idozitett {
         return jelenlegiSzoba;
     }
 
+    public ArrayList<Targy> getItems() {
+        return inventory;
+    }
 
     abstract boolean inventoryTeleE();
 
