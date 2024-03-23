@@ -61,6 +61,10 @@ public class Szoba implements Idozitett {
         targy.szobaValtasrolErtesit(this);
     }
 
+    public void addEmber(Ember ember) {
+        bentlevok.add(ember);
+    }
+
     public void removeItem(Targy targy) {
         targyak.remove(targy);
     }
