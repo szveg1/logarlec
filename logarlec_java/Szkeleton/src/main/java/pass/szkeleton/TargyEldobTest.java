@@ -1,10 +1,12 @@
 package pass.szkeleton;
 
+import pass.model.CustomLogger;
 import pass.model.human.*;
 import pass.model.labyrinth.*;
 import pass.model.item.*;
 
 import java.util.*;
+import java.util.logging.Level;
 
 public class TargyEldobTest {
 
@@ -12,38 +14,56 @@ public class TargyEldobTest {
     private static Map<String, Targy> targyMap = new HashMap<>();
 
     public static void test(){
+        Ember e = null;
         Szoba sz = new Szoba(1, "sz");
         emberMap.put("oktato", new Oktato("o"));
         emberMap.put("hallgato", new Hallgato("h"));
-        targyMap.put("rongy", new Rongy("r"));
+/*        targyMap.put("rongy", new Rongy("r"));
         targyMap.put("camembert", new Camembert("c"));
         targyMap.put("maszk", new Maszk(1, "m"));
         targyMap.put("pohar", new Pohar("p"));
         targyMap.put("tranzisztor", new Tranzisztor("tr"));
-        targyMap.put("tvsz", new TVSZ("tv"));
+        targyMap.put("tvsz", new TVSZ("tv"));*/
 
         Scanner scanner = new Scanner(System.in);
-        System.out.print("[Hallgató vagy oktató?] ");
+        CustomLogger.log(Level.INFO, "[Hallgató vagy oktató dob el tárgyat?] ");
         for(String ember : emberMap.keySet()){
             System.out.print(" [" + ember + "]");
         }
-        System.out.println();
-        String ember = scanner.nextLine();
-        Ember e = emberMap.get(ember);
-        sz.emberBetesz(e);
+        System.out.append("\n");
 
-        System.out.println("Milyen tárgyat dobjon fel?");
-        String targy = scanner.nextLine();
-        Targy t = targyMap.get(targy);
-        sz.addItem(t);
-        e.targyatFelvesz(t);
-        e.targyatEldob(t);
+        do {
+            String ember = scanner.nextLine();
+            e = emberMap.get(ember);
+            if (e == null) {
+                CustomLogger.log(Level.WARNING, "Nem létező ember!");
+            }
+        } while (e == null);
 
-        if (e.getItems().size() == 0) System.out.println("Tárgyat eldobta az ember");
-        if (e.getItems().size() != 0) System.out.println("Tárgyat nem dobta el az ember");
+        e.masikSzobabaLep(sz);
 
-        if (sz.getItems().size() == 1) System.out.println("Tárgy bekerült a szobába");
-        if (sz.getItems().size() != 1) System.out.println("Tárgy nem került a szobába");
-
+        CustomLogger.log(Level.INFO, "Hány tárgy legyen az inventoryban? (oktato max 1, hallgato max 5)");
+        int targySzam = scanner.nextInt();
+        scanner.nextLine();
+        for(int i = 1; i <= targySzam; i++){
+            Targy t = new Rongy("r"+i);
+            sz.addItem(t);
+            e.targyatFelvesz(t);
+            if(!sz.getItems().contains(t))
+            targyMap.put("r"+i, t);
+        }
+        do {
+            CustomLogger.log(Level.INFO, "Milyen tárgyat dobjon el?");
+            for (String targy : targyMap.keySet()) {
+                System.out.print("[" + targy + "] ");
+            }
+            System.out.append("\n");
+            String targyNev = scanner.nextLine();
+            Targy t = targyMap.get(targyNev);
+            e.targyatEldob(t);
+            if(sz.getItems().contains(t)){
+                targyMap.remove(targyNev, t);
+            }
+        }while(!e.getItems().isEmpty());
     }
 }
