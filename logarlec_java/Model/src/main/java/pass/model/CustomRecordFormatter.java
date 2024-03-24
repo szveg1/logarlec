@@ -5,7 +5,7 @@ import java.io.StringWriter;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
-class CustomRecordFormatter extends Formatter {
+public class CustomRecordFormatter extends Formatter {
     @Override
     public String format(final LogRecord r) {
         StringBuilder sb = new StringBuilder();
@@ -17,7 +17,7 @@ class CustomRecordFormatter extends Formatter {
                 .append(r.getSourceClassName())
                 .append("->")
                 .append(r.getSourceMethodName())
-                .append(": ")
+                .append("(): ")
                 .append(formatMessage(r))
                 .append(System.getProperty("line.separator"));
         if (null != r.getThrown()) {

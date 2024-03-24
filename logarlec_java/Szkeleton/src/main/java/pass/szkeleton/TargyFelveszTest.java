@@ -5,6 +5,7 @@ import pass.model.labyrinth.*;
 import pass.model.item.*;
 
 import java.util.*;
+import java.util.logging.*;
 
 public class TargyFelveszTest {
     private static Map<String, Ember> emberMap = new HashMap<>();
@@ -25,46 +26,22 @@ public class TargyFelveszTest {
 
     public void test(){
         Ember e = null;
-        String indent = "";
         Scanner scanner = new Scanner(System.in);
-        System.out.println("TargyFelveszTest: ");
 
-        indent += "\t";
-
-        System.out.print(indent + "Ki veszi fel a tárgyat?");
-        for(String ember : emberMap.keySet()){
+        Main.logger.info("[Hallgató vagy oktató?] ");
+        for (String ember : emberMap.keySet()) {
             System.out.print(" [" + ember + "]");
         }
+        System.out.append("\n");
 
-        System.out.println();
-
-        do{
-            e = emberMap.get(scanner.nextLine());
-            if(e == null){
-                System.out.println(indent + "Nem létezik ilyen ember. Próbáld újra.");
-            } else {
-                e.setJelenlegiSzoba(sz);
-                System.out.println(indent + "Az ember a" + sz.toString() + " szobában van.");
-            }
-        }while(e == null);
-
-        System.out.print(indent + "Milyen tárgyat vesz fel?");
-        for(String targy : targyMap.keySet()){
-            System.out.print(" [" + targy + "]");
-        }
-        System.out.print(" [vége]");
-
-        String targy = scanner.nextLine();
         do {
-            if (targyMap.get(targy) == null) {
-                if(!targy.equals("vége"))
-                    System.out.println(indent + "Nem létezik ilyen tárgy. Próbáld újra.");
-            } else {
-                e.targyatFelvesz(targyMap.get(targy));
+            String ember = scanner.nextLine();
+            e = emberMap.get(ember);
+            if (e == null) {
+                Main.logger.log(Level.WARNING, "Nem létező ember!");
             }
+        } while (e == null);
 
-        } while(!targy.equals("vége"));
-
-        System.out.println("\nTargyFelveszTest: tesztelés vége.");
+        sz.addEmber(e);
     }
 }
