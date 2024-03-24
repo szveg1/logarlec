@@ -22,7 +22,8 @@ public class Tranzisztor implements Targy {
     Tranzisztor par;
 
     @Override
-    public void hasznal(Oktato oktato) {
+    public void hasznal() {
+        
 
     }
 

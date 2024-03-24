@@ -20,7 +20,8 @@ public class Pohar implements Targy {
     private int vedIdo = 3;
 
     @Override
-    public void hasznal(Oktato oktato) {
+    public void hasznal() {
+        // Nem lehet használni.
     }
 
     @Override

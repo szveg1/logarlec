@@ -25,7 +25,7 @@ public class Maszk implements Targy {
 //    }
 
     @Override
-    public void hasznal(Oktato oktato) {
+    public void hasznal() {
         // Nem lehet "hasznalni"
     }
 
