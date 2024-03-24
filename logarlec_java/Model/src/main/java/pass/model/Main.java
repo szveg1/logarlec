@@ -9,7 +9,7 @@ import java.util.logging.SimpleFormatter;
 
 public class Main {
     static Labirintus labirintus = new Labirintus();
-    public static Logger logger = Logger.getLogger(Main.class.getName());
+    public static Logger logger = Logger.getGlobal();
     static {
         logger.setUseParentHandlers(false);
         CustomRecordFormatter formatter = new CustomRecordFormatter();
@@ -17,6 +17,7 @@ public class Main {
         handler.setFormatter(formatter);
         logger.addHandler(handler);
     }
+
     public static void main(String[] args) {
 
     }
