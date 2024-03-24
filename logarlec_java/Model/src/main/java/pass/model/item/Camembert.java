@@ -27,8 +27,8 @@ public class Camembert implements Targy {
     private Szoba szoba;
     private boolean poisonous = true;
 
-    @Override
-    public void hasznal(Oktato oktato) {
+
+    public void hasznal() {
         if (poisonous) {
         szoba.setPoisonous(3);
         poisonous = false;

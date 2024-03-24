@@ -19,7 +19,7 @@ public class Menu {
             System.out.println("7. Tranzisztor párosítás");
             System.out.println("8. Szoba osztódás");
             System.out.println("9. Szoba összevonás");
-            System.out.println("10. Szoba elgázosítása");
+            System.out.println("10. Szoba elgázosítása ---> KÉSZ de tényleg");
             System.out.println("11. Ember belép egy szobába");
             System.out.println("12. Hallgató oktató interakció");
             System.out.println("13. Hallgató védekezik, rongy");

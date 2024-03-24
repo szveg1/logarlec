@@ -109,6 +109,11 @@ public abstract class Ember implements TargyVisitor, Idozitett {
 
     }
 
+    public void targyatHasznal(Targy targy){
+        emberLogger.info(this + " használta a " + targy + "-t");
+        targy.hasznal();
+    }
+
     public boolean GazEllenVedettE() {
         return gazEllenVedett;
     }

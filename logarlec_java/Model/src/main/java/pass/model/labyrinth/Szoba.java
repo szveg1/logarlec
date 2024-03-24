@@ -107,7 +107,6 @@ public class Szoba implements Idozitett {
 
     public void emberBetesz(Ember ember) {
         if(bentlevok.size()  + 1 > ferohely) {
-            return;
         } else {
             ember.kilepSzobajabol();
             bentlevok.add(ember);
