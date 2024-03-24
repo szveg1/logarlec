@@ -26,7 +26,16 @@ public class Tranzisztor implements Targy {
 
     @Override
     public void hasznal() {
-        
+        if (par == null) {
+            for (int i = 0; i < tulaj.getItems().size(); i++) {
+                if (i != tulaj.getItems().indexOf(this)) {
+                    tulaj.getItems().get(i).setPar(this);
+                }
+            }
+        }
+        else {
+            tulaj.masikSzobabaLep(par.getSzoba());
+        }
 
     }
     @Override
@@ -47,6 +56,11 @@ public class Tranzisztor implements Targy {
     @Override
     public void szobaValtasrolErtesit(Szoba newSzoba) {
         jelenlegiSzoba = newSzoba;
+    }
+
+    @Override
+    public void emberValtasrolErtesit(Ember newEmber) {
+        tulaj = newEmber;
     }
 
     public Szoba getSzoba() {

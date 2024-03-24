@@ -42,7 +42,7 @@ public abstract class Ember implements TargyVisitor, Idozitett {
             jelenlegiSzoba.removeItem(targy);
         }
         inventory.add(targy);
-        emberLogger.info(this + " felvette a " + targy + "-t");
+        targy.emberValtasrolErtesit(this);
     }
 
 
