@@ -16,22 +16,19 @@ public class HallgatoTeleportTest {
         Szoba sz1 = new Szoba(1, "sz1");
         Szoba sz2 = new Szoba(1, "sz1");
 
-        sz1.emberBetesz(e);
+        e.masikSzobabaLep(sz1);
         Targy t = new Tranzisztor("t");
         Targy t2 = new Tranzisztor("t2");
         sz1.addItem(t);
+        sz1.addItem(t2);
         e.targyatFelvesz(t);
-        if (e.getItems().get(0) == t) System.out.println("hallgato felvett egy tranzisztort");
-        else System.out.println("valami nem stimmel");
-
         e.targyatFelvesz(t2);
-        if (e.getItems().get(1) == t2) System.out.println("hallgato felvett egy másik tranzisztort");
-        else System.out.println("valami nem stimmel");
 
+        e.targyatHasznal(t);
+        e.targyatEldob(t2);
 
         e.masikSzobabaLep(sz2);
-        if (sz1.getEmberek().size() == 0 && sz2.getEmberek().size() == 1) System.out.println("hallgato atment egy masik szobaba");
-        else System.out.println("valami nem stimmel");
+        e.targyatHasznal(t);
 
     }
 }
