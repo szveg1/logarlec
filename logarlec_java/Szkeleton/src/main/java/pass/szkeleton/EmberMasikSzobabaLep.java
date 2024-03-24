@@ -8,6 +8,7 @@ import pass.model.item.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Level;
 
 public class EmberMasikSzobabaLep
 {
@@ -42,6 +43,9 @@ public class EmberMasikSzobabaLep
         CustomLogger.info("[Hallgató vagy oktató?]\n");
         String ember = scanner.nextLine();
         Ember e = embermpa.get(ember);
+        if (e == null) {
+            CustomLogger.log(Level.WARNING, "Nem létező válasz!");
+        }
         sz1.emberBetesz(e);
         sz2.emberBetesz(e1);
         sz1.emberKivesz(e);
@@ -57,6 +61,12 @@ public class EmberMasikSzobabaLep
         if(asd.equals("igen")){
             sz2.setPoisonous(10);
         }
+        else if(asd.equals("nem")){
+            sz2.setPoisonous(10);
+        }
+        else{
+            CustomLogger.log(Level.WARNING, "Nem létező válasz!");
+        }
         CustomLogger.info("[Van-e maszkja az embernek? Igen vagy nem?]\n");
         String asd1 = scanner.nextLine();
         if(asd1.equals("igen")){
@@ -68,7 +78,9 @@ public class EmberMasikSzobabaLep
             e.ajulas();
             if (e.getAjult()) CustomLogger.info("ember elajult");
             else CustomLogger.info("valami nem stimmel");
-
+        }
+        else{
+            CustomLogger.log(Level.WARNING, "Nem létező válasz!");
         }
     }
 }

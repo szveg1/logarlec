@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import java.util.*;
+import java.util.logging.Level;
 
 public class Ajtojeleniktunik {
 
@@ -39,11 +40,17 @@ public class Ajtojeleniktunik {
         else if(asd.equals("nem")){
             a1.setLathatosag(false);
         }
+        else{
+            CustomLogger.log(Level.WARNING, "Nem létező válasz!");
+        }
 
         CustomLogger.info("[valtozzon a láthatosag? Igen vagy nem?]\n");
         String asd2 = scanner.nextLine();
         if(asd2.equals("igen")){
             a1.lathatosagValtoztass();
+        }
+        else if (!asd2.equals("igen") && !asd2.equals("nem")) {
+            CustomLogger.log(Level.WARNING, "Nem létező válasz!");
         }
 
         if(asd.equals("igen") && asd2.equals("igen")){
