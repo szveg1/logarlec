@@ -86,6 +86,10 @@ public class Szoba implements Idozitett {
         targy.szobaValtasrolErtesit(this);
     }
 
+    public void addAjto(Ajto ajto) {
+        ajtok.add(ajto);
+    }
+
     public List<Targy> getItems() {
         return targyak;
     }
