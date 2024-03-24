@@ -24,4 +24,20 @@ public class Ajto {
             e.masikSzobabaLep(hovaMegy);
         }
     }
+
+    public boolean getLathatosag(){
+        return lathato;
+    }
+    public void setLathatosag(boolean a){
+        lathato = a;
+    }
+
+    public void lathatosagValtoztass(){
+        if (lathato){
+            lathato = false;
+        }
+        else if (!lathato){
+            lathato = true;
+        }
+    }
 }
