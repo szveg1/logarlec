@@ -5,34 +5,80 @@ import pass.model.human.*;
 import pass.model.labyrinth.*;
 import pass.model.item.*;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.function.Supplier;
 
 
 public class Oktato_tamad {
-        private static Labirintus labirintus;
-        private static Szoba szoba;
-        private static Oktato oktato;
-        private static Hallgato hallgato;
+    private static Labirintus labirintus;
+    private static Szoba szoba;
+    private static Oktato oktato;
+    private static Hallgato hallgato;
+    private static Map<String, Oktato>  oktatoMap = new HashMap<>();
+    private static Map<String, Targy> targyMap = new HashMap<>();
+    public static void init_test(int oktatoSzam, String hallgatoVedekezik) {
+        labirintus = new Labirintus();
+        szoba = new Szoba(5);
+        hallgato = new Hallgato();
+        Rongy rongy = new Rongy();
+        Pohar pohar = new Pohar();
+        TVSZ tvsz = new TVSZ();
 
+        targyMap.put("Rongy", rongy);
+        targyMap.put("Pohar", pohar);
+        targyMap.put("TVSZ", tvsz);
 
-        public static void init_test() {
-            labirintus = new Labirintus();
-            szoba = new Szoba(10);
-            oktato = new Oktato();
-            hallgato = new Hallgato();
+        szoba.addItem(rongy);
+        szoba.addItem(pohar);
+        szoba.addItem(tvsz);
 
-            labirintus.addSzoba(szoba);
-            szoba.emberBetesz(oktato);
+        if (!targyMap.containsKey(hallgatoVedekezik) || hallgatoVedekezik.equals("")) {
+            throw new IllegalArgumentException("Ismeretlen targy: " + hallgatoVedekezik);
+        }else if(hallgatoVedekezik.equals("")){
+            System.out.println("A hallgatónak nincs vedekezo targya.");
+        }else {
             szoba.emberBetesz(hallgato);
+            hallgato.targyatFelvesz(targyMap.get(hallgatoVedekezik));
+
+            for (int i = 0; i < oktatoSzam; i++) {
+                oktato = new Oktato();
+                szoba.emberBetesz(oktato);
+                oktatoMap.put("Oktato" + i, oktato);
+            }
+
+            //szoba.emberBetesz(hallgato);
+            //emberMap.put("Hallgato", hallgato);
         }
+    }
 
+    public static void Oktato_tamad_test() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Mivel védekezik a hallgató?");
+        String hallgatoVedekezik = scanner.nextLine();
 
-        public void Oktato_tamad() {
-            // Act
-            oktato.hallgatotMegtamad(hallgato);
+        System.out.println("Hány oktató legyen a szobában?");
+        int oktatoSzam = scanner.nextInt();
 
-            // Assert
+        init_test(oktatoSzam, hallgatoVedekezik);
 
-            //assertTrue(hallgato.meghal()); // A hallgató meghal
+        for(int i = 0; i < oktatoSzam; i++){
+            System.out.println("Oktato" + i + " tamadasa");
+            oktatoMap.get("Oktato" + i).hallgatotMegtamad(hallgato);
+            hallgato.tamadasElszenved(oktatoMap.get("Oktato" + i));
+            if(hallgato.getEletbenVan()){
+                System.out.println("A hallgato tulelte az " + i + ". oktato tamadasat.");
+            } else {
+                System.out.println("A hallgato meghalt az " + i + ". oktato tamadasaban.");
+                break;
+            }
         }
+        if(hallgato.getEletbenVan()){
+            System.out.println("A hallgato tulelte az osszes oktato tamadasat.");
+        }
+    }
 }
+
+
 
