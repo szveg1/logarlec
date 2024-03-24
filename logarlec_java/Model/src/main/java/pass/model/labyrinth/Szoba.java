@@ -109,7 +109,7 @@ public class Szoba implements Idozitett {
         } else {
             ember.kilepSzobajabol();
             bentlevok.add(ember);
-            CustomLogger.info(ember + " belépett a " + this + "-ba");
+            CustomLogger.info(ember + " bekerült a bentlevők közé.");
             if(meregIdo > 0) {
                 ember.ajulas();
             }

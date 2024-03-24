@@ -94,6 +94,6 @@ public class Hallgato extends Ember {
 
     @Override
     public void tick() {
-
+        super.tick();
     }
 }

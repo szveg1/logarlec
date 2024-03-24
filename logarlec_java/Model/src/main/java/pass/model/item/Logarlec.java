@@ -1,6 +1,7 @@
 package pass.model.item;
 
 import pass.model.human.Oktato;
+import pass.model.labyrinth.Labirintus;
 import pass.model.labyrinth.Szoba;
 import pass.model.human.TargyVisitor;
 
