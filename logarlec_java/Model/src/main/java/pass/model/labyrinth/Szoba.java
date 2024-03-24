@@ -44,11 +44,9 @@ public class Szoba implements Idozitett {
 
         // Bentlevok fele masik szobaba
         int bentlevokSzamaFele = masikSzoba.bentlevok.size() / 2;
-        ArrayList<Ember> felezettBentlevok = new ArrayList<>(masikSzoba.bentlevok.subList(0, bentlevokSzamaFele));
-        masikSzoba.bentlevok.removeAll(felezettBentlevok);
-        this.bentlevok = felezettBentlevok;
-        for(Ember ember : felezettBentlevok) {
-            ember.masikSzobabaLep(this);
+        this.bentlevok = new ArrayList<>();
+        for (int i = 0; i <= bentlevokSzamaFele; ++i) {
+            masikSzoba.getEmberek().get(i).masikSzobabaLep(this);
         }
     }
 
