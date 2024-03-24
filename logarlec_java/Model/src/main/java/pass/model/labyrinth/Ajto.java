@@ -1,8 +1,10 @@
 package pass.model.labyrinth;
 
+import pass.model.CustomLogger;
 import pass.model.human.Ember;
 
 import java.util.*;
+import java.util.logging.Level;
 
 public class Ajto {
     private Szoba egyikOldal;
@@ -18,6 +20,10 @@ public class Ajto {
     }
 
     public void hasznal(Ember e){
+        if(!lathato) {
+            CustomLogger.log(Level.WARNING,"Ajto nem lathato");
+            return;
+        }
         Szoba jelenlegiSzoba =  e.getJelenlegiSzoba();
         Szoba hovaMegy = (egyikOldal == jelenlegiSzoba) ? masikOldal : egyikOldal;
         if(merreNyilik.get(hovaMegy)){
