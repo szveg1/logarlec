@@ -20,7 +20,7 @@ public class szobaelgazosit {
     map.put("Camambert", c);
 
     sz.addItem(c);
-    sz.emberBetesz(h);
+    sz.addEmber(h);
 
     h.targyatFelvesz(c);
     c.hasznal(null);

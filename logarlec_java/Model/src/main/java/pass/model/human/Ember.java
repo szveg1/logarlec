@@ -33,6 +33,7 @@ public abstract class Ember implements TargyVisitor, Idozitett {
         targy.szobaValtasrolErtesit(jelenlegiSzoba);
     }
 
+
     public void targyatEldob(Targy targy) {
         if (ajult){
             logger.info(this + " ájult, nem tud eldobni targyat");
