@@ -44,6 +44,12 @@ public class EmberMasikSzobabaLep
         sz1.addEmber(e);
         sz2.emberBetesz(e1);
         sz1.emberKivesz(e);
+        if(e.getJelenlegiSzoba()==sz2){
+            System.out.println("sikeresen szobát váltott");
+        }
+        else if(e.getJelenlegiSzoba()==sz1){
+            System.out.println("valami nem stimmel");
+        }
 
         System.out.print("[mérgező-e a következő szoba? Igen vagy nem?]\n");
         String asd = scanner.nextLine();

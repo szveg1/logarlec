@@ -58,7 +58,8 @@ public class TeliInventorybaFelvesz
 
                 e.targyatFelvesz(r1);
                 sz1.removeItem(r1);
-                if(e.getItems().size() > 1){System.out.println("valami nem stimmel");}
+                if(e.getItems().size() == 1){System.out.println("valami stimmel");}
+                else if(e.getItems().size() > 1){System.out.println("valami nem stimmel");}
             }
         }
         else if(e == h1){
@@ -83,7 +84,9 @@ public class TeliInventorybaFelvesz
                 sz1.removeItem(tr1);
 
             }
-            if(e.getItems().size() > 5){System.out.println("valami nem stimmel");}
+
+            if(e.getItems().size() == 5){System.out.println("valami stimmel");}
+            else if(e.getItems().size() > 5){System.out.println("valami nem stimmel");}
 
         }
 
