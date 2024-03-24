@@ -13,8 +13,8 @@ public class TargyEldobTest {
 
     public static void test(){
         Szoba sz = new Szoba(1);
-        emberMap.put("oktato", new Oktato());
-        emberMap.put("hallgato", new Hallgato());
+        emberMap.put("oktato", new Oktato("o"));
+        emberMap.put("hallgato", new Hallgato("h"));
         targyMap.put("rongy", new Rongy());
         targyMap.put("camembert", new Camembert());
         targyMap.put("maszk", new Maszk(1));
@@ -30,7 +30,7 @@ public class TargyEldobTest {
         System.out.println();
         String ember = scanner.nextLine();
         Ember e = emberMap.get(ember);
-        sz.addEmber(e);
+        sz.emberBetesz(e);
 
         System.out.println("Milyen tárgyat dobjon fel?");
         String targy = scanner.nextLine();

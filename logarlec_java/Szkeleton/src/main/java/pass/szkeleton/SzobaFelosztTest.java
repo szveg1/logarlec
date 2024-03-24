@@ -23,7 +23,7 @@ public class SzobaFelosztTest {
         s = scanner.nextLine();
         m = Integer.parseInt(s);
         for (int i=0; i < m; i++) {
-            sz1.addEmber(new Hallgato());
+            sz1.emberBetesz(new Hallgato("h"+i));
         }
 
         Main.logger.info("Hany targy legyen a szobaban?");

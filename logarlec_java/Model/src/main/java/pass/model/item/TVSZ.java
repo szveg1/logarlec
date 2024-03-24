@@ -12,6 +12,8 @@ public class TVSZ implements Targy {
     public void hasznal(Oktato oktato) {
         if(vedelmekSzama > 0){
             vedelmekSzama--;
+        }else{
+            return;
         }
         if (jelenlegiSzoba == null) {
             return;

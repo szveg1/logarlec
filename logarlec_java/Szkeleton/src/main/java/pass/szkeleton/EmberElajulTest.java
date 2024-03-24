@@ -11,8 +11,8 @@ public class EmberElajulTest {
     private static Map<String, Ember> emberMap = new HashMap<>();
 
     public static void test() {
-        emberMap.put("oktato", new Oktato());
-        emberMap.put("hallgato", new Hallgato());
+        emberMap.put("oktato", new Oktato("o"));
+        emberMap.put("hallgato", new Hallgato("h"));
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("[Hallgató vagy oktató?] ");
@@ -26,7 +26,7 @@ public class EmberElajulTest {
         Szoba sz1 = new Szoba(1);
         Szoba sz2 = new Szoba(1);
 
-        sz1.addEmber(e);
+        sz1.emberBetesz(e);
 
         e.ajulas();
         if (e.getAjult()) System.out.println("ember elajult");

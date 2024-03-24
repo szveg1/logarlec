@@ -7,6 +7,8 @@ import pass.model.item.*;
 import java.util.*;
 import java.util.logging.*;
 
+import static pass.szkeleton.Main.logger;
+
 public class TargyFelveszTest {
     private static Map<String, Ember> emberMap = new HashMap<>();
     private static Map<String, Targy> targyMap = new HashMap<>();
@@ -14,21 +16,22 @@ public class TargyFelveszTest {
     private static Szoba sz;
     public static void setUp(){
         sz = new Szoba(1);
-        emberMap.put("oktato", new Oktato());
-        emberMap.put("hallgato", new Hallgato());
+        emberMap.put("oktato", new Oktato("o"));
+        emberMap.put("hallgato", new Hallgato("h"));
         targyMap.put("camembert", new Camembert());
         targyMap.put("logarlec", new Logarlec());
         targyMap.put("maszk", new Maszk(3));
         targyMap.put("pohar", new Pohar());
         targyMap.put("rongy", new Rongy());
         targyMap.put("tranzisztor", new Tranzisztor());
+        targyMap.keySet().forEach(targy -> sz.addItem(targyMap.get(targy)));
     }
 
     public void test(){
         Ember e = null;
         Scanner scanner = new Scanner(System.in);
 
-        Main.logger.info("[Hallgató vagy oktató?] ");
+        logger.info("[Hallgató vagy oktató?] ");
         for (String ember : emberMap.keySet()) {
             System.out.print(" [" + ember + "]");
         }
@@ -38,10 +41,25 @@ public class TargyFelveszTest {
             String ember = scanner.nextLine();
             e = emberMap.get(ember);
             if (e == null) {
-                Main.logger.log(Level.WARNING, "Nem létező ember!");
+                logger.log(Level.WARNING, "Nem létező ember!");
             }
         } while (e == null);
 
-        sz.addEmber(e);
+        sz.emberBetesz(e);
+
+        do {
+            logger.info("Milyen tárgyat vegyen fel?");
+            for (String targy : targyMap.keySet()) {
+                System.out.print(" [" + targy + "]");
+            }
+            System.out.print(" [vége]");
+            System.out.append("\n");
+            String targy = scanner.nextLine();
+            if (targy.equals("vége")) {
+                break;
+            }
+            Targy t = targyMap.remove(targy);
+            e.targyatFelvesz(t);
+        } while(true);
     }
 }

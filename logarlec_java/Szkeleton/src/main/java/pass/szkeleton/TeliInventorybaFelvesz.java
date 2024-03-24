@@ -11,8 +11,8 @@ public class TeliInventorybaFelvesz
     private static Szoba sz1 = new Szoba(5);
 
     private static Ember e1;
-    private static Hallgato h1 = new Hallgato();
-    private static Oktato o1 = new Oktato();
+    private static Hallgato h1 = new Hallgato("h1");
+    private static Oktato o1 = new Oktato("o1");
 
     private static Maszk m1 = new Maszk(10);
     private static Rongy r1 = new Rongy();
@@ -43,7 +43,7 @@ public class TeliInventorybaFelvesz
         System.out.print("[Hallgató vagy oktató?]\n");
         String ember = scanner.nextLine();
         Ember e = embermpa.get(ember);
-        sz1.addEmber(e);
+        sz1.emberBetesz(e);
         sz1.addItem(m1);
         sz1.addItem(r1);
         sz1.addItem(p1);

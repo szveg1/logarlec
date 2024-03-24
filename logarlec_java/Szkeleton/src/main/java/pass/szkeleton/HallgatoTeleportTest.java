@@ -10,13 +10,13 @@ public class HallgatoTeleportTest {
 
     public static void test() {
 
-        Ember e = new Hallgato();
+        Ember e = new Hallgato("h");
 
 
         Szoba sz1 = new Szoba(1);
         Szoba sz2 = new Szoba(1);
 
-        sz1.addEmber(e);
+        sz1.emberBetesz(e);
         Targy t = new Tranzisztor();
         Targy t2 = new Tranzisztor();
         sz1.addItem(t);

@@ -15,8 +15,8 @@ public class EmberMasikSzobabaLep
     private static Szoba sz2 = new Szoba(2);
 
     private static Ember e1;
-    private static Hallgato h1 = new Hallgato();
-    private static Oktato o1 = new Oktato();
+    private static Hallgato h1 = new Hallgato("h1");
+    private static Oktato o1 = new Oktato("o1");
 
     private static Ajto a1 = new Ajto(sz1, sz2);
 
@@ -41,7 +41,7 @@ public class EmberMasikSzobabaLep
         System.out.print("[Hallgató vagy oktató?]\n");
         String ember = scanner.nextLine();
         Ember e = embermpa.get(ember);
-        sz1.addEmber(e);
+        sz1.emberBetesz(e);
         sz2.emberBetesz(e1);
         sz1.emberKivesz(e);
         if(e.getJelenlegiSzoba()==sz2){

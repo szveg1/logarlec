@@ -13,14 +13,14 @@ public class szobaelgazosit {
 
     public static void test() {
     Szoba sz = new Szoba(10);
-    Ember h = new Hallgato();
+    Ember h = new Hallgato("h");
     Targy c = new Camembert();
 
     map2.put("Hallgató", h);
     map.put("Camambert", c);
 
     sz.addItem(c);
-    sz.addEmber(h);
+    sz.emberBetesz(h);
 
     h.targyatFelvesz(c);
     c.hasznal(null);

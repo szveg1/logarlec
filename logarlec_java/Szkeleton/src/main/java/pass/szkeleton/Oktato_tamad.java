@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.function.Supplier;
+import java.util.logging.Level;
 
 
 public class Oktato_tamad {
@@ -21,7 +22,7 @@ public class Oktato_tamad {
     public static void init_test(int oktatoSzam, String hallgatoVedekezik) {
         labirintus = new Labirintus();
         szoba = new Szoba(5);
-        hallgato = new Hallgato();
+        hallgato = new Hallgato("h");
         Rongy rongy = new Rongy();
         Pohar pohar = new Pohar();
         TVSZ tvsz = new TVSZ();
@@ -34,16 +35,19 @@ public class Oktato_tamad {
         szoba.addItem(pohar);
         szoba.addItem(tvsz);
 
-        if (!targyMap.containsKey(hallgatoVedekezik) || hallgatoVedekezik.equals("")) {
-            throw new IllegalArgumentException("Ismeretlen targy: " + hallgatoVedekezik);
+        if (!targyMap.containsKey(hallgatoVedekezik)) {
+            Main.logger.log(Level.WARNING, "Ismeretlen targy: " + hallgatoVedekezik);
+            szoba.emberBetesz(hallgato);
         }else if(hallgatoVedekezik.equals("")){
-            System.out.println("A hallgatónak nincs vedekezo targya.");
-        }else {
+            Main.logger.info("Nem vedekezik a hallgato.");
+            szoba.emberBetesz(hallgato);
+        }else{
             szoba.emberBetesz(hallgato);
             hallgato.targyatFelvesz(targyMap.get(hallgatoVedekezik));
+        }
 
             for (int i = 0; i < oktatoSzam; i++) {
-                oktato = new Oktato();
+                oktato = new Oktato("o"+i);
                 szoba.emberBetesz(oktato);
                 oktatoMap.put("Oktato" + i, oktato);
             }
@@ -66,7 +70,6 @@ public class Oktato_tamad {
         for(int i = 0; i < oktatoSzam; i++){
             System.out.println("Oktato" + i + " tamadasa");
             oktatoMap.get("Oktato" + i).hallgatotMegtamad(hallgato);
-            hallgato.tamadasElszenved(oktatoMap.get("Oktato" + i));
             if(hallgato.getEletbenVan()){
                 System.out.println("A hallgato tulelte az " + i + ". oktato tamadasat.");
             } else {
