@@ -54,8 +54,8 @@ public class Oktato_tamad {
 
             //szoba.emberBetesz(hallgato);
             //emberMap.put("Hallgato", hallgato);
-        }
     }
+    
 
     public static void Oktato_tamad_test() {
         Scanner scanner = new Scanner(System.in);
