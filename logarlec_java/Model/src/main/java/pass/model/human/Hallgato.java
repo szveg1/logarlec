@@ -6,6 +6,15 @@ public class Hallgato extends Ember {
 
     private boolean tudVedekezni = false;
 
+    private boolean eletbenVan = true;
+
+    public boolean getEletbenVan(){
+        return eletbenVan;
+    }
+
+    public void setEletbenVan(boolean eletbenVan){
+        this.eletbenVan = eletbenVan;
+    }
     public boolean gettudVedekezni(){
         return tudVedekezni;
     }
@@ -60,6 +69,7 @@ public class Hallgato extends Ember {
     }
 
     private void meghal() {
+        setEletbenVan(false);
     }
 
     @Override

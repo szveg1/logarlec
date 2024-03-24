@@ -20,7 +20,9 @@ public abstract class Ember implements TargyVisitor, Idozitett {
             // Valami figyelmeztetes h tele az inventory
             return;
         }
-        jelenlegiSzoba.removeItem(targy);
+        if(jelenlegiSzoba != null) {
+            jelenlegiSzoba.removeItem(targy);
+        }
         inventory.add(targy);
         targy.szobaValtasrolErtesit(jelenlegiSzoba);
     }
@@ -57,6 +59,7 @@ public abstract class Ember implements TargyVisitor, Idozitett {
     }
 
     public void kilepSzobajabol() {
+        if(jelenlegiSzoba == null) return;
         jelenlegiSzoba.emberKivesz(this);
         jelenlegiSzoba = null;
     }

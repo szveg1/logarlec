@@ -13,6 +13,9 @@ public class TVSZ implements Targy {
         if(vedelmekSzama > 0){
             vedelmekSzama--;
         }
+        if (jelenlegiSzoba == null) {
+            return;
+        }
         jelenlegiSzoba.immunitastAd(oktato, oktato.getKitTamad());
     }
 

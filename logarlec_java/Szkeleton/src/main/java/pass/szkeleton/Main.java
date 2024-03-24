@@ -10,8 +10,8 @@ public class Main {
             //tft.test();
             //TargyEldobTest tet = new TargyEldobTest();
             //tet.test();
-
-            EmberElajulTest eet = new EmberElajulTest();
-            eet.test();
+            Oktato_tamad.Oktato_tamad_test();
+            //EmberElajulTest eet = new EmberElajulTest();
+            //eet.test();
     }
 }
