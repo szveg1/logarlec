@@ -2,7 +2,7 @@ package pass.model.human;
 
 import pass.model.CustomRecordFormatter;
 import pass.model.Idozitett;
-import pass.model.Main;
+import pass.model.CustomLogger;
 import pass.model.item.Rongy;
 import pass.model.labyrinth.Szoba;
 import pass.model.item.Targy;
@@ -13,13 +13,6 @@ import java.util.logging.*;
 
 
 public abstract class Ember implements TargyVisitor, Idozitett {
-    private static final Logger emberLogger = Logger.getLogger(Ember.class.getSimpleName());
-    static{
-        ConsoleHandler handler = new ConsoleHandler();
-        handler.setFormatter(new CustomRecordFormatter());
-        emberLogger.setUseParentHandlers(false);
-        emberLogger.addHandler(handler);
-    }
     // Csak a szkeletonhoz-------------
     protected String nev;
     public Ember(String nev){
@@ -36,13 +29,15 @@ public abstract class Ember implements TargyVisitor, Idozitett {
 
     public void targyatFelvesz(Targy targy) {
         if (ajult){
-            emberLogger.log(Level.WARNING, this + " ájult, nem tud felvenni targyat");
+            CustomLogger.log(Level.WARNING, this + " ájult, nem tud felvenni targyat");
             return;
         }
         if(inventoryTeleE()) {
-            emberLogger.log(Level.WARNING,this + "-nek tele az inventoryja, nem tud felvenni targyat");
+            CustomLogger.log(Level.WARNING,this + "-nek tele az inventoryja, nem tud felvenni targyat");
             return;
         }
+        CustomLogger.info(this + " felvette a " + targy + "-t");
+
         if(jelenlegiSzoba != null) {
             jelenlegiSzoba.removeItem(targy);
         }
@@ -57,15 +52,17 @@ public abstract class Ember implements TargyVisitor, Idozitett {
      */
     public void targyatEldob(Targy targy) {
         if (ajult){
-            emberLogger.log(Level.WARNING,this + " ájult, nem tud eldobni targyat");
+            CustomLogger.log(Level.WARNING,this + " ájult, nem tud eldobni targyat");
             return;
         }
         if(inventory.isEmpty()) {
-            emberLogger.log(Level.WARNING,this + "-nek üres az inventoryja, nem tud eldobni targyat");
+            CustomLogger.log(Level.WARNING,this + "-nek üres az inventoryja, nem tud eldobni targyat");
             return;
         }
-        inventory.remove(targy);
-        emberLogger.info(this + " eldobta a " + targy + "-t");
+
+        inventory.remove(targy);;
+        CustomLogger.info(this + " eldobta a " + targy + "-t");
+        targy.emberValtasrolErtesit(null);
         jelenlegiSzoba.addItem(targy);
     }
 
@@ -75,15 +72,15 @@ public abstract class Ember implements TargyVisitor, Idozitett {
      */
     @Override
     public void visit(Maszk maszk) {
-        emberLogger.info(this + " meglátogatta a " + maszk + "-ot");
-        emberLogger.info("védett lett tőle: " + (maszk.getVedIdo() > 0));
+        CustomLogger.info(this + " meglátogatta a " + maszk + "-ot");
+        CustomLogger.info("védett lett tőle: " + (maszk.getVedIdo() > 0));
         setGazEllenVedett(maszk.getVedIdo() > 0);
     }
 
 
     public void ajulas() {
         ajult = true;
-        emberLogger.info(this + " elájult");
+        CustomLogger.info(this + " elájult");
         for(Targy targy : inventory) {
             targyatEldob(targy);
         }
@@ -91,12 +88,12 @@ public abstract class Ember implements TargyVisitor, Idozitett {
 
     public void masikSzobabaLep(Szoba ujSzoba) {
         if (ajult) {
-            emberLogger.log(Level.WARNING,this + " ájult, nem tud szobát váltani");
+            CustomLogger.log(Level.WARNING,this + " ájult, nem tud szobát váltani");
             return;
         }
         ujSzoba.emberBetesz(this);
         jelenlegiSzoba = ujSzoba;
-        emberLogger.info(this + " belépett a " + ujSzoba + "-ba");
+        CustomLogger.info(this + " belépett a " + ujSzoba + "-ba");
         for (Targy targy : inventory) {
             targy.szobaValtasrolErtesit(ujSzoba);
         }
@@ -104,13 +101,13 @@ public abstract class Ember implements TargyVisitor, Idozitett {
 
     public void kilepSzobajabol() {
         if(jelenlegiSzoba == null) return;
-        emberLogger.info(this + " elhagyta a " + jelenlegiSzoba +"-t");
+        CustomLogger.info(this + " elhagyta a " + jelenlegiSzoba +"-t");
         jelenlegiSzoba.emberKivesz(this);
 
     }
 
     public void targyatHasznal(Targy targy){
-        emberLogger.info(this + " használta a " + targy + "-t");
+        CustomLogger.info(this + " használta a " + targy + "-t");
         targy.hasznal();
     }
 

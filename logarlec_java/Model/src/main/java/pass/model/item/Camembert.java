@@ -1,5 +1,6 @@
 package pass.model.item;
 
+import pass.model.CustomLogger;
 import pass.model.human.TargyVisitor;
 import pass.model.labyrinth.Szoba;
 
@@ -7,11 +8,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Camembert implements Targy {
-    private static Logger camembertLogger = Logger.getLogger(Camembert.class.getSimpleName());
-    static{
-        camembertLogger.setUseParentHandlers(false);
-        camembertLogger.addHandler(pass.model.Main.handler);
-    }
     // Csak szkeletonhoz-------------
     private String nev;
     public Camembert(String nev) {
@@ -43,7 +39,7 @@ public class Camembert implements Targy {
     @Override
     public void szobaValtasrolErtesit(Szoba newSzoba) {
         this.szoba = newSzoba;
-        camembertLogger.log(Level.INFO,this + " a " + szoba + "-ba került", this);
+        CustomLogger.info(this + " a " + szoba + "-ba került");
     }
 
 

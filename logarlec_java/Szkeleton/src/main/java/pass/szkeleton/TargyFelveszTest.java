@@ -1,13 +1,12 @@
 package pass.szkeleton;
 
+import pass.model.CustomLogger;
 import pass.model.human.*;
 import pass.model.labyrinth.*;
 import pass.model.item.*;
 
 import java.util.*;
 import java.util.logging.*;
-
-import static pass.szkeleton.Szkeleton.logger;
 
 public class TargyFelveszTest {
     private static Map<String, Ember> emberMap = new HashMap<>();
@@ -30,7 +29,7 @@ public class TargyFelveszTest {
         Ember e = null;
         Scanner scanner = new Scanner(System.in);
 
-        logger.info("[Hallgató vagy oktató?] ");
+        CustomLogger.info("[Hallgató vagy oktató?] ");
         for (String ember : emberMap.keySet()) {
             System.out.print(" [" + ember + "]");
         }
@@ -40,14 +39,14 @@ public class TargyFelveszTest {
             String ember = scanner.nextLine();
             e = emberMap.get(ember);
             if (e == null) {
-                logger.log(Level.WARNING, "Nem létező ember!");
+                CustomLogger.log(Level.WARNING, "Nem létező ember!");
             }
         } while (e == null);
 
         e.masikSzobabaLep(sz);
 
         do {
-            logger.info("Milyen tárgyat vegyen fel?");
+            CustomLogger.info("Milyen tárgyat vegyen fel?");
             for (String targy : targyMap.keySet()) {
                 System.out.print(" [" + targy + "]");
             }

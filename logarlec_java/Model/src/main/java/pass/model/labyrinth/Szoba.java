@@ -1,5 +1,6 @@
 package pass.model.labyrinth;
 
+import pass.model.CustomLogger;
 import pass.model.CustomRecordFormatter;
 import pass.model.Idozitett;
 import pass.model.human.Ember;
@@ -13,13 +14,6 @@ import java.util.logging.Logger;
 
 
 public class Szoba implements Idozitett {
-    private static Logger szobaLogger = Logger.getLogger(Szoba.class.getSimpleName());
-    static{
-        ConsoleHandler handler = new ConsoleHandler();
-        handler.setFormatter(new CustomRecordFormatter());
-        szobaLogger.setUseParentHandlers(false);
-        szobaLogger.addHandler(handler);
-    }
     // Csak szkeletonhoz-------------
     private String nev;
     public Szoba(int ferohely, String nev) {
@@ -78,7 +72,7 @@ public class Szoba implements Idozitett {
     }
 
     public void setPoisonous(int meregIdo) {
-        szobaLogger.info(this + " mérgezővé vált " + meregIdo + " időre");
+        CustomLogger.info(this + " mérgezővé vált " + meregIdo + " időre");
         this.meregIdo = meregIdo;
     }
 
@@ -88,7 +82,7 @@ public class Szoba implements Idozitett {
 
     public void addItem(Targy targy) {
         targyak.add(targy);
-        szobaLogger.info("A " + this + " szobába bekerült a " + targy + " tárgy");
+        CustomLogger.info("A " + this + "-ba bekerült a " + targy + " tárgy");
         targy.szobaValtasrolErtesit(this);
     }
 
@@ -102,7 +96,7 @@ public class Szoba implements Idozitett {
 
     public void removeItem(Targy targy) {
         targyak.remove(targy);
-        szobaLogger.info("A " + this + " szobából kikerült a " + targy + " tárgy");
+        CustomLogger.info("A " + this + "-ból kikerült a " + targy + " tárgy");
     }
 
     public void emberBetesz(Ember ember) {
