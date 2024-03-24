@@ -29,6 +29,13 @@ public class Ajto {
         if(merreNyilik.get(hovaMegy)){
             e.masikSzobabaLep(hovaMegy);
         }
+        else CustomLogger.log(Level.WARNING,"Ajto nem nyilik ebbe az irányba");
+    }
+
+    public void setMerreNyilik(boolean b1, boolean b2) {
+        merreNyilik.clear();
+        merreNyilik.put(egyikOldal, b1);
+        merreNyilik.put(masikOldal, b2);
     }
 
     public boolean getLathatosag(){
