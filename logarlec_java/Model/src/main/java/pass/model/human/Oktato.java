@@ -1,5 +1,6 @@
 package pass.model.human;
 
+import pass.model.Main;
 import pass.model.item.Logarlec;
 import pass.model.item.Pohar;
 import pass.model.item.Rongy;
@@ -9,6 +10,16 @@ public class Oktato extends Ember {
     private static final int MAX_INVENTORY_MERET = 1;
     private int meddigBena = 0;
     private Hallgato kitTamad;
+    // Csak szkeletonhoz-------------
+    public Oktato(String nev) {
+        super(nev);
+    }
+
+    @Override
+    public String toString() {
+        return nev + " :Oktato";
+    }
+    //--------------------------------
     @Override
     boolean inventoryTeleE() {
         return inventory.size() >= MAX_INVENTORY_MERET;

@@ -8,6 +8,16 @@ public class Hallgato extends Ember {
 
     private boolean eletbenVan = true;
 
+    // Csak szkeletonhoz-------------
+    public Hallgato(String nev) {
+        super(nev);
+    }
+
+    @Override
+    public String toString() {
+        return nev + " :Hallgato";
+    }
+    //--------------------------------
     public boolean getEletbenVan(){
         return eletbenVan;
     }
