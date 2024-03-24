@@ -34,7 +34,9 @@ public class Labirintus implements Idozitett {
     public void szobakOsszevon(){
 
     }
-
+    public void jatekVege(){
+        labirintusLogger.info("Játék vége, nyeretek a Hallgatók");
+    }
     public List<Szoba> getSzobak() {
         return szobak;
     }

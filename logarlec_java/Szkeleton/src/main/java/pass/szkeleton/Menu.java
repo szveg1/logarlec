@@ -10,9 +10,9 @@ public class Menu {
 
         while (running) {
             System.out.println("Válasszon a következő use-case-ek közül:");
-            System.out.println("1. Ember felvesz tárgyat");
-            System.out.println("2. Ember eldob tárgyat");
-            System.out.println("3. Oktató támad");
+            System.out.println("1. Ember felvesz tárgyat ---> KESZ");
+            System.out.println("2. Ember eldob tárgyat ---> KESZ");
+            System.out.println("3. Oktató támad ---> KESZ");
             System.out.println("4. Ember elájul");
             System.out.println("5. Ájult Ember");
             System.out.println("6. A hallgató teleportál");
@@ -26,7 +26,7 @@ public class Menu {
             System.out.println("14. Hallgató védekezik, pohár");
             System.out.println("15. Hallgató védekezik, TVSZ");
             System.out.println("16. Hallgató felvesz egy nem logarléc tárgyat");
-            System.out.println("17. Hallgató felveszi a logarlécet");
+            System.out.println("17. Hallgató felveszi a logarlécet ---> KESZ");
             System.out.println("18. Hallgató eldob egy tárgyat");
             System.out.println("19. Oktató felvette a logarlécet");
             System.out.println("20. Oktató felvesz tárgyat, amit nem tud használni");

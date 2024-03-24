@@ -27,6 +27,7 @@ public class TVSZ implements Targy {
         }else{
             return;
         }
+
         if (jelenlegiSzoba == null) {
             return;
         }

@@ -21,6 +21,8 @@ public class Logarlec implements Targy {
     @Override
     public void accept(TargyVisitor visitor) {
         // Szolni kell a jateknak hogy vege
+        visitor.visit(this);
+
     }
 
     @Override

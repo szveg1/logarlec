@@ -58,26 +58,31 @@ public class Oktato_tamad {
 
     public static void Oktato_tamad_test() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Mivel védekezik a hallgató?");
+        Szkeleton.logger.info("Mivel védekezik a hallgató?");
+        Szkeleton.logger.info("[Rongy, Pohar, TVSZ]");
         String hallgatoVedekezik = scanner.nextLine();
 
-        System.out.println("Hány oktató legyen a szobában?");
+        Szkeleton.logger.info("Hány oktató legyen a szobában (ferohely: 5)?");
         int oktatoSzam = scanner.nextInt();
-
-        init_test(oktatoSzam, hallgatoVedekezik);
+        if(oktatoSzam < 5){
+            init_test(oktatoSzam, hallgatoVedekezik);
+        } else if (oktatoSzam >= 5) {
+            Szkeleton.logger.log(Level.WARNING, "Csak 4 oktato tudott bemenni.");
+            init_test(4, hallgatoVedekezik);
+        }
 
         for(int i = 0; i < oktatoSzam; i++){
-            System.out.println("Oktato" + i + " tamadasa");
+            Szkeleton.logger.info("Oktato" + i + " tamadasa");
             oktatoMap.get("Oktato" + i).hallgatotMegtamad(hallgato);
             if(hallgato.getEletbenVan()){
-                System.out.println("A hallgato tulelte az " + i + ". oktato tamadasat.");
+                Szkeleton.logger.info("A hallgato tulelte az " + i + ". oktato tamadasat.");
             } else {
-                System.out.println("A hallgato meghalt az " + i + ". oktato tamadasaban.");
+                Szkeleton.logger.info("A hallgato meghalt az " + i + ". oktato tamadasaban.");
                 break;
             }
         }
         if(hallgato.getEletbenVan()){
-            System.out.println("A hallgato tulelte az osszes oktato tamadasat.");
+            Szkeleton.logger.info("A hallgato tulelte az osszes oktato tamadasat.");
         }
     }
 }
