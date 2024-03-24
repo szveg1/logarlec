@@ -1,10 +1,12 @@
 package pass.szkeleton;
 
+import pass.model.CustomLogger;
 import pass.model.human.*;
 import pass.model.labyrinth.*;
 import pass.model.item.*;
 
 import java.util.*;
+import java.util.logging.Level;
 
 public class EmberElajulTest {
 
@@ -20,25 +22,29 @@ public class EmberElajulTest {
             System.out.print(" [" + ember + "]");
         }
         System.out.println();
-        String ember = scanner.nextLine();
-        Ember e = emberMap.get(ember);
+
+        Ember e = null;
+        do {
+            String ember = scanner.nextLine();
+            e = emberMap.get(ember);
+            if (e == null) {
+                CustomLogger.log(Level.WARNING, "Nem létező ember!");
+            }
+        } while (e == null);
+        
+        scanner.close();
 
         Szoba sz1 = new Szoba(1, "sz1");
+        sz1.setPoisonous(4);
         Szoba sz2 = new Szoba(1, "sz2");
 
         sz1.emberBetesz(e);
 
-        e.ajulas();
-        if (e.getAjult()) System.out.println("ember elajult");
-        else System.out.println("valami nem stimmel");
-
         e.masikSzobabaLep(sz2);
-        if (sz1.getEmberek().size() == 1 && sz2.getEmberek().size() == 0) System.out.println("ember nem tud mozogni");
-        else System.out.println("valami nem stimmel");
 
-        sz1.addItem(new Rongy("r"));
-        if (e.getItems().size() == 0) System.out.println("ember nem tud tárgyat felvenni");
-        else System.out.println("valami nem stimmel");
+        Targy r = new Rongy("r");
+        sz1.addItem(r);
+        e.targyatFelvesz(r);
 
     }
 }

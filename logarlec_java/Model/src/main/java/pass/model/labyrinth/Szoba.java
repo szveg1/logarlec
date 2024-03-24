@@ -105,9 +105,11 @@ public class Szoba implements Idozitett {
 
     public void emberBetesz(Ember ember) {
         if(bentlevok.size()  + 1 > ferohely) {
+        CustomLogger.info(ember + " belépett volna a " + this + "-ba, de tele van.");
         } else {
             ember.kilepSzobajabol();
             bentlevok.add(ember);
+            CustomLogger.info(ember + " belépett a " + this + "-ba");
             if(meregIdo > 0) {
                 ember.ajulas();
             }
