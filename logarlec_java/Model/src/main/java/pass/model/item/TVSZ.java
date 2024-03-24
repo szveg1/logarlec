@@ -5,6 +5,18 @@ import pass.model.labyrinth.Szoba;
 import pass.model.human.TargyVisitor;
 
 public class TVSZ implements Targy {
+    // Csak szkeletonhoz-------------
+    private String nev;
+    public TVSZ(String nev) {
+        this.nev = nev;
+    }
+
+    @Override
+    public String toString() {
+        return nev + " :TVSZ";
+    }
+
+    // -------------------------------
 
     private Szoba jelenlegiSzoba;
     private int vedelmekSzama = 3;

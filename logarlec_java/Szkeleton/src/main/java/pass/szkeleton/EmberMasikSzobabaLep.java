@@ -10,9 +10,9 @@ import java.util.Scanner;
 
 public class EmberMasikSzobabaLep
 {
-    private static Szoba sz1 = new Szoba(5);
+    private static Szoba sz1 = new Szoba(5, "sz1");
 
-    private static Szoba sz2 = new Szoba(2);
+    private static Szoba sz2 = new Szoba(2, "sz2");
 
     private static Ember e1;
     private static Hallgato h1 = new Hallgato("h1");
@@ -20,7 +20,7 @@ public class EmberMasikSzobabaLep
 
     private static Ajto a1 = new Ajto(sz1, sz2);
 
-    private static Maszk m1 = new Maszk(10);
+    private static Maszk m1 = new Maszk(10, "m1");
 
     private static Map<String, Szoba>  szobampa = new HashMap<>();
     private static Map<String, Ember>  embermpa = new HashMap<>();

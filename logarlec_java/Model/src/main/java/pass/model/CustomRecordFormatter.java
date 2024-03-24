@@ -9,13 +9,16 @@ public class CustomRecordFormatter extends Formatter {
     @Override
     public String format(final LogRecord r) {
         StringBuilder sb = new StringBuilder();
+        String objectClassName = r.getSourceClassName().substring(r.getSourceClassName().lastIndexOf('.') + 1, r.getSourceClassName().length());
+        Object callerInstance;
+
         sb
-                .append(r.getSequenceNumber())
-                .append(" ")
                 .append(r.getLevel())
                 .append(": ")
-                .append(r.getSourceClassName())
+                .append(r.getLoggerName())
                 .append("->")
+                .append(objectClassName)
+                .append(".")
                 .append(r.getSourceMethodName())
                 .append("(): ")
                 .append(formatMessage(r))

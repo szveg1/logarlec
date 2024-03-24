@@ -6,6 +6,18 @@ import pass.model.labyrinth.Szoba;
 import pass.model.human.Hallgato;
 
 public class Tranzisztor implements Targy {
+    // Csak szkeletonhoz-------------
+    private String nev;
+    public Tranzisztor(String nev) {
+        this.nev = nev;
+    }
+
+    @Override
+    public String toString() {
+        return nev + " :Tranzisztor";
+    }
+
+    // -------------------------------
     Szoba jelenlegiSzoba;
     Tranzisztor par;
 

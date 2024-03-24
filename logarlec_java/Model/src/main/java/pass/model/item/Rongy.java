@@ -5,6 +5,18 @@ import pass.model.human.TargyVisitor;
 import pass.model.labyrinth.Szoba;
 
 public class Rongy implements Targy {
+    // Csak szkeletonhoz-------------
+    private String nev;
+    public Rongy(String nev){
+        this.nev = nev;
+    }
+
+    @Override
+    public String toString() {
+        return nev + " :Rongy";
+    }
+
+    // -------------------------------
 
     Szoba jelenlegiSzoba;
 

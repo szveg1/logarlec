@@ -5,11 +5,24 @@ import pass.model.human.TargyVisitor;
 import pass.model.labyrinth.Szoba;
 
 public class Maszk implements Targy {
-    private int vedIdo = 3;
-
-    public Maszk(int initialHealth) {
+    // Csak szkeletonhoz-------------
+    private String nev;
+    public Maszk(int initialHealth, String nev) {
+        this.nev = nev;
         this.vedIdo = initialHealth;
     }
+
+    @Override
+    public String toString() {
+        return nev + " :Maszk";
+    }
+
+    // -------------------------------
+    private int vedIdo = 3;
+//    EZ MÉG KELLENI FOG!!!!!!!!
+//    public Maszk(int initialHealth) {
+//
+//    }
 
     @Override
     public void hasznal(Oktato oktato) {

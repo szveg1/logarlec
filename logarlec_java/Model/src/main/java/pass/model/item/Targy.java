@@ -6,7 +6,12 @@ import pass.model.human.TargyVisitor;
 import pass.model.labyrinth.Szoba;
 
 public interface Targy extends Idozitett {
-    void hasznal(Oktato oktato);
+    default void hasznal(Oktato oktato) {
+
+    }
+    default void hasznal(){
+
+    }
     void accept(TargyVisitor visitor);
     void szobaValtasrolErtesit(Szoba newSzoba);
 }

@@ -1,13 +1,21 @@
 package pass.model.human;
 
+import pass.model.CustomRecordFormatter;
+import pass.model.Main;
 import pass.model.item.*;
+
+import java.util.logging.ConsoleHandler;
+import java.util.logging.Logger;
 
 public class Hallgato extends Ember {
 
-    private boolean tudVedekezni = false;
-
-    private boolean eletbenVan = true;
-
+    private static final Logger hallgatoLogger = Logger.getLogger(Hallgato.class.getSimpleName());
+    static{
+        ConsoleHandler handler = new ConsoleHandler();
+        handler.setFormatter(new CustomRecordFormatter());
+        hallgatoLogger.setUseParentHandlers(false);
+        hallgatoLogger.addHandler(handler);
+    }
     // Csak szkeletonhoz-------------
     public Hallgato(String nev) {
         super(nev);
@@ -18,6 +26,8 @@ public class Hallgato extends Ember {
         return nev + " :Hallgato";
     }
     //--------------------------------
+    private boolean tudVedekezni = false;
+    private boolean eletbenVan = true;
     public boolean getEletbenVan(){
         return eletbenVan;
     }

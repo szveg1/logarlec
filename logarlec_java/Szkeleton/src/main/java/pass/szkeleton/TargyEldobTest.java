@@ -12,15 +12,15 @@ public class TargyEldobTest {
     private static Map<String, Targy> targyMap = new HashMap<>();
 
     public static void test(){
-        Szoba sz = new Szoba(1);
+        Szoba sz = new Szoba(1, "sz");
         emberMap.put("oktato", new Oktato("o"));
         emberMap.put("hallgato", new Hallgato("h"));
-        targyMap.put("rongy", new Rongy());
-        targyMap.put("camembert", new Camembert());
-        targyMap.put("maszk", new Maszk(1));
-        targyMap.put("pohar", new Pohar());
-        targyMap.put("tranzisztor", new Tranzisztor());
-        targyMap.put("tvsz", new TVSZ());
+        targyMap.put("rongy", new Rongy("r"));
+        targyMap.put("camembert", new Camembert("c"));
+        targyMap.put("maszk", new Maszk(1, "m"));
+        targyMap.put("pohar", new Pohar("p"));
+        targyMap.put("tranzisztor", new Tranzisztor("tr"));
+        targyMap.put("tvsz", new TVSZ("tv"));
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("[Hallgató vagy oktató?] ");
@@ -35,7 +35,8 @@ public class TargyEldobTest {
         System.out.println("Milyen tárgyat dobjon fel?");
         String targy = scanner.nextLine();
         Targy t = targyMap.get(targy);
-        e.addItem(t);
+        sz.addItem(t);
+        e.targyatFelvesz(t);
         e.targyatEldob(t);
 
         if (e.getItems().size() == 0) System.out.println("Tárgyat eldobta az ember");

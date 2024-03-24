@@ -8,7 +8,6 @@ import pass.model.item.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.function.Supplier;
 import java.util.logging.Level;
 
 
@@ -21,11 +20,11 @@ public class Oktato_tamad {
     private static Map<String, Targy> targyMap = new HashMap<>();
     public static void init_test(int oktatoSzam, String hallgatoVedekezik) {
         labirintus = new Labirintus();
-        szoba = new Szoba(5);
+        szoba = new Szoba(5, "sz");
         hallgato = new Hallgato("h");
-        Rongy rongy = new Rongy();
-        Pohar pohar = new Pohar();
-        TVSZ tvsz = new TVSZ();
+        Rongy rongy = new Rongy("r");
+        Pohar pohar = new Pohar("p");
+        TVSZ tvsz = new TVSZ("t");
 
         targyMap.put("Rongy", rongy);
         targyMap.put("Pohar", pohar);
@@ -36,10 +35,10 @@ public class Oktato_tamad {
         szoba.addItem(tvsz);
 
         if (!targyMap.containsKey(hallgatoVedekezik)) {
-            Main.logger.log(Level.WARNING, "Ismeretlen targy: " + hallgatoVedekezik);
+            Szkeleton.logger.log(Level.WARNING, "Ismeretlen targy: " + hallgatoVedekezik);
             szoba.emberBetesz(hallgato);
         }else if(hallgatoVedekezik.equals("")){
-            Main.logger.info("Nem vedekezik a hallgato.");
+            Szkeleton.logger.info("Nem vedekezik a hallgato.");
             szoba.emberBetesz(hallgato);
         }else{
             szoba.emberBetesz(hallgato);
@@ -55,7 +54,7 @@ public class Oktato_tamad {
             //szoba.emberBetesz(hallgato);
             //emberMap.put("Hallgato", hallgato);
     }
-    
+
 
     public static void Oktato_tamad_test() {
         Scanner scanner = new Scanner(System.in);

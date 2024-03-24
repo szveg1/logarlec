@@ -8,18 +8,18 @@ import java.util.*;
 
 public class TeliInventorybaFelvesz
 {
-    private static Szoba sz1 = new Szoba(5);
+    private static Szoba sz1 = new Szoba(5, "sz1");
 
     private static Ember e1;
     private static Hallgato h1 = new Hallgato("h1");
     private static Oktato o1 = new Oktato("o1");
 
-    private static Maszk m1 = new Maszk(10);
-    private static Rongy r1 = new Rongy();
-    private static Pohar p1 = new Pohar();
-    private static TVSZ tv1 = new TVSZ();
-    private static Tranzisztor tr1 = new Tranzisztor();
-    private static Camembert c1 = new Camembert();
+    private static Maszk m1 = new Maszk(10, "m1");
+    private static Rongy r1 = new Rongy("r1");
+    private static Pohar p1 = new Pohar("p1");
+    private static TVSZ tv1 = new TVSZ("tv1");
+    private static Tranzisztor tr1 = new Tranzisztor("tr1");
+    private static Camembert c1 = new Camembert("c1");
 
     private static Map<String, Szoba> szobampa = new HashMap<>();
     private static Map<String, Ember>  embermpa = new HashMap<>();

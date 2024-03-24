@@ -7,7 +7,7 @@ import pass.model.item.*;
 import java.util.*;
 import java.util.logging.*;
 
-import static pass.szkeleton.Main.logger;
+import static pass.szkeleton.Szkeleton.logger;
 
 public class TargyFelveszTest {
     private static Map<String, Ember> emberMap = new HashMap<>();
@@ -15,19 +15,18 @@ public class TargyFelveszTest {
 
     private static Szoba sz;
     public static void setUp(){
-        sz = new Szoba(1);
+        sz = new Szoba(1, "sz");
         emberMap.put("oktato", new Oktato("o"));
         emberMap.put("hallgato", new Hallgato("h"));
-        targyMap.put("camembert", new Camembert());
-        targyMap.put("logarlec", new Logarlec());
-        targyMap.put("maszk", new Maszk(3));
-        targyMap.put("pohar", new Pohar());
-        targyMap.put("rongy", new Rongy());
-        targyMap.put("tranzisztor", new Tranzisztor());
-        targyMap.keySet().forEach(targy -> sz.addItem(targyMap.get(targy)));
+        targyMap.put("camembert", new Camembert("c"));
+        targyMap.put("logarlec", new Logarlec("l"));
+        targyMap.put("maszk", new Maszk(3, "m"));
+        targyMap.put("pohar", new Pohar("p"));
+        targyMap.put("rongy", new Rongy("r"));
+        targyMap.put("tranzisztor", new Tranzisztor("t"));
     }
 
-    public void test(){
+    public static void test(){
         Ember e = null;
         Scanner scanner = new Scanner(System.in);
 
@@ -45,7 +44,7 @@ public class TargyFelveszTest {
             }
         } while (e == null);
 
-        sz.emberBetesz(e);
+        e.masikSzobabaLep(sz);
 
         do {
             logger.info("Milyen tárgyat vegyen fel?");
@@ -54,12 +53,16 @@ public class TargyFelveszTest {
             }
             System.out.print(" [vége]");
             System.out.append("\n");
-            String targy = scanner.nextLine();
-            if (targy.equals("vége")) {
+            String targyNev = scanner.nextLine();
+            if (targyNev.equals("vége")) {
                 break;
             }
-            Targy t = targyMap.remove(targy);
+            Targy t = targyMap.remove(targyNev);
+            sz.addItem(t);
             e.targyatFelvesz(t);
+            if(sz.getItems().contains(t)){
+                targyMap.put(targyNev, t);
+            }
         } while(true);
     }
 }

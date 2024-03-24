@@ -13,12 +13,12 @@ public class HallgatoTeleportTest {
         Ember e = new Hallgato("h");
 
 
-        Szoba sz1 = new Szoba(1);
-        Szoba sz2 = new Szoba(1);
+        Szoba sz1 = new Szoba(1, "sz1");
+        Szoba sz2 = new Szoba(1, "sz1");
 
         sz1.emberBetesz(e);
-        Targy t = new Tranzisztor();
-        Targy t2 = new Tranzisztor();
+        Targy t = new Tranzisztor("t");
+        Targy t2 = new Tranzisztor("t2");
         sz1.addItem(t);
         e.targyatFelvesz(t);
         if (e.getItems().get(0) == t) System.out.println("hallgato felvett egy tranzisztort");

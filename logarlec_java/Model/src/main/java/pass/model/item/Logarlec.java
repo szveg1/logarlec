@@ -5,11 +5,18 @@ import pass.model.labyrinth.Szoba;
 import pass.model.human.TargyVisitor;
 
 public class Logarlec implements Targy {
+    // Csak szkeletonhoz-------------
+    private String nev;
+    public Logarlec(String nev) {
+        this.nev = nev;
+    }
 
     @Override
-    public void hasznal(Oktato oktato) {
-        // Nem lehet "hasznalni"
+    public String toString() {
+        return nev + " :Logarlec";
     }
+
+    // -------------------------------
 
     @Override
     public void accept(TargyVisitor visitor) {

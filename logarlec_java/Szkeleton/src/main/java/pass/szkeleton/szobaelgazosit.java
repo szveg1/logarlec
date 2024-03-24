@@ -12,9 +12,9 @@ public class szobaelgazosit {
     private static Map<String, Ember> map2 = new HashMap<>();
 
     public static void test() {
-    Szoba sz = new Szoba(10);
+    Szoba sz = new Szoba(10, "sz");
     Ember h = new Hallgato("h");
-    Targy c = new Camembert();
+    Targy c = new Camembert("c");
 
     map2.put("Hallgató", h);
     map.put("Camambert", c);
@@ -23,9 +23,7 @@ public class szobaelgazosit {
     sz.emberBetesz(h);
 
     h.targyatFelvesz(c);
-    c.hasznal(null);
-
-    System.out.println("Szoba mérgezett ennyi ideig: " + sz.isPoisonous());
+    h.targyatHasznal(c);
 
     }
 

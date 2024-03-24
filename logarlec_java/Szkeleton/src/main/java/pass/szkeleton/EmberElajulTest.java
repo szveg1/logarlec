@@ -23,8 +23,8 @@ public class EmberElajulTest {
         String ember = scanner.nextLine();
         Ember e = emberMap.get(ember);
 
-        Szoba sz1 = new Szoba(1);
-        Szoba sz2 = new Szoba(1);
+        Szoba sz1 = new Szoba(1, "sz1");
+        Szoba sz2 = new Szoba(1, "sz2");
 
         sz1.emberBetesz(e);
 
@@ -36,7 +36,7 @@ public class EmberElajulTest {
         if (sz1.getEmberek().size() == 1 && sz2.getEmberek().size() == 0) System.out.println("ember nem tud mozogni");
         else System.out.println("valami nem stimmel");
 
-        sz1.addItem(new Rongy());
+        sz1.addItem(new Rongy("r"));
         if (e.getItems().size() == 0) System.out.println("ember nem tud tárgyat felvenni");
         else System.out.println("valami nem stimmel");
 
