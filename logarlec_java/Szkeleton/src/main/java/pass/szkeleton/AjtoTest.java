@@ -38,7 +38,7 @@ public class AjtoTest {
         Szoba sz1 = new Szoba(8, "sz1");
         Szoba sz2 = new Szoba(8, "sz2");
         e.masikSzobabaLep(sz1);
-        Ajto a = new Ajto(sz1, sz2);
+        Ajto a = new Ajto(sz1, sz2, "a");
         sz1.addAjto(a);
         sz2.addAjto(a);
 

@@ -12,11 +12,21 @@ import java.util.logging.ConsoleHandler;
 import java.util.logging.Logger;
 
 public class Labirintus implements Idozitett {
+    private String nev;
 
     // HIANYOS!!!!
     List<Szoba> szobak = new ArrayList<>();
     List<Hallgato> hallgatok;
     List<Oktato> oktatok;
+
+    public Labirintus(String l) {
+        this.nev = l;
+    }
+
+    @Override
+    public String toString() {
+        return nev + " :Labirintus";
+    }
 
     public void addSzoba(Szoba sz){
         szobak.add(sz);
@@ -24,11 +34,12 @@ public class Labirintus implements Idozitett {
 
     public void szobaFeloszt(Szoba szoba) {
         Szoba ujSzoba = new Szoba(szoba);
+        CustomLogger.info(this + " új szobával rendelkezik: " + ujSzoba);
         szobak.add(ujSzoba);
     }
 
-    public void szobakOsszevon(){
-
+    public void szobakOsszevon(Szoba sz1, Szoba sz2){
+        sz1.egyesit(sz2);
     }
     public static void jatekVege(){
         CustomLogger.info("Játék vége, nyeretek a Hallgatók");

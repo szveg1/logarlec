@@ -69,6 +69,42 @@ public class Szoba implements Idozitett {
         for (int i = 0; i <= bentlevokSzamaFele; ++i) {
             masikSzoba.getEmberek().get(i).masikSzobabaLep(this);
         }
+
+        int ajtokFele = masikSzoba.ajtok.size() / 2;
+        this.ajtok = new ArrayList<>();
+        for(int i = 0; i <= ajtokFele; ++i) {
+            this.ajtok.add(masikSzoba.ajtok.get(i));
+        }
+    }
+
+    public void egyesit(Szoba masikSzoba){
+
+        int ujFerohely = Math.max(this.ferohely, masikSzoba.ferohely);
+        if(ujFerohely < this.getEmberek().size() + masikSzoba.getEmberek().size()){
+            CustomLogger.info("Nem lehet egyesíteni a szobákat, mert nem lenne elég hely mindenkinek.");
+            return;
+        }
+        List<Ember> emberek = masikSzoba.getEmberek();
+        for(Ember ember : emberek){
+            ember.masikSzobabaLep(this);
+        }
+
+        List<Targy> targyak = masikSzoba.getItems();
+        for(Targy targy : targyak){
+            this.addItem(targy);
+        }
+
+        List<Ajto> masikAjtok = masikSzoba.ajtok;
+        for(Ajto masikAjto : masikAjtok){
+            for(Ajto sajatAjto : this.ajtok){
+                if (masikAjto == sajatAjto){
+                    removeAjto(sajatAjto);
+                }
+                masikSzoba.removeAjto(sajatAjto);
+                this.addAjto(sajatAjto);
+            }
+        }
+
     }
 
     public void setPoisonous(int meregIdo) {
@@ -88,6 +124,12 @@ public class Szoba implements Idozitett {
 
     public void addAjto(Ajto ajto) {
         ajtok.add(ajto);
+        CustomLogger.info("A " + this + "-ba bekerült az " + ajto + ".");
+    }
+
+    public void removeAjto(Ajto ajto) {
+        ajtok.remove(ajto);
+        CustomLogger.info("A " + this + "-ból kikerült az " + ajto + ".");
     }
 
     public List<Targy> getItems() {

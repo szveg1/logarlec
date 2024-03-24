@@ -15,7 +15,7 @@ public class Ajtojeleniktunik {
 
     private static Szoba sz1 = new Szoba(5, "sz1");
     private static Szoba sz2 = new Szoba(2, "sz2");
-    private static Ajto a1 = new Ajto(sz1, sz2);
+    private static Ajto a1 = new Ajto(sz1, sz2, "a1");
 
 
     private static Map<String, Szoba> szobampa = new HashMap<>();

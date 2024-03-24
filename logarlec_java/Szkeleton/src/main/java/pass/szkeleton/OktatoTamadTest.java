@@ -12,7 +12,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 
 
-public class Oktato_tamad {
+public class OktatoTamadTest {
     private static Labirintus labirintus;
     private static Szoba szoba;
     private static Oktato oktato;
@@ -20,7 +20,7 @@ public class Oktato_tamad {
     private static Map<String, Oktato>  oktatoMap = new HashMap<>();
     private static Map<String, Targy> targyMap = new HashMap<>();
     public static void init_test(int oktatoSzam, String hallgatoVedekezik) {
-        labirintus = new Labirintus();
+        labirintus = new Labirintus("l");
         szoba = new Szoba(5, "sz");
         hallgato = new Hallgato("h");
         Rongy rongy = new Rongy("r");
@@ -42,22 +42,20 @@ public class Oktato_tamad {
             CustomLogger.info("Nem vedekezik a hallgato.");
             szoba.emberBetesz(hallgato);
         }else{
-            szoba.emberBetesz(hallgato);
+            hallgato.masikSzobabaLep(szoba);
             hallgato.targyatFelvesz(targyMap.get(hallgatoVedekezik));
         }
 
-            for (int i = 0; i < oktatoSzam; i++) {
+            for (int i = 1; i <= oktatoSzam; i++) {
                 oktato = new Oktato("o"+i);
-                szoba.emberBetesz(oktato);
+                oktato.masikSzobabaLep(szoba);
                 oktatoMap.put("Oktato" + i, oktato);
             }
 
-            //szoba.emberBetesz(hallgato);
-            //emberMap.put("Hallgato", hallgato);
     }
 
 
-    public static void Oktato_tamad_test() {
+    public static void test() {
         Scanner scanner = new Scanner(System.in);
         CustomLogger.info("Mivel védekezik a hallgató?");
         CustomLogger.info("[Rongy, Pohar, TVSZ]");
@@ -72,7 +70,7 @@ public class Oktato_tamad {
             init_test(4, hallgatoVedekezik);
         }
 
-        for(int i = 0; i < oktatoSzam; i++){
+        for(int i = 1; i <= oktatoSzam; i++){
             CustomLogger.info("Oktato" + i + " tamadasa");
             oktatoMap.get("Oktato" + i).hallgatotMegtamad(hallgato);
             if(hallgato.getEletbenVan()){

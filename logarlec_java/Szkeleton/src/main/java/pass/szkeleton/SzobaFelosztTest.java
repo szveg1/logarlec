@@ -10,7 +10,7 @@ import pass.model.item.*;
 
 public class SzobaFelosztTest {
     public void test() {
-        Labirintus labirintus = new Labirintus();
+        Labirintus labirintus = new Labirintus("l");
         Scanner scanner = new Scanner(System.in);
 
         CustomLogger.info("Mekkora legyen a szoba ferohelye?");

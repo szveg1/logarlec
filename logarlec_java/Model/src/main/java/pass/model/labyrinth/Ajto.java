@@ -11,14 +11,19 @@ public class Ajto {
     private Szoba masikOldal;
     private boolean lathato;
     private Map<Szoba, Boolean> merreNyilik = new HashMap<>();
+    private String nev;
 
-    public Ajto(Szoba egyikOldal, Szoba masikOldal){
+    public Ajto(Szoba egyikOldal, Szoba masikOldal, String nev){
         this.egyikOldal = egyikOldal;
         this.masikOldal = masikOldal;
         merreNyilik.put(egyikOldal, true);
         merreNyilik.put(masikOldal, true);
+        this.nev = nev;
     }
 
+    public String toString(){
+        return nev + " :Ajto";
+    }
     public void hasznal(Ember e){
         if(!lathato) {
             CustomLogger.log(Level.WARNING,"Ajto nem lathato");
@@ -28,6 +33,7 @@ public class Ajto {
         Szoba hovaMegy = (egyikOldal == jelenlegiSzoba) ? masikOldal : egyikOldal;
         if(merreNyilik.get(hovaMegy)){
             e.masikSzobabaLep(hovaMegy);
+            jelenlegiSzoba.emberKivesz(e);
         }
         else CustomLogger.log(Level.WARNING,"Ajto nem nyilik ebbe az irányba");
     }
@@ -53,4 +59,15 @@ public class Ajto {
             lathato = true;
         }
     }
+
+    public Szoba getSzomszed(Szoba sz){
+        if (sz == egyikOldal){
+            return masikOldal;
+        }
+        else if (sz == masikOldal){
+            return egyikOldal;
+        }
+        return null;
+    }
+
 }

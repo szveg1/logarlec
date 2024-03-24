@@ -26,6 +26,9 @@ public class TargyFelveszTest {
     }
 
     public static void test(){
+        CustomLogger.info("[TargyFelveszTest]");
+        setUp();
+
         Ember e = null;
         Scanner scanner = new Scanner(System.in);
 

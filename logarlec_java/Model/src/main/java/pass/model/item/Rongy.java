@@ -29,7 +29,7 @@ public class Rongy implements Targy {
 
     @Override
     public void accept(TargyVisitor visitor) {
-
+        visitor.visit(this);
     }
 
     @Override

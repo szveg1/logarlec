@@ -14,10 +14,10 @@ public class HallgatoTeleportTest {
 
 
         Szoba sz1 = new Szoba(1, "sz1");
-        Szoba sz2 = new Szoba(1, "sz1");
+        Szoba sz2 = new Szoba(1, "sz2");
 
         e.masikSzobabaLep(sz1);
-        Targy t = new Tranzisztor("t");
+        Targy t = new Tranzisztor("t1");
         Targy t2 = new Tranzisztor("t2");
         sz1.addItem(t);
         sz1.addItem(t2);

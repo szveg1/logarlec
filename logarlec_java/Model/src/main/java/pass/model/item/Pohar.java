@@ -26,7 +26,7 @@ public class Pohar implements Targy {
 
     @Override
     public void accept(TargyVisitor visitor) {
-
+        visitor.visit(this);
     }
 
     @Override

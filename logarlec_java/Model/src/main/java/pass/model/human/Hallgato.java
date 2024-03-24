@@ -1,5 +1,6 @@
 package pass.model.human;
 
+import pass.model.CustomLogger;
 import pass.model.CustomRecordFormatter;
 import pass.model.Main;
 import pass.model.item.*;
@@ -77,6 +78,7 @@ public class Hallgato extends Ember {
         int hasznalniKivant = 0;
         for(Targy targy : inventory) {
             targy.accept(this);
+            CustomLogger.info(this + " tud védekezni a " + targy + " segítségével:" + tudVedekezni);
             if(tudVedekezni){
                 inventory.get(hasznalniKivant).hasznal(oktato);
                 break;

@@ -20,7 +20,7 @@ public class EmberMasikSzobabaLep
     private static Hallgato h1 = new Hallgato("h1");
     private static Oktato o1 = new Oktato("o1");
 
-    private static Ajto a1 = new Ajto(sz1, sz2);
+    private static Ajto a1 = new Ajto(sz1, sz2, "a1");
 
     private static Maszk m1 = new Maszk(10, "m1");
 
@@ -46,38 +46,49 @@ public class EmberMasikSzobabaLep
         if (e == null) {
             CustomLogger.log(Level.WARNING, "Nem létező válasz!");
         }
-        sz1.emberBetesz(e);
-        sz2.emberBetesz(e1);
-        sz1.emberKivesz(e);
-        if(e.getJelenlegiSzoba()==sz2){
-            CustomLogger.info("sikeresen szobát váltott");
-        }
-        else if(e.getJelenlegiSzoba()==sz1){
-            CustomLogger.info("valami nem stimmel");
-        }
 
-        CustomLogger.info("[mérgező-e a következő szoba? Igen vagy nem?]\n");
-        String asd = scanner.nextLine();
-        if(asd.equals("igen")){
-            sz2.setPoisonous(10);
+        sz1.emberBetesz(e);
+        CustomLogger.info("[Látható az ajtó? Igen vgay nem?]\n");
+        String qwerty = scanner.nextLine();
+        if (qwerty.equals("igen")) {
+            a1.setLathatosag(true);
+            a1.hasznal(e);
+            if(e.getJelenlegiSzoba()==sz2){
+                CustomLogger.info("sikeresen szobát váltott");
+            }
+            else if(e.getJelenlegiSzoba()==sz1){
+                CustomLogger.info("valami nem stimmel");
+            }
+
+            CustomLogger.info("[mérgező-e a következő szoba? Igen vagy nem?]\n");
+            String asd = scanner.nextLine();
+            if(asd.equals("igen")){
+                sz2.setPoisonous(10);
+            }
+            else if(asd.equals("nem")){
+                sz2.setPoisonous(10);
+            }
+            else{
+                CustomLogger.log(Level.WARNING, "Nem létező válasz!");
+            }
+            CustomLogger.info("[Van-e maszkja az embernek? Igen vagy nem?]\n");
+            String asd1 = scanner.nextLine();
+            if(asd1.equals("igen")){
+                e.setGazEllenVedett(true);
+                if (!e.getAjult()) CustomLogger.info("ember elajult");
+                else CustomLogger.info("valami nem stimmel");
+            }
+            else if(asd1.equals("nem")){
+                e.ajulas();
+                if (e.getAjult()) CustomLogger.info("ember elajult");
+                else CustomLogger.info("valami nem stimmel");
+            }
+            else{
+                CustomLogger.log(Level.WARNING, "Nem létező válasz!");
+            }
         }
-        else if(asd.equals("nem")){
-            sz2.setPoisonous(10);
-        }
-        else{
-            CustomLogger.log(Level.WARNING, "Nem létező válasz!");
-        }
-        CustomLogger.info("[Van-e maszkja az embernek? Igen vagy nem?]\n");
-        String asd1 = scanner.nextLine();
-        if(asd1.equals("igen")){
-            e.setGazEllenVedett(true);
-            if (!e.getAjult()) CustomLogger.info("ember elajult");
-            else CustomLogger.info("valami nem stimmel");
-        }
-        else if(asd1.equals("nem")){
-            e.ajulas();
-            if (e.getAjult()) CustomLogger.info("ember elajult");
-            else CustomLogger.info("valami nem stimmel");
+        else if (qwerty.equals("nem")) {
+            CustomLogger.log(Level.WARNING, "Nincs kijarat!");
         }
         else{
             CustomLogger.log(Level.WARNING, "Nem létező válasz!");

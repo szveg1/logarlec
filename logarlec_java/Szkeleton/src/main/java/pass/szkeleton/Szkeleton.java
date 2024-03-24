@@ -14,6 +14,6 @@ import java.util.logging.Logger;
 public class Szkeleton {
 
     public static void main(String[] args) {
-        Logarlec_hallgato.test();
+        Menu.menu();
     }
 }
