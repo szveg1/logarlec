@@ -24,6 +24,7 @@ public abstract class Ember implements TargyVisitor, Idozitett {
         targy.szobaValtasrolErtesit(jelenlegiSzoba);
     }
 
+
     public void targyatEldob(Targy targy) {
         if(inventory.isEmpty()){
             // Valami figyelmeztetes h ures az inventory
@@ -70,9 +71,6 @@ public abstract class Ember implements TargyVisitor, Idozitett {
         return jelenlegiSzoba;
     }
 
-    public ArrayList<Targy> getItems() {
-        return inventory;
-    }
 
     abstract boolean inventoryTeleE();
 

@@ -7,26 +7,8 @@ import pass.model.item.*;
 import java.util.*;
 
 public class TargyEldobTest {
-<<<<<<< HEAD
-    public static void setUp(){
-        Szoba sz = new Szoba(1);
-        Ember h = new Hallgato();
-        Ember o = new Oktato();
-        Targy r = new Rongy();
-        sz.emberBetesz(h);
-        sz.emberBetesz(o);
-        sz.addItem(r);
-        h.targyatFelvesz(r);
-    }
 
-    public void test(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Hallgató vagy oktató?");
-        String ember = scanner.nextLine();
-
-=======
-
-    private static Map<String, Ember> emberMap = new HashMap<>();
+ /*   private static Map<String, Ember> emberMap = new HashMap<>();
     private static Map<String, Targy> targyMap = new HashMap<>();
 
     public static void test(){
@@ -63,6 +45,5 @@ public class TargyEldobTest {
         if (e.getItems().size() == 0) System.out.println("Tárgyat eldobta az ember");
         if (e.getItems().size() != 0) System.out.println("Tárgyat nem dobta el az ember");
         
->>>>>>> 4f746c606a1555357c27c42119c3cda11b4e4f58
-    }
+    } */
 }
