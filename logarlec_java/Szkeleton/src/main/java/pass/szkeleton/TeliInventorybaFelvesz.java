@@ -51,39 +51,32 @@ public class TeliInventorybaFelvesz
         sz1.addItem(tr1);
         sz1.addItem(c1);
         if(e == o1){
-            for(int i = 0; i < 2; i++)
-            {
-                e.targyatFelvesz(m1);
-                sz1.removeItem(m1);
+            e.targyatFelvesz(m1);
+            sz1.removeItem(m1);
 
-                e.targyatFelvesz(r1);
-                sz1.removeItem(r1);
-                if(e.getItems().size() == 1){System.out.println("valami stimmel");}
-                else if(e.getItems().size() > 1){System.out.println("valami nem stimmel");}
-            }
+            e.targyatFelvesz(r1);
+            sz1.removeItem(r1);
+            if(e.getItems().size() == 1){System.out.println("valami stimmel");}
+            else if(e.getItems().size() > 1){System.out.println("valami nem stimmel");}
         }
         else if(e == h1){
-            for(int i = 0; i < 6; i++)
-            {
-                e.targyatFelvesz(m1);
-                sz1.removeItem(m1);
+            e.targyatFelvesz(m1);
+            sz1.removeItem(m1);
 
-                e.targyatFelvesz(r1);
-                sz1.removeItem(r1);
+            e.targyatFelvesz(r1);
+            sz1.removeItem(r1);
 
-                e.targyatFelvesz(p1);
-                sz1.removeItem(p1);
+            e.targyatFelvesz(p1);
+            sz1.removeItem(p1);
 
-                e.targyatFelvesz(c1);
-                sz1.removeItem(c1);
+            e.targyatFelvesz(c1);
+            sz1.removeItem(c1);
 
-                e.targyatFelvesz(tv1);
-                sz1.removeItem(tv1);
+            e.targyatFelvesz(tv1);
+            sz1.removeItem(tv1);
 
-                e.targyatFelvesz(tr1);
-                sz1.removeItem(tr1);
-
-            }
+            e.targyatFelvesz(tr1);
+            sz1.removeItem(tr1);
 
             if(e.getItems().size() == 5){System.out.println("valami stimmel");}
             else if(e.getItems().size() > 5){System.out.println("valami nem stimmel");}
