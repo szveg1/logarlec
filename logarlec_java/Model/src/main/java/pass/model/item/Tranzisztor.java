@@ -4,6 +4,7 @@ import pass.model.human.Oktato;
 import pass.model.human.TargyVisitor;
 import pass.model.labyrinth.Szoba;
 import pass.model.human.Hallgato;
+import pass.model.human.Ember;
 
 public class Tranzisztor implements Targy {
     // Csak szkeletonhoz-------------
@@ -18,13 +19,24 @@ public class Tranzisztor implements Targy {
     }
 
     // -------------------------------
-    Szoba jelenlegiSzoba;
-    Tranzisztor par;
+    private Szoba jelenlegiSzoba;
+    private Tranzisztor par = null;
+
+    private Ember tulaj;
 
     @Override
     public void hasznal() {
         
 
+    }
+    @Override
+    public void setPar(Tranzisztor t) {
+        this.par = t;
+        t.setPar2(this);
+    }
+
+    public void setPar2(Tranzisztor t) {
+        this.par = t;
     }
 
     @Override
