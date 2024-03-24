@@ -47,6 +47,16 @@ public class AjtoTest {
         boolean b = Boolean.parseBoolean(s);
         a.setLathatosag(b);
 
+        CustomLogger.info("[nyiljon az ajto a masik szoba fele? true/false] ");
+        s = scanner.nextLine();
+        boolean b1 = Boolean.parseBoolean(s);
+
+        CustomLogger.info("[nyiljon az ajto erre a szoba fele? true/false] ");
+        s = scanner.nextLine();
+        boolean b2 = Boolean.parseBoolean(s);
+
+        a.setMerreNyilik(b2, b1);
+
         a.hasznal(e);
     }
 }
