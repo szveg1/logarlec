@@ -1,5 +1,6 @@
 package pass.szkeleton;
 
+import pass.model.CustomLogger;
 import pass.model.human.*;
 import pass.model.labyrinth.*;
 import pass.model.item.*;
@@ -9,7 +10,7 @@ import java.util.*;
 public class HallgatoTeleportTest {
 
     public static void test() {
-
+        CustomLogger.suppress();
         Ember e = new Hallgato("h");
 
 
@@ -21,6 +22,7 @@ public class HallgatoTeleportTest {
         Targy t2 = new Tranzisztor("t2");
         sz1.addItem(t);
         sz1.addItem(t2);
+        CustomLogger.unsuppress();
         e.targyatFelvesz(t);
         e.targyatFelvesz(t2);
 

@@ -11,10 +11,18 @@ import pass.model.item.Maszk;
 import java.util.*;
 import java.util.logging.*;
 
-
+/**
+ * Az Ember osztály azonosítja a karaktert, valamint tárolja az
+ * általuk birtokolt tárgyakat. Képesek tárgyak felvételére, eldobására és használatára.
+ */
 public abstract class Ember implements TargyVisitor, Idozitett {
     // Csak a szkeletonhoz-------------
     protected String nev;
+
+    /**
+     * A függvény elnevezi az objektumot.
+     * @param nev - az objektum neve
+     */
     public Ember(String nev){
         this.nev = nev;
     }
@@ -47,8 +55,10 @@ public abstract class Ember implements TargyVisitor, Idozitett {
 
 
     /**
-     *
-     * @param targy
+     * A függvény a megadott tárgyat eldobja és kiszedi
+     * az ember inventory-jából, miközben eltávolítja
+     * a tárgyat a szobából
+     * @param targy - az eldobandó tárgy
      */
     public void targyatEldob(Targy targy) {
         if (ajult){
@@ -67,18 +77,20 @@ public abstract class Ember implements TargyVisitor, Idozitett {
     }
 
     /**
-     *
-     * @param maszk
+     * A függvény meglátogatja a medaott maszkot
+     * és a gáz elleni védelmét beállítja az embernek
+     * @param maszk - a maszk amit meglátogat
      */
     @Override
     public void visit(Maszk maszk) {
         CustomLogger.info(this + " meglátogatta a " + maszk + "-ot");
-        CustomLogger.info("védett lett tőle: " + (maszk.getVedIdo() > 0));
+        CustomLogger.info("védett lett " + maszk + "-tól: " + (maszk.getVedIdo() > 0));
         setGazEllenVedett(maszk.getVedIdo() > 0);
     }
 
 
     public void ajulas() {
+        if(gazEllenVedett) return;
         ajult = true;
         CustomLogger.info(this + " elájult");
         for(Targy targy : inventory) {
@@ -86,12 +98,19 @@ public abstract class Ember implements TargyVisitor, Idozitett {
         }
     }
 
+    /**
+     *  A függvény az embert átlépteti a megadott szobába,
+     *  amíg az ember nincs elájulva és
+     *  az új szobához hozzáadja az embert
+     * @param ujSzoba - ebbe a szobába lép át az ember
+     */
     public void masikSzobabaLep(Szoba ujSzoba) {
         if (ajult) {
             CustomLogger.log(Level.WARNING,this + " ájult, nem tud szobát váltani");
             return;
         }
-        ujSzoba.emberBetesz(this);
+        if(!ujSzoba.emberBetesz(this)) return;
+
         jelenlegiSzoba = ujSzoba;
         CustomLogger.info(this + " belépett a " + ujSzoba + "-ba");
         for (Targy targy : inventory) {
@@ -103,9 +122,13 @@ public abstract class Ember implements TargyVisitor, Idozitett {
         if(jelenlegiSzoba == null) return;
         CustomLogger.info(this + " elhagyta a " + jelenlegiSzoba +"-t");
         jelenlegiSzoba.emberKivesz(this);
-
     }
 
+    /**
+     * A függvény az ember által kiválasztott
+     * tárgy ahsználatát hívja meg
+     * @param targy - a használandó tárgy
+     */
     public void targyatHasznal(Targy targy){
         CustomLogger.info(this + " használta a " + targy + "-t");
         targy.hasznal();
@@ -115,6 +138,11 @@ public abstract class Ember implements TargyVisitor, Idozitett {
         return gazEllenVedett;
     }
 
+    /**
+     * A függvény egy setter függvény,
+     * amivel a gáz elleni védettséget lehet beállítani
+     * @param isProtected - a gáz elleni védettséget kommunikálja
+     */
     public void setGazEllenVedett(boolean isProtected) {
         this.gazEllenVedett = isProtected;
     }
@@ -133,6 +161,11 @@ public abstract class Ember implements TargyVisitor, Idozitett {
 
     abstract boolean inventoryTeleE();
 
+    /**
+     * A függvény egy abstract függvény,
+     * ami a rongy hatásait állítja be az emberen
+     * @param rongy - a rongy aminek a hatása alá kerül az ember
+     */
     public abstract void rongyotElszenved(Rongy rongy);
 
     public void tick(){

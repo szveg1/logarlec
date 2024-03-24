@@ -9,7 +9,7 @@ import pass.model.labyrinth.*;
 import pass.model.item.*;
 
 public class SzobaFelosztTest {
-    public void test() {
+    public static void test() {
         Labirintus labirintus = new Labirintus("l");
         Scanner scanner = new Scanner(System.in);
 

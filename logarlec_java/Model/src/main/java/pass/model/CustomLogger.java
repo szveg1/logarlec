@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 public class CustomLogger {
     private static final Logger LOGGER = Logger.getLogger("LOG");
+    private static boolean isSuppressed = false;
     static{
         LOGGER.addHandler(new ConsoleHandler(){
             {
@@ -17,6 +18,7 @@ public class CustomLogger {
     }
 
     public static void info(String info) {
+        if(isSuppressed) return;
         String callerClassName = Thread.currentThread().getStackTrace()[3].getClassName();
         String callerSimpleClassName = callerClassName.substring(callerClassName.lastIndexOf('.') + 1);
 
@@ -30,6 +32,13 @@ public class CustomLogger {
 
     public static void log(Level level, String message) {
         LOGGER.log(level, message);
+    }
+
+    public static void suppress(){
+        isSuppressed = true;
+    }
+    public static void unsuppress(){
+        isSuppressed = false;
     }
 
 }

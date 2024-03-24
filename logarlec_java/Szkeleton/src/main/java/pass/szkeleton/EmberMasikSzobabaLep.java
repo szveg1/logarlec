@@ -16,33 +16,33 @@ public class EmberMasikSzobabaLep
 
     private static Szoba sz2 = new Szoba(2, "sz2");
 
-    private static Ember e1;
-    private static Hallgato h1 = new Hallgato("h1");
-    private static Oktato o1 = new Oktato("o1");
+    private static Hallgato h = new Hallgato("h");
+    private static Oktato o = new Oktato("o");
 
-    private static Ajto a1 = new Ajto(sz1, sz2, "a1");
+    private static Ajto a = new Ajto(sz1, sz2, "a");
 
-    private static Maszk m1 = new Maszk(10, "m1");
+    private static Maszk m = new Maszk(10, "m");
 
-    private static Map<String, Szoba>  szobampa = new HashMap<>();
-    private static Map<String, Ember>  embermpa = new HashMap<>();
-    private static Map<String, Ajto>  ajtpmpa = new HashMap<>();
+    private static Map<String, Szoba> szobaMap = new HashMap<>();
+    private static Map<String, Ember>  emberMap = new HashMap<>();
+    private static Map<String, Ajto>  ajtoMap = new HashMap<>();
     private static Map<String, Targy>  targympa = new HashMap<>();
 
     public static void setUp() {
-        embermpa.put("oktato", o1);
-        embermpa.put("hallgato", h1);
-        szobampa.put("kiinduloszoba", sz1);
-        szobampa.put("celszoba", sz2);
-        ajtpmpa.put("ajto", a1);
-        targympa.put("maszk", m1);
+        emberMap.put("oktato", o);
+        emberMap.put("hallgato", h);
+        szobaMap.put("kiinduloszoba", sz1);
+        szobaMap.put("celszoba", sz2);
+        ajtoMap.put("ajto", a);
+        targympa.put("maszk", m);
     }
 
-    public void test(){
+    public static void test(){
+        setUp();
         Scanner scanner = new Scanner(System.in);
         CustomLogger.info("[Hallgató vagy oktató?]\n");
         String ember = scanner.nextLine();
-        Ember e = embermpa.get(ember);
+        Ember e = emberMap.get(ember);
         if (e == null) {
             CustomLogger.log(Level.WARNING, "Nem létező válasz!");
         }
@@ -51,8 +51,8 @@ public class EmberMasikSzobabaLep
         CustomLogger.info("[Látható az ajtó? Igen vgay nem?]\n");
         String qwerty = scanner.nextLine();
         if (qwerty.equals("igen")) {
-            a1.setLathatosag(true);
-            a1.hasznal(e);
+            a.setLathatosag(true);
+            a.hasznal(e);
             if(e.getJelenlegiSzoba()==sz2){
                 CustomLogger.info("sikeresen szobát váltott");
             }

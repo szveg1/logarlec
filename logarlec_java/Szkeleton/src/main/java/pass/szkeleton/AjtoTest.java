@@ -13,15 +13,18 @@ import java.util.logging.*;
 public class AjtoTest {
 
     private static Map<String, Ember>  emberMap = new HashMap<>();
+    private static Map<String, Boolean> choiceMap = new HashMap<>();
 
     public static void test() {
         emberMap.put("oktato", new Oktato("o"));
         emberMap.put("hallgato", new Hallgato("h"));
+        choiceMap.put("igen", true);
+        choiceMap.put("nem", false);
 
         Ember e = null;
         Scanner scanner = new Scanner(System.in);
 
-        CustomLogger.info("[Hallgató vagy oktató?] ");
+        System.out.println("[Hallgató vagy oktató?] ");
         for (String ember : emberMap.keySet()) {
             System.out.print(" [" + ember + "]");
         }
@@ -35,28 +38,49 @@ public class AjtoTest {
             }
         } while (e == null);
 
+        CustomLogger.suppress();
         Szoba sz1 = new Szoba(8, "sz1");
         Szoba sz2 = new Szoba(8, "sz2");
         e.masikSzobabaLep(sz1);
         Ajto a = new Ajto(sz1, sz2, "a");
         sz1.addAjto(a);
         sz2.addAjto(a);
+        CustomLogger.unsuppress();
 
-        CustomLogger.info("[látható vagy nem? true/false] ");
-        String s = scanner.nextLine();
-        boolean b = Boolean.parseBoolean(s);
-        a.setLathatosag(b);
+        System.out.println("[látható vagy nem?]" + "\n" + "[igen] [nem]");
+        Boolean choice = null;
+        do {
+            String choiceS = scanner.nextLine();
+            choice = choiceMap.get(choiceS);
+            if (choice == null) {
+                CustomLogger.log(Level.WARNING, "Nem jól írtad le!");
+            }
+        } while (choice == null);
+        a.setLathatosag(choice);
 
-        CustomLogger.info("[nyiljon az ajto a masik szoba fele? true/false] ");
-        s = scanner.nextLine();
-        boolean b1 = Boolean.parseBoolean(s);
+        System.out.println("[nyiljon az ajto a masik szoba fele?]" + "\n" + "[igen] [nem]");
+        Boolean choice2 = null;
+        do {
+            String choiceS = scanner.nextLine();
+            choice2 = choiceMap.get(choiceS);
+            if (choice2 == null) {
+                CustomLogger.log(Level.WARNING, "Nem jól írtad le!");
+            }
+        } while (choice2 == null);
 
-        CustomLogger.info("[nyiljon az ajto erre a szoba fele? true/false] ");
-        s = scanner.nextLine();
-        boolean b2 = Boolean.parseBoolean(s);
-
-        a.setMerreNyilik(b2, b1);
+        System.out.println("[nyiljon az ajto erre a szoba fele?]" + "\n" + "[igen] [nem]");
+        Boolean choice3 = null;
+        do {
+            String choiceS = scanner.nextLine();
+            choice3 = choiceMap.get(choiceS);
+            if (choice3 == null) {
+                CustomLogger.log(Level.WARNING, "Nem jól írtad le!");
+            }
+        } while (choice3 == null);
+        a.setMerreNyilik(choice3, choice2);
 
         a.hasznal(e);
+        scanner.nextLine();
     }
 }
+

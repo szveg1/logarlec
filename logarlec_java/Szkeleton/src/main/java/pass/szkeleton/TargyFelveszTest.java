@@ -26,13 +26,13 @@ public class TargyFelveszTest {
     }
 
     public static void test(){
-        CustomLogger.info("[TargyFelveszTest]");
+        System.out.println("TargyFelveszTest");
         setUp();
 
         Ember e = null;
         Scanner scanner = new Scanner(System.in);
 
-        CustomLogger.info("[Hallgató vagy oktató vesz fel tárgy(ak)at?] ");
+        System.out.println("[Hallgató vagy oktató vesz fel tárgy(ak)at?] ");
         for (String ember : emberMap.keySet()) {
             System.out.print(" [" + ember + "]");
         }
@@ -46,17 +46,20 @@ public class TargyFelveszTest {
             }
         } while (e == null);
 
+        CustomLogger.suppress();
         e.masikSzobabaLep(sz);
+        CustomLogger.unsuppress();
 
         do {
-            CustomLogger.info("Milyen tárgyat vegyen fel?");
+            e.tick();
+            System.out.println("Milyen tárgyat vegyen fel?");
             for (String targy : targyMap.keySet()) {
                 System.out.print(" [" + targy + "]");
             }
-            System.out.print(" [vége]");
+            System.out.print(" [vege]");
             System.out.append("\n");
             String targyNev = scanner.nextLine();
-            if (targyNev.equals("vége")) {
+            if (targyNev.equals("vege")) {
                 break;
             }
             else if(!targyMap.containsKey(targyNev)){
@@ -64,7 +67,9 @@ public class TargyFelveszTest {
                 continue;
             }
             Targy t = targyMap.remove(targyNev);
+            CustomLogger.suppress();
             sz.addItem(t);
+            CustomLogger.unsuppress();
             e.targyatFelvesz(t);
             if(sz.getItems().contains(t)){
                 targyMap.put(targyNev, t);

@@ -4,10 +4,16 @@ import pass.model.CustomLogger;
 import pass.model.CustomRecordFormatter;
 import pass.model.Main;
 import pass.model.item.*;
+import pass.model.labyrinth.Labirintus;
 
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Logger;
 
+/* A Hallgató osztály felelős a játékos karakterének kezeléséért a labirintusban. Ez az
+osztály rögzíti és kezeli a hallgatóval kapcsolatos információkat, a felvett tárgyak
+listáját. Emellett felelős a hallgató cselekedeteinek végrehajtásáért, beleértve a tárgyak
+felvételét és letételét, valamint a szobák közötti mozgást. A Hallgató osztály biztosítja
+a felhasználói interakciót a játék során.  */
 public class Hallgato extends Ember {
 
     private static final Logger hallgatoLogger = Logger.getLogger(Hallgato.class.getSimpleName());
@@ -40,52 +46,88 @@ public class Hallgato extends Ember {
         return tudVedekezni;
     }
 
+    /**
+     * A függvény meglátogatja a megadott logarlécet
+     * és a meghívja a labirintus játékNyert függvényét
+     * amivel véget vet a játéknak
+     * @param logarlec -  a logarléc amit meglátogat
+     */
     @Override
     public void visit(Logarlec logarlec) {
-        // Szol a kontrollernek hogy nyert
+        CustomLogger.info(this + " meglátogatta a " + logarlec + "-t.");
+        Labirintus.jatekNYert();
     }
 
+    /**
+     * A függvény meglátogatja a megadott tvsz-t
+     * és megvédi a hallgatót ha a tvsz még működőképes
+     * @param tvsz - a tbsz amit meglátogat
+     */
     @Override
     public void visit(TVSZ tvsz) {
         tudVedekezni = tvsz.hasznalhatoE();
+        CustomLogger.info(this + (tudVedekezni == true ? " tud védekezni a " + tvsz + " segítségével." : " nem tud védekezni, mert a " + tvsz + " már nem használható."));
     }
 
+    /**
+     * A függvény meglátogatja a megadott poharat
+     * és megvédi a hallgatót ha
+     * a pohár még nem járt le
+     * @param pohar - a pohár amit meglátogat
+     */
     @Override
     public void visit(Pohar pohar) {
         tudVedekezni = pohar.hasznalhatoE();
+        CustomLogger.info(this + (tudVedekezni == true ? " tud védekezni a " + pohar + " segítségével." : " nem tud védekezni, mert a " + pohar + " már nem használható."));
     }
 
+    /**
+     * A függvény meglátogatja a megadott ronygot
+     * és megvédi a hallgatót a szükség esetén
+     * @param rongy - a rongy amit melátogat
+     */
     @Override
     public void visit(Rongy rongy) {
         tudVedekezni = rongy.hasznalhatoE();
+        CustomLogger.info(this + (tudVedekezni == true ? " tud védekezni a " + rongy + " segítségével." : " nem tud védekezni, mert a " + rongy + " már nem használható."));
     }
 
     @Override
     boolean inventoryTeleE() {
         int MAX_INVENTORY_MERET = 5;
+        CustomLogger.info(this +  ((inventory.size() >= MAX_INVENTORY_MERET) ? " inventoryja tele van." : " inventoryja nincs tele."));
         return inventory.size() >= MAX_INVENTORY_MERET;
     }
 
+    /**
+     * A függvény a rongy hatásait
+     * applikálja a hallgatóra ami nincs
+     * @param rongy - a rongy aminek a hatása alá kerül a hallgató
+     */
     @Override
     public void rongyotElszenved(Rongy rongy) {
         // Nem csinal semmit
     }
 
-    // Rongy + Pohar hianyzik meg
-
-
+    /**
+     * A függvény alkalmazza az oktató támadásából
+     * eredő hatásokat a hallgatóra, majd ellenőrzi,
+     * hogy van-e védelme ezekkel szemben.
+     * @param oktato - a támadó oktató
+     */
     public void tamadasElszenved(Oktato oktato) {
         int hasznalniKivant = 0;
         for(Targy targy : inventory) {
             targy.accept(this);
-            CustomLogger.info(this + " tud védekezni a " + targy + " segítségével:" + tudVedekezni);
             if(tudVedekezni){
                 inventory.get(hasznalniKivant).hasznal(oktato);
+                CustomLogger.info(this + " a " + inventory.get(hasznalniKivant) + "-val védekezett.");
                 break;
             }
             hasznalniKivant++;
         }
         if(!tudVedekezni){
+            CustomLogger.info(this + " nem tudott védekezni, ezért meghalt.");
             meghal();
         }
     }
@@ -97,5 +139,8 @@ public class Hallgato extends Ember {
     @Override
     public void tick() {
         super.tick();
+        for(Targy t : inventory){
+            t.tick();
+        }
     }
 }
