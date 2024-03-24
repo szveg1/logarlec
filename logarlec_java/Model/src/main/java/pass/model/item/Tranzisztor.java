@@ -3,9 +3,11 @@ package pass.model.item;
 import pass.model.human.Oktato;
 import pass.model.human.TargyVisitor;
 import pass.model.labyrinth.Szoba;
+import pass.model.human.Hallgato;
 
 public class Tranzisztor implements Targy {
     Szoba jelenlegiSzoba;
+    Tranzisztor par;
 
     @Override
     public void hasznal(Oktato oktato) {
@@ -20,6 +22,10 @@ public class Tranzisztor implements Targy {
     @Override
     public void szobaValtasrolErtesit(Szoba newSzoba) {
         jelenlegiSzoba = newSzoba;
+    }
+
+    public Szoba getSzoba() {
+        return jelenlegiSzoba;
     }
 
     @Override

@@ -69,6 +69,10 @@ public class Szoba implements Idozitett {
         return targyak;
     }
 
+    public int getFerohely() {
+        return ferohely;
+    }
+
     public void addEmber(Ember ember) {
         bentlevok.add(ember);
         ember.setJelenlegiSzoba(this);
