@@ -23,7 +23,8 @@ public class SzobaFelosztTest {
         s = scanner.nextLine();
         m = Integer.parseInt(s);
         for (int i=0; i < m; i++) {
-            sz1.emberBetesz(new Hallgato("h"+i));
+            Ember e = new Hallgato("h"+i);
+            e.masikSzobabaLep(sz1);
         }
 
         Szkeleton.logger.info("Hany targy legyen a szobaban?");
