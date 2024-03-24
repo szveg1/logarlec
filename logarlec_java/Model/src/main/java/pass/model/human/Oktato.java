@@ -26,6 +26,7 @@ public class Oktato extends Ember {
     //--------------------------------
     @Override
     boolean inventoryTeleE() {
+        CustomLogger.info(this + " inventoryja tele van: " + (inventory.size() >= MAX_INVENTORY_MERET));
         return inventory.size() >= MAX_INVENTORY_MERET;
     }
 
@@ -33,7 +34,7 @@ public class Oktato extends Ember {
     public void rongyotElszenved(Rongy rongy) {
         meddigBena = rongy.getMeddigNedves();
         if(meddigBena > 0) {
-            CustomLogger.info(this + " megbénult a " + rongy + " miatt.");
+            CustomLogger.info(this + " megbénult a " + rongy + " miatt." + meddigBena + " körig.");
         } else {
             CustomLogger.info(this + "-ra nem hatott a " + rongy + ".");
         }

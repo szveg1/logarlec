@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 public class Szkeleton {
 
     public static void main(String[] args) {
-        TargyFelveszTest.setUp();
-        TargyFelveszTest.test();
+
     }
 }

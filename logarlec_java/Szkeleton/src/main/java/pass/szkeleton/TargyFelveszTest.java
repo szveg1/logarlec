@@ -29,7 +29,7 @@ public class TargyFelveszTest {
         Ember e = null;
         Scanner scanner = new Scanner(System.in);
 
-        CustomLogger.info("[Hallgató vagy oktató?] ");
+        CustomLogger.info("[Hallgató vagy oktató vesz fel tárgy(ak)at?] ");
         for (String ember : emberMap.keySet()) {
             System.out.print(" [" + ember + "]");
         }
@@ -56,12 +56,17 @@ public class TargyFelveszTest {
             if (targyNev.equals("vége")) {
                 break;
             }
+            else if(!targyMap.containsKey(targyNev)){
+                CustomLogger.log(Level.WARNING, "Nem létező tárgy!");
+                continue;
+            }
             Targy t = targyMap.remove(targyNev);
             sz.addItem(t);
             e.targyatFelvesz(t);
             if(sz.getItems().contains(t)){
                 targyMap.put(targyNev, t);
             }
+
         } while(true);
     }
 }
