@@ -22,6 +22,7 @@ public class Logarlec implements Targy {
     public void accept(TargyVisitor visitor) {
         // Szolni kell a jateknak hogy vege
         visitor.visit(this);
+        Labirintus.jatekVege();
 
     }
 
