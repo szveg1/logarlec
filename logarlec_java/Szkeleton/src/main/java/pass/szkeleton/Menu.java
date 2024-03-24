@@ -13,8 +13,8 @@ public class Menu {
             System.out.println("1. Ember felvesz tárgyat ---> KESZ");
             System.out.println("2. Ember eldob tárgyat ---> KESZ");
             System.out.println("3. Oktató támad ---> KESZ");
-            System.out.println("4. Ember elájul --> KESZ");
-            System.out.println("5. Ájult Ember mozogni próbál --> KESZ");
+            System.out.println("4-5. Ember  belép gázos szobába és elájul," +
+                    "majd megpróbál mozogni vagy tárgyat felvenni --> KESZ");
             System.out.println("6. A hallgató teleportál");
             System.out.println("7. Tranzisztor párosítás");
             System.out.println("8. Szoba osztódás");
@@ -26,7 +26,7 @@ public class Menu {
             System.out.println("14. Hallgató védekezik, pohár");
             System.out.println("15. Hallgató védekezik, TVSZ");
             System.out.println("16. Hallgató felvesz egy nem logarléc tárgyat");
-            System.out.println("17. Hallgató felveszi a logarlécet ---> KESZ");
+            System.out.println("17. Hallgató felveszi a logarlécet ---> KESZ de tényleg");
             System.out.println("18. Hallgató eldob egy tárgyat");
             System.out.println("19. Oktató felvette a logarlécet");
             System.out.println("20. Oktató felvesz tárgyat, amit nem tud használni");

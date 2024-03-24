@@ -1,6 +1,7 @@
 package pass.model.item;
 
 import pass.model.human.Oktato;
+import pass.model.labyrinth.Labirintus;
 import pass.model.labyrinth.Szoba;
 import pass.model.human.TargyVisitor;
 
@@ -22,6 +23,7 @@ public class Logarlec implements Targy {
     public void accept(TargyVisitor visitor) {
         // Szolni kell a jateknak hogy vege
         visitor.visit(this);
+        Labirintus.jatekVege();
 
     }
 
