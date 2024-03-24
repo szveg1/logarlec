@@ -1,5 +1,6 @@
 package pass.szkeleton;
 
+import pass.model.CustomLogger;
 import pass.model.human.*;
 import pass.model.labyrinth.*;
 import pass.model.item.*;
@@ -40,7 +41,7 @@ public class TeliInventorybaFelvesz
     public void test()
     {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("[Hallgató vagy oktató?]\n");
+        CustomLogger.info("[Hallgató vagy oktató?]\n");
         String ember = scanner.nextLine();
         Ember e = embermpa.get(ember);
         sz1.emberBetesz(e);
@@ -56,8 +57,8 @@ public class TeliInventorybaFelvesz
 
             e.targyatFelvesz(r1);
             sz1.removeItem(r1);
-            if(e.getItems().size() == 1){System.out.println("valami stimmel");}
-            else if(e.getItems().size() > 1){System.out.println("valami nem stimmel");}
+            if(e.getItems().size() == 1){CustomLogger.info("valami stimmel");}
+            else if(e.getItems().size() > 1){CustomLogger.info("valami nem stimmel");}
         }
         else if(e == h1){
             e.targyatFelvesz(m1);
@@ -78,8 +79,8 @@ public class TeliInventorybaFelvesz
             e.targyatFelvesz(tr1);
             sz1.removeItem(tr1);
 
-            if(e.getItems().size() == 5){System.out.println("valami stimmel");}
-            else if(e.getItems().size() > 5){System.out.println("valami nem stimmel");}
+            if(e.getItems().size() == 5){CustomLogger.info("valami stimmel");}
+            else if(e.getItems().size() > 5){CustomLogger.info("valami nem stimmel");}
 
         }
 

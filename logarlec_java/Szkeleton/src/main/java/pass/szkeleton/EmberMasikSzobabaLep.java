@@ -1,5 +1,6 @@
 package pass.szkeleton;
 
+import pass.model.CustomLogger;
 import pass.model.human.*;
 import pass.model.labyrinth.*;
 import pass.model.item.*;
@@ -38,35 +39,35 @@ public class EmberMasikSzobabaLep
 
     public void test(){
         Scanner scanner = new Scanner(System.in);
-        System.out.print("[Hallgató vagy oktató?]\n");
+        CustomLogger.info("[Hallgató vagy oktató?]\n");
         String ember = scanner.nextLine();
         Ember e = embermpa.get(ember);
         sz1.emberBetesz(e);
         sz2.emberBetesz(e1);
         sz1.emberKivesz(e);
         if(e.getJelenlegiSzoba()==sz2){
-            System.out.println("sikeresen szobát váltott");
+            CustomLogger.info("sikeresen szobát váltott");
         }
         else if(e.getJelenlegiSzoba()==sz1){
-            System.out.println("valami nem stimmel");
+            CustomLogger.info("valami nem stimmel");
         }
 
-        System.out.print("[mérgező-e a következő szoba? Igen vagy nem?]\n");
+        CustomLogger.info("[mérgező-e a következő szoba? Igen vagy nem?]\n");
         String asd = scanner.nextLine();
         if(asd.equals("igen")){
             sz2.setPoisonous(10);
         }
-        System.out.print("[Van-e maszkja az embernek? Igen vagy nem?]\n");
+        CustomLogger.info("[Van-e maszkja az embernek? Igen vagy nem?]\n");
         String asd1 = scanner.nextLine();
         if(asd1.equals("igen")){
             e.setGazEllenVedett(true);
-            if (!e.getAjult()) System.out.println("ember elajult");
-            else System.out.println("valami nem stimmel");
+            if (!e.getAjult()) CustomLogger.info("ember elajult");
+            else CustomLogger.info("valami nem stimmel");
         }
         else if(asd1.equals("nem")){
             e.ajulas();
-            if (e.getAjult()) System.out.println("ember elajult");
-            else System.out.println("valami nem stimmel");
+            if (e.getAjult()) CustomLogger.info("ember elajult");
+            else CustomLogger.info("valami nem stimmel");
 
         }
     }
