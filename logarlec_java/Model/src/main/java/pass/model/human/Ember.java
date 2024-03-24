@@ -1,12 +1,15 @@
 package pass.model.human;
 
 import pass.model.Idozitett;
+import pass.model.Main;
 import pass.model.item.Rongy;
 import pass.model.labyrinth.Szoba;
 import pass.model.item.Targy;
 import pass.model.item.Maszk;
 
 import java.util.*;
+
+import static pass.model.Main.logger;
 
 public abstract class Ember implements TargyVisitor, Idozitett {
     protected final List<Targy> inventory = new ArrayList<>();
@@ -15,23 +18,31 @@ public abstract class Ember implements TargyVisitor, Idozitett {
     private boolean ajult = false;
 
     public void targyatFelvesz(Targy targy) {
-        if (ajult) return;
+        if (ajult){
+            logger.info(this + " ájult, nem tud felvenni targyat");
+            return;
+        }
         if(inventoryTeleE()) {
-            // Valami figyelmeztetes h tele az inventory
+            logger.info(this + "-nek tele az inventoryja, nem tud felvenni targyat");
             return;
         }
         jelenlegiSzoba.removeItem(targy);
+        logger.info("a " + jelenlegiSzoba + "szobából ki lett véve a " + targy + " tárgy");
         inventory.add(targy);
         targy.szobaValtasrolErtesit(jelenlegiSzoba);
     }
 
     public void targyatEldob(Targy targy) {
-        if (ajult) return;
-        if(inventory.isEmpty()){
-            // Valami figyelmeztetes h ures az inventory
+        if (ajult){
+            logger.info(this + " ájult, nem tud eldobni targyat");
+            return;
+        }
+        if(inventoryTeleE()) {
+            logger.info(this + "-nek üres az inventoryja, nem tud felvenni targyat");
             return;
         }
         inventory.remove(targy);
+        logger.info(this + " eldobta a " + targy + " tárgyat");
         jelenlegiSzoba.addItem(targy);
     }
 
