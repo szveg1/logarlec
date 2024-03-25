@@ -63,6 +63,8 @@ public class EmberElajulTest {
         sz1.addItem(r);
         e.targyatFelvesz(r);
         e.masikSzobabaLep(sz2);
+
+        System.out.println("Folytatashoz enter");
         scanner.nextLine();
     }
 }

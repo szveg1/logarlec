@@ -23,75 +23,78 @@ public class EmberMasikSzobabaLep
 
     private static Maszk m = new Maszk(10, "m");
 
-    private static Map<String, Szoba> szobaMap = new HashMap<>();
+
     private static Map<String, Ember>  emberMap = new HashMap<>();
-    private static Map<String, Ajto>  ajtoMap = new HashMap<>();
-    private static Map<String, Targy>  targympa = new HashMap<>();
+
 
     public static void setUp() {
         emberMap.put("oktato", o);
         emberMap.put("hallgato", h);
-        szobaMap.put("kiinduloszoba", sz1);
-        szobaMap.put("celszoba", sz2);
-        ajtoMap.put("ajto", a);
-        targympa.put("maszk", m);
     }
 
     public static void test(){
         setUp();
         Scanner scanner = new Scanner(System.in);
-        CustomLogger.info("[Hallgató vagy oktató?]\n");
-        String ember = scanner.nextLine();
-        Ember e = emberMap.get(ember);
-        if (e == null) {
-            CustomLogger.log(Level.WARNING, "Nem létező válasz!");
-        }
-
-        sz1.emberBetesz(e);
-        CustomLogger.info("[Látható az ajtó? Igen vgay nem?]\n");
-        String qwerty = scanner.nextLine();
-        if (qwerty.equals("igen")) {
-            a.setLathatosag(true);
-            a.hasznal(e);
-            if(e.getJelenlegiSzoba()==sz2){
-                CustomLogger.info("sikeresen szobát váltott");
-            }
-            else if(e.getJelenlegiSzoba()==sz1){
-                CustomLogger.info("valami nem stimmel");
-            }
-
-            CustomLogger.info("[mérgező-e a következő szoba? Igen vagy nem?]\n");
-            String asd = scanner.nextLine();
-            if(asd.equals("igen")){
-                sz2.setPoisonous(10);
-            }
-            else if(asd.equals("nem")){
-                sz2.setPoisonous(10);
-            }
-            else{
+        System.out.println("Hallgató vagy oktató? [hallgato] [oktato]");
+        Ember e;
+        do {
+            String ember = scanner.nextLine();
+            e = emberMap.get(ember);
+            if (e == null) {
                 CustomLogger.log(Level.WARNING, "Nem létező válasz!");
             }
-            CustomLogger.info("[Van-e maszkja az embernek? Igen vagy nem?]\n");
-            String asd1 = scanner.nextLine();
-            if(asd1.equals("igen")){
-                e.setGazEllenVedett(true);
-                if (!e.getAjult()) CustomLogger.info("ember elajult");
-                else CustomLogger.info("valami nem stimmel");
-            }
-            else if(asd1.equals("nem")){
-                e.ajulas();
-                if (e.getAjult()) CustomLogger.info("ember elajult");
-                else CustomLogger.info("valami nem stimmel");
-            }
-            else{
+        }while(e == null);
+
+        CustomLogger.suppress();
+        e.masikSzobabaLep(sz1);
+        CustomLogger.unsuppress();
+
+        System.out.println("Látható az ajtó? [igen] [nem]");
+
+        String valasz;
+        do {
+            valasz = scanner.nextLine();
+            if(!valasz.equals("igen") && !valasz.equals("nem")) {
                 CustomLogger.log(Level.WARNING, "Nem létező válasz!");
             }
+        } while(!valasz.equals("igen") && !valasz.equals("nem"));
+
+        a.setLathatosag(valasz.equals("igen"));
+        a.hasznal(e);
+
+        if(valasz.equals("nem")) return;
+
+        System.out.println("Van-e maszkja az embernek? [igen] [nem]");
+        do {
+            valasz = scanner.nextLine();
+            if(!valasz.equals("igen") && !valasz.equals("nem")) {
+                CustomLogger.log(Level.WARNING, "Nem létező válasz!");
+            }
+        } while(!valasz.equals("igen") && !valasz.equals("nem"));
+
+        if(valasz.equals("igen")){
+            CustomLogger.suppress();
+            e.targyatFelvesz(m);
+            CustomLogger.unsuppress();
+            e.tick();
         }
-        else if (qwerty.equals("nem")) {
-            CustomLogger.log(Level.WARNING, "Nincs kijarat!");
+
+        System.out.println("Mérgező-e a következő szoba? [igen] [nem]");
+        do {
+            valasz = scanner.nextLine();
+            if(!valasz.equals("igen") && !valasz.equals("nem")) {
+                CustomLogger.log(Level.WARNING, "Nem létező válasz!");
+            }
+        } while(!valasz.equals("igen") && !valasz.equals("nem"));
+
+        if(valasz.equals("igen")) {
+            CustomLogger.suppress();
+            sz2.setPoisonous(10);
+            CustomLogger.unsuppress();
+            sz2.tick();
         }
-        else{
-            CustomLogger.log(Level.WARNING, "Nem létező válasz!");
-        }
+
+        System.out.println("Folytatashoz enter");
+        scanner.nextLine();
     }
 }

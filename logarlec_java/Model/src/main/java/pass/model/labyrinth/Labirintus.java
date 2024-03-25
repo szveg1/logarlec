@@ -28,20 +28,23 @@ public class Labirintus implements Idozitett {
     List<Oktato> oktatok;
 
     /**
-     *
+     * A függvény elnevezi a labirintust
      * @param l - Teszthez neves konstruktor
      */
     public Labirintus(String l) {
         this.nev = l;
     }
 
-
+    /**
+     * A függvény kiírja a labirintus nevét
+     * @return String, Szkeleton kiiratashoz
+     */
     public String toString() {
         return nev + " :Labirintus";
     }
 
     /**
-     *
+     * A függvény hozzáad a labirintushoz egy újabb szobát
      * @param sz - Labirintushoz hozzáadandó szoba.
      */
     public void addSzoba(Szoba sz){
@@ -50,13 +53,13 @@ public class Labirintus implements Idozitett {
     }
 
     /**
-     *
+     * Setter függvény ami beállítja a játékból hátralévő időt
      * @param t - Hátralevő idő beállítása
      */
     public void setTimeLeft(int t){this.timeLeft = t;}
 
     /**
-     *
+     * A függvény egy megadott szobát felbont több szobára
      * @param szoba - Kettéosztandó szoba
      */
     public void szobaFeloszt(Szoba szoba) {
@@ -66,7 +69,7 @@ public class Labirintus implements Idozitett {
     }
 
     /**
-     *
+     * A függvény a két megadott szobát egyesíti egy új szobává
      * @param sz1 - Ez a szoba marad
      * @param sz2 - Ezt vonjuk hozzá sz1-hez
      */
@@ -81,7 +84,7 @@ public class Labirintus implements Idozitett {
     }
 
     /**
-     *
+     * A függvény a labirintust inicializálja
      * @param szobaSzam - A szobák száma
      * @param oktatoSzam - Az oktatók száma
      * @param targySzam - A tárgyak száma
@@ -137,6 +140,9 @@ public class Labirintus implements Idozitett {
         }
     }
 
+    /**
+     * A függvény, a játékból hátralévő időt csökkenti
+     */
     @Override
     public void tick() {
         timeLeft--;
@@ -145,7 +151,7 @@ public class Labirintus implements Idozitett {
     }
 
     /**
-     *
+     * A függvény a megadott szobát eltávolítja a labirintusból
      * @param sz - Kivenni kívánt szoba
      */
     public static void szobaKivesz(Szoba sz){

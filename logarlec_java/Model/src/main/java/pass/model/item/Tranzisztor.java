@@ -22,7 +22,7 @@ public class Tranzisztor implements Targy {
     }
 
     /**
-     *
+     * A függvény kiírjaaz objektum nevét
      * @return String, Szkeleton kiiratashoz
      */
     @Override

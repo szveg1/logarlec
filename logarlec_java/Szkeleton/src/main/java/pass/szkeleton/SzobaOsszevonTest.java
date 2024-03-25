@@ -98,6 +98,10 @@ public class SzobaOsszevonTest {
         sz1 = szobaMap.get(szobak[0]);
         sz2 = szobaMap.get(szobak[1]);
         l.szobakOsszevon(sz1, sz2);
+
+        System.out.println("Folytatashoz enter");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
     }
 
 

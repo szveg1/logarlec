@@ -9,11 +9,13 @@ import pass.model.labyrinth.Labirintus;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Logger;
 
-/* A Hallgató osztály felelős a játékos karakterének kezeléséért a labirintusban. Ez az
-osztály rögzíti és kezeli a hallgatóval kapcsolatos információkat, a felvett tárgyak
-listáját. Emellett felelős a hallgató cselekedeteinek végrehajtásáért, beleértve a tárgyak
-felvételét és letételét, valamint a szobák közötti mozgást. A Hallgató osztály biztosítja
-a felhasználói interakciót a játék során.  */
+/**
+ * A Hallgató osztály felelős a játékos karakterének kezeléséért a labirintusban. Ez az
+ * osztály rögzíti és kezeli a hallgatóval kapcsolatos információkat, a felvett tárgyak
+ * listáját. Emellett felelős a hallgató cselekedeteinek végrehajtásáért, beleértve a tárgyak
+ * felvételét és letételét, valamint a szobák közötti mozgást. A Hallgató osztály biztosítja
+ * a felhasználói interakciót a játék során.
+ */
 public class Hallgato extends Ember {
 
     private static final Logger hallgatoLogger = Logger.getLogger(Hallgato.class.getSimpleName());

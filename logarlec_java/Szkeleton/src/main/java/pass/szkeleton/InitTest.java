@@ -23,6 +23,9 @@ public class InitTest {
 
         Labirintus labirintus = new Labirintus("l");
         labirintus.init(szobaSzam, oktatoSzam, targySzam);
+
+        System.out.println("Folytatashoz enter");
+        scanner.nextLine();
     }
 }
 

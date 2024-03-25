@@ -19,7 +19,7 @@ public class Camembert implements Targy {
     }
 
     /**
-     *
+     * A függvény kiírjaaz objektum nevét
      * @return String, Szkeleton kiiratashoz
      */
     @Override
@@ -37,9 +37,9 @@ public class Camembert implements Targy {
      */
     public void hasznal() {
         if (poisonous) {
-        szoba.setPoisonous(3);
-        poisonous = false;
-        CustomLogger.info(this + " használva");
+            CustomLogger.info(this + " használva");
+            szoba.setPoisonous(3);
+            poisonous = false;
         } else {
             CustomLogger.info(this + " már nem használható");
         }

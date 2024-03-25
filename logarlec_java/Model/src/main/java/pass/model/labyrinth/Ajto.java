@@ -31,13 +31,18 @@ public class Ajto {
         this.nev = nev;
     }
 
+    /**
+     * A függvény kiírja az objektum nevét
+     * @return String, Szkeleton kiiratashoz
+     */
     public String toString(){
         return nev + " :Ajto";
     }
 
 
     /**
-     * 
+     * A függvény ha látható az ajtó akkor azpn keresztül a következő
+     * szobába lépteti az embert és a kiinduló szobából eltávolítja
      * @param e - Az ember aki át kíván lépni a másik szobába, ez felelős a mozgatásáért.
      */
     public void hasznal(Ember e){
@@ -55,7 +60,7 @@ public class Ajto {
     }
 
     /**
-     *
+     * Setter függvény ami beállítja hogy merre nyílhat az ajtó
      * @param b1 Az egyik irányba nyílik-e
      * @param b2 A másik irányba nyílik-e
      */
@@ -66,7 +71,7 @@ public class Ajto {
     }
 
     /**
-     *
+     * Getter függvény ami visszaadja hogy látható-e az ajtó
      * @return láthatóságot visszaadja
      */
     public boolean getLathatosag(){
@@ -74,7 +79,7 @@ public class Ajto {
     }
 
     /**
-     *
+     *Setter függvény ami beállítja hogy látható-e az ajtó
      * @param a beállítja a láthatóságot
      */
     public void setLathatosag(boolean a){
@@ -83,19 +88,22 @@ public class Ajto {
 
 
     /**
-     * Megváltoztatja a láthatóságát
+     * Afüggvény megváltoztatja a láthatóságát az ajtónak
      */
     public void lathatosagValtoztass(){
         if (lathato){
             lathato = false;
+            CustomLogger.info(this + " láthatatlan lett.");
         }
         else if (!lathato){
             lathato = true;
+            CustomLogger.info(this + " láthatóvá vált.");
         }
     }
 
     /**
-     *
+     * Getter függvény ami visszadja a megadott szobából,
+     * ezen az ajtón keresztül elérhető szomszédját
      * @param sz - Egy adott szoba.
      * @return Megadja egy adott ajtó másik oldalán lévő szobát
      */

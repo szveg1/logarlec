@@ -20,7 +20,7 @@ public class Rongy implements Targy {
     }
 
     /**
-     *
+     * A függvény kiírjaaz objektum nevét
      * @return String, Szkeleton kiiratashoz
      */
     @Override

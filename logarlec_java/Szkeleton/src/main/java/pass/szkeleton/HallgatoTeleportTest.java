@@ -10,6 +10,7 @@ import java.util.*;
 public class HallgatoTeleportTest {
 
     public static void test() {
+        Scanner scanner = new Scanner(System.in);
         CustomLogger.suppress();
         Ember e = new Hallgato("h");
 
@@ -32,5 +33,7 @@ public class HallgatoTeleportTest {
         e.masikSzobabaLep(sz2);
         e.targyatHasznal(t);
 
+        System.out.println("Folytatashoz enter");
+        scanner.nextLine();
     }
 }

@@ -9,8 +9,10 @@ import java.util.logging.ConsoleHandler;
 import java.util.logging.Logger;
 
 import static pass.model.Main.*;
-/* Az Oktató osztály felelős a nem játékos karakterek kezeléséért a labirintusban. Ez az
-osztály felelős azért, hogy megnehezítse a játékos dolgát a játék során.  */
+/**
+ * Az Oktató osztály felelős a nem játékos karakterek kezeléséért a labirintusban. Ez az
+ * osztály felelős azért, hogy megnehezítse a játékos dolgát a játék során.
+ */
 public class Oktato extends Ember {
     private static final int MAX_INVENTORY_MERET = 1;
     private int meddigBena = 0;

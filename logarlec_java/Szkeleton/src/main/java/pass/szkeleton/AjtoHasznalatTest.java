@@ -3,14 +3,13 @@ package pass.szkeleton;
 import pass.model.CustomLogger;
 import pass.model.human.*;
 import pass.model.labyrinth.*;
-import pass.model.item.*;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.*;
 
-public class AjtoTest {
+public class AjtoHasznalatTest {
 
     private static Map<String, Ember>  emberMap = new HashMap<>();
     private static Map<String, Boolean> choiceMap = new HashMap<>();
@@ -80,6 +79,8 @@ public class AjtoTest {
         a.setMerreNyilik(choice3, choice2);
 
         a.hasznal(e);
+
+        System.out.println("Folytatashoz enter");
         scanner.nextLine();
     }
 }

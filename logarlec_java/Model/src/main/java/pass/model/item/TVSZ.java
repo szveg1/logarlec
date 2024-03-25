@@ -19,7 +19,7 @@ public class TVSZ implements Targy {
     }
 
     /**
-     *
+     * A függvény kiírjaaz objektum nevét
      * @return String, Szkeleton kiiratashoz
      */
     @Override

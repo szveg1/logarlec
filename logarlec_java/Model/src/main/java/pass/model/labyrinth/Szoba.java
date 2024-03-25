@@ -28,6 +28,10 @@ public class Szoba implements Idozitett {
         this.nev = nev;
     }
 
+    /**
+     * A függvény kiírja az objektum nevét
+     * @return String, Szkeleton kiiratashoz
+     */
     @Override
     public String toString() {
         return nev + " :Szoba";
@@ -51,7 +55,7 @@ public class Szoba implements Idozitett {
     }*/
 
     /**
-     *
+     * A függvény a megadott szobát szétosztja több szobává
      * @param masikSzoba - Szétosztáshoz a szétosztandó szoba
      */
     public Szoba(Szoba masikSzoba) {
@@ -74,19 +78,19 @@ public class Szoba implements Idozitett {
         // Bentlevok fele masik szobaba
         int bentlevokSzamaFele = masikSzoba.bentlevok.size() / 2;
         this.bentlevok = new ArrayList<>();
-        for (int i = 0; i <= bentlevokSzamaFele; ++i) {
-            masikSzoba.getEmberek().get(i).masikSzobabaLep(this);
+        for (int i = 0; i < bentlevokSzamaFele; ++i) {
+            masikSzoba.getEmberek().get(0).masikSzobabaLep(this);
         }
 
         int ajtokFele = masikSzoba.ajtok.size() / 2;
         this.ajtok = new ArrayList<>();
-        for(int i = 0; i <= ajtokFele; ++i) {
-            this.ajtok.add(masikSzoba.ajtok.get(i));
+        for(int i = 0; i < ajtokFele; ++i) {
+            this.ajtok.add(masikSzoba.ajtok.get(0));
         }
     }
 
     /**
-     *
+     * A függgvény ezt a szobát a megadottal egyesíti
      * @param masikSzoba - Egyesítéshez a másik szoba
      */
     public void egyesit(Szoba masikSzoba){
@@ -134,7 +138,7 @@ public class Szoba implements Idozitett {
     }
 
     /**
-     *
+     * Setter függvény ami a szobát mérgezővé teszi
      * @param meregIdo - Idő ameddig mérgezett a szoba
      */
     public void setPoisonous(int meregIdo) {
@@ -142,12 +146,16 @@ public class Szoba implements Idozitett {
         this.meregIdo = meregIdo;
     }
 
+    /**
+     * A függvény visszaadja hogy mérgező e a szoba
+     * @return Visszaadja hogy mérgező e a szoba
+     */
     public boolean isPoisonous() {
         return meregIdo > 0;
     }
 
     /**
-     *
+     * A függvény a szobához hozzáad egy tárgyat
      * @param targy - A szobához hozzáadandó tárgy
      */
     public void addItem(Targy targy) {
@@ -157,7 +165,7 @@ public class Szoba implements Idozitett {
     }
 
     /**
-     *
+     * A függvény a szobához hozzáad egy ajtót
      * @param ajto - Szobához hozzáadandó ajtó
      */
     public void addAjto(Ajto ajto) {
@@ -166,7 +174,7 @@ public class Szoba implements Idozitett {
     }
 
     /**
-     * s
+     * A függvény, a megadott ajtót eltávolítja a szobából
      * @param ajto - A szobából kitörlendő ajtó
      */
     public void removeAjto(Ajto ajto) {
@@ -174,16 +182,24 @@ public class Szoba implements Idozitett {
         CustomLogger.info("A " + this + "-ból kikerült az " + ajto + ".");
     }
 
+    /**
+     * Getter függvény ami visszaadja a szobában lávő tárgyak listáját
+     * @return Visszaadja a szobában lávő tárgyak listáját
+     */
     public List<Targy> getItems() {
         return targyak;
     }
 
+    /**
+     * Getter függvény visszaadja mennyi ember fér a szobába
+     * @return Visszaadja a szoba kapacitását
+     */
     public int getFerohely() {
         return ferohely;
     }
 
     /**
-     *
+     * A függvény eltávolítja a szobából a megadott tárgyat
      * @param targy - A szobából kitörlendő tárgy
      */
     public void removeItem(Targy targy) {
@@ -192,7 +208,7 @@ public class Szoba implements Idozitett {
     }
 
     /**
-     *
+     * A függvény, a szobához hozzáad egy embert
      * @param ember - Ember, amit be szeretnénk tenni a szobába
      */
     public boolean emberBetesz(Ember ember) {
@@ -211,7 +227,7 @@ public class Szoba implements Idozitett {
     }
 
     /**
-     *
+     * A függvény, a szobából eltávolítja a megadott embert
      * @param ember - Ember, akit ki szeretnénk venni a szobából
      */
     public void emberKivesz(Ember ember) {
@@ -223,7 +239,7 @@ public class Szoba implements Idozitett {
     }
 
     /**
-     *
+     * A függvény, egy oktató támadásai ellen immunis hallgatókat szedi össze
      * @param oktato - Az oktató, aki ellen immunitás lett szerezve
      * @param hallgato - A hallgató, aki az immunitást szerezte
      */
@@ -235,8 +251,14 @@ public class Szoba implements Idozitett {
         }
     }
 
+    /**
+     * A függvény elájulttá teszi a jelenlévő embereket, amíg a szoba mérgező
+     */
     @Override
     public void tick() {
-
+        for(Ember ember : bentlevok) {
+            if(meregIdo > 0)
+                ember.ajulas();
+        }
     }
 }

@@ -13,44 +13,41 @@ public class SzobaFelosztTest {
         Labirintus labirintus = new Labirintus("l");
         Scanner scanner = new Scanner(System.in);
 
-        CustomLogger.info("Mekkora legyen a szoba ferohelye?");
+        System.out.println("Mekkora legyen a szoba ferohelye?");
         String s = scanner.nextLine();
         int m = Integer.parseInt(s);
 
+        CustomLogger.suppress();
         Szoba sz1 = new Szoba(m, "sz1");
         labirintus.addSzoba(sz1);
+        CustomLogger.unsuppress();
 
-        CustomLogger.info("Hany ember legyen a szobaban?");
+        System.out.println("Hany ember legyen a szobaban?");
         s = scanner.nextLine();
         m = Integer.parseInt(s);
+        if(m > sz1.getFerohely()){
+            CustomLogger.log(Level.WARNING, "Ennyi ember nem fer el a szobaban! " + sz1.getFerohely() + " ember fog a szobaba kerülni.");
+            m = sz1.getFerohely();
+        }
         for (int i=0; i < m; i++) {
+            CustomLogger.suppress();
             Ember e = new Hallgato("h"+i);
             e.masikSzobabaLep(sz1);
+            CustomLogger.unsuppress();
         }
 
-        CustomLogger.info("Hany targy legyen a szobaban?");
+        System.out.println("Hany targy legyen a szobaban?");
         s = scanner.nextLine();
-        scanner.close();
         m = Integer.parseInt(s);
         for (int i=0; i < m; i++) {
+            CustomLogger.suppress();
             sz1.addItem(new Rongy("r"+i));
+            CustomLogger.unsuppress();
         }
 
         labirintus.szobaFeloszt(sz1);
 
-        if (labirintus.getSzobak().size() == 2) CustomLogger.info("Letrejott egy uj szoba");
-        else CustomLogger.log(Level.WARNING, "Nem jott letre uj szoba");
-
-        if (labirintus.getSzobak().get(0).getFerohely() == labirintus.getSzobak().get(1).getFerohely()) CustomLogger.info("Letrejott szoba ferohelye egyenlo a regivel");
-        else CustomLogger.log(Level.WARNING, "Letrejott szoba ferohelye nem egyenlo a regivel");
-
-        if (Math.abs(labirintus.getSzobak().get(0).getEmberek().size() - labirintus.getSzobak().get(1).getEmberek().size()) <= 1) CustomLogger.info("Letrejott szobaba az emberek fele kerult");
-        else CustomLogger.log(Level.WARNING, "Letrejott szobaba baj van az emberek szamaval");
-
-        if (Math.abs(labirintus.getSzobak().get(0).getItems().size() - labirintus.getSzobak().get(1).getItems().size()) <= 1) CustomLogger.info("Letrejott szobába a targyak fele kerult");
-        else CustomLogger.log(Level.WARNING, "Letrejött szobaba baj van az targyak szamaval");
-
-
-
+        System.out.println("Folytatashoz enter");
+        scanner.nextLine();
     }
 }

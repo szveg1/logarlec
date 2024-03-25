@@ -20,7 +20,7 @@ public class Logarlec implements Targy {
     }
 
      /**
-      *
+      * A függvény kiírjaaz objektum nevét
       * @return String, Szkeleton kiiratashoz
       */
     @Override

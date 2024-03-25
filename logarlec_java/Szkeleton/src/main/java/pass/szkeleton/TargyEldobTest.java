@@ -63,5 +63,8 @@ public class TargyEldobTest {
                 targyMap.remove(targyNev, t);
             }
         }while(!e.getItems().isEmpty());
+
+        System.out.println("Folytatashoz enter");
+        scanner.nextLine();
     }
 }

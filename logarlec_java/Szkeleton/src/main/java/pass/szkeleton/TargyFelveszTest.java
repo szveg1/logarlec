@@ -74,7 +74,9 @@ public class TargyFelveszTest {
             if(sz.getItems().contains(t)){
                 targyMap.put(targyNev, t);
             }
-
         } while(true);
+
+        System.out.println("Folytatashoz enter");
+        scanner.nextLine();
     }
 }
