@@ -1,20 +1,27 @@
 package pass.model;
 
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Level;
-import java.util.logging.LogRecord;
-import java.util.logging.Logger;
+import java.io.UnsupportedEncodingException;
+import java.util.logging.*;
 
 public class CustomLogger {
     private static final Logger LOGGER = Logger.getLogger("LOG");
     private static boolean isSuppressed = false;
-    static{
-        LOGGER.addHandler(new ConsoleHandler(){
-            {
-                setFormatter(new CustomRecordFormatter());
-            }
-        });
-        LOGGER.setUseParentHandlers(false);
+    static {
+        try {
+            Handler handler = new StreamHandler(System.out, new SimpleFormatter()) {
+                @Override
+                public synchronized void publish(final LogRecord record) {
+                    super.publish(record);
+                    flush();
+                }
+            };
+            handler.setEncoding("UTF-8");
+            handler.setFormatter(new CustomRecordFormatter());
+            LOGGER.addHandler(handler);
+            LOGGER.setUseParentHandlers(false);
+        } catch (UnsupportedEncodingException e) {
+            throw new RuntimeException("Unable to set encoding to UTF-8", e);
+        }
     }
 
     public static void info(String info) {

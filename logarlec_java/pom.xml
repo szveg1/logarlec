@@ -4,13 +4,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>pass.logarlec</groupId>
-    <artifactId>Logarlec</artifactId>
+    <groupId>pass</groupId>
+    <artifactId>logarlec</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>Szkeleton</module>
-        <module>Model</module>
+        <module>szkeleton</module>
+        <module>model</module>
     </modules>
 
     <properties>
@@ -27,23 +27,8 @@
         </dependency>
     </dependencies>
     <build>
-    <plugins>
-        <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>3.0.0</version>
-            <executions>
-                <execution>
-                    <goals>
-                        <goal>java</goal>
-                    </goals>
-                </execution>
-            </executions>
-            <configuration>
-                <mainClass>pass.model.Main</mainClass>
-            </configuration>
-        </plugin>
-    </plugins>
-</build>
-
+        <plugins>
+            <!-- Other plugins -->
+        </plugins>
+    </build>
 </project>

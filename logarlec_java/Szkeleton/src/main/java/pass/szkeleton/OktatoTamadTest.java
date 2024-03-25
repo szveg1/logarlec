@@ -59,7 +59,7 @@ public class OktatoTamadTest {
     public static void test() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Mivel védekezik a hallgató?");
-        System.out.println("[Rongy] [Pohar] [TVSZ] [\"\"]");
+        System.out.println("[Rongy] [Pohar] [TVSZ] [Semmi (Enter)]");
         String hallgatoVedekezik = scanner.nextLine();
 
         System.out.println("Hány oktató legyen a szobában (férőhely: 5)?");
