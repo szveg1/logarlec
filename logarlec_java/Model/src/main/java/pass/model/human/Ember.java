@@ -3,10 +3,8 @@ package pass.model.human;
 import pass.model.CustomRecordFormatter;
 import pass.model.Idozitett;
 import pass.model.CustomLogger;
-import pass.model.item.Rongy;
+import pass.model.item.*;
 import pass.model.labyrinth.Szoba;
-import pass.model.item.Targy;
-import pass.model.item.Maszk;
 
 import java.util.*;
 import java.util.logging.*;
@@ -42,6 +40,10 @@ public abstract class Ember implements TargyVisitor, Idozitett {
         }
         if(inventoryTeleE()) {
             CustomLogger.log(Level.WARNING,this + "-nek tele az inventoryja, nem tud felvenni targyat");
+            return;
+        }
+        if(jelenlegiSzoba.ragacsosE()){
+            CustomLogger.log(Level.WARNING,this + " ragacsos szobaban van, nem tud felvenni targyat");
             return;
         }
         CustomLogger.info(this + " felvette a " + targy + "-t");
@@ -87,6 +89,42 @@ public abstract class Ember implements TargyVisitor, Idozitett {
         CustomLogger.info("védett lett " + maszk + "-tól: " + (maszk.getVedIdo() > 0));
         setGazEllenVedett(maszk.getVedIdo() > 0);
     }
+
+    public void visit(Legfrissito legfrissito){
+        CustomLogger.info(this + " meglátogatta a " + legfrissito + "-t");
+        this.targyatEldob(legfrissito);
+    }
+
+    /**
+     * A függvény meglátogatja a megadott hamis Logarlécet,
+     * ami az ember birtokában semmilyen hatással nincs
+     * @param hamisLec - a meglátogatott hamis Logarléc
+     */
+    @Override
+    public void visit(HamisLec hamisLec) {
+        CustomLogger.info("a " + hamisLec + " birtoklása nincs hatással " + this + "-ra.");
+    }
+
+    /**
+     * A függvény meglátogatja a megadott hamis TVSZ-t,
+     * ami az ember birtokában semmilyen hatással nincs
+     * @param hamisTVSZ - a meglátogatott pohár
+     */
+    @Override
+    public void visit(HamisTVSZ hamisTVSZ) {
+        CustomLogger.info("a " + hamisTVSZ + " birtoklása nincs hatással " + this + "-ra.");
+    }
+
+    /**
+     * A függvény meglátogatja a megadott hamis maszkot,
+     * ami az ember birtokában semmilyen hatással nincs
+     * @param hamisMaszk - a meglátogatott pohár
+     */
+    @Override
+    public void visit(HamisMaszk hamisMaszk) {
+        CustomLogger.info("a " + hamisMaszk + " birtoklása nincs hatással " + this + "-ra.");
+    }
+
 
 
     public void ajulas() {
@@ -166,7 +204,9 @@ public abstract class Ember implements TargyVisitor, Idozitett {
      * ami a rongy hatásait állítja be az emberen
      * @param rongy - a rongy aminek a hatása alá kerül az ember
      */
-    public abstract void rongyotElszenved(Rongy rongy);
+    public void rongyotElszenved(Rongy rongy){
+        CustomLogger.info(this + " ellen rongyot használtak");
+    }
 
     public void tick(){
         for(Targy t : inventory){

@@ -71,15 +71,6 @@ public class Tranzisztor implements Targy {
     }
 
     /**
-     *
-     * @param visitor - A visitor, amit fogad.
-     */
-    @Override
-    public void accept(TargyVisitor visitor) {
-        // Nincs passziv effektje
-    }
-
-    /**
      * A függvény beállítja a tárgy új tartózkodási helyét a megadott szobára
      * @param newSzoba - Az új szoba, ahova átkerült
      */

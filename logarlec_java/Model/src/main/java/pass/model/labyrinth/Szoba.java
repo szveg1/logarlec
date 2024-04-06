@@ -40,6 +40,8 @@ public class Szoba implements Idozitett {
     // -------------------------------
     private int meregIdo;
     private boolean atkozott;
+    private int ragacsIdozito = -1;
+    private boolean ragacsos = false;
     private int ferohely;
     private List<Targy> targyak;
     private List<Ember> bentlevok;
@@ -141,7 +143,7 @@ public class Szoba implements Idozitett {
      * Setter függvény ami a szobát mérgezővé teszi
      * @param meregIdo - Idő ameddig mérgezett a szoba
      */
-    public void setPoisonous(int meregIdo) {
+    public void setMeregIdo(int meregIdo) {
         CustomLogger.info(this + " mérgezővé vált " + meregIdo + " időre");
         this.meregIdo = meregIdo;
     }
@@ -150,8 +152,11 @@ public class Szoba implements Idozitett {
      * A függvény visszaadja hogy mérgező e a szoba
      * @return Visszaadja hogy mérgező e a szoba
      */
-    public boolean isPoisonous() {
+    public boolean mergezoE() {
         return meregIdo > 0;
+    }
+    public boolean ragacsosE() {
+        return ragacsos;
     }
 
     /**
@@ -237,6 +242,9 @@ public class Szoba implements Idozitett {
     public List<Ember> getEmberek() {
         return  bentlevok;
     }
+    public List<Ajto> getAjtok() {
+        return ajtok;
+    }
 
     /**
      * A függvény, egy oktató támadásai ellen immunis hallgatókat szedi össze
@@ -260,5 +268,14 @@ public class Szoba implements Idozitett {
             if(meregIdo > 0)
                 ember.ajulas();
         }
+        if(ragacsIdozito > 0)
+            ragacsIdozito--;
+        if(ragacsIdozito == 0){
+            ragacsos = true;
+        }
+    }
+
+    public void setRagacsIdo(int ragacsIdo) {
+        this.ragacsIdozito = ragacsIdo;
     }
 }

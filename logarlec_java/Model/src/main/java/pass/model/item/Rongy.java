@@ -41,7 +41,6 @@ public class Rongy implements Targy {
     @Override
     public void hasznal(Oktato oktato) {
         jelenlegiSzoba.getEmberek().forEach(e -> e.rongyotElszenved(this));
-
     }
 
     /**

@@ -4,20 +4,16 @@ import pass.model.CustomLogger;
 import pass.model.human.TargyVisitor;
 import pass.model.labyrinth.Szoba;
 
-/* A Maszk osztály felelős a játékosok védelméért a mérgező gázokkal teli szobákban. A
-maszk egy adott ideig tudja csak megakadályozni a mérges gázok belélegzését.  */
-public class Maszk implements Targy {
+public class Legfrissito implements Targy {
     // Csak szkeletonhoz-------------
     private String nev;
 
     /**
-     *
-     * @param vedIdo - mennyi ideig tud védeni a gáz ellen
+     * A függvény elnevezi az objektumot
      * @param nev - az objektum neve
      */
-    public Maszk(int vedIdo, String nev) {
+    public Legfrissito(String nev) {
         this.nev = nev;
-        this.vedIdo = vedIdo;
     }
 
     /**
@@ -26,36 +22,40 @@ public class Maszk implements Targy {
      */
     @Override
     public String toString() {
-        return nev + " :Maszk";
+        return nev + " :Legfrissito";
     }
-
     // -------------------------------
-    private int vedIdo;
 
+    private boolean hasznalva = false;
+    private Szoba szoba;
 
     /**
-     * A függvény csökkenti a maszkon
-     * hátralévő védelmi időt
-     * @param visitor - a visitor amit fogad
+     * @param visitor - A visitor, amit fogad
      */
     @Override
     public void accept(TargyVisitor visitor) {
         CustomLogger.info(visitor + "-t " + this + " fogadta.");
-        if (vedIdo > 0) {
-            CustomLogger.info(this + " még használható");
+        if(!hasznalva){
             visitor.visit(this);
-            vedIdo--;
-        } else {
+            hasznalva = true;
+        }
+        else{
             CustomLogger.info(this + " már nem használható");
         }
+        szoba.setMeregIdo(0);
     }
 
-    public int getVedIdo() {
-        return vedIdo;
+    /**
+     * @param newSzoba - Az új szoba, ahova átkerült
+     */
+    @Override
+    public void szobaValtasrolErtesit(Szoba newSzoba) {
+        this.szoba = newSzoba;
+        CustomLogger.info(this + " a " + szoba + "-ba került");
     }
 
     @Override
     public void tick() {
-        vedIdo--;
+
     }
 }

@@ -2,12 +2,10 @@ package pass.model.item;
 
 import pass.model.CustomLogger;
 import pass.model.human.Oktato;
-import pass.model.labyrinth.Labirintus;
-import pass.model.labyrinth.Szoba;
 import pass.model.human.TargyVisitor;
- /* A Logarléc osztály felelős a játék céljának reprezentálásáért. A játékosok feladata a
-Logarléc felkutatása és megszerzése a labirintusban annak érdekében, hogy nyerjenek.  */
-public class Logarlec implements Targy {
+import pass.model.labyrinth.Szoba;
+
+public class HamisTVSZ implements Targy{
     // Csak szkeletonhoz-------------
     private String nev;
 
@@ -15,24 +13,24 @@ public class Logarlec implements Targy {
      * A függvény elnevezi az objektumot
      * @param nev - az objektum neve
      */
-    public Logarlec(String nev) {
+    public HamisTVSZ(String nev) {
         this.nev = nev;
     }
 
-     /**
-      * A függvény kiírjaaz objektum nevét
-      * @return String, Szkeleton kiiratashoz
-      */
+    /**
+     * A függvény kiírja az objektum nevét
+     * @return String, Szkeleton kiiratashoz
+     */
     @Override
     public String toString() {
-        return nev + " :Logarlec";
+        return nev + " :HamisTVSZ";
     }
 
     // -------------------------------
 
     /**
      *
-     * @param visitor -  a visitor amit fogad
+     * @param visitor - A visitor, amit fogad.
      */
     @Override
     public void accept(TargyVisitor visitor) {
@@ -40,8 +38,9 @@ public class Logarlec implements Targy {
         visitor.visit(this);
     }
 
+
     @Override
     public void tick() {
-
+        // Tickeles nem szukseges
     }
 }

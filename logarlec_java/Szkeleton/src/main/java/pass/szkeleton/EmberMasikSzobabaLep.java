@@ -89,7 +89,7 @@ public class EmberMasikSzobabaLep
 
         if(valasz.equals("igen")) {
             CustomLogger.suppress();
-            sz2.setPoisonous(10);
+            sz2.setMeregIdo(10);
             CustomLogger.unsuppress();
             sz2.tick();
         }

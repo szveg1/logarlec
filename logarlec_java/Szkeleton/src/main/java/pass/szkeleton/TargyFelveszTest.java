@@ -23,13 +23,17 @@ public class TargyFelveszTest {
         targyMap.put("pohar", new Pohar("p"));
         targyMap.put("rongy", new Rongy("r"));
         targyMap.put("tranzisztor", new Tranzisztor("t"));
+        targyMap.put("tvsz", new TVSZ("t"));
+        targyMap.put("hamislec", new HamisLec("hl"));
+        targyMap.put("hamistvsz", new HamisTVSZ("ht"));
+        targyMap.put("hamismaszk", new HamisMaszk("hm"));
     }
 
     public static void test(){
         System.out.println("TargyFelveszTest");
         setUp();
 
-        Ember e = null;
+        Ember e;
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("[Hallgató vagy oktató vesz fel tárgy(ak)at?] ");

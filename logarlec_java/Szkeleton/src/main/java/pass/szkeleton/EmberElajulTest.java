@@ -52,7 +52,7 @@ public class EmberElajulTest {
         }
 
         Szoba sz1 = new Szoba(1, "sz1");
-        sz1.setPoisonous(4);
+        sz1.setMeregIdo(4);
         Szoba sz2 = new Szoba(1, "sz2");
 
         sz1.emberBetesz(e);

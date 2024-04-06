@@ -1,6 +1,8 @@
 package pass.model.item;
 
 import pass.model.CustomLogger;
+import pass.model.human.Ember;
+import pass.model.human.Hallgato;
 import pass.model.human.Oktato;
 import pass.model.human.TargyVisitor;
 import pass.model.labyrinth.Szoba;
@@ -20,7 +22,7 @@ public class Pohar implements Targy {
     }
 
     /**
-     * A függvény kiírjaaz objektum nevét
+     * A függvény kiírja az objektum nevét
      * @return String, Szkeleton kiiratashoz
      */
     @Override
@@ -31,9 +33,15 @@ public class Pohar implements Targy {
     // -------------------------------
     private int vedIdo = 3;
 
+    private Ember tulaj;
+
     @Override
     public void hasznal() {
-        // Nem lehet használni.
+        tulaj.targyatEldob(tulaj.getItems().get(0));
+    }
+
+    public void emberValtasrolErtesit(Ember ember) {
+        tulaj = ember;
     }
 
     /**
@@ -44,15 +52,6 @@ public class Pohar implements Targy {
     public void accept(TargyVisitor visitor) {
         CustomLogger.info(visitor + "-t " + this + " fogadta.");
         visitor.visit(this);
-    }
-
-    /**
-     *
-     * @param newSzoba - Az új szoba, ahova átkerül
-     */
-    @Override
-    public void szobaValtasrolErtesit(Szoba newSzoba) {
-
     }
 
     /**

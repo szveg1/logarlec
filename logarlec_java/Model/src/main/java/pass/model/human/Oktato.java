@@ -41,7 +41,7 @@ public class Oktato extends Ember {
     /**
      * A függvény a rongy hatásait
      * applikálja az oktatóra, ami bénítja
-     * @param rongy - a rongy aminek a hatása alá kerül az okató
+     * @param rongy  a rongy aminek a hatása alá kerül az okató
      */
     @Override
     public void rongyotElszenved(Rongy rongy) {
@@ -61,7 +61,7 @@ public class Oktato extends Ember {
     /**
      * A függvény meglátogatja a megadott logarlécet,
      * és mivel az oktatók nem birtokolhatnak ilyen tárgyat ezért eldobják
-     * @param logarlec - a meglátogatott logarléc
+     * @param logarlec  a meglátogatott logarléc
      */
     @Override
     public void visit(Logarlec logarlec) {
@@ -70,8 +70,8 @@ public class Oktato extends Ember {
     }
 
     /**
-     *A függvény meglátogatja a megadott tvsz-t,
-     * amit nem tud használni az oktató
+     * A függvény meglátogatja a megadott TVSZ-t,
+     * ami az oktató birtokában semmilyen hatással nincs
      * @param tvsz - a meglátogatott tvsz
      */
     @Override
@@ -81,25 +81,24 @@ public class Oktato extends Ember {
 
     /**
      * A függvény meglátogatja a megadott poharat,
-     * amit nem tud használni az oktató
+     * ami az oktató birtokában semmilyen hatással nincs
      * @param pohar - a meglátogatott pohár
      */
     @Override
     public void visit(Pohar pohar) {
         CustomLogger.info("a " + pohar + "birtoklása nincs hatással " + this + "-ra.");
-
     }
 
     /**
      * A függvény meglátogatja a megadott rongyot,
-     * amit nem tud használni az oktató
+     * ami az oktató birtokában semmilyen hatással nincs
      * @param rongy - a meglátogatott rongy
      */
     @Override
     public void visit(Rongy rongy) {
         CustomLogger.info("a " + rongy + "birtoklása nincs hatással " + this + "-ra.");
-
     }
+    
 
     /**
      * A függvény az oktató hallgató megtámadását valósítja meg

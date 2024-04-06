@@ -1,7 +1,6 @@
 package pass.model.labyrinth;
 
 import pass.model.CustomLogger;
-import pass.model.CustomRecordFormatter;
 import pass.model.Idozitett;
 import pass.model.human.Hallgato;
 import pass.model.human.Oktato;
@@ -10,10 +9,8 @@ import pass.model.item.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Random;
-import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+
 /* A Labirintus osztály felelős a játékterület létrehozásáért és kezeléséért. Ez az osztály
 tartalmazza a labirintusban található szobákat és irányítja azok osztódását és
 egyesülését. A Labirintus osztály feladata a szobák hálózatának kezelése. */
@@ -76,8 +73,7 @@ public class Labirintus implements Idozitett {
     public void szobakOsszevon(Szoba sz1, Szoba sz2){
         sz1.egyesit(sz2);
     }
-//    public static void jatekVege(){CustomLogger.info("Játék vége, nyertek a Hallgatók");}
-    public static void jatekNYert(){CustomLogger.info("Játék vége, nyertek a Hallgatók");}
+    public static void jatekNyert(){CustomLogger.info("Játék vége, nyertek a Hallgatók");}
     public static void jatekVeszt(){CustomLogger.info("Játék vége, vesztettek a Hallgatók");}
     public List<Szoba> getSzobak() {
         return szobak;
