@@ -14,10 +14,8 @@ public class Takarito extends Ember{
     public String toString() {
         return nev + " :Takarito";
     }
-
-    private Szoba jelenlegiSzoba;
     @Override
-    boolean inventoryTeleE() {
+    public boolean inventoryTeleE() {
         return true;
     }
 

@@ -40,8 +40,4 @@ public class Logarlec implements Targy {
         visitor.visit(this);
     }
 
-    @Override
-    public void tick() {
-
-    }
 }

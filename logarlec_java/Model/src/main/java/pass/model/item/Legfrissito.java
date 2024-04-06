@@ -27,7 +27,7 @@ public class Legfrissito implements Targy {
     // -------------------------------
 
     private boolean hasznalva = false;
-    private Szoba szoba;
+    private Szoba jelenlegiSzoba;
 
     /**
      * @param visitor - A visitor, amit fogad
@@ -42,7 +42,7 @@ public class Legfrissito implements Targy {
         else{
             CustomLogger.info(this + " már nem használható");
         }
-        szoba.setMeregIdo(0);
+        jelenlegiSzoba.setMeregIdo(0);
     }
 
     /**
@@ -50,12 +50,8 @@ public class Legfrissito implements Targy {
      */
     @Override
     public void szobaValtasrolErtesit(Szoba newSzoba) {
-        this.szoba = newSzoba;
-        CustomLogger.info(this + " a " + szoba + "-ba került");
+        this.jelenlegiSzoba = newSzoba;
+        CustomLogger.info(this + " a " + jelenlegiSzoba + "-ba került");
     }
 
-    @Override
-    public void tick() {
-
-    }
 }

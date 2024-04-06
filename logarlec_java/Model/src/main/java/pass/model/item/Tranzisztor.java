@@ -96,8 +96,4 @@ public class Tranzisztor implements Targy {
         return jelenlegiSzoba;
     }
 
-    @Override
-    public void tick() {
-
-    }
 }

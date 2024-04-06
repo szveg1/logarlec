@@ -91,7 +91,7 @@ public class Hallgato extends Ember {
     }
 
     @Override
-    boolean inventoryTeleE() {
+    public boolean inventoryTeleE() {
         int MAX_INVENTORY_MERET = 5;
         CustomLogger.info(this +  ((inventory.size() >= MAX_INVENTORY_MERET) ? " inventoryja tele van." : " inventoryja nincs tele."));
         return inventory.size() >= MAX_INVENTORY_MERET;

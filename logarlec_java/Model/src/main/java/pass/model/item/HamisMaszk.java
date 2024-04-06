@@ -26,18 +26,4 @@ public class HamisMaszk implements Targy {
     }
 
     // -------------------------------
-
-    /**
-     * @param visitor - a visitor amit fogad
-     */
-    @Override
-    public void accept(TargyVisitor visitor) {
-        CustomLogger.info(visitor + "-t " + this + " fogadta.");
-        visitor.visit(this);
-    }
-
-    @Override
-    public void tick() {
-        // Tickeles nem szukseges
-    }
 }

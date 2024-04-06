@@ -29,7 +29,7 @@ public abstract class Ember implements TargyVisitor, Idozitett {
     }
     //---------------------------------
     protected final List<Targy> inventory = new ArrayList<>();
-    private Szoba jelenlegiSzoba = null;
+    protected Szoba jelenlegiSzoba = null;
     private boolean gazEllenVedett = false;
     private boolean ajult = false;
 
@@ -94,38 +94,6 @@ public abstract class Ember implements TargyVisitor, Idozitett {
         CustomLogger.info(this + " meglátogatta a " + legfrissito + "-t");
         this.targyatEldob(legfrissito);
     }
-
-    /**
-     * A függvény meglátogatja a megadott hamis Logarlécet,
-     * ami az ember birtokában semmilyen hatással nincs
-     * @param hamisLec - a meglátogatott hamis Logarléc
-     */
-    @Override
-    public void visit(HamisLec hamisLec) {
-        CustomLogger.info("a " + hamisLec + " birtoklása nincs hatással " + this + "-ra.");
-    }
-
-    /**
-     * A függvény meglátogatja a megadott hamis TVSZ-t,
-     * ami az ember birtokában semmilyen hatással nincs
-     * @param hamisTVSZ - a meglátogatott pohár
-     */
-    @Override
-    public void visit(HamisTVSZ hamisTVSZ) {
-        CustomLogger.info("a " + hamisTVSZ + " birtoklása nincs hatással " + this + "-ra.");
-    }
-
-    /**
-     * A függvény meglátogatja a megadott hamis maszkot,
-     * ami az ember birtokában semmilyen hatással nincs
-     * @param hamisMaszk - a meglátogatott pohár
-     */
-    @Override
-    public void visit(HamisMaszk hamisMaszk) {
-        CustomLogger.info("a " + hamisMaszk + " birtoklása nincs hatással " + this + "-ra.");
-    }
-
-
 
     public void ajulas() {
         if(gazEllenVedett) return;
@@ -197,7 +165,7 @@ public abstract class Ember implements TargyVisitor, Idozitett {
         return ajult;
     }
 
-    abstract boolean inventoryTeleE();
+    public abstract boolean inventoryTeleE();
 
     /**
      * A függvény egy abstract függvény,

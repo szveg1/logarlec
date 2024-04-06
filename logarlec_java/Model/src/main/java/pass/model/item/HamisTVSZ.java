@@ -27,20 +27,4 @@ public class HamisTVSZ implements Targy{
     }
 
     // -------------------------------
-
-    /**
-     *
-     * @param visitor - A visitor, amit fogad.
-     */
-    @Override
-    public void accept(TargyVisitor visitor) {
-        CustomLogger.info(visitor + "-t " + this + " fogadta.");
-        visitor.visit(this);
-    }
-
-
-    @Override
-    public void tick() {
-        // Tickeles nem szukseges
-    }
 }

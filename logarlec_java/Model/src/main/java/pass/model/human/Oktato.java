@@ -33,7 +33,7 @@ public class Oktato extends Ember {
      * @return Boolean értékű visszajelzés, hogy van-e hely az inventory-jában
      */
     @Override
-    boolean inventoryTeleE() {
+    public boolean inventoryTeleE() {
         CustomLogger.info(this +  ((inventory.size() >= MAX_INVENTORY_MERET) ? " inventoryja tele van." : " inventoryja nincs tele."));
         return inventory.size() >= MAX_INVENTORY_MERET;
     }

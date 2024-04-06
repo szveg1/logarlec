@@ -24,18 +24,6 @@ public interface TargyVisitor {
         CustomLogger.info(this + " meglátogatta a " + maszk + "-t.");
     }
 
-    default void visit(HamisLec hamisLec) {
-        CustomLogger.info(this + " meglátogatta a " + hamisLec + "-t.");
-    }
-
-    default void visit(HamisTVSZ hamisTVSZ) {
-        CustomLogger.info(this + " meglátogatta a " + hamisTVSZ + "-t.");
-    }
-
-    default void visit(HamisMaszk hamisMaszk) {
-        CustomLogger.info(this + " meglátogatta a " + hamisMaszk + "-t.");
-    }
-
     default void visit(Legfrissito legfrissito) {
         CustomLogger.info(this + " meglátogatta a " + legfrissito + "-t.");
     }

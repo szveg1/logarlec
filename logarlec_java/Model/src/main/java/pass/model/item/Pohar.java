@@ -64,6 +64,6 @@ public class Pohar implements Targy {
 
     @Override
     public void tick() {
-
+        vedIdo--;
     }
 }

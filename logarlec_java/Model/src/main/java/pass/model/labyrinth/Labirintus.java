@@ -4,6 +4,7 @@ import pass.model.CustomLogger;
 import pass.model.Idozitett;
 import pass.model.human.Hallgato;
 import pass.model.human.Oktato;
+import pass.model.human.Takarito;
 import pass.model.item.*;
 
 import java.util.ArrayList;
@@ -21,8 +22,6 @@ public class Labirintus implements Idozitett {
 
     // HIANYOS!!!!
     static List<Szoba> szobak = new ArrayList<>();
-    List<Hallgato> hallgatok;
-    List<Oktato> oktatok;
 
     /**
      * A függvény elnevezi a labirintust

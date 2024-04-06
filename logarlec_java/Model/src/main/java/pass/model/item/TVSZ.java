@@ -73,8 +73,4 @@ public class TVSZ implements Targy {
         return vedelmekSzama > 0;
     }
 
-    @Override
-    public void tick() {
-
-    }
 }
