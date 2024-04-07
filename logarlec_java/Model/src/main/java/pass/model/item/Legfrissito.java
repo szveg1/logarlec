@@ -35,14 +35,14 @@ public class Legfrissito implements Targy {
     @Override
     public void accept(TargyVisitor visitor) {
         CustomLogger.info(visitor + "-t " + this + " fogadta.");
-        if(!hasznalva){
+        if(!hasznalva && jelenlegiSzoba.mergezoE()){
             visitor.visit(this);
             hasznalva = true;
+            jelenlegiSzoba.setMeregIdo(0);
         }
         else{
             CustomLogger.info(this + " már nem használható");
         }
-        jelenlegiSzoba.setMeregIdo(0);
     }
 
     /**

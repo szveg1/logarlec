@@ -1,0 +1,26 @@
+@startuml
+scale 2480*3805
+Title Tárgyat vesz fel
+actor Játékos
+participant "e1: Ember" as e1
+participant "t1: Tárgy" as t1
+participant "sz1: Szoba" as sz1
+activate e1
+Játékos -> e1: tárgyatFelvesz(Tárgy)
+alt ragacsose == true
+  e1 --> Játékos: Warning: ragacsos 
+else ragacsose == false
+  e1 -> e1: inventoryTeleE()
+  alt true
+    e1 --> Játékos: Warning: megtelt az inventory
+  else false
+    e1-> sz1: removeItem(Tárgy)
+    activate sz1
+    sz1 --> e1
+    deactivate sz1
+    e1 -> e1: inventory.add(Tárgy)
+    
+  end
+end
+deactivate e1
+@enduml

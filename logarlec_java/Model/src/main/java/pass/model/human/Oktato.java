@@ -59,48 +59,6 @@ public class Oktato extends Ember {
     }
 
     /**
-     * A függvény meglátogatja a megadott logarlécet,
-     * és mivel az oktatók nem birtokolhatnak ilyen tárgyat ezért eldobják
-     * @param logarlec  a meglátogatott logarléc
-     */
-    @Override
-    public void visit(Logarlec logarlec) {
-        CustomLogger.info("a " + logarlec + " birtoklása nincs hatással " + this + "-ra.");
-        targyatEldob(logarlec);
-    }
-
-    /**
-     * A függvény meglátogatja a megadott TVSZ-t,
-     * ami az oktató birtokában semmilyen hatással nincs
-     * @param tvsz - a meglátogatott tvsz
-     */
-    @Override
-    public void visit(TVSZ tvsz) {
-        CustomLogger.info("a " + tvsz + "birtoklása nincs hatással " + this + "-ra.");
-    }
-
-    /**
-     * A függvény meglátogatja a megadott poharat,
-     * ami az oktató birtokában semmilyen hatással nincs
-     * @param pohar - a meglátogatott pohár
-     */
-    @Override
-    public void visit(Pohar pohar) {
-        CustomLogger.info("a " + pohar + "birtoklása nincs hatással " + this + "-ra.");
-    }
-
-    /**
-     * A függvény meglátogatja a megadott rongyot,
-     * ami az oktató birtokában semmilyen hatással nincs
-     * @param rongy - a meglátogatott rongy
-     */
-    @Override
-    public void visit(Rongy rongy) {
-        CustomLogger.info("a " + rongy + "birtoklása nincs hatással " + this + "-ra.");
-    }
-    
-
-    /**
      * A függvény az oktató hallgató megtámadását valósítja meg
      * @param hallgato - A célzott hallgató, akit megtámad az oktató lélekelvétel céljával.
      */

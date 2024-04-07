@@ -1,0 +1,11 @@
+@startuml
+scale 2480*3805
+skinparam legendBackgroundColor #ffffff
+legend
+Jelmagyarázat
+|= Attribútum |= Metódus |= |
+| <img:https://plantuml.com/img/private-field.png> | <img:https://plantuml.com/img/private-method.png> | private |
+| <img:https://plantuml.com/img/protected-field.png> | <img:https://plantuml.com/img/protected-method.png> | protected |
+| <img:https://plantuml.com/img/public-field.png> | <img:https://plantuml.com/img/public-method.png> | public |
+endlegend
+@enduml

@@ -1,0 +1,83 @@
+@startuml
+skinparam linetype ortho
+scale 2480*3508
+left to right direction
+
+class Ajto {
+  - lathato: boolean
+  - merreNyilik: Map<Szoba, Boolean>
+  - nev: String
+  - egyikOldal: Szoba
+  - masikOldal: Szoba
+  + lathatosagValtoztass(): void
+  + setLathatosag(boolean): void
+  + hasznal(Ember): void
+  + setMerreNyilik(boolean, boolean): void
+  + getSzomszed(Szoba): Szoba
+  + toString(): String
+  + getLathatosag(): boolean
+}
+class Labirintus {
+  - timeLeft: int
+  - nev: String
+  + toString(): String
+  + tick(): void
+  + init(int, int, int): void
+  + jatekVeszt(): void
+  + setTimeLeft(int): void
+  + szobakOsszevon(Szoba, Szoba): void
+  + szobaKivesz(Szoba): void
+  + szobaFeloszt(Szoba): void
+  + getSzobak(): List<Szoba>
+  + addSzoba(Szoba): void
+  + jatekNyert(): void
+}
+class Szoba {
+  - atkozott: boolean
+  - immunisok: Map<Oktato, List<Hallgato>>
+  - meregIdo: int
+  - nev: String
+  - ragacsos: boolean
+  - ragacsIdozito: int
+  - ferohely: int
+  + tick(): void
+  + egyesit(Szoba): void
+  + toString(): String
+  + ragacsosE(): boolean
+  + removeItem(Targy): void
+  + setRagacsIdo(int): void
+  + getItems(): List<Targy>
+  + addItem(Targy): void
+  + getFerohely(): int
+  + removeAjto(Ajto): void
+  + addAjto(Ajto): void
+  + setMeregIdo(int): void
+  + getAjtok(): List<Ajto>
+  + mergezoE(): boolean
+  + emberBetesz(Ember): boolean
+  + emberKivesz(Ember): void
+  + getEmberek(): List<Ember>
+  + immunitastAd(Oktato, Hallgato): void
+}
+
+interface Targy <<interface>>
+interface Idozitett <<interface>>
+abstract Ember
+
+
+
+Szoba *--> "ajtok" Ajto
+Szoba o--> "bentlevok" Ember
+Szoba *--> "targyak" Targy
+
+Ember --> "jelenlegiSzoba" Szoba
+Ember "0..5" o--> "inventory\n" Targy
+Labirintus *--> "szobak" Szoba
+
+Ajto --> "egyikOldal" Szoba
+Ajto --> "masikOldal" Szoba
+
+Idozitett <|.. Ember
+Idozitett <|.. Szoba
+Idozitett <|.. Labirintus
+@enduml
