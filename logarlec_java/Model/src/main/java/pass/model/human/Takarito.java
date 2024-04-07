@@ -23,7 +23,6 @@ public class Takarito extends Ember{
         if(!ujSzoba.emberBetesz(this)) return;
         jelenlegiSzoba = ujSzoba;
         CustomLogger.info(this + " belépett a " + ujSzoba + "-ba");
-        jelenlegiSzoba.emberBetesz(this);
         // Embereket kitessekeli
         for(Ember e : jelenlegiSzoba.getEmberek()){
             if(e != this && !e.getAjult()){

@@ -1,21 +1,21 @@
 @startuml
 scale 2480*3805
-Title Embert a legfrissito fogadja
-actor Játékos
-participant "e1: Ember" as e1
-participant "l1: Légfrissítő" as l1
-participant "sz1: Szoba" as sz1
-e1->l1: accept(e1)
-activate e1
-activate l1
-l1->e1: visit(l1)
-e1-->l1
-l1->sz1: setméregidő(0)
-activate sz1
-sz1-->l1
-deactivate sz1
-l1-->e1
-deactivate l1
-e1-->Játékos
-deactivate e1
+hide footbox
+Title Embert a légfrissitő fogadja
+participant "e: Ember" as e
+participant "l: Légfrissítő" as l
+participant "sz: Szoba" as sz
+activate e
+e->l: accept(e)
+opt !hasznalva && \n jelenlegiSzoba.mergezoE()
+	activate l
+	l->e: visit(l)
+	activate e
+	e->e: targyatEldob(l)
+	return
+	l->sz: setMeregIdo(0)
+	activate sz
+	return
+end
+return
 @enduml

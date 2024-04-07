@@ -92,7 +92,7 @@ public abstract class Ember implements TargyVisitor, Idozitett {
 
     public void visit(Legfrissito legfrissito){
         CustomLogger.info(this + " meglátogatta a " + legfrissito + "-t");
-        this.targyatEldob(legfrissito);
+        this.targyatEldob(inventory.get(0));
     }
 
     public void ajulas() {
