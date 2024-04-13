@@ -1,0 +1,16 @@
+@startuml
+Title Hallgató a Poharat használja védekezésre
+scale 2480*3805
+hide footbox
+
+participant "h :Hallgato" as h
+participant "p :Pohár" as p
+
+activate h
+h -> p : inventory.get(hasznalniKivant).hasznal(o)
+activate p
+p -> h: targyatEldob()
+activate h
+return
+return
+@enduml

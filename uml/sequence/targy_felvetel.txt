@@ -1,0 +1,33 @@
+@startuml
+scale 2480*3805
+hide footbox
+Title Tárgy felvétel
+Actor "Játékos / Kontroller" as jk
+participant "e: Ember" as e
+participant "t: Tárgy" as t
+participant "sz: Szoba" as sz
+
+activate jk
+jk -> e: targyatFelvesz(t)
+
+activate e
+alt ajult
+
+else inventoryTeleE()
+
+else
+	e -> sz: ragacsosE()
+	activate sz
+	opt nem ragacsos
+		return false
+		e -> sz: sz.removeItem(t)
+		activate sz
+		return
+		e -> t: emberValtasrolErtesit(e)
+		activate t
+		return
+	end
+end
+return
+
+@enduml
