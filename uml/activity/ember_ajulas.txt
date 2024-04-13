@@ -1,0 +1,13 @@
+@startuml
+scale 2480*3805
+hide footbox
+start
+if (Gáz ellen védett?) then (igen)
+	stop;
+else (nem)
+	: Ájulást 3 körre állítja;
+while (van nála tárgy?) is (igen)
+	: Eldobja;
+endwhile (nem)
+stop;
+@enduml
