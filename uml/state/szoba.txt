@@ -1,0 +1,16 @@
+@startuml
+scale 2480*3805
+hide footbox
+hide empty description
+
+[*] -> Létezik: Létrejön
+
+state Létezik {
+	[*] -> Mérgezett : Mérgező gáz kerül kibocsátásra a szobában
+	--
+	[*] -> Átkozott : Átok kerül a szobára
+	--
+	[*] -> Tiszta : Takarító kitakarít
+	Tiszta -> Ragacsos : 10 ember belép
+}
+@enduml

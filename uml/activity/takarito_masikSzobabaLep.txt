@@ -13,7 +13,7 @@ if (Befér?) then (igen)
 		:Kiszellőztet;
 	else (nem)
 	endif
-	:Ragacsidőzítőt beállítja;
+	:Szobát tisztának nyilvánítja;
 	stop;
 else (nem)
 stop
