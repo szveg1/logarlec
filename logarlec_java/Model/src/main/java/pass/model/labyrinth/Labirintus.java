@@ -62,6 +62,26 @@ public class Labirintus implements Idozitett {
         Szoba ujSzoba = new Szoba(szoba);
         CustomLogger.info(this + " új szobával rendelkezik: " + ujSzoba);
         szobak.add(ujSzoba);
+        Ajto ajt = new Ajto(szoba, ujSzoba, "ajt");
+        szoba.addAjto(ajt);
+        ujSzoba.addAjto(ajt);
+        for(int i = 0; i < szoba.getItems().size(); i++){
+            if(i % 2 == 0){
+                ujSzoba.addItem(szoba.getItems().get(i));
+                szoba.removeItem(szoba.getItems().get(i));
+            }
+        }
+        for(int i = 0; i < szoba.getAjtok().size(); i++){
+            if(i % 2 == 0){
+                Ajto ajto = new Ajto(ujSzoba, szoba.getAjtok().get(i).getSzomszed(szoba), "ajto" + i);
+                ujSzoba.addAjto(ajto);
+                for(int j = 0; j < szoba.getAjtok().size(); j++){
+                    if(szoba.getAjtok().get(i).getSzomszed(szoba).equals(szoba.getAjtok().get(j).getSzomszed(szoba))){
+                        szoba.removeAjto(szoba.getAjtok().get(j));
+                    }
+                }
+            }
+        }
     }
 
     /**
