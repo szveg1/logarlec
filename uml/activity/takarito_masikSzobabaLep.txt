@@ -1,0 +1,20 @@
+@startuml
+scale 2480*3805
+hide footbox
+start
+if (Befér?) then (igen)
+	while (Van még bent rajta kívül valaki?) is (igen)
+		if(Ájult?) then (nem)
+			:Kitessékeli;
+		else (igen)
+		endif
+	endwhile (nincs)
+	if(Mérgező a szoba?) then (igen)
+		:Kiszellőztet;
+	else (nem)
+	endif
+	:Ragacsidőzítőt beállítja;
+	stop;
+else (nem)
+stop
+@enduml

@@ -1,0 +1,14 @@
+@startuml
+scale 2480*3805
+hide footbox
+start
+while (Van még nála nem meglátogatott tárgy?) is (igen)
+	: Tárgy fogadja;
+	: Tárgy ticket kap;
+endwhile (nem)
+if (Ájult?) then (igen)
+	: Ájulási érték csökkentése;
+	stop;
+else (nem)
+stop;
+@enduml
