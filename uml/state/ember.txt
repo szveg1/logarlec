@@ -1,0 +1,18 @@
+@startuml
+scale 2480*3805
+hide footbox
+hide empty description
+
+
+state c <<choice>>
+
+[*] --> Védtelen
+Védtelen -> Védett: felvesz egy maszkot, ami még nyújt védelmet
+Védett --> Védtelen: eldobja az utolsó nála levő védelmet nyújtó maszkot
+Védtelen --> Ájult: belép egy mérgező gázzal teli szobába
+Ájult --> c
+
+c --> Ájult : [ajult > 0]
+c --> Védtelen : [ajult <= 0]
+
+@enduml
