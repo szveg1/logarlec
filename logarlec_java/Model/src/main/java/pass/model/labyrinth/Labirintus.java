@@ -52,7 +52,8 @@ public class Labirintus implements Idozitett {
      * Setter függvény ami beállítja a játékból hátralévő időt
      * @param t - Hátralevő idő beállítása
      */
-    public void setTimeLeft(int t){this.timeLeft = t;}
+    public void setTimeLeft(int t){
+        timeLeft = t;}
 
     /**
      * A függvény egy megadott szobát felbont több szobára

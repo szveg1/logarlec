@@ -31,10 +31,10 @@ public abstract class Ember implements TargyVisitor, Idozitett {
     protected final List<Targy> inventory = new ArrayList<>();
     protected Szoba jelenlegiSzoba = null;
     private boolean gazEllenVedett = false;
-    private boolean ajult = false;
+    private int ajult = 0;
 
     public void targyatFelvesz(Targy targy) {
-        if (ajult){
+        if (ajult > 0){
             CustomLogger.log(Level.WARNING, this + " ájult, nem tud felvenni targyat");
             return;
         }
@@ -63,7 +63,7 @@ public abstract class Ember implements TargyVisitor, Idozitett {
      * @param targy - az eldobandó tárgy
      */
     public void targyatEldob(Targy targy) {
-        if (ajult){
+        if (ajult > 0){
             CustomLogger.log(Level.WARNING,this + " ájult, nem tud eldobni targyat");
             return;
         }
@@ -87,17 +87,17 @@ public abstract class Ember implements TargyVisitor, Idozitett {
     public void visit(Maszk maszk) {
         CustomLogger.info(this + " meglátogatta a " + maszk + "-ot");
         CustomLogger.info("védett lett " + maszk + "-tól: " + (maszk.getVedIdo() > 0));
-        setGazEllenVedett(maszk.getVedIdo() > 0);
+        gazEllenVedett = maszk.getVedIdo() > 0;
     }
 
     public void visit(Legfrissito legfrissito){
         CustomLogger.info(this + " meglátogatta a " + legfrissito + "-t");
-        this.targyatEldob(inventory.get(0));
+        this.targyatEldob(legfrissito);
     }
 
     public void ajulas() {
         if(gazEllenVedett) return;
-        ajult = true;
+        ajult = 3;
         CustomLogger.info(this + " elájult");
         for(Targy targy : inventory) {
             targyatEldob(targy);
@@ -111,7 +111,7 @@ public abstract class Ember implements TargyVisitor, Idozitett {
      * @param ujSzoba - ebbe a szobába lép át az ember
      */
     public void masikSzobabaLep(Szoba ujSzoba) {
-        if (ajult) {
+        if (ajult > 0) {
             CustomLogger.log(Level.WARNING,this + " ájult, nem tud szobát váltani");
             return;
         }
@@ -140,19 +140,6 @@ public abstract class Ember implements TargyVisitor, Idozitett {
         targy.hasznal();
     }
 
-    public boolean GazEllenVedettE() {
-        return gazEllenVedett;
-    }
-
-    /**
-     * A függvény egy setter függvény,
-     * amivel a gáz elleni védettséget lehet beállítani
-     * @param isProtected - a gáz elleni védettséget kommunikálja
-     */
-    public void setGazEllenVedett(boolean isProtected) {
-        this.gazEllenVedett = isProtected;
-    }
-
     public Szoba getJelenlegiSzoba() {
         return jelenlegiSzoba;
     }
@@ -162,7 +149,7 @@ public abstract class Ember implements TargyVisitor, Idozitett {
     }
 
     public boolean getAjult() {
-        return ajult;
+        return ajult > 0;
     }
 
     public abstract boolean inventoryTeleE();
@@ -181,5 +168,7 @@ public abstract class Ember implements TargyVisitor, Idozitett {
             t.accept(this);
             t.tick();
         }
+        if(ajult > 0)
+            ajult--;
     }
 }

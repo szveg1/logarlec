@@ -54,9 +54,4 @@ public class Camembert implements Targy {
         CustomLogger.info(this + " a " + szoba + "-ba került");
     }
 
-
-    @Override
-    public void tick() {
-
-    }
 }

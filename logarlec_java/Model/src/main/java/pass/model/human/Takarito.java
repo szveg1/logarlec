@@ -36,7 +36,7 @@ public class Takarito extends Ember{
         if(jelenlegiSzoba.mergezoE()){
             jelenlegiSzoba.setMeregIdo(0);
         }
-        jelenlegiSzoba.setRagacsIdo(10);
+        jelenlegiSzoba.setTiszta(true);
     }
 
 }

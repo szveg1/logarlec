@@ -54,8 +54,4 @@ public class Maszk implements Targy {
         return vedIdo;
     }
 
-    @Override
-    public void tick() {
-        vedIdo--;
-    }
 }

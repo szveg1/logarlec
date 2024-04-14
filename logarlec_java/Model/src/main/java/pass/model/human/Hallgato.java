@@ -17,13 +17,6 @@ import java.util.logging.Logger;
  */
 public class Hallgato extends Ember {
 
-    private static final Logger hallgatoLogger = Logger.getLogger(Hallgato.class.getSimpleName());
-    static{
-        ConsoleHandler handler = new ConsoleHandler();
-        handler.setFormatter(new CustomRecordFormatter());
-        hallgatoLogger.setUseParentHandlers(false);
-        hallgatoLogger.addHandler(handler);
-    }
     // Csak szkeletonhoz-------------
     public Hallgato(String nev) {
         super(nev);

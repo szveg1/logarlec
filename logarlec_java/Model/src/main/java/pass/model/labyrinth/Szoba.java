@@ -40,7 +40,8 @@ public class Szoba implements Idozitett {
     // -------------------------------
     private int meregIdo;
     private boolean atkozott;
-    private int ragacsIdozito = -1;
+    private boolean tiszta;
+    private int tisztanBelepok;
     private boolean ragacsos = false;
     private int ferohely;
     private List<Targy> targyak;
@@ -227,6 +228,9 @@ public class Szoba implements Idozitett {
             if(meregIdo > 0) {
                 ember.ajulas();
             }
+            if(tiszta){
+                tisztanBelepok++;
+            }
             return true;
         }
     }
@@ -268,14 +272,13 @@ public class Szoba implements Idozitett {
             if(meregIdo > 0)
                 ember.ajulas();
         }
-        if(ragacsIdozito > 0)
-            ragacsIdozito--;
-        if(ragacsIdozito == 0){
+        if(tisztanBelepok >= 10){
             ragacsos = true;
+            tiszta = false;
         }
     }
 
-    public void setRagacsIdo(int ragacsIdo) {
-        this.ragacsIdozito = ragacsIdo;
+    public void setTiszta(boolean tiszta) {
+        this.tiszta = tiszta;
     }
 }
