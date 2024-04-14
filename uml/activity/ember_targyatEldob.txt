@@ -1,0 +1,12 @@
+@startuml
+scale 2480*3805
+hide footbox
+start
+if (Ájult?) then (igen)
+	stop;
+else (nem)
+	: Tárgyat kiveszi a inventoryból;
+	: Tárgyat beteszi a szobába;
+	: Tárgyat ember váltásról értesíti;
+	stop;
+@enduml

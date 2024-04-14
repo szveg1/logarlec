@@ -36,16 +36,16 @@ opt befér
 			end
 		end
 	end
-	t -> sz: mergezoE()
-	activate sz
-	opt nem mérgező
-		return false
-		t -> sz: setMeregIdo(0)
-		activate sz
+	t -> usz: mergezoE()
+	activate usz
+	opt mérgező
+		return true
+		t -> usz: setMeregIdo(0)
+		activate usz
 		return
 	end
-	t -> sz: setRagacsIdo(10)
-	activate sz
+	t -> usz: setRagacsIdo(10)
+	activate usz
 	return
 end
 return

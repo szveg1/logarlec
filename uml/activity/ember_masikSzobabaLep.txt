@@ -1,0 +1,13 @@
+@startuml
+scale 2480*3805
+hide footbox
+start
+if (Ájult?) then (igen)
+	stop;
+elseif (Befér?) then (igen)
+	:Beteszi a másik szobába;
+	:Aktualizálja a jelenlegi szobát;
+	stop;
+else (nem)
+	stop;
+@enduml
