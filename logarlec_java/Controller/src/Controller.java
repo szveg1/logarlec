@@ -51,8 +51,8 @@ public class Controller {
         e.targyatFelvesz(t);
     }
 
-    public static void Hasznal(Targy t, Hallgato h) {
-        h.targyatHasznal(t);
+    public static void Hasznal(Targy t, Ember e) {
+        e.targyatHasznal(t);
     }
 
     public static void TargyEldob(Targy t, Ember e) {

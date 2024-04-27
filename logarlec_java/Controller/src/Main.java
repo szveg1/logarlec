@@ -18,8 +18,8 @@ public class Main extends Fuggvenyek {
                 Fuggvenyek.TargyHasznal(cmd);
             else if(cmd[0].equals("Targyfelvesz"))
                 Fuggvenyek.TargyFelvesz(cmd);
-            else if(cmd[0].equals("Targyfelvesz"))
-                Fuggvenyek.TargyFelvesz(cmd);
+            else if(cmd[0].equals("Targyeldob"))
+                Fuggvenyek.TargyEldob(cmd);
         }
         scanner.close();
 

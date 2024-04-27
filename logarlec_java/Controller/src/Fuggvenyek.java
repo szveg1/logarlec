@@ -25,6 +25,12 @@ public class Fuggvenyek {
         Controller.AjtoHasznalat(a, e);
     }
 
+    protected static void TargyHasznal(String[] cmd) {
+        Targy t = Controller.getTargy(cmd[1]);
+        Ember e = Controller.getEmber(cmd[2]);
+        Controller.Hasznal(t, e);
+    }
+
     protected static void TargyEldob(String[] cmd) {
         Targy t = Controller.getTargy(cmd[1]);
         Ember e = Controller.getEmber(cmd[2]);
