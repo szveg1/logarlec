@@ -1,14 +1,8 @@
 package pass.model.human;
 
 import pass.model.CustomLogger;
-import pass.model.CustomRecordFormatter;
-import pass.model.Main;
 import pass.model.item.*;
 
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Logger;
-
-import static pass.model.Main.*;
 /**
  * Az Oktató osztály felelős a nem játékos karakterek kezeléséért a labirintusban. Ez az
  * osztály felelős azért, hogy megnehezítse a játékos dolgát a játék során.
