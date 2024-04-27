@@ -1,5 +1,6 @@
 import pass.model.human.*;
 import pass.model.labyrinth.*;
+import pass.model.item.*;
 
 public class Fuggvenyek {
 
@@ -18,9 +19,21 @@ public class Fuggvenyek {
         Controller.Load(file);
     }
 
-    protected static void ajtoHasznalat(String[] cmd) {
+    protected static void AjtoHasznalat(String[] cmd) {
         Ajto a = Controller.getAjto(cmd[1]);
         Ember e = Controller.getEmber(cmd[2]);
-        Controller.Lepes(a, e);
+        Controller.AjtoHasznalat(a, e);
+    }
+
+    protected static void TargyEldob(String[] cmd) {
+        Targy t = Controller.getTargy(cmd[1]);
+        Ember e = Controller.getEmber(cmd[2]);
+        Controller.TargyEldob(t, e);
+    }
+
+    protected static void TargyFelvesz(String[] cmd) {
+        Targy t = Controller.getTargy(cmd[1]);
+        Ember e = Controller.getEmber(cmd[2]);
+        Controller.TargyFelvesz(t, e);
     }
 }

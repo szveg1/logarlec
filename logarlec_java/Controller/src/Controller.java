@@ -36,14 +36,14 @@ public class Controller {
 
         sb = new StringBuilder();
         for(String line : lines){
-            if(!line.isBlank()){
+           // if(!line.isBlank()){
                 sb.append(line);
             }
         }
     //}
 
 
-    public static void ajtoHasznalat(Ajto a, Ember e) {
+    public static void AjtoHasznalat(Ajto a, Ember e) {
         a.hasznal(e);
     }
 
