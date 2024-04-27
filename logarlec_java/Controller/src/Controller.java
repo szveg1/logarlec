@@ -40,8 +40,8 @@ public class Controller {
                 sb.append(line);
             }
         }
-    }
-    
+    //}
+
 
     public static void ajtoHasznalat(Ajto a, Ember e) {
         a.hasznal(e);
