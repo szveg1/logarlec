@@ -39,4 +39,11 @@ public class Takarito extends Ember{
         jelenlegiSzoba.setTiszta(true);
     }
 
+    @Override
+    public void ajulas(){
+        // nem csinal semmit
+    }
+    @Override
+    public void controllerLeptet(Ajto a) { a.hasznal(this);}
+
 }

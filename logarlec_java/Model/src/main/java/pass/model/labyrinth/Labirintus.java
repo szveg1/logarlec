@@ -21,14 +21,16 @@ public class Labirintus implements Idozitett {
     private static int timeLeft;
 
     // HIANYOS!!!!
-    static List<Szoba> szobak = new ArrayList<>();
-
-    /**
-     * A függvény elnevezi a labirintust
-     * @param l - Teszthez neves konstruktor
-     */
-    public Labirintus(String l) {
-        this.nev = l;
+    private static List<Szoba> szobak = new ArrayList<>();
+    private static Labirintus instance = null;
+    private Labirintus() {
+        this.nev = "l";
+    }
+    public static Labirintus getInstance(){
+        if(instance == null){
+            instance = new Labirintus();
+        }
+        return instance;
     }
 
     /**
@@ -54,6 +56,14 @@ public class Labirintus implements Idozitett {
      */
     public void setTimeLeft(int t){
         timeLeft = t;}
+
+
+
+    /**
+     * Getter függvény ami beállítja a játékból hátralévő időt
+     */
+    public int getTimeLeft(){
+        return timeLeft;}
 
     /**
      * A függvény egy megadott szobát felbont több szobára
@@ -144,6 +154,9 @@ public class Labirintus implements Idozitett {
         timeLeft--;
         CustomLogger.info("A játékból még " + timeLeft + " kör van hátra.");
         if(timeLeft == 0) jatekVeszt();
+        for (Szoba sz : szobak) {
+            sz.tick();
+        }
     }
 
     /**

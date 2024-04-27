@@ -1,3 +1,5 @@
+package pass.controller;
+
 import pass.model.human.*;
 import pass.model.labyrinth.*;
 import pass.model.item.*;
@@ -41,5 +43,9 @@ public class Fuggvenyek {
         Targy t = Controller.getTargy(cmd[1]);
         Ember e = Controller.getEmber(cmd[2]);
         Controller.TargyFelvesz(t, e);
+    }
+
+    protected static void Tick(String[] cmd) {
+        Controller.Tick();
     }
 }

@@ -2,6 +2,7 @@ package pass.model.human;
 
 import pass.model.CustomLogger;
 import pass.model.item.*;
+import pass.model.labyrinth.*;
 
 /**
  * Az Oktató osztály felelős a nem játékos karakterek kezeléséért a labirintusban. Ez az
@@ -73,4 +74,7 @@ public class Oktato extends Ember {
     public Hallgato getKitTamad(){
         return kitTamad;
     }
+
+    @Override
+    public void controllerLeptet(Ajto a) { a.hasznal(this);}
 }

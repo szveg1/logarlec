@@ -7,6 +7,8 @@ import pass.model.human.Hallgato;
 import pass.model.human.Oktato;
 import pass.model.item.Targy;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 /* Számon tartja a benne tartózkodó hallgatókat, oktatókat és tárgyakat, valamint a
@@ -14,7 +16,9 @@ szobának a tulajdonágait tárolja  */
 public class Szoba implements Idozitett {
     // Csak szkeletonhoz-------------
     private String nev;
-
+    public String getNev() {
+        return nev;
+    }
     /**
      * Létrehoz egy szobát a bekért adatok alapján, inicializálja a változóit.
      * @param ferohely - A szoba kapacitása
@@ -27,7 +31,66 @@ public class Szoba implements Idozitett {
         this.ajtok = new ArrayList<>();
         this.nev = nev;
     }
+    public void writeToFileFirstLine(String fileName, List<String> emberek_list, List<String> targyak_list) throws IOException {
+        FileWriter fw = null;
+        try {
+            fw = new FileWriter(fileName);
+            fw.append(nev).append(":");
 
+            // Szomszédos szobák kiírása
+            for (int i = 0; i < ajtok.size(); i++){
+                Szoba szomszed = ajtok.get(i).getSzomszed(this);
+                if (szomszed != null) {
+                    fw.append(szomszed.getNev());
+                }
+                if(i != ajtok.size() - 1){
+                    fw.append(" ");
+                }
+            }
+            fw.append(",");
+            StringBuilder sb = new StringBuilder();
+            if (tiszta) {
+                sb.append("tiszta ");
+            }else {
+                sb.append("ragacsos ");
+            }
+            if (mergezoE()) {
+                sb.append("mergezo ");
+            }
+            if (atkozott) {
+                sb.append("atkozott ");
+            }
+            sb.deleteCharAt(sb.length() - 1);
+            sb.append(",");
+            fw.append(sb.toString());
+            fw.append(ferohely + "\n");
+
+            // Emberek kiírása
+            fw.append("emberek:");
+            for (int i = 0; i < bentlevok.size(); i++){
+                fw.append(emberek_list.get(i));
+                if(i != bentlevok.size() - 1){
+                    fw.append(" ");
+                }
+            }
+            fw.append("\n");
+            // Tárgyak kiírása
+            fw.append("targyak:");
+            for (int i = 0; i < targyak.size(); i++){
+                fw.append(targyak_list.get(i));
+                if(i != targyak.size() - 1){
+                    fw.append(",");
+                }
+            }
+            fw.append("\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+
+        } finally {
+            assert fw != null;
+            fw.close();
+        }
+    }
     /**
      * A függvény kiírja az objektum nevét
      * @return String, Szkeleton kiiratashoz
@@ -57,6 +120,25 @@ public class Szoba implements Idozitett {
         this.ajtok = new ArrayList<>();
     }*/
 
+    public Szoba(String nev, int ferohely, String allapotok){
+        this.nev = nev;
+        this.ferohely = ferohely;
+        this.ajtok = new ArrayList<>();
+        this.targyak = new ArrayList<>();
+        this.bentlevok = new ArrayList<>();
+        if(allapotok.contains("tiszta")) {
+            this.tiszta = true;
+        }
+        if(allapotok.contains("ragacsos")) {
+            this.ragacsos = true;
+        }
+        if(allapotok.contains("atkozott")) {
+            this.atkozott = true;
+        }
+        if(allapotok.contains("mergezo")) {
+            this.meregIdo = 10;
+        }
+    }
     /**
      * A függvény a megadott szobát szétosztja több szobává
      * @param masikSzoba - Szétosztáshoz a szétosztandó szoba
@@ -90,6 +172,11 @@ public class Szoba implements Idozitett {
         for(int i = 0; i < ajtokFele; ++i) {
             this.ajtok.add(masikSzoba.ajtok.get(0));
         }
+        Ajto ujAjto = new Ajto(this, masikSzoba, "ujAjto");
+        masikSzoba.ajtok.removeAll(this.ajtok);
+
+        this.ajtok.add(ujAjto);
+        masikSzoba.ajtok.add(ujAjto);
     }
 
     /**
@@ -160,6 +247,10 @@ public class Szoba implements Idozitett {
         return ragacsos;
     }
 
+    public boolean atkozottE() {
+        return atkozott;
+    }
+
     /**
      * A függvény a szobához hozzáad egy tárgyat
      * @param targy - A szobához hozzáadandó tárgy
@@ -218,7 +309,7 @@ public class Szoba implements Idozitett {
      * @param ember - Ember, amit be szeretnénk tenni a szobába
      */
     public boolean emberBetesz(Ember ember) {
-        if(bentlevok.size()  + 1 > ferohely) {
+        if(bentlevok.size() + 1 > ferohely) {
         CustomLogger.info(ember + " belépett volna a " + this + "-ba, de tele van.");
         return false;
         } else {
@@ -271,10 +362,17 @@ public class Szoba implements Idozitett {
         for(Ember ember : bentlevok) {
             if(meregIdo > 0)
                 ember.ajulas();
+            ember.tick();
         }
         if(tisztanBelepok >= 10){
             ragacsos = true;
             tiszta = false;
+        }
+        for (Ajto a : ajtok) {
+            a.tick();
+        }
+        for (Targy t : targyak) {
+            t.tick();
         }
     }
 

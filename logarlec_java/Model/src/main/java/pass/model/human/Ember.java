@@ -4,6 +4,7 @@ import pass.model.CustomRecordFormatter;
 import pass.model.Idozitett;
 import pass.model.CustomLogger;
 import pass.model.item.*;
+import pass.model.labyrinth.Ajto;
 import pass.model.labyrinth.Szoba;
 
 import java.util.*;
@@ -174,4 +175,6 @@ public abstract class Ember implements TargyVisitor, Idozitett {
         if(ajult > 0)
             ajult--;
     }
+
+    public void controllerLeptet(Ajto a) { }
 }

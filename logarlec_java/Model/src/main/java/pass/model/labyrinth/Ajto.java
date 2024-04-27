@@ -2,7 +2,6 @@ package pass.model.labyrinth;
 
 import pass.model.CustomLogger;
 import pass.model.human.Ember;
-
 import java.util.*;
 import java.util.logging.Level;
 /* Az Ajtó osztály felelős az egyes szobákat összekötő ajtók kezeléséért és
@@ -88,6 +87,18 @@ public class Ajto {
         lathato = a;
     }
 
+    /**
+     *Ha az ajtó egyik oldalán egy átkozott szoba található
+     * a szoba láthatósága változik
+     */
+    public void villogas() {
+        if(!egyikOldal.atkozottE() && !masikOldal.atkozottE()){return;}
+        if(Labirintus.getInstance().getTimeLeft() % 10 == 0)
+            lathato = false;
+        else if(Labirintus.getInstance().getTimeLeft() % 10 == 5)
+            lathato = true;
+    }
+
 
     /**
      * Afüggvény megváltoztatja a láthatóságát az ajtónak
@@ -117,6 +128,10 @@ public class Ajto {
             return egyikOldal;
         }
         return null;
+    }
+
+    public void tick(){
+        villogas();
     }
 
 }
