@@ -18,9 +18,9 @@ public class Fuggvenyek {
         Controller.Load(file);
     }
 
-    protected static void Lepes(String[] cmd) {
-        Ajto a = cmd[1];
-        Ember e = Labirintus.Keres(cmd[2]);
+    protected static void ajtoHasznalat(String[] cmd) {
+        Ajto a = Controller.getAjto(cmd[1]);
+        Ember e = Controller.getEmber(cmd[2]);
         Controller.Lepes(a, e);
     }
 }

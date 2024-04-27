@@ -34,6 +34,8 @@ public abstract class Ember implements TargyVisitor, Idozitett {
     private int ajult = 0;
 
     public void targyatFelvesz(Targy targy) {
+        if(!jelenlegiSzoba.getItems().contains(targy))
+            return;
         if (ajult > 0){
             CustomLogger.log(Level.WARNING, this + " ájult, nem tud felvenni targyat");
             return;
@@ -63,12 +65,11 @@ public abstract class Ember implements TargyVisitor, Idozitett {
      * @param targy - az eldobandó tárgy
      */
     public void targyatEldob(Targy targy) {
-        if (ajult > 0){
-            CustomLogger.log(Level.WARNING,this + " ájult, nem tud eldobni targyat");
+        if(!inventory.contains(targy)){
             return;
         }
-        if(inventory.isEmpty()) {
-            CustomLogger.log(Level.WARNING,this + "-nek üres az inventoryja, nem tud eldobni targyat");
+        if (ajult > 0){
+            CustomLogger.log(Level.WARNING,this + " ájult, nem tud eldobni targyat");
             return;
         }
 
@@ -136,6 +137,8 @@ public abstract class Ember implements TargyVisitor, Idozitett {
      * @param targy - a használandó tárgy
      */
     public void targyatHasznal(Targy targy){
+        if(!inventory.contains(targy))
+            return;
         CustomLogger.info(this + " használta a " + targy + "-t");
         targy.hasznal();
     }
