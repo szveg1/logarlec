@@ -10,7 +10,9 @@ Logarléc felkutatása és megszerzése a labirintusban annak érdekében, hogy 
 public class Logarlec implements Targy {
     // Csak szkeletonhoz-------------
     private String nev;
-
+     public String getNev() {
+         return nev;
+     }
     /**
      * A függvény elnevezi az objektumot
      * @param nev - az objektum neve

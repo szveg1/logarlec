@@ -45,8 +45,10 @@ public class Ajto {
      * @param e - Az ember aki át kíván lépni a másik szobába, ez felelős a mozgatásáért.
      */
     public void hasznal(Ember e){
-        if(e.getJelenlegiSzoba() != egyikOldal && e.getJelenlegiSzoba() != masikOldal)
+        if(e.getJelenlegiSzoba() != egyikOldal && e.getJelenlegiSzoba() != masikOldal) {
+            System.out.println("NEM OTT VAN AZ AJTO AHOL A HALLGATO KOCSOG");
             return;
+        }
         if(!lathato) {
             CustomLogger.info(e + " nem látja " + this +"-t, nem tud átmenni.");
             return;

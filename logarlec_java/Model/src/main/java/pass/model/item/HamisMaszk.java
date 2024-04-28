@@ -7,7 +7,9 @@ import pass.model.labyrinth.Szoba;
 public class HamisMaszk implements Targy {
     // Csak szkeletonhoz-------------
     private String nev;
-
+    public String getNev() {
+        return nev;
+    }
     /**
      *
      * @param nev - az objektum neve

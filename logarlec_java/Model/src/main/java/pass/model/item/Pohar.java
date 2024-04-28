@@ -12,7 +12,9 @@ oktatókkal szemben.  */
 public class Pohar implements Targy {
     // Csak szkeletonhoz-------------
     private String nev;
-
+    public String getNev() {
+        return nev;
+    }
     /**
      * A függvény elnevezi az objektumot
      * @param nev - Az objektum neve

@@ -7,7 +7,9 @@ import pass.model.labyrinth.Szoba;
 public class Legfrissito implements Targy {
     // Csak szkeletonhoz-------------
     private String nev;
-
+    public String getNev() {
+        return nev;
+    }
     /**
      * A függvény elnevezi az objektumot
      * @param nev - az objektum neve
@@ -24,6 +26,8 @@ public class Legfrissito implements Targy {
     public String toString() {
         return nev + " :Legfrissito";
     }
+
+
     // -------------------------------
 
     private boolean hasznalva = false;

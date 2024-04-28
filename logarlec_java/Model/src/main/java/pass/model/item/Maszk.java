@@ -9,7 +9,9 @@ maszk egy adott ideig tudja csak megakadályozni a mérges gázok belélegzésé
 public class Maszk implements Targy {
     // Csak szkeletonhoz-------------
     private String nev;
-
+    public String getNev() {
+        return nev;
+    }
     /**
      *
      * @param vedIdo - mennyi ideig tud védeni a gáz ellen

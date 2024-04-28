@@ -10,7 +10,9 @@ ellen. */
 public class Rongy implements Targy {
     // Csak szkeletonhoz-------------
     private String nev;
-
+    public String getNev() {
+        return nev;
+    }
     /**
      *  A függvény elnevezi az objektumot
      * @param nev - A tárgy neve, Szkeletonhoz

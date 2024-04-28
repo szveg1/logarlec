@@ -47,4 +47,6 @@ public interface Targy extends Idozitett {
     default void szobaValtasrolErtesit(Szoba newSzoba) {
 
     }
+
+    String getNev();
 }

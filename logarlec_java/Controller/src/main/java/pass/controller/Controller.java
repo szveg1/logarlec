@@ -26,6 +26,8 @@ public class Controller {
         Labirintus.getInstance().setTimeLeft(ido);
         int szobaSzam = randInt * hallgatoDB;
         Szoba kezdoSzoba = new Szoba(hallgatoDB, "kezdoszoba");
+        szobaMap.put("kezdoszoba", kezdoSzoba);
+        Labirintus.getInstance().addSzoba(kezdoSzoba);
 
         for(int i = 0; i < szobaSzam; i++){
             int randomFerohely = random.ints(1, 5, 10).sum();
@@ -39,11 +41,12 @@ public class Controller {
             int hanyszomszed = random.ints(1, 1, szobaSzam).sum();;
             ArrayList<Szoba> lista = new ArrayList<>();
             lista.add(szoba);
-            for(Ajto ajto : szoba.getAjtok()){
-                lista.add(ajto.getSzomszed(szoba));
+            if(szoba.getAjtok().size() >= 0) {
+                for (Ajto ajto : szoba.getAjtok()) {
+                    lista.add(ajto.getSzomszed(szoba));
+                }
             }
             for(int o = 0; o < hanyszomszed; o++){
-                //int randomszomszed = random.ints(1, 0, szobaSzam).sum();
                 int randomszomszedszam = random.ints(1, 0, szobaSzam).sum();
                 Szoba randomszomszed = Labirintus.getInstance().getSzobak().get(randomszomszedszam);
                 while(lista.contains(randomszomszed)){
@@ -373,6 +376,7 @@ public class Controller {
         }
 
         System.out.print(sb);
+        ajtoMap.keySet().forEach(key -> System.out.println(key));
     }
 
     public static void AjtoHasznalat(Ajto a, Ember e) {
@@ -399,11 +403,11 @@ public class Controller {
             if(i != e.getItems().size() - 1)
                 System.out.println(", ");
         }
-        System.out.println("\n" + e.getJelenlegiSzoba().getNev());
+        System.out.println(e.getJelenlegiSzoba().getNev());
 
         String s = e.getAjult() ? "ajult" : "eber";
 
-        System.out.println("\n" + s);
+        System.out.println(s);
     }
 
     public static void Random(boolean b) {
