@@ -112,18 +112,19 @@ public abstract class Ember implements TargyVisitor, Idozitett {
      *  az új szobához hozzáadja az embert
      * @param ujSzoba - ebbe a szobába lép át az ember
      */
-    public void masikSzobabaLep(Szoba ujSzoba) {
+    public boolean masikSzobabaLep(Szoba ujSzoba) {
         if (ajult > 0) {
             CustomLogger.log(Level.WARNING,this + " ájult, nem tud szobát váltani");
-            return;
+            return false;
         }
-        if(!ujSzoba.emberBetesz(this)) return;
+        if(!ujSzoba.emberBetesz(this)) return false;
 
         jelenlegiSzoba = ujSzoba;
         CustomLogger.info(this + " belépett a " + ujSzoba + "-ba");
         for (Targy targy : inventory) {
             targy.szobaValtasrolErtesit(ujSzoba);
         }
+        return true;
     }
 
     public void kilepSzobajabol() {

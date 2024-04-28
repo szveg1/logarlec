@@ -31,10 +31,8 @@ public class Szoba implements Idozitett {
         this.ajtok = new ArrayList<>();
         this.nev = nev;
     }
-    public void writeToFileFirstLine(String fileName, List<String> emberek_list, List<String> targyak_list) throws IOException {
-        FileWriter fw = null;
+    public void writeToFileFirstLine(FileWriter fw, List<String> emberek_list, List<String> targyak_list) throws IOException {
         try {
-            fw = new FileWriter(fileName);
             fw.append(nev).append(":");
 
             // Szomszédos szobák kiírása
@@ -67,28 +65,35 @@ public class Szoba implements Idozitett {
 
             // Emberek kiírása
             fw.append("emberek:");
-            for (int i = 0; i < bentlevok.size(); i++){
+            for (int i = 0; i < emberek_list.size(); i++){
                 fw.append(emberek_list.get(i));
-                if(i != bentlevok.size() - 1){
+                if(i != emberek_list.size() - 1){
                     fw.append(" ");
                 }
             }
             fw.append("\n");
+//            // Tárgyak kiírása
+//            fw.append("targyak:");
+//            for (int i = 0; i < targyak.size(); i++){
+//                if(!targyak_list.isEmpty()) {
+//                    fw.append(targyak_list.get(i));
+//                }
+//
+//                if(i != targyak.size() - 1){
+//                    fw.append(",");
+//                }
+//            }
             // Tárgyak kiírása
             fw.append("targyak:");
-            for (int i = 0; i < targyak.size(); i++){
+            for (int i = 0; i < targyak_list.size(); i++){
                 fw.append(targyak_list.get(i));
-                if(i != targyak.size() - 1){
+                if(i != targyak_list.size() - 1){
                     fw.append(",");
                 }
             }
             fw.append("\n");
         } catch (IOException e) {
             e.printStackTrace();
-
-        } finally {
-            assert fw != null;
-            fw.close();
         }
     }
     /**
@@ -103,7 +108,7 @@ public class Szoba implements Idozitett {
     // -------------------------------
     private int meregIdo;
     private boolean atkozott;
-    private boolean tiszta;
+    private boolean tiszta = true;
     private int tisztanBelepok;
     private boolean ragacsos = false;
     private int ferohely;

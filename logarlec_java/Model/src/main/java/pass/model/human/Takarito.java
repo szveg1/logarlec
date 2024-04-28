@@ -19,8 +19,8 @@ public class Takarito extends Ember{
         return true;
     }
 
-    public void masikSzobabaLep(Szoba ujSzoba) {
-        if(!ujSzoba.emberBetesz(this)) return;
+    public boolean masikSzobabaLep(Szoba ujSzoba) {
+        if(!ujSzoba.emberBetesz(this)) return false;
         jelenlegiSzoba = ujSzoba;
         CustomLogger.info(this + " belépett a " + ujSzoba + "-ba");
         // Embereket kitessekeli
@@ -37,6 +37,7 @@ public class Takarito extends Ember{
             jelenlegiSzoba.setMeregIdo(0);
         }
         jelenlegiSzoba.setTiszta(true);
+        return true;
     }
 
     @Override
