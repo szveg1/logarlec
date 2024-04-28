@@ -4,6 +4,8 @@ import pass.model.CustomLogger;
 import pass.model.labyrinth.Ajto;
 import pass.model.labyrinth.Szoba;
 
+import java.util.*;
+
 public class Takarito extends Ember{
 
     public Takarito(String nev) {
@@ -24,11 +26,13 @@ public class Takarito extends Ember{
         jelenlegiSzoba = ujSzoba;
         CustomLogger.info(this + " belépett a " + ujSzoba + "-ba");
         // Embereket kitessekeli
-        for(Ember e : jelenlegiSzoba.getEmberek()){
-            if(e != this && !e.getAjult()){
-                for(Ajto a : jelenlegiSzoba.getAjtok()){
+        List<Ember> emberList = new ArrayList<>(jelenlegiSzoba.getEmberek());
+        for (Ember e : emberList) {
+            if (!e.equals(this) && !e.getAjult()) {
+                List<Ajto> ajtoList = new ArrayList<>(jelenlegiSzoba.getAjtok());
+                for (Ajto a : ajtoList) {
                     a.hasznal(e);
-                    if(e.getJelenlegiSzoba() != jelenlegiSzoba) break;
+                    if (e.getJelenlegiSzoba() != jelenlegiSzoba) break;
                 }
             }
         }

@@ -12,9 +12,16 @@ lehetővé teszi az áthaladást az ajtókon keresztül.  */
 public class Ajto {
     private Szoba egyikOldal;
     private Szoba masikOldal;
-    private boolean lathato;
+    private boolean lathato = true;
     private Map<Szoba, Boolean> merreNyilik = new HashMap<>();
     private String nev;
+
+    public List<String> getOldalak() {
+        List<String> oldalak = new ArrayList<>();
+        oldalak.add(egyikOldal.getNev());
+        oldalak.add(masikOldal.getNev());
+        return oldalak;
+    }
 
     /**
      *
@@ -51,6 +58,7 @@ public class Ajto {
         }
         if(!lathato) {
             CustomLogger.info(e + " nem látja " + this +"-t, nem tud átmenni.");
+            System.out.println(e + " nem látja " + this +"-t, nem tud átmenni.");
             return;
         }
         Szoba jelenlegiSzoba =  e.getJelenlegiSzoba();
@@ -59,7 +67,10 @@ public class Ajto {
             e.masikSzobabaLep(hovaMegy);
             jelenlegiSzoba.emberKivesz(e);
         }
-        else CustomLogger.info(this + " nem nyílik ebbe az irányba, " + e + " nem tud átmenni.");
+        else {
+            CustomLogger.info(this + " nem nyílik ebbe az irányba, " + e + " nem tud átmenni.");
+            System.out.println(this + " nem nyílik ebbe az irányba, " + e + " nem tud átmenni.");
+        }
     }
 
     /**
@@ -136,4 +147,7 @@ public class Ajto {
         villogas();
     }
 
+    public boolean equals(Ajto masikAjto){
+        return ((this.egyikOldal == masikAjto.egyikOldal && this.masikOldal == masikAjto.masikOldal) || (this.egyikOldal == masikAjto.masikOldal && this.masikOldal == masikAjto.masikOldal));
+    }
 }

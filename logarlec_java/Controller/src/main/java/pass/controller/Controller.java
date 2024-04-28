@@ -20,39 +20,51 @@ public class Controller {
 
     public static void Play(int hallgatoDB) {
         Random random = deterministic ? new Random(0) : new Random();
+        Labirintus labirintus = Labirintus.getInstance();
 
         int randInt = random.ints(1, 5, 10).sum();
-        int ido = randInt * 10 / hallgatoDB;
-        Labirintus.getInstance().setTimeLeft(ido);
-        int szobaSzam = randInt * hallgatoDB;
+        labirintus.setTimeLeft(randInt * 10 / hallgatoDB);
+
         Szoba kezdoSzoba = new Szoba(hallgatoDB, "kezdoszoba");
         szobaMap.put("kezdoszoba", kezdoSzoba);
-        Labirintus.getInstance().addSzoba(kezdoSzoba);
+        labirintus.addSzoba(kezdoSzoba);
 
+        int szobaSzam = randInt * hallgatoDB;
         for(int i = 0; i < szobaSzam; i++){
             int randomFerohely = random.ints(1, 5, 10).sum();
             Szoba szoba = new Szoba(randomFerohely, "szoba" + i);
-            Labirintus.getInstance().addSzoba(szoba);
+            labirintus.addSzoba(szoba);
             szobaMap.put("szoba"+ (i + 1), szoba);
         }
 
         int ajtocnt = 0;
-        for(Szoba szoba : Labirintus.getInstance().getSzobak()){
+        for(Szoba szoba : labirintus.getSzobak()){
+            if(labirintus.getSzobak().size() < labirintus.getSzobak().indexOf(szoba) + 1){
+                Ajto ajto = new Ajto(szoba, labirintus.getSzobak().get(labirintus.getSzobak().indexOf(szoba) + 1), "Ajto" + ajtocnt);
+                szoba.addAjto(ajto);
+                labirintus.getSzobak().get(labirintus.getSzobak().indexOf(szoba) + 1).addAjto(ajto);
+                ajtoMap.put("ajto"+ (ajtocnt), ajto);
+                ajtocnt++;
+            }
+        }
+
+        for(Szoba szoba : labirintus.getSzobak()){
             int hanyszomszed = random.ints(1, 1, szobaSzam).sum();;
             ArrayList<Szoba> lista = new ArrayList<>();
             lista.add(szoba);
-            if(szoba.getAjtok().size() >= 0) {
+            if(szoba.getAjtok().size() > 0) {
                 for (Ajto ajto : szoba.getAjtok()) {
                     lista.add(ajto.getSzomszed(szoba));
                 }
             }
-            for(int o = 0; o < hanyszomszed; o++){
+            for(int o = 0; o < hanyszomszed - szoba.getAjtok().size(); o++){
                 int randomszomszedszam = random.ints(1, 0, szobaSzam).sum();
-                Szoba randomszomszed = Labirintus.getInstance().getSzobak().get(randomszomszedszam);
+                Szoba randomszomszed = labirintus.getSzobak().get(randomszomszedszam);
                 while(lista.contains(randomszomszed)){
                     randomszomszedszam = random.ints(1, 0, szobaSzam).sum();
-                    randomszomszed = Labirintus.getInstance().getSzobak().get(randomszomszedszam);
+                    randomszomszed = labirintus.getSzobak().get(randomszomszedszam);
                 }
+                lista.add(randomszomszed);
                 Ajto ajto = new Ajto(szoba, randomszomszed, "Ajto" + ajtocnt);
                 szoba.addAjto(ajto);
                 randomszomszed.addAjto(ajto);
@@ -61,9 +73,11 @@ public class Controller {
             }
         }
 
+
+
         int marSzobabanHallgato = 0;
-        while(marSzobabanHallgato <= hallgatoDB){
-            Hallgato hallgato = new Hallgato("hallgato" + marSzobabanHallgato);
+        while(marSzobabanHallgato < hallgatoDB){
+            Hallgato hallgato = new Hallgato("hallgato" + (marSzobabanHallgato + 1));
             hallgato.masikSzobabaLep(kezdoSzoba);
             marSzobabanHallgato++;
             emberMap.put("hallgato" + marSzobabanHallgato, hallgato);
@@ -71,11 +85,12 @@ public class Controller {
 
         int randomOktatokDB = random.ints(1, 1, 5).sum();
         int marSzobabanOktato = 0;
-        while(marSzobabanOktato <= randomOktatokDB){
-            Oktato oktato = new Oktato("oktato" + marSzobabanOktato);
-            for(Szoba szoba : Labirintus.getInstance().getSzobak()){
+        while(marSzobabanOktato < randomOktatokDB){
+            Oktato oktato = new Oktato("oktato" + (marSzobabanOktato + 1));
+            for(Szoba szoba : labirintus.getSzobak()){
                 if(oktato.masikSzobabaLep(szoba)) {
                     marSzobabanOktato++;
+                    break;
                 }
             }
             emberMap.put("oktato" + marSzobabanOktato, oktato);
@@ -83,95 +98,51 @@ public class Controller {
 
         int randomTakaritoDB = random.ints(1, 1, 3).sum();
         int marSzobabanTakarito = 0;
-        while(marSzobabanTakarito <= randomTakaritoDB){
-            Takarito takarito = new Takarito("Takarito" + marSzobabanTakarito + 1);
-            for(Szoba szoba : Labirintus.getInstance().getSzobak()){
+        while(marSzobabanTakarito < randomTakaritoDB){
+            Takarito takarito = new Takarito("Takarito" + (marSzobabanTakarito + 1));
+            for(Szoba szoba : labirintus.getSzobak()){
                 if(takarito.masikSzobabaLep(szoba)){
                     marSzobabanTakarito++;
+                    break;
                 }
             }
             emberMap.put("takarito" + marSzobabanTakarito, takarito);
         }
 
-        // Kezdoszobat azert itt adjuk hozza, hogy ne lehessen benne se oktato se takarito az elejen
-        Labirintus.getInstance().addSzoba(kezdoSzoba);
-        szobaMap.put("szoba0",kezdoSzoba);
 
         Logarlec logarlec = new Logarlec("logarlec");
 
-        int randomLogarlechez = random.ints(1,0, szobaSzam).sum();
-        Labirintus.getInstance().getSzobak().get(randomLogarlechez).addItem(logarlec);
-        int camembertcnt = 0;
-        int hamisLogarleccnt = 0;
-        int hamisMaskcnt = 0;
-        int hamisTVSZcnt = 0;
-        int legfrissitocnt = 0;
-        int maszkcnt = 0;
-        int poharcnt = 0;
-        int rongycnt = 0;
-        int tranzisztorcnt = 0;
-        int tvszcnt = 0;
+        int logarlecSzobaszam = random.ints(1,0, szobaSzam).sum();
+        labirintus.getSzobak().get(logarlecSzobaszam).addItem(logarlec);
+        targyMap.put("logarlec", logarlec);
 
-        for(Szoba szoba : Labirintus.getInstance().getSzobak()) {
-            int radomitemnum = random.nextInt(5);
-            for (int p = 0; p < radomitemnum; p++) {
-                int radomitem = random.nextInt(10);
-                switch (radomitem) {
-                    case 0:
-                        Camembert tmp = new Camembert("Camambert" + camembertcnt);
-                        camembertcnt++;
-                        szoba.addItem(tmp);
-                        break;
-                    case 1:
-                        HamisLec tmp1 = new HamisLec("HamisLec" + hamisLogarleccnt);
-                        hamisLogarleccnt++;
-                        szoba.addItem(tmp1);
-                        break;
-                    case 2:
-                        HamisMaszk tmp2 = new HamisMaszk("HamisMaszk" + hamisMaskcnt);
-                        hamisMaskcnt++;
-                        szoba.addItem(tmp2);
-                        break;
-                    case 3:
-                        HamisTVSZ tmp3 = new HamisTVSZ("HamisTVSZ" + hamisTVSZcnt);
-                        hamisTVSZcnt++;
-                        szoba.addItem(tmp3);
-                        break;
-                    case 4:
-                        Legfrissito tmp4 = new Legfrissito("Legfrissito" + legfrissitocnt);
-                        legfrissitocnt++;
-                        szoba.addItem(tmp4);
-                        break;
-                    case 5:
-                        //a védidő mennyi?
-                        Maszk tmp5 = new Maszk(30, "Maszk" + maszkcnt);
-                        maszkcnt++;
-                        szoba.addItem(tmp5);
-                        break;
-                    case 6:
-                        Pohar tmp6 = new Pohar("Pohar" + poharcnt);
-                        poharcnt++;
-                        szoba.addItem(tmp6);
-                        break;
-                    case 7:
-                        Rongy tmp7 = new Rongy("Rongy" + rongycnt);
-                        rongycnt++;
-                        szoba.addItem(tmp7);
-                        break;
-                    case 8:
-                        Tranzisztor tmp8 = new Tranzisztor("Tranzisztor" + tranzisztorcnt);
-                        tranzisztorcnt++;
-                        szoba.addItem(tmp8);
-                        break;
-                    case 9:
-                        TVSZ tmp9 = new TVSZ("TVSZ" + tvszcnt);
-                        tvszcnt++;
-                        szoba.addItem(tmp9);
-                        break;
-                }
+        HashMap<String, Integer> targyCount = targyCountMapKeszit();
+
+        for(Szoba szoba : labirintus.getSzobak()) {
+            int randomItemNum = random.nextInt(5);
+            for (int p = 0; p < randomItemNum; p++) {
+                String randomTargyTipus = (String)targyCount.keySet().toArray()[random.nextInt(10)];
+                Targy t = ujTargyGyart(randomTargyTipus);
+                szoba.addItem(t);
+                targyMap.put(randomTargyTipus + (p+1), t);
             }
         }
         betoltesEredmenyKiir(null);
+    }
+
+    private static HashMap<String, Integer> targyCountMapKeszit() {
+        HashMap<String, Integer> targyCount = new HashMap<>();
+        targyCount.put("camembert",0);
+        targyCount.put("hamislec",0);
+        targyCount.put("hamismaszk",0);
+        targyCount.put("hamistvsz",0);
+        targyCount.put("legfrissito",0);
+        targyCount.put("maszk",0);
+        targyCount.put("pohar",0);
+        targyCount.put("rongy",0);
+        targyCount.put("tranzisztor",0);
+        targyCount.put("tvsz",0);
+        return targyCount;
     }
 
     public static void Save(String file) {
@@ -222,7 +193,7 @@ public class Controller {
 
         Szoba szoba = null;
         for(String line : lines){
-            if(line.startsWith("szoba")) {
+            if(line.contains("szoba")) {
                 szoba = szobaFeldolgoz(line, szobaSzomszedMap);
             }
             if(line.startsWith("emberek")){
@@ -233,15 +204,31 @@ public class Controller {
             }
         }
 
-        for(String s : szobaSzomszedMap.keySet()){
-            String[] szomszedok = szobaSzomszedMap.get(s);
-            for(String sz : szomszedok){
-                Ajto a = new Ajto(szobaMap.get(s), szobaMap.get(sz), "a");
-                ajtoMap.put("ajto" + s.charAt(s.length() - 1) + sz.charAt(sz.length() - 1), a);
-                szobaMap.get(s).addAjto(a);
+        HashMap<String, String> szobaNevParok = new HashMap<>();
+        int i = 0;
+        for(String egyikSzobaNev : szobaSzomszedMap.keySet()) {
+            String[] szomszedok = szobaSzomszedMap.get(egyikSzobaNev);
+            for(String masikSzobaNev : szomszedok){
+                if(!szobaNevParok.containsKey(masikSzobaNev)) {
+                    szobaNevParok.put(egyikSzobaNev,masikSzobaNev);
+                    Ajto a = new Ajto(szobaMap.get(egyikSzobaNev),szobaMap.get(masikSzobaNev), "ajto" + (++i));
+                    a.setMerreNyilik(true, false);
+                    szobaMap.get(egyikSzobaNev).addAjto(a);
+                    szobaMap.get(masikSzobaNev).addAjto(a);
+                }
+                else {
+                    List<Ajto> masikSzobaAjtok = szobaMap.get(masikSzobaNev).getAjtok();
+                    Ajto keresettAjto = null;
+                    for(Ajto a : masikSzobaAjtok){
+                        if(true){
+                            keresettAjto = a;
+                        }
+                    }
+                    keresettAjto.setMerreNyilik(true, true);
+                }
             }
         }
-        
+
         Labirintus labirintus = Labirintus.getInstance();
         for(Szoba sz : szobaMap.values()){
             labirintus.addSzoba(sz);
@@ -253,52 +240,59 @@ public class Controller {
     private static void targyakFeldolgoz(String line, HashMap<Szoba, ArrayList<Targy>> szobaTargyMap, Szoba szoba) {
         szobaTargyMap.put(szoba, new ArrayList<>());
         String[] parts = line.split(":");
+        if(parts.length <= 1) return;
         String[] targyak = parts[1].split(",");
 
-        for(String targy : targyak){
+        for(String targyTipus : targyak){
             Targy t;
-            switch (targy) {
-                case "camembert":
-                    t = new Camembert(targy + targyMap.size());
-                    break;
-                case "hamislec":
-                    t = new HamisLec(targy + targyMap.size());
-                    break;
-                case "hamismaszk":
-                    t = new HamisMaszk(targy + targyMap.size());
-                    break;
-                case "hamistvsz":
-                    t = new HamisTVSZ(targy + targyMap.size());
-                    break;
-                case "legfrissito":
-                    t = new Legfrissito(targy + targyMap.size());
-                    break;
-                case "logarlec":
-                    t = new Logarlec(targy + targyMap.size());
-                    break;
-                case "maszk":
-                    t = new Maszk(3, targy + targyMap.size());
-                    break;
-                case "pohar":
-                    t = new Pohar(targy + targyMap.size());
-                    break;
-                case "rongy":
-                    t = new Rongy(targy + targyMap.size());
-                    break;
-                case "tranzisztor":
-                    t = new Tranzisztor(targy + targyMap.size());
-                    break;
-                case "tvsz":
-                    t = new TVSZ(targy + targyMap.size());
-                    break;
-                default:
-                    t = null;
-                    break;
-            }
-            targyMap.put(targy + targyMap.size(), t);
+            t = ujTargyGyart(targyTipus);
+            targyMap.put(targyTipus + targyMap.size(), t);
             szobaTargyMap.get(szoba).add(t);
             szoba.addItem(t);
         }
+    }
+
+    private static Targy ujTargyGyart(String targy) {
+        Targy t;
+        switch (targy) {
+            case "camembert":
+                t = new Camembert(targy + targyMap.size());
+                break;
+            case "hamislec":
+                t = new HamisLec(targy + targyMap.size());
+                break;
+            case "hamismaszk":
+                t = new HamisMaszk(targy + targyMap.size());
+                break;
+            case "hamistvsz":
+                t = new HamisTVSZ(targy + targyMap.size());
+                break;
+            case "legfrissito":
+                t = new Legfrissito(targy + targyMap.size());
+                break;
+            case "logarlec":
+                t = new Logarlec(targy + targyMap.size());
+                break;
+            case "maszk":
+                t = new Maszk(3, targy + targyMap.size());
+                break;
+            case "pohar":
+                t = new Pohar(targy + targyMap.size());
+                break;
+            case "rongy":
+                t = new Rongy(targy + targyMap.size());
+                break;
+            case "tranzisztor":
+                t = new Tranzisztor(targy + targyMap.size());
+                break;
+            case "tvsz":
+                t = new TVSZ(targy + targyMap.size());
+                break;
+            default:
+                t = null;
+                break;
+        }
+        return t;
     }
 
     private static Szoba szobaFeldolgoz(String line, HashMap<String,String[]> szobaSzomszedMap) {
@@ -344,6 +338,7 @@ public class Controller {
             for(Ajto a : sz.getAjtok()){
                 sb.append(a.getSzomszed(sz).getNev()).append(",");
             }
+            sb.deleteCharAt(sb.length() - 1);
             sb.append(System.lineSeparator());
 
             sb.append("\t").append("targyak:");
@@ -355,6 +350,7 @@ public class Controller {
                 });
                 sb.append(",");
             }
+            if(!sz.getItems().isEmpty()) sb.deleteCharAt(sb.length() - 1);
             sb.append(System.lineSeparator());
 
             sb.append("\t").append("emberek:");
@@ -366,17 +362,23 @@ public class Controller {
                 });
                 sb.append(",");
             }
+            if (!sz.getEmberek().isEmpty()) sb.deleteCharAt(sb.length() - 1);
             sb.append(System.lineSeparator());
 
             sb.append("\t").append("allapot:");
             sb.append(sz.ragacsosE() ?  "ragacsos," : "tiszta,");
             sb.append(sz.mergezoE() ? "mergezo," : "");
             sb.append(sz.atkozottE() ? "atkozott," : "");
+            sb.deleteCharAt(sb.length() - 1);
             sb.append(System.lineSeparator()).append(System.lineSeparator());
         }
 
         System.out.print(sb);
-        ajtoMap.keySet().forEach(key -> System.out.println(key));
+        for (String key : ajtoMap.keySet()) {
+            System.out.println(key);
+            Ajto a = getAjto(key);
+            System.out.println(a.getOldalak());
+        }
     }
 
     public static void AjtoHasznalat(Ajto a, Ember e) {

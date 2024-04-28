@@ -27,7 +27,7 @@ public class Main extends Fuggvenyek {
         commandMap.put("play", Fuggvenyek::Play);
         commandMap.put("save", Fuggvenyek::Save);
         commandMap.put("load", Fuggvenyek::Load);
-        commandMap.put("ajtohasznalat", Fuggvenyek::AjtoHasznalat);
+        commandMap.put("ajtohasznal", Fuggvenyek::AjtoHasznalat);
         commandMap.put("hasznal", Fuggvenyek::TargyHasznal);
         commandMap.put("targyfelvesz", Fuggvenyek::TargyFelvesz);
         commandMap.put("targyeldob", Fuggvenyek::TargyEldob);
