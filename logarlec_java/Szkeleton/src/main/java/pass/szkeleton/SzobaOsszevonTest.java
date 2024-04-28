@@ -14,7 +14,7 @@ public class SzobaOsszevonTest {
         Map<String, Szoba> szobaMap = new HashMap<>();
 
         Scanner sc = new Scanner(System.in);
-        Labirintus l = new Labirintus("l");
+        Labirintus l = Labirintus.getInstance();
         for (int i = 1; i <= 3; i++) {
             Szoba sz = new Szoba(5, "sz" + i);
             szobaMap.put("sz" + i, sz);

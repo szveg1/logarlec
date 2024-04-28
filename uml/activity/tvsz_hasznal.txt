@@ -1,0 +1,13 @@
+@startuml
+scale 2480*3805
+hide footbox
+hide empty description
+
+start
+if (Használható még?) then (igen)
+	: Védelmek számát csökkenti;
+	: Immunitást ad az Oktatóval szemben;
+	stop;
+else (nem)
+stop
+@enduml

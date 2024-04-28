@@ -108,20 +108,45 @@ public class Controller {
                 String[] targyak = parts[1].split(",");
 
                 for(String targy : targyak){
-                    Targy t = switch(targy){
-                        case "camembert" -> new Camembert(targy + targyMap.size());
-                        case "hamislec" -> new HamisLec(targy + targyMap.size());
-                        case "hamismaszk" -> new HamisMaszk(targy + targyMap.size());
-                        case "hamistvsz" -> new HamisTVSZ(targy + targyMap.size());
-                        case "legfrissito" -> new Legfrissito(targy + targyMap.size());
-                        case "logarlec" -> new Logarlec(targy + targyMap.size());
-                        case "maszk" -> new Maszk(3,targy + targyMap.size());
-                        case "pohar" -> new Pohar(targy + targyMap.size());
-                        case "rongy" -> new Rongy(targy + targyMap.size());
-                        case "tranzisztor" -> new Tranzisztor(targy + targyMap.size());
-                        case "tvsz" -> new TVSZ(targy + targyMap.size());
-                        default -> null;
-                    };
+                    Targy t;
+                    switch (targy) {
+                        case "camembert":
+                            t = new Camembert(targy + targyMap.size());
+                            break;
+                        case "hamislec":
+                            t = new HamisLec(targy + targyMap.size());
+                            break;
+                        case "hamismaszk":
+                            t = new HamisMaszk(targy + targyMap.size());
+                            break;
+                        case "hamistvsz":
+                            t = new HamisTVSZ(targy + targyMap.size());
+                            break;
+                        case "legfrissito":
+                            t = new Legfrissito(targy + targyMap.size());
+                            break;
+                        case "logarlec":
+                            t = new Logarlec(targy + targyMap.size());
+                            break;
+                        case "maszk":
+                            t = new Maszk(3, targy + targyMap.size());
+                            break;
+                        case "pohar":
+                            t = new Pohar(targy + targyMap.size());
+                            break;
+                        case "rongy":
+                            t = new Rongy(targy + targyMap.size());
+                            break;
+                        case "tranzisztor":
+                            t = new Tranzisztor(targy + targyMap.size());
+                            break;
+                        case "tvsz":
+                            t = new TVSZ(targy + targyMap.size());
+                            break;
+                        default:
+                            t = null;
+                            break;
+                    }
                     targyMap.put(targy + targyMap.size(), t);
                     szobaTargyMap.get(szoba).add(t);
                     szoba.addItem(t);
@@ -291,7 +316,7 @@ public class Controller {
             List<Ajto> ajtok = sz.getAjtok();
             Collections.shuffle(ajtok);
             for (Ember e : sz.getEmberek()) {
-                e.controllerLeptet(ajtok.getFirst());
+                e.controllerLeptet(ajtok.get(0));
             }
         }
     }

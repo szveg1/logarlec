@@ -6,7 +6,7 @@ import pass.model.labyrinth.Labirintus;
 import java.util.Scanner;
 
 public class IdoLejartTest {
-    private static Labirintus l1 = new Labirintus("l1");
+    private static Labirintus l1 = Labirintus.getInstance();
 
     public static void test(){
         Scanner scanner = new Scanner(System.in);

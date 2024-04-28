@@ -1,0 +1,14 @@
+@startuml
+scale 2480*3805
+hide footbox
+hide empty description
+
+start
+if (Még bénult az oktató?) then (nem)
+  :Megtámadás végrehajtása a hallgatóval szemben;
+  :Kiválasztott hallgató támadásának végrehajtása;
+else (igen)
+  stop;
+endif
+stop
+@enduml

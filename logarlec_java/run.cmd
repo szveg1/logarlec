@@ -1,4 +1,5 @@
 @echo off
-cd Szkeleton
+cd Controller
 call mvnw.cmd exec:java
+cd ..
 pause

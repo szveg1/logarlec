@@ -1,0 +1,35 @@
+@startuml
+scale 2480*3805
+hide footbox
+hide empty description
+
+start
+if (Szomszédos a két szoba?) then (igen)
+	if(Ennek a szobának nagyobb a férőhelye?) then (igen)
+		:Új ferőhely ezzel megegyezik;
+	else (nem)
+		:Új férőhely a másikéval egyezik meg;
+	endif
+	if(Elfér a két szoba összes \nembere az egyesített szobában?) then (igen)
+		while(Van még ember a másik szobában?) is (igen)
+			:Átléptetjük;
+		endwhile (nincs)
+		while(Van még tárgy a másik szobában?) is (igen)
+			:Átpakoljuk;
+		endwhile (nincs)
+		while(Van még ajtó a másik szobában?) is (igen)
+			if (A két módosított szoba között van?) then (igen)
+				:Megsemmisítjük;
+			else (nem)
+				: Átrakjuk;
+			endif
+		endwhile (nincs)
+	else (nem)
+		stop;
+	endif
+	: Másik szobát megsemmisítjük;
+else (nem)
+	stop;
+endif
+stop
+@enduml

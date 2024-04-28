@@ -1,0 +1,20 @@
+@startuml
+scale 2480*3805
+hide footbox
+hide empty description
+
+start
+:Beállítja a méregidőt;
+:Beállítja a férőhelyet;
+while (Tárgyak fele át lett pakolva a régi szobából?) is (nem)
+	:Átrak még egy tárgyat az új szobába;
+endwhile (igen)
+while(Emberek fele át lett helyezve a régi szobából?) is (nem)
+	:Áthelyez még egy embert az új szobába;
+endwhile (igen)
+while(Ajtók fele át lett helyezve a régi szobából?) is (nem)
+	:Áthelyez még egy ajtót az új szobába;
+endwhile (igen)
+:  Létrehoz egy ajtót a két szoba között;
+stop
+@enduml

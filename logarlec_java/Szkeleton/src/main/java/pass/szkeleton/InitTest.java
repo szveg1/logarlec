@@ -21,7 +21,7 @@ public class InitTest {
         System.out.println("Kérem adja meg, hogy hány tárgy legyen:");
         int targySzam = scanner.nextInt();
 
-        Labirintus labirintus = new Labirintus("l");
+        Labirintus labirintus = Labirintus.getInstance();
         labirintus.init(szobaSzam, oktatoSzam, targySzam);
 
         System.out.println("Folytatashoz enter");

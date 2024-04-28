@@ -21,7 +21,7 @@ public class OktatoTamadTest {
     private static Map<String, Targy> targyMap = new HashMap<>();
     public static void init_test(int oktatoSzam, String hallgatoVedekezik) {
         CustomLogger.suppress();
-        labirintus = new Labirintus("l");
+        labirintus = Labirintus.getInstance();
         szoba = new Szoba(5, "sz");
         hallgato = new Hallgato("h");
         Rongy rongy = new Rongy("r");
