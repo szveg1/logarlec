@@ -102,13 +102,27 @@ public class Tesztelo {
         } else {
             System.out.println("Teszt sikeres: " + testShortName);
         }
+        
+        String expected = sb.toString();
+        String actual = baos.toString();
 
-        System.out.println("----------------------\n"+ "Elvart: \n" +
-                "----------------------\n");
-        System.out.println(sb);
-        System.out.println("----------------------\n" + "Kapott: \n" +
-                "----------------------\n");
-        System.out.println(baos + "----------------------\n");
+        String[] expectedLines = expected.split(System.lineSeparator());
+        String[] actualLines = actual.split(System.lineSeparator());
+
+        int maxLength = Math.max(expectedLines.length, actualLines.length);
+
+        System.out.println(String.format("%-50s %-50s", "Elvart:", "Kapott:"));
+        System.out.println(String.format("%-50s %-50s", "------", "------"));
+
+        for (int i = 0; i < maxLength; i++) {
+            String expectedLine = i < expectedLines.length ? expectedLines[i] : "";
+            String actualLine = i < actualLines.length ? actualLines[i] : "";
+            if (!expectedLine.equals(actualLine)) {
+                System.out.printf("*%-49s *%-49s%n", expectedLine, actualLine); // Highlight different lines with *
+            } else {
+                System.out.printf(" %-50s  %-50s%n", expectedLine, actualLine);
+            }
+        }
     }
 
     public static void rosszBemenet(String[] cmd){
