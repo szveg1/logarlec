@@ -63,7 +63,6 @@ public class Tesztelo {
             Controller.reset();
         }
     }
-
     public static void runTest(String test){
         File selectedTestDir = new File(test);
         File bemenet = new File(selectedTestDir, "bemenet.txt");

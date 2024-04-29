@@ -1,11 +1,6 @@
+infoszoba szoba0
+targyfelvesz legfrissito1 hallgato1
 infoszoba szoba1
-tick 1
 ajtohasznalat ajto1 hallgato1
 tick 1
-targyfelvesz legfrissíto hallgato1
-tick 1
-infoszoba szoba2
-tick 1
-ajtohasznalat ajto2 hallgato1
-tick1
-infoszoba szoba2
+infoszoba szoba1
