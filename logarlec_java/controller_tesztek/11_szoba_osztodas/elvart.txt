@@ -1,0 +1,44 @@
+a jatek betoltve.
+szobak:
+	szoba1
+	szomszedok:szoba2
+	targyak:tvsz1,pohar2
+	emberek:,,oktato1
+	allapot:tiszta
+
+	szoba2
+	szomszedok:szoba1
+	targyak:
+	emberek:
+	allapot:tiszta
+
+ajto1
+szoba1 nyithato: igen
+szoba2 nyithato: igen
+uj szoba jott letre: szoba3
+A szoba allapota:
+nem atkozott
+nem mergezett
+nem ragacsos
+A szobaban levo targyak:
+pohar1 :Pohar
+A szobaban levo emberek:
+oktato :Oktato
+oktato :Oktato
+A szobabol nyilo ajtok:
+ajto1 :Ajto
+ajto2 :Ajto
+A jatekbol hatralevo ido:
+0
+A szoba allapota:
+nem atkozott
+nem mergezett
+nem ragacsos
+A szobaban levo targyak:
+tvsz0 :TVSZ
+A szobaban levo emberek:
+oktato :Oktato
+A szobabol nyilo ajtok:
+ajto2 :Ajto
+A jatekbol hatralevo ido:
+0

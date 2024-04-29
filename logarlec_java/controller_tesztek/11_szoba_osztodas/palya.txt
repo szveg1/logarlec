@@ -1,4 +1,4 @@
-szoba1:szoba2,tiszta,1
+szoba1:szoba2,tiszta,3
 emberek:oktato,oktato,oktato
 targyak:tvsz,pohar
 

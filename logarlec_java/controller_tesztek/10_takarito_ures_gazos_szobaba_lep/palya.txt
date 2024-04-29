@@ -1,7 +1,7 @@
 szoba1:szoba2,tiszta,2
-emberek:hallgato
+emberek:takarito
 targyak:
 
 szoba2:szoba1,mergezo,1
-emberek:takarito
+emberek:
 targyak:
