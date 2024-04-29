@@ -1,0 +1,27 @@
+A tesztpalya jatek betoltve.
+Szobák:
+Szoba1:
+Szomszédok: Szoba0, Szoba2
+Emberek:
+Tárgyak: Légfrissítő
+Állapot: tiszta
+Szoba2:
+Szomszédok: Szoba1
+Emberek:
+Tárgyak:
+Állapot: Gázos
+A szoba állapota: Tiszta
+A szobában lévő tárgyak: legfrissitő
+A szobában lévő oktatók száma: -
+A szobából nyíló ajtók: Ajto1, Ajtó2
+Hallgató1: Átléptél az Ajto1 ajtón
+Hallgató1: Az Inventory-ba tetted a legffrissitő tárgyat.
+A szoba állapota: Gázos
+A szobában lévő tárgyak: -
+A szobában lévő oktatók száma: -
+A szobából nyíló ajtók: Ajto2
+Hallgató1: Átléptél az Ajto2 ajtón
+A szoba állapota: Tiszta
+A szobában lévő tárgyak: -
+A szobában lévő oktatók száma: -
+A szobából nyíló ajtók: Ajto2 

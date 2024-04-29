@@ -1,0 +1,7 @@
+szoba1:szoba2,tiszta,1
+emberek:hallgato
+targyak:
+
+szoba2:szoba1,tiszta,2
+emberek:oktato
+targyak:

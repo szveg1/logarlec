@@ -1,0 +1,9 @@
+a jatek betoltve.
+szobak:
+	szoba1
+	szomszedok
+	targyak:tvsz1
+	emberek:hallgato1
+	allapot:ragacsos
+
+hallgato1: a szoba ragacsos, a tvsz1 targy nem veheto fel.

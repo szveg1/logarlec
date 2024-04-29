@@ -1,0 +1,11 @@
+szoba0:szoba1,tiszta,1
+emberek:hallgato
+targyak:
+
+szoba1:szoba0,szoba2,tiszta,1
+emberek:
+targyak:legfrissíto1
+
+szoba2:szoba1,gazos,1
+emberek:
+targyak:

@@ -1,0 +1,7 @@
+szoba1:szoba2,tiszta,1
+emberek:oktato
+targyak:tvsz
+
+szoba2:szoba1,szoba3,szoba4,tiszta,1
+emberek:oktato,oktato
+targyak:logarlec

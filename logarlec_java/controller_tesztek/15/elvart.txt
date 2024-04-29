@@ -1,0 +1,19 @@
+a tesztpalya játék betoltve
+Szobák:
+Szoba1:
+Szomszédok:
+Emberek:
+Tárgyak: Hamis TVSZ, Hamis Logarléc, Hamis Maszk
+Állapot: gázos
+a palya legeneralva 1 fore
+kezdo szoba: szoba1
+a jatek elindult 2 korig tart
+hallgato1: az inventory-ba tetted a hamistvsz1 targyat.
+hallgato1: az inventory-ba tetted a hamislec1 targyat.
+hallgato1: az inventory-ba tetted a hamismaszk1 targyat.
+hallgato1 targyai: hamistvsz1, hamislec1, hamismaszk1
+itt van: szoba1
+eber
+hallgato1 targyai:
+itt van: szoba1
+ajult

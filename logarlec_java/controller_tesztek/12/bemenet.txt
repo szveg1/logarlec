@@ -1,0 +1,3 @@
+szobaosszevon szoba1 szoba2
+infoszoba szoba1
+infoSzoba szoba2

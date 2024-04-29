@@ -1,0 +1,27 @@
+A tesztpalya.txt jatek betoltve.
+Szobák:
+Szoba2:
+Szomszédok: Szoba1
+Emberek: Oktató1, Oktató2
+Tárgyak:
+Állapot: tiszta
+Szoba1:
+Szomszédok: Szoba2
+Emberek:
+Tárgyak:
+Állapot: tiszta
+A szoba állapota: tiszta
+A szobában lévő tárgyak:
+A szobában lévő oktatók száma: 2
+A szobából nyíló ajtók: 1
+hallgato1 targyai:
+Itt van: szoba1
+Eber
+A szomszéd szoba megtelt. Nem férsz be.
+A szoba állapota:
+A szobában lévő tárgyak:
+A szobában lévő oktatók száma: 2
+A szobából nyíló ajtók: 1
+hallgato1 targyai:
+Itt van: szoba1
+Eber

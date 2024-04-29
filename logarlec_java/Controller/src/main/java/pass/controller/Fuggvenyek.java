@@ -35,6 +35,9 @@ public class Fuggvenyek {
         Targy t = Controller.getTargy(cmd[1]);
         Ember e = Controller.getEmber(cmd[2]);
         Controller.Hasznal(t, e);
+        if(t instanceof Tranzisztor){
+
+        }
     }
 
     protected static void TargyEldob(String[] cmd) {

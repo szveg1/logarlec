@@ -1,0 +1,21 @@
+a tesztpalya.txt jatek betoltve
+szobak:
+szoba1
+szomszedok: szoba2
+targyak:tvsz1,pohar1
+emberek:oktato1,oktato2,oktato3
+allapot:tiszta
+szoba2
+szomszédok: szoba1
+targyak:
+emberek:
+allapot:tiszta
+uj szoba jott letre: szoba3
+a szoba allapota: tiszta
+a szobaban levo targyak: pohar
+a szobaban levo oktatok: oktato3
+a szobabol nyilo ajtok: ajto13
+a szoba allapota: tiszta
+a szobaban levo targyak: tvsz
+a szobaban levo oktatok: oktato1,oktato2
+a szobabol nyilo ajtok: ajto31, ajto32

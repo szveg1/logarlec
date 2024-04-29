@@ -1,0 +1,31 @@
+A tesztpalya jatek betoltve.
+Szobák:
+Szoba1:
+Szomszédok:
+Tárgyak:
+Emberek:
+Állapot: tiszta
+Szoba2
+Szomszédok: Szoba1
+Tárgyak:
+Emberek:
+Állapot: tiszta
+A szoba állapota: tiszta
+A szobában lévő tárgyak:
+A szobában lévő oktatók száma: 0
+A szobából nyíló ajtók: 0
+A szoba állapota: tiszta
+A szobában lévő tárgyak:
+A szobában lévő oktatók száma: 0
+A szobából nyíló ajtók: 1
+hallgato1 targyai:
+Itt van: szoba1
+Eber
+Az a1 ajtó egyirányú és nem tudsz rajta átmenni.
+A szoba állapota:
+A szobában lévő tárgyak:
+A szobában lévő oktatók száma: 0
+A szobából nyíló ajtók: 1
+hallgato1 targyai:
+Itt van: szoba1
+Eber

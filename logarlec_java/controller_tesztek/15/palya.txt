@@ -1,0 +1,3 @@
+szoba1:,gazos,1
+emberek:hallgato
+targyak:hamistvsz,hamislec,hamismaszk

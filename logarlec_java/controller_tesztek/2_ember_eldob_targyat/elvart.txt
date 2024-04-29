@@ -1,0 +1,9 @@
+a jatek betoltve.
+szobak:
+	szoba1
+	szomszedok
+	targyak:
+	emberek:hallgato1
+	allapot:tiszta
+
+hallgato1: az inventoryd ures nem dobhatsz el targyat.

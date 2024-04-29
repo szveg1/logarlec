@@ -534,7 +534,7 @@ public class Controller {
         if(currItemNum == prevItemNum && !e.inventoryTeleE()){
             System.out.println(emberNev + ": a szoba ragacsos, a " + targyNev + " targy nem veheto fel.");
         }
-        else{
+        else if(currItemNum > prevItemNum){
             System.out.println(emberNev + ": az inventorydba tetted a " + targyNev + " targyat.");
         }
 
@@ -548,7 +548,6 @@ public class Controller {
      */
     public static void Hasznal(Targy t, Ember e) {
         e.targyatHasznal(t);
-        System.out.println("");
     }
 
     /**

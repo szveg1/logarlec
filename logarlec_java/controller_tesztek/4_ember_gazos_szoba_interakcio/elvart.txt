@@ -1,0 +1,19 @@
+a tesztpalya.txt jatek betolve.
+szobak:
+szoba1
+szomszedok:szoba2
+targyak:
+emberek:
+allapot: tiszta
+szoba2
+szomszedok:szoba1
+targyak:
+emberek:
+allapot:mergezo
+a palya legeneralva 1 fore.
+kezdo szoba: szoba1
+a jatek elindult 1 korig tart
+hallgato1: atleptel az ajto12 ajton
+hallgato1 targyai:
+itt van: szoba2
+ajult

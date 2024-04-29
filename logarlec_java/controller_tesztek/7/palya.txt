@@ -1,0 +1,3 @@
+szoba1:,ragacsos,1
+emberek:hallgato
+targyak:tvsz

@@ -1,0 +1,11 @@
+a tesztpalya.txt jatek betoltve.
+szobak:
+szoba1
+szomszedok:
+targyak:hamislec1
+emberek:
+allapot: ragacsos
+a palya legeneralva 1 fore.
+kezdo szoba: szoba1
+a jatek elindult 1 korig tart
+hallgato1: az inventorydba tetted a hamislec targyat.

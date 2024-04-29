@@ -46,7 +46,7 @@ public class Tesztelo {
             String test = scanner.nextLine();
             if(test.equals(String.valueOf(testNum))) break;
             runTest(testDir.listFiles()[Integer.parseInt(test) - 1].getAbsolutePath());
-//            Controller.reset();
+            Controller.reset();
         }
     }
 
@@ -96,10 +96,12 @@ public class Tesztelo {
             System.out.println("Teszt sikeres: " + test);
         }
 
-        System.out.println("Elvart: ");
+        System.out.println("----------------------\n"+ "Elvart: \n" +
+                "----------------------\n");
         System.out.println(sb);
-        System.out.println("Kapott: ");
-        System.out.println(baos);
+        System.out.println("----------------------\n" + "Kapott: \n" +
+                "----------------------\n");
+        System.out.println(baos + "----------------------\n");
     }
 
     public static void rosszBemenet(String[] cmd){

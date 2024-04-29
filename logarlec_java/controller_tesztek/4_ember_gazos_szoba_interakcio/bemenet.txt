@@ -1,0 +1,2 @@
+ajtohasznalat ajto1 hallgato1
+infoember hallgato1

@@ -1,0 +1,14 @@
+a jatek betoltve.
+szobak:
+	szoba1
+	szomszedok
+	targyak:tvsz1,tvsz2,tvsz3,tvsz4,tvsz5,tvsz6
+	emberek:hallgato1
+	allapot:tiszta
+
+hallgato1: az inventorydba tetted a tvsz1 targyat.
+hallgato1: az inventorydba tetted a tvsz2 targyat.
+hallgato1: az inventorydba tetted a tvsz3 targyat.
+hallgato1: az inventorydba tetted a tvsz4 targyat.
+hallgato1: az inventorydba tetted a tvsz5 targyat.
+hallgato1: az inventoryd teli van, nem fer bele a tvsz6 targy.

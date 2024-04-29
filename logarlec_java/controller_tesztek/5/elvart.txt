@@ -1,0 +1,23 @@
+a jatek betoltve.
+szobak:
+	szoba1
+	szomszedok:szoba2
+	targyak:tranzisztor1,tranzisztor2
+	emberek:hallgato1
+	allapot:tiszta
+
+	szoba2
+	szomszedok:szoba1
+	targyak:
+	emberek:
+	allapot:tiszta
+
+ajto1
+szoba1 nyithato: igen
+szoba2 nyithato: igen
+hallgato1: az inventorydba tetted a tranzisztor1 targyat.
+hallgato1: az inventorydba tetted a tranzisztor2 targyat.
+hallgato1: a tranzisztor1 tranzisztort parositja a masik taskaban levo tranzisztorral.
+hallgato1: az inventorydbol a foldre dobtad a tranzisztor1 targyat.
+hallgato1: atleptel az ajto12 ajton.
+hallgato1: a tranzisztor2 parjahoz teleportalunk

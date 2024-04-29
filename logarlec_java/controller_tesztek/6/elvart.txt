@@ -1,0 +1,19 @@
+a jatek betoltve.
+szobak:
+	szoba1
+	szomszedok
+	targyak:camembert1
+	emberek:hallgato1
+	allapot:tiszta
+
+hallgato1: az inventorydba tetted a camembert1 targyat.
+A szoba allapota:
+nem atkozott
+mergezett
+nem ragacsos
+A szobaban levo targyak:
+A szobaban levo emberek:
+hallgato :Hallgato
+A szobabol nyilo ajtok:
+A jatekbol hatralevo ido:
+-1

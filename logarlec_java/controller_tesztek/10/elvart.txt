@@ -1,0 +1,20 @@
+a tesztplaya.txt jatek betoltve.
+szobak:
+szoba1
+szomszedok:szoba2
+targyak:
+emberek: takarito1
+allapot: tiszta
+szoba2
+szomszedok:szoba1
+targyak:
+emberek:
+allapot: mergezo
+a palya legeneralva 1 fore.
+kezdo szoba: szoba1
+a jatek elindult 1 korig tart
+Takarito1: Átléptél az Ajto12 ajtón
+A szoba állapota: Tiszta
+A szobában lévő tárgyak:
+A szobában lévő oktatók száma:
+A szobából nyíló ajtók: Ajto21

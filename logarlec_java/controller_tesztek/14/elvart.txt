@@ -1,0 +1,11 @@
+A tesztpalya jatek betoltve.
+Szobák:
+Szoba1:
+Szomszédok:
+Emberek:
+Tárgyak:
+Állapot: tiszta
+A pálya legenerálva 1 főre.
+Kezdő szoba: Szoba1
+A játék elindult, 1 körig tart.
+A játéknak vége, az idő lejárt.

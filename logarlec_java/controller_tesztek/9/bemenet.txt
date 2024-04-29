@@ -1,0 +1,14 @@
+targyfelvesz maszk1 hallgato1
+targyfelvesz tvsz1 hallgato1
+targyfelvesz maszk2 oktato1
+infoember hallgato1
+infoember hallgato2
+infoember oktato1
+infoember oktato2
+ajtohasznalat ajto1 takarito1
+infoember hallgato1
+infoember hallgato2
+infoember oktato1
+infoember oktato2
+infoszoba szoba1
+infoszoba szoba2
