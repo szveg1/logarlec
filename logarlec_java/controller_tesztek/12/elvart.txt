@@ -6,13 +6,13 @@ targyak:tvsz1,
 emberek:oktato1
 allapot:tiszta
 szoba2
-szomszédok: szoba1
-targyak:logarlec1
+szomszedok: szoba1
+targyak: logarlec1
 emberek: oktato2,oktato3
 allapot:tiszta
 szoba1 es szoba2 ossze lett vonva
-A szoba állapota:  Tiszta
-A szobában lévő tárgyak: tvsz1, logarlec1
-A szobában lévő oktatok: oktato1,oktato2,oktato3
-A szobából nyíló ajtók:
-Nincs ilyen szoba szoba2
+a szoba allapota: tiszta
+a szobaban levo targyak: tvsz1, logarlec1
+a szobaban levo oktatok: oktato1,oktato2,oktato3
+a szobabol nyilo ajtok:
+nincs ilyen szoba szoba2

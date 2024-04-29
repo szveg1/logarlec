@@ -1,11 +1,11 @@
 infoszoba szoba1
 tick 1
-ajtohasznalat ajto1 hallgató1
+ajtohasznalat ajto1 hallgato1
 tick 1
-targyfelvesz legfrissítő hallgató1
+targyfelvesz legfrissíto hallgato1
 tick 1
 infoszoba szoba2
 tick 1
-ajtohasznalat ajto2 hallgató1
+ajtohasznalat ajto2 hallgato1
 tick1
 infoszoba szoba2

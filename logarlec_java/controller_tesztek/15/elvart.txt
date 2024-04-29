@@ -1,10 +1,10 @@
 a tesztpalya játék betoltve
-Szobák:
-Szoba1:
-Szomszédok:
-Emberek:
-Tárgyak: Hamis TVSZ, Hamis Logarléc, Hamis Maszk
-Állapot: gázos
+szobak:
+szoba1:
+szomszedok:
+emberek:
+targyak: hamis tvsz, hamis logarlec, hamis maszk
+allapot: gazos
 a palya legeneralva 1 fore
 kezdo szoba: szoba1
 a jatek elindult 2 korig tart

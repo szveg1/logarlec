@@ -1,31 +1,31 @@
-A tesztpalya jatek betoltve.
-Szobák:
-Szoba1:
-Szomszédok:
-Tárgyak:
-Emberek:
-Állapot: tiszta
-Szoba2
-Szomszédok: Szoba1
-Tárgyak:
-Emberek:
-Állapot: tiszta
-A szoba állapota: tiszta
-A szobában lévő tárgyak:
-A szobában lévő oktatók száma: 0
-A szobából nyíló ajtók: 0
-A szoba állapota: tiszta
-A szobában lévő tárgyak:
-A szobában lévő oktatók száma: 0
-A szobából nyíló ajtók: 1
+a tesztpalya jatek betoltve.
+szobak:
+szoba1:
+szomszedok:
+targyak:
+emberek:
+allapot: tiszta
+szoba2
+szomszedok: Szoba1
+targyak:
+emberek:
+allapot: tiszta
+a szoba allapota: tiszta
+a szobában levo targyak:
+a szobában levo oktatok száma: 0
+a szobából nyílo ajtok: 0
+a szoba allapota: tiszta
+a szobaban levo targyak:
+a szobaban levo oktatok szama: 0
+a szobabol nyilo ajtok: 1
 hallgato1 targyai:
-Itt van: szoba1
-Eber
-Az a1 ajtó egyirányú és nem tudsz rajta átmenni.
-A szoba állapota:
-A szobában lévő tárgyak:
-A szobában lévő oktatók száma: 0
-A szobából nyíló ajtók: 1
+itt van: szoba1
+eber
+az a1 ajto egyiranyu es nem tudsz rajta atmenni.
+a szoba allapota:
+a szobaban levo targyak:
+a szobaban levo oktatok szama: 0
+a szobabol nyílo ajtok: 1
 hallgato1 targyai:
-Itt van: szoba1
-Eber
+itt van: szoba1
+eber

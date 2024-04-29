@@ -13,8 +13,8 @@ allapot: mergezo
 a palya legeneralva 1 fore.
 kezdo szoba: szoba1
 a jatek elindult 1 korig tart
-Takarito1: Átléptél az Ajto12 ajtón
-A szoba állapota: Tiszta
-A szobában lévő tárgyak:
-A szobában lévő oktatók száma:
-A szobából nyíló ajtók: Ajto21
+takarito1: atleptel az ajto12 ajton
+a szoba allapota: tiszta
+a szobaban levo targyak:
+a szobaban levo oktatok szama:
+a szobaból nyilo ajtok: ajto21
