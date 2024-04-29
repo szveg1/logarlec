@@ -16,7 +16,7 @@ tartalmazza a labirintusban található szobákat és irányítja azok osztódá
 egyesülését. A Labirintus osztály feladata a szobák hálózatának kezelése. */
 public class Labirintus implements Idozitett {
     private static String nev;
-    private static int timeLeft;
+    private static int timeLeft = 20;
     private static List<Szoba> szobak = new ArrayList<>();
     private static List<Ember> emberek = new ArrayList<>();
     private static Labirintus instance = null;
@@ -175,7 +175,7 @@ public class Labirintus implements Idozitett {
 
     public static void reset(){
         szobak.clear();
-        timeLeft = 0;
+        timeLeft = 20;
         instance = null;
     }
 

@@ -15,40 +15,19 @@ szobak:
 ajto1
 szoba2 nyithato: igen
 szoba1 nyithato: nem
-A szoba allapota:
-nem atkozott
-nem mergezett
-nem ragacsos
-A szobaban levo targyak:
-A szobaban levo emberek:
-hallgato :Hallgato
-A szobabol nyilo ajtok:
-A jatekbol hatralevo ido:
-0
-A szoba allapota:
-nem atkozott
-nem mergezett
-nem ragacsos
-A szobaban levo targyak:
-A szobaban levo emberek:
-A szobabol nyilo ajtok:
-ajto1 :Ajto
-A jatekbol hatralevo ido:
-0
-hallgato1 Targyai:
-szoba1
+hallgato1 targyai:
+itt van: szoba1
 eber
-hallgato1: atlep az ajto1 ajton, a null szobaba kerul.
 A szoba allapota:
 nem atkozott
 nem mergezett
 nem ragacsos
 A szobaban levo targyak:
 A szobaban levo emberek:
-A szobabol nyilo ajtok:
-ajto1 :Ajto
+A szobaban levo ajtok:
+ajto1
 A jatekbol hatralevo ido:
-0
-hallgato1 Targyai:
-null
+20
+hallgato1 targyai:
+itt van: szoba1
 eber

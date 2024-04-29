@@ -203,6 +203,7 @@ public class Szoba implements Idozitett {
         }
 
         int ujFerohely = Math.max(this.ferohely, masikSzoba.ferohely);
+        this.ferohely = ujFerohely;
         if(ujFerohely < this.getEmberek().size() + masikSzoba.getEmberek().size()){
             CustomLogger.info("Nem lehet egyesíteni a szobákat, mert nem lenne elég hely mindenkinek.");
             return;
@@ -220,14 +221,14 @@ public class Szoba implements Idozitett {
         }
 
         ajtok.addAll(masikSzoba.ajtok);
-        Ajto kozosAjto = null;
-        for(Ajto ajto : masikSzoba.ajtok){
+        ArrayList<Ajto> kozosAjtok = new ArrayList<>();
+        for(Ajto ajto : this.ajtok){
             if(ajto.getSzomszed(this) == masikSzoba){
-                kozosAjto = ajto;
-                break;
+                kozosAjtok.add(ajto);
             }
         }
-        removeAjto(kozosAjto);
+        for(Ajto kozosAjto : kozosAjtok)
+            removeAjto(kozosAjto);
 
         Labirintus.szobaKivesz(masikSzoba);
     }

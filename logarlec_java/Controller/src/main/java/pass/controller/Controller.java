@@ -27,7 +27,7 @@ public class Controller {
         Labirintus labirintus = Labirintus.getInstance();
 
         int randInt = random.ints(1, 5, 10).sum();
-        labirintus.setTimeLeft(/*randInt * 10*/ 100 / hallgatoDB);
+        labirintus.setTimeLeft(/*randInt * 10*/ /*100 / hallgatoDB*/ 20);
 
         Szoba kezdoSzoba = new Szoba(hallgatoDB, "kezdoszoba");
         szobaMap.put("kezdoszoba", kezdoSzoba);
@@ -98,6 +98,7 @@ public class Controller {
                     else if(kellEgyCounter % 2 == 1){
                         masikvege = false;
                     }
+                    ajto.setMerreNyilik(egyikvege, masikvege);
                 }
                 else{
                     ajto.setMerreNyilik(egyikvege, masikvege);
@@ -167,6 +168,7 @@ public class Controller {
             }
         }
         betoltesEredmenyKiir();
+        //Game.startGame();
     }
 
     /**
@@ -258,7 +260,8 @@ public class Controller {
     public static void AjtoHasznalat(Ajto a, Ember e) {
         Szoba ujSzoba = a.getSzomszed(e.getJelenlegiSzoba());
         a.hasznal(e);
-        System.out.println(getEmberNevFromMap(e) + ": atlep az " + getAjtoNevFromMap(a) + " ajton, a " + getSzobaNevFromMap(ujSzoba) + " szobaba kerul.");
+        if(ujSzoba != null)
+            System.out.println(getEmberNevFromMap(e) + ": atlep az " + getAjtoNevFromMap(a) + " ajton, a " + getSzobaNevFromMap(ujSzoba) + " szobaba kerul.");
     }
 
     /**
@@ -344,7 +347,7 @@ public class Controller {
         for (Ember e : sz.getEmberek()) {
             System.out.println(getEmberNevFromMap(e));
         }
-        System.out.println("A szobabol nyilo ajtok:");
+        System.out.println("A szobaban levo ajtok:");
         for (Ajto a : sz.getAjtok()) {
             System.out.println(getAjtoNevFromMap(a));
         }
@@ -364,10 +367,12 @@ public class Controller {
     /**
      * Minden játékmenet lépésnél hívódik meg, hogy frissítse a játék állapotát.
      */
-    public static void Tick() {
-        Labirintus.getInstance().tick();
-        Leptetes();
-        if (Labirintus.getInstance().getTimeLeft() == 0) System.out.println("a jateknak vege, az ido lejart.");
+    public static void Tick(int n) {
+        for (int i =0; i < n; i++) {
+            Labirintus.getInstance().tick();
+            Leptetes();
+            if (Labirintus.getInstance().getTimeLeft() == 0) System.out.println("a jateknak vege, az ido lejart.");
+        }
     }
     /**
      * A paraméterként kapott szoba felosztását végzi el a labirintusban.

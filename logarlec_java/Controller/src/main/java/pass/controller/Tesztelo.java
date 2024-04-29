@@ -121,16 +121,16 @@ public class Tesztelo {
 
         int maxLength = Math.max(expectedLines.length, actualLines.length);
 
-        System.out.printf("%-50s | %-50s%n", "Elvart:", "Kapott:");
-        System.out.printf("%-50s | %-50s%n", new String(new char[50]).replace("\0", "-"), new String(new char[50]).replace("\0", "-"));
+        System.out.printf("%-5s %-44s | %-44s%n", "", "Elvart:", "Kapott:");
+        System.out.printf("%-5s %-44s | %-44s%n", "", new String(new char[44]).replace("\0", "-"), new String(new char[44]).replace("\0", "-"));
 
         for (int i = 0; i < maxLength; i++) {
             String expectedLine = i < expectedLines.length ? expectedLines[i] : "";
             String actualLine = i < actualLines.length ? actualLines[i] : "";
             if (!expectedLine.equals(actualLine)) {
-                System.out.printf("%-49s | *%-49s%n", expectedLine, actualLine); // Highlight different lines with *
+                System.out.printf("%-5d *%-43s | *%-43s%n", i+1, expectedLine, actualLine); // Highlight different lines with *
             } else {
-                System.out.printf(" %-50s | %-50s%n", expectedLine, actualLine);
+                System.out.printf("%-5d  %-44s | %-44s%n", i+1, expectedLine, actualLine);
             }
         }
     }

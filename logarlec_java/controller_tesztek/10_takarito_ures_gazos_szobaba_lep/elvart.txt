@@ -21,10 +21,10 @@ mergezett
 nem ragacsos
 A szobaban levo targyak:
 A szobaban levo emberek:
-A szobabol nyilo ajtok:
-ajto1 :Ajto
+A szobaban levo ajtok:
+ajto1
 A jatekbol hatralevo ido:
-0
+20
 takarito1: atlep az ajto1 ajton, a szoba2 szobaba kerul.
 A szoba allapota:
 nem atkozott
@@ -32,8 +32,8 @@ nem mergezett
 nem ragacsos
 A szobaban levo targyak:
 A szobaban levo emberek:
-takarito :Takarito
-A szobabol nyilo ajtok:
-ajto1 :Ajto
+takarito1
+A szobaban levo ajtok:
+ajto1
 A jatekbol hatralevo ido:
-0
+20

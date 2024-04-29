@@ -1,6 +1,9 @@
+infoszoba szoba1
 targyfelvesz hamistvsz1 hallgato1
-targyfelvesz hamislec1 hallgato1
-targyfelvesz hamismaszk1 hallgato1
+targyfelvesz hamislec2 hallgato1
+targyfelvesz hamismaszk3 hallgato1
 infoember hallgato1
 tick
+ajtohasznalat ajto1 hallgato1
+infoszoba szoba2
 infoember hallgato1

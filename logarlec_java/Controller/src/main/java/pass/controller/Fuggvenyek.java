@@ -56,7 +56,10 @@ public class Fuggvenyek {
     }
 
     protected static void Tick(String[] cmd) {
-        Controller.Tick();
+        int n = 1;
+        if (cmd.length > 1)
+            n = Integer.parseInt(cmd[1]);
+        Controller.Tick(n);
     }
 
     public static void InfoEmber(String[] cmd) {

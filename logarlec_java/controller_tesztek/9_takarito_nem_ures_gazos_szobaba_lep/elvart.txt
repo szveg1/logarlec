@@ -3,7 +3,7 @@ szobak:
 	szoba1
 	szomszedok:szoba2
 	targyak:maszk1
-	emberek:takarito1,hallgato1
+	emberek:takarito1,hallgato1,hallgato2
 	allapot:tiszta
 
 	szoba2
@@ -17,23 +17,32 @@ szoba1 nyithato: igen
 szoba2 nyithato: igen
 hallgato1: az inventorydba tetted a maszk1 targyat.
 hallgato1: atlep az ajto1 ajton, a szoba2 szobaba kerul.
+hallgato2: atlep az ajto1 ajton, a szoba2 szobaba kerul.
 A szoba allapota:
 nem atkozott
 mergezett
 nem ragacsos
 A szobaban levo targyak:
 A szobaban levo emberek:
-hallgato :Hallgato
-A szobabol nyilo ajtok:
-ajto1 :Ajto
+hallgato1
+hallgato2
+A szobaban levo ajtok:
+ajto1
 A jatekbol hatralevo ido:
-0
-hallgato1 Targyai:
-maszk0 :Maszk
-szoba2
+20
+hallgato1 targyai:maszk1
+itt van: szoba2
 eber
 takarito1: atlep az ajto1 ajton, a szoba2 szobaba kerul.
-hallgato1 Targyai:
-maszk0 :Maszk
-szoba1
-eber
+A szoba allapota:
+nem atkozott
+nem mergezett
+nem ragacsos
+A szobaban levo targyak:
+A szobaban levo emberek:
+hallgato2
+takarito1
+A szobaban levo ajtok:
+ajto1
+A jatekbol hatralevo ido:
+20

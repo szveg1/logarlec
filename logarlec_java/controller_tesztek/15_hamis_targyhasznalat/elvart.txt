@@ -1,19 +1,52 @@
-a tesztpalya játék betoltve
+a jatek betoltve.
 szobak:
-szoba1:
-szomszedok:
-emberek:
-targyak: hamis tvsz, hamis logarlec, hamis maszk
-allapot: gazos
-a palya legeneralva 1 fore
-kezdo szoba: szoba1
-a jatek elindult 2 korig tart
-hallgato1: az inventory-ba tetted a hamistvsz1 targyat.
-hallgato1: az inventory-ba tetted a hamislec1 targyat.
-hallgato1: az inventory-ba tetted a hamismaszk1 targyat.
-hallgato1 targyai: hamistvsz1, hamislec1, hamismaszk1
+	szoba1
+	szomszedok:szoba2
+	targyak:hamistvsz1,hamislec2,hamismaszk3
+	emberek:hallgato1
+	allapot:tiszta
+
+	szoba2
+	szomszedok:szoba1
+	targyak:
+	emberek:
+	allapot:tiszta,mergezo
+
+ajto1
+szoba1 nyithato: igen
+szoba2 nyithato: igen
+A szoba allapota:
+nem atkozott
+nem mergezett
+nem ragacsos
+A szobaban levo targyak:
+hamistvsz1
+hamislec2
+hamismaszk3
+A szobaban levo emberek:
+hallgato1
+A szobaban levo ajtok:
+ajto1
+A jatekbol hatralevo ido:
+20
+hallgato1: az inventorydba tetted a hamistvsz1 targyat.
+hallgato1: az inventorydba tetted a hamislec2 targyat.
+hallgato1: az inventorydba tetted a hamismaszk3 targyat.
+hallgato1 targyai:hamistvsz1,hamislec2,hamismaszk3
 itt van: szoba1
 eber
-hallgato1 targyai:
-itt van: szoba1
+hallgato1: atlep az ajto1 ajton, a szoba2 szobaba kerul.
+A szoba allapota:
+nem atkozott
+mergezett
+nem ragacsos
+A szobaban levo targyak:
+A szobaban levo emberek:
+hallgato1
+A szobaban levo ajtok:
+ajto1
+A jatekbol hatralevo ido:
+19
+hallgato1 targyai:hamistvsz1,hamislec2,hamismaszk3
+itt van: szoba2
 ajult

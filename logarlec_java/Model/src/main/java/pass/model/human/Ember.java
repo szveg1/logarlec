@@ -34,13 +34,13 @@ public abstract class Ember implements TargyVisitor, Idozitett {
     private boolean gazEllenVedett = false;
     private int ajult = 0;
 
-    private boolean lepett = false;
+    protected boolean lepett = false;
 
     public void setLepett(boolean b) {
         this.lepett = b;
     }
     public boolean getLepett() {
-        return lepett;
+        return true;
     }
 
     public void targyatFelvesz(Targy targy) {

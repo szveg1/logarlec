@@ -1,27 +1,52 @@
-a tesztpalya jatek betoltve.
+a jatek betoltve.
 szobak:
-szoba1:
-szomszedok: szoba0, szoba2
-emberek:
-targyak: legfrissito
-allapot: tiszta
-szoba2:
-szomszedok: szoba1
-emberek:
-targyak:
-allapot: gazos
-a szoba allapota: tiszta
-a szobaban levo targyak: legfrissito
-a szobaban levo oktatok szama:
-a szobabol nyiló ajtok: ajto1, ajto2
-hallgato1: atleptel az ajto1 ajton
-hallgato1: az inventory-ba tetted a legfrissito targyat.
-a szoba allapota: gazos
-a szobaban levo targyak:
-a szobaban levő oktatok szama:
-a szobabol nyilo ajtok: ajto2
-hallgato1: atleptel az ajto2 ajton
-a szoba allapota: tiszta
-a szobaban levo targyak:
-a szobaban levo oktatak szama:
-a szobaból nyilo ajtak: ajto2
+	szoba0
+	szomszedok:szoba1
+	targyak:legfrissito1
+	emberek:hallgato1
+	allapot:tiszta
+
+	szoba1
+	szomszedok:szoba0
+	targyak:
+	emberek:
+	allapot:tiszta,mergezo
+
+ajto1
+szoba0 nyithato: igen
+szoba1 nyithato: igen
+A szoba allapota:
+nem atkozott
+nem mergezett
+nem ragacsos
+A szobaban levo targyak:
+legfrissito1
+A szobaban levo emberek:
+hallgato1
+A szobaban levo ajtok:
+ajto1
+A jatekbol hatralevo ido:
+20
+hallgato1: az inventorydba tetted a legfrissito1 targyat.
+A szoba allapota:
+nem atkozott
+mergezett
+nem ragacsos
+A szobaban levo targyak:
+A szobaban levo emberek:
+A szobaban levo ajtok:
+ajto1
+A jatekbol hatralevo ido:
+20
+hallgato1: atlep az ajto1 ajton, a szoba1 szobaba kerul.
+A szoba allapota:
+nem atkozott
+nem mergezett
+nem ragacsos
+A szobaban levo targyak:
+A szobaban levo emberek:
+hallgato1
+A szobaban levo ajtok:
+ajto1
+A jatekbol hatralevo ido:
+19

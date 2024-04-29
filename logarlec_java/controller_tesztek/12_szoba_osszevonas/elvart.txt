@@ -21,11 +21,13 @@ nem atkozott
 nem mergezett
 nem ragacsos
 A szobaban levo targyak:
-tvsz0 :TVSZ
+tvsz1
+logarlec2
 A szobaban levo emberek:
-oktato :Oktato
-A szobabol nyilo ajtok:
-ajto1 :Ajto
+oktato1
+oktato2
+oktato3
+A szobaban levo ajtok:
 A jatekbol hatralevo ido:
-0
+20
 nincs ilyen szoba: szoba2

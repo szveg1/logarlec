@@ -14,7 +14,7 @@ mergezett
 nem ragacsos
 A szobaban levo targyak:
 A szobaban levo emberek:
-hallgato :Hallgato
-A szobabol nyilo ajtok:
+hallgato1
+A szobaban levo ajtok:
 A jatekbol hatralevo ido:
-0
+20

@@ -37,6 +37,9 @@ public class Hallgato extends Ember {
         this.eletbenVan = eletbenVan;
     }
 
+    @Override
+    public boolean getLepett() {return lepett;}
+
     /**
      * A függvény meglátogatja a megadott logarlécet
      * és a meghívja a labirintus játékNyert függvényét

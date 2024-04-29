@@ -13,7 +13,7 @@ public class Ajto {
     private Szoba egyikOldal;
     private Szoba masikOldal;
     private boolean lathato = true;
-    private Map<Szoba, Boolean> merreNyilik = new HashMap<>();
+    private Map<Szoba, Boolean> merrolNyilik = new HashMap<>();
     private String nev;
 
     /**
@@ -36,8 +36,8 @@ public class Ajto {
     public Ajto(Szoba egyikOldal, Szoba masikOldal, String nev){
         this.egyikOldal = egyikOldal;
         this.masikOldal = masikOldal;
-        merreNyilik.put(egyikOldal, true);
-        merreNyilik.put(masikOldal, true);
+        merrolNyilik.put(egyikOldal, false);
+        merrolNyilik.put(masikOldal, false);
         this.nev = nev;
     }
 
@@ -71,7 +71,7 @@ public class Ajto {
         }
         Szoba jelenlegiSzoba =  e.getJelenlegiSzoba();
         Szoba hovaMegy = (egyikOldal == jelenlegiSzoba) ? masikOldal : egyikOldal;
-        if(merreNyilik.get(hovaMegy)){
+        if(merrolNyilik.get(jelenlegiSzoba)){
             e.masikSzobabaLep(hovaMegy);
             //jelenlegiSzoba.emberKivesz(e);
         }
@@ -83,9 +83,9 @@ public class Ajto {
      * @param b2 A másik irányba nyílik-e
      */
     public void setMerreNyilik(boolean b1, boolean b2) {
-        merreNyilik.clear();
-        merreNyilik.put(egyikOldal, b1);
-        merreNyilik.put(masikOldal, b2);
+        merrolNyilik.clear();
+        merrolNyilik.put(egyikOldal, b1);
+        merrolNyilik.put(masikOldal, b2);
     }
 
     /**
@@ -139,11 +139,11 @@ public class Ajto {
      */
     public Szoba getSzomszed(Szoba sz){
         if (sz == egyikOldal){
-            if(merreNyilik.get(egyikOldal)) return masikOldal;
+            if(merrolNyilik.get(egyikOldal)) return masikOldal;
             else return null;
         }
         else if (sz == masikOldal){
-            if(merreNyilik.get(masikOldal)) return egyikOldal;
+            if(merrolNyilik.get(masikOldal)) return egyikOldal;
             else return null;
         }
         return null;

@@ -3,7 +3,7 @@ szobak:
 	szoba1
 	szomszedok:szoba2
 	targyak:tvsz1,pohar2
-	emberek:,,oktato1
+	emberek:oktato1,oktato2,oktato3
 	allapot:tiszta
 
 	szoba2
@@ -21,24 +21,24 @@ nem atkozott
 nem mergezett
 nem ragacsos
 A szobaban levo targyak:
-pohar1 :Pohar
+pohar2
 A szobaban levo emberek:
-oktato :Oktato
-oktato :Oktato
-A szobabol nyilo ajtok:
-ajto1 :Ajto
-ajto2 :Ajto
+oktato2
+oktato3
+A szobaban levo ajtok:
+ajto1
+ajto2
 A jatekbol hatralevo ido:
-0
+20
 A szoba allapota:
 nem atkozott
 nem mergezett
 nem ragacsos
 A szobaban levo targyak:
-tvsz0 :TVSZ
+tvsz1
 A szobaban levo emberek:
-oktato :Oktato
-A szobabol nyilo ajtok:
-ajto2 :Ajto
+oktato1
+A szobaban levo ajtok:
+ajto2
 A jatekbol hatralevo ido:
-0
+20

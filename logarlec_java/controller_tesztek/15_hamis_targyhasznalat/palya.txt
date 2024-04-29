@@ -1,3 +1,7 @@
-szoba1:,gazos,1
+szoba1:szoba2,tiszta,1
 emberek:hallgato
 targyak:hamistvsz,hamislec,hamismaszk
+
+szoba2:szoba1,mergezo,1
+emberek:
+targyak:
