@@ -16,6 +16,17 @@ szobának a tulajdonágait tárolja  */
 public class Szoba implements Idozitett {
     // Csak szkeletonhoz-------------
     private String nev;
+
+    private int meregIdo;
+    private boolean atkozott;
+    private boolean tiszta = true;
+    private int tisztanBelepok;
+    private boolean ragacsos = false;
+    private int ferohely;
+    private List<Targy> targyak;
+    private List<Ember> bentlevok;
+    private List<Ajto> ajtok;
+
     public String getNev() {
         return nev;
     }
@@ -38,10 +49,12 @@ public class Szoba implements Idozitett {
             // Szomszédos szobák kiírása
             for (int i = 0; i < ajtok.size(); i++){
                 Szoba szomszed = ajtok.get(i).getSzomszed(this);
+                boolean voltSzomszed = false;
                 if (szomszed != null) {
                     fw.append(szomszed.getNev());
+                    voltSzomszed = true;
                 }
-                if(i != ajtok.size() - 1){
+                if(voltSzomszed){
                     fw.append(" ");
                 }
             }
@@ -68,21 +81,11 @@ public class Szoba implements Idozitett {
             for (int i = 0; i < emberek_list.size(); i++){
                 fw.append(emberek_list.get(i));
                 if(i != emberek_list.size() - 1){
-                    fw.append(" ");
+                    fw.append(",");
                 }
             }
             fw.append("\n");
-//            // Tárgyak kiírása
-//            fw.append("targyak:");
-//            for (int i = 0; i < targyak.size(); i++){
-//                if(!targyak_list.isEmpty()) {
-//                    fw.append(targyak_list.get(i));
-//                }
-//
-//                if(i != targyak.size() - 1){
-//                    fw.append(",");
-//                }
-//            }
+
             // Tárgyak kiírása
             fw.append("targyak:");
             for (int i = 0; i < targyak_list.size(); i++){
@@ -106,15 +109,6 @@ public class Szoba implements Idozitett {
     }
 
     // -------------------------------
-    private int meregIdo;
-    private boolean atkozott;
-    private boolean tiszta = true;
-    private int tisztanBelepok;
-    private boolean ragacsos = false;
-    private int ferohely;
-    private List<Targy> targyak;
-    private List<Ember> bentlevok;
-    private List<Ajto> ajtok;
 
     Map<Oktato, List<Hallgato>> immunisok = new HashMap<>();
 
@@ -151,7 +145,7 @@ public class Szoba implements Idozitett {
     public Szoba(Szoba masikSzoba) {
         this.meregIdo = masikSzoba.meregIdo;
         this.ferohely = masikSzoba.ferohely;
-        this.nev = "ujSzoba";
+        this.nev = "szoba" + Labirintus.getInstance().getSzobak().size();
         // Szoba targyainak fele masik szobaba
         int targyakFele = masikSzoba.targyak.size() / 2;
         ArrayList<Targy> felezettTargyak = new ArrayList<>(masikSzoba.targyak.subList(0, targyakFele));
@@ -177,7 +171,13 @@ public class Szoba implements Idozitett {
         for(int i = 0; i < ajtokFele; ++i) {
             this.ajtok.add(masikSzoba.ajtok.get(0));
         }
-        Ajto ujAjto = new Ajto(this, masikSzoba, "ujAjto");
+        int n = 0;
+        for (Szoba sz : Labirintus.getInstance().getSzobak()) {
+            for (Ajto a : sz.getAjtok()) {
+                ++n;
+            }
+        }
+        Ajto ujAjto = new Ajto(this, masikSzoba, "ajto" + n);
         masikSzoba.ajtok.removeAll(this.ajtok);
 
         this.ajtok.add(ujAjto);
@@ -242,18 +242,42 @@ public class Szoba implements Idozitett {
     }
 
     /**
-     * A függvény visszaadja hogy mérgező e a szoba
+     * Getter függvény ami visszaadja hogy mérgező e a szoba
      * @return Visszaadja hogy mérgező e a szoba
      */
     public boolean mergezoE() {
         return meregIdo > 0;
     }
+
+    /**
+     * Getter függvény ami visszaadja hogy ragacsos e a szoba
+     * @return Visszaadja hogy ragacsos e a szoba
+     */
     public boolean ragacsosE() {
         return ragacsos;
     }
 
+    /**
+     * Getter függvény ami visszaadja hogy atkozott e a szoba
+     * @return Visszaadja hogy atkozott e a szoba
+     */
     public boolean atkozottE() {
         return atkozott;
+    }
+
+
+    /**
+     * Setter függvény ami a szobát meg átkozza
+     */
+    public void megAtkoz() {
+        this.atkozott = true;
+    }
+
+    /**
+     * Setter függvény ami a szobát átkozatlanná teszi
+     */
+    public void demonUzes() {
+        this.atkozott = false;
     }
 
     /**
@@ -360,6 +384,19 @@ public class Szoba implements Idozitett {
     }
 
     /**
+     * A függvény, a szobából kiutat keres
+     * @param szoba - Szoba, amibol ki szeretnénk jutni
+     */
+    public boolean vaneKijarat(Szoba szoba){
+        for(Ajto ajto : ajtok){
+            if(ajto.getSzomszed(szoba) != null){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * A függvény elájulttá teszi a jelenlévő embereket, amíg a szoba mérgező
      */
     @Override
@@ -381,6 +418,9 @@ public class Szoba implements Idozitett {
         }
     }
 
+    /**
+     * Setter függvény tisztává teszi a szobát
+     */
     public void setTiszta(boolean tiszta) {
         this.tiszta = tiszta;
     }

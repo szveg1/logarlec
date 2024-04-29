@@ -34,6 +34,12 @@ public abstract class Ember implements TargyVisitor, Idozitett {
     private boolean gazEllenVedett = false;
     private int ajult = 0;
 
+    private boolean lepett = false;
+
+    public void setLepett(boolean b) {
+        this.lepett = b;
+    }
+
     public void targyatFelvesz(Targy targy) {
         if(!jelenlegiSzoba.getItems().contains(targy))
             return;
@@ -124,6 +130,7 @@ public abstract class Ember implements TargyVisitor, Idozitett {
         for (Targy targy : inventory) {
             targy.szobaValtasrolErtesit(ujSzoba);
         }
+        setLepett(true);
         return true;
     }
 
@@ -175,7 +182,12 @@ public abstract class Ember implements TargyVisitor, Idozitett {
         }
         if(ajult > 0)
             ajult--;
+        setLepett(false);
     }
 
     public void controllerLeptet(Ajto a) { }
+
+    public Hallgato tamadasElszenved(Oktato oktato) { return null;}
+
+    public boolean getEletbenVan() { return true; }
 }

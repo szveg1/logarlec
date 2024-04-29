@@ -83,6 +83,10 @@ public class Hallgato extends Ember {
         CustomLogger.info(this + (tudVedekezni ? " tud védekezni a " + rongy + " segítségével." : " nem tud védekezni, mert a " + rongy + " már nem használható."));
     }
 
+    /**
+     * A függvény megmondja hogy van e még hely a hallgató inventoryban
+     * @return boolean - igaz vagy hamis hogy az inventory tele van
+     */
     @Override
     public boolean inventoryTeleE() {
         int MAX_INVENTORY_MERET = 5;
@@ -96,7 +100,7 @@ public class Hallgato extends Ember {
      * hogy van-e védelme ezekkel szemben.
      * @param oktato - a támadó oktató
      */
-    public void tamadasElszenved(Oktato oktato) {
+    public Hallgato tamadasElszenved(Oktato oktato) {
         int hasznalniKivant = 0;
         for(Targy targy : inventory) {
             targy.accept(this);
@@ -111,12 +115,20 @@ public class Hallgato extends Ember {
             CustomLogger.info(this + " nem tudott védekezni, ezért meghalt.");
             meghal();
         }
+        return this;
     }
 
+    /**
+     * A függvény a hallgatót megöli
+     */
     private void meghal() {
         setEletbenVan(false);
     }
 
+    /**
+     * A függvény a hallgatónál lévő árgyakonmeghívja a tick függvény.
+     * Tehát a tárgyakon is lép az idő
+     */
     @Override
     public void tick() {
         super.tick();

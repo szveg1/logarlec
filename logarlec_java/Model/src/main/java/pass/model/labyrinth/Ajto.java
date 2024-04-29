@@ -16,6 +16,10 @@ public class Ajto {
     private Map<Szoba, Boolean> merreNyilik = new HashMap<>();
     private String nev;
 
+    /**
+     * Getter fügvény ami visszaadja az ajtó két oldalán lévő szobák neveit
+     * @return List<String>, a szobák neveit tároló lista
+     */
     public List<String> getOldalak() {
         List<String> oldalak = new ArrayList<>();
         oldalak.add(egyikOldal.getNev());
@@ -45,6 +49,11 @@ public class Ajto {
         return nev + " :Ajto";
     }
 
+    /**
+     * Getter fügvény ami visszaadja az ajtó nevét
+     * @return String, az ajtó neve
+     */
+    public String getNev() {return nev;}
 
     /**
      * A függvény ha látható az ajtó akkor azpn keresztül a következő
@@ -53,23 +62,18 @@ public class Ajto {
      */
     public void hasznal(Ember e){
         if(e.getJelenlegiSzoba() != egyikOldal && e.getJelenlegiSzoba() != masikOldal) {
-            System.out.println("NEM OTT VAN AZ AJTO AHOL A HALLGATO KOCSOG");
+            System.out.println("ezt az ajtot nem tudod ebbol a szobabol hasznalni");
             return;
         }
         if(!lathato) {
-            CustomLogger.info(e + " nem látja " + this +"-t, nem tud átmenni.");
-            System.out.println(e + " nem látja " + this +"-t, nem tud átmenni.");
+            System.out.println(e + " nem latja " + this +"-t, nem tud atmenni.");
             return;
         }
         Szoba jelenlegiSzoba =  e.getJelenlegiSzoba();
         Szoba hovaMegy = (egyikOldal == jelenlegiSzoba) ? masikOldal : egyikOldal;
         if(merreNyilik.get(hovaMegy)){
             e.masikSzobabaLep(hovaMegy);
-            jelenlegiSzoba.emberKivesz(e);
-        }
-        else {
-            CustomLogger.info(this + " nem nyílik ebbe az irányba, " + e + " nem tud átmenni.");
-            System.out.println(this + " nem nyílik ebbe az irányba, " + e + " nem tud átmenni.");
+            //jelenlegiSzoba.emberKivesz(e);
         }
     }
 
@@ -135,19 +139,30 @@ public class Ajto {
      */
     public Szoba getSzomszed(Szoba sz){
         if (sz == egyikOldal){
-            return masikOldal;
+            if(merreNyilik.get(egyikOldal)) return masikOldal;
+            else return null;
         }
         else if (sz == masikOldal){
-            return egyikOldal;
+            if(merreNyilik.get(masikOldal)) return egyikOldal;
+            else return null;
         }
         return null;
     }
 
+
+    /**
+     * Az ajtó osztály tick függvénye ami az ajtók időtől függő funkcioit hivja meg
+     */
     public void tick(){
         villogas();
     }
 
+
+    /**
+     * Két ajtót hasonlít össze
+     */
     public boolean equals(Ajto masikAjto){
-        return ((this.egyikOldal == masikAjto.egyikOldal && this.masikOldal == masikAjto.masikOldal) || (this.egyikOldal == masikAjto.masikOldal && this.masikOldal == masikAjto.masikOldal));
+        return masikAjto.egyikOldal.equals(egyikOldal) && masikAjto.masikOldal.equals(masikOldal) ||
+                masikAjto.egyikOldal.equals(masikOldal) && masikAjto.masikOldal.equals(egyikOldal);
     }
 }

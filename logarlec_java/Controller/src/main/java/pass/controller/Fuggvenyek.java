@@ -9,6 +9,7 @@ import java.io.Console;
 public class Fuggvenyek {
 
     protected static void Play(String[] cmd) {
+        Controller.reset();
         int db = Integer.parseInt(cmd[1]);
         Controller.Play(db);
     }
@@ -19,6 +20,7 @@ public class Fuggvenyek {
     }
 
     protected static void Load(String[] cmd) {
+        Controller.reset();
         String file = cmd[1];
         Controller.Load(file);
     }
@@ -58,11 +60,35 @@ public class Fuggvenyek {
 
     public static void InfoEmber(String[] cmd) {
         Ember e = Controller.getEmber(cmd[1]);
-        if (e == null) {
+        if (!e.getEletbenVan()) {
             System.out.println("nincs ilyen ember: " + cmd[1]);
         } else {
             System.out.println(cmd[1] + " Targyai:");
             Controller.InfoEmber(e);
         }
     }
+
+    public static void InfoSzoba(String[] cmd) {
+        Szoba sz = Controller.getSzoba(cmd[1]);
+        if (sz == null) {
+            System.out.println("nincs ilyen szoba: " + cmd[1]);
+        } else {
+            Controller.InfoSzoba(sz);
+        }
+    }
+    public static void reset(String[] cmd){
+        Controller.reset();
+    }
+
+    public static void SzobaFeloszt(String[] cmd) {
+        Szoba sz = Controller.getSzoba(cmd[1]);
+        Controller.SzobaFeloszt(sz);
+    }
+
+    public static void SzobaOsszevon(String[] cmd) {
+        Szoba sz1 = Controller.getSzoba(cmd[1]);
+        Szoba sz2 = Controller.getSzoba(cmd[2]);
+        Controller.SzobaOsszevon(sz1, sz2);
+    }
+
 }

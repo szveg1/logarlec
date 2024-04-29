@@ -22,6 +22,8 @@ public class Labirintus implements Idozitett {
 
     // HIANYOS!!!!
     private static List<Szoba> szobak = new ArrayList<>();
+
+    public static Szoba menny = new Szoba(Integer.MAX_VALUE, "Menny");
     private static Labirintus instance = null;
     private Labirintus() {
         this.nev = "l";
@@ -58,7 +60,6 @@ public class Labirintus implements Idozitett {
         timeLeft = t;}
 
 
-
     /**
      * Getter függvény ami beállítja a játékból hátralévő időt
      */
@@ -69,10 +70,11 @@ public class Labirintus implements Idozitett {
      * A függvény egy megadott szobát felbont több szobára
      * @param szoba - Kettéosztandó szoba
      */
-    public void szobaFeloszt(Szoba szoba) {
+    public Szoba szobaFeloszt(Szoba szoba) {
         Szoba ujSzoba = new Szoba(szoba);
         CustomLogger.info(this + " új szobával rendelkezik: " + ujSzoba);
         szobak.add(ujSzoba);
+        return ujSzoba;
     }
 
     /**
@@ -83,8 +85,15 @@ public class Labirintus implements Idozitett {
     public void szobakOsszevon(Szoba sz1, Szoba sz2){
         sz1.egyesit(sz2);
     }
+
+    /**
+     * A függvény a CostumLogger segítségével kiírja hogy nyerték a játékot a hallgatók
+     */
     public static void jatekNyert(){CustomLogger.info("Játék vége, nyertek a Hallgatók");}
+
+    
     public static void jatekVeszt(){CustomLogger.info("Játék vége, vesztettek a Hallgatók");}
+
     public List<Szoba> getSzobak() {
         return szobak;
     }
@@ -166,5 +175,10 @@ public class Labirintus implements Idozitett {
     public static void szobaKivesz(Szoba sz){
         szobak.remove(sz);
         CustomLogger.info("A labirintusból kikerült a " + sz);
+    }
+
+    public static void reset(){
+        szobak.clear();
+        instance = null;
     }
 }

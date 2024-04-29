@@ -76,5 +76,17 @@ public class Oktato extends Ember {
     }
 
     @Override
-    public void controllerLeptet(Ajto a) { a.hasznal(this);}
+    public void controllerLeptet(Ajto a) {
+        if(meddigBena > 0) {
+            return;
+        }
+
+        for (Ember e : jelenlegiSzoba.getEmberek()) {
+            kitTamad = e.tamadasElszenved(this);
+        }
+
+        a.hasznal(this);
+    }
+
+
 }
