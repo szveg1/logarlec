@@ -72,7 +72,7 @@ public class Tesztelo {
         Scanner bemenetScanner;
         try {
             bemenetScanner = new Scanner(bemenet);
-        } catch (FileNotFoundException e) {
+        } catch(FileNotFoundException e) {
             throw new RuntimeException(e);
         }
 
