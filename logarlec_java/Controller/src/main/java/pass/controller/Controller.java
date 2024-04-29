@@ -671,6 +671,10 @@ public class Controller {
         System.out.println(Labirintus.getInstance().getTimeLeft());
     }
 
+
+    /**
+     * Beállítja hogy a játék determinisztikus-e
+     */
     public static void Random(boolean b) {
         deterministic = !b;
         if (deterministic) System.out.println("mostantol determinisztikus a jatek.");
@@ -719,6 +723,9 @@ public class Controller {
 
     }
 
+    /**
+     * A függvény lépteti az embereket
+     */
     public static void Leptetes() {
         for (Szoba sz : Labirintus.getInstance().getSzobak()) {
             List<Ajto> ajtok = sz.getAjtok();
@@ -729,23 +736,33 @@ public class Controller {
             }
         }
     }
-
+    /**
+     * Getter függvény ami visszaadja a kért ajtót
+     */
     public static Ajto getAjto(String s){
         return ajtoMap.get(s);
     }
-
+    /**
+     * Getter függvény ami visszaadja a kért embert
+     */
     public static Ember getEmber(String s){
         return emberMap.get(s);
     }
-
+    /**
+     * Getter függvény ami visszaadja a kért szobát
+     */
     public static Szoba getSzoba(String s) {
         return szobaMap.get(s);
     }
-
+    /**
+     * Getter függvény ami visszaadja a kért tárgyat
+     */
     public static Targy getTargy(String s) {
         return targyMap.get(s);
     }
-
+    /**
+     * A játék állapotát eltörli
+     */
     public static void reset(){
         emberMap.clear();
         szobaMap.clear();
