@@ -342,6 +342,7 @@ public class Szoba implements Idozitett {
         CustomLogger.info(ember + " belépett volna a " + this + "-ba, de tele van.");
         return false;
         } else {
+            ember.tick();
             ember.kilepSzobajabol();
             bentlevok.add(ember);
             CustomLogger.info(ember + " bekerült a bentlevők közé.");

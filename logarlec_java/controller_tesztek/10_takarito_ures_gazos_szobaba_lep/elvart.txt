@@ -1,0 +1,39 @@
+a jatek betoltve.
+szobak:
+	szoba1
+	szomszedok:szoba2
+	targyak:
+	emberek:takarito1
+	allapot:tiszta
+
+	szoba2
+	szomszedok:szoba1
+	targyak:
+	emberek:
+	allapot:tiszta,mergezo
+
+ajto1
+szoba1 nyithato: igen
+szoba2 nyithato: igen
+A szoba allapota:
+nem atkozott
+mergezett
+nem ragacsos
+A szobaban levo targyak:
+A szobaban levo emberek:
+A szobabol nyilo ajtok:
+ajto1 :Ajto
+A jatekbol hatralevo ido:
+0
+takarito1: atlep az ajto1 ajton, a szoba2 szobaba kerul.
+A szoba allapota:
+nem atkozott
+nem mergezett
+nem ragacsos
+A szobaban levo targyak:
+A szobaban levo emberek:
+takarito :Takarito
+A szobabol nyilo ajtok:
+ajto1 :Ajto
+A jatekbol hatralevo ido:
+0

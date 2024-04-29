@@ -414,20 +414,39 @@ public class Controller {
         szobaEmberMap.put(szoba, new ArrayList<>());
         String[] parts = line.split(":");
 
+        int hallgatoSzam = 1;
+        int oktatokSzam = 1;
+        int takaritoSzam = 1;
+        for (Map.Entry<String, Ember> entry : emberMap.entrySet()) {
+            String key = entry.getKey();
+            Ember value = entry.getValue();
+            if (key.contains("hallgato")) {
+                hallgatoSzam++;
+            }
+            if (key.contains("oktato")) {
+                oktatokSzam++;
+            }
+            if (key.contains("takarito")) {
+                takaritoSzam++;
+            }
+        }
         if (parts.length > 1) {
             String[] emberek = parts[1].split(",");
             for(String ember : emberek){
                 Ember e;
                 if(ember.startsWith("hallgato")){
                     e = new Hallgato(ember);
+                    emberMap.put(ember + (hallgatoSzam), e);
                 }
                 else if(ember.startsWith("oktato")){
                     e = new Oktato(ember);
+                    emberMap.put(ember + (oktatokSzam), e);
                 }
                 else{
                     e = new Takarito(ember);
+                    emberMap.put(ember + (takaritoSzam), e);
                 }
-                emberMap.put(ember + (emberMap.size() + 1), e);
+
                 e.masikSzobabaLep(szoba);
                 szobaEmberMap.get(szoba).add(e);
             }

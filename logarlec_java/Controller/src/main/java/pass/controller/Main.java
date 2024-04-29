@@ -1,6 +1,7 @@
 package pass.controller;
 
 import pass.model.CustomLogger;
+import pass.model.labyrinth.Labirintus;
 
 import java.util.Scanner;
 import java.util.*;

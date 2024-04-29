@@ -2,9 +2,8 @@ package pass.model.labyrinth;
 
 import pass.model.CustomLogger;
 import pass.model.Idozitett;
-import pass.model.human.Hallgato;
+import pass.model.human.Ember;
 import pass.model.human.Oktato;
-import pass.model.human.Takarito;
 import pass.model.item.*;
 
 import java.util.ArrayList;
@@ -17,13 +16,9 @@ tartalmazza a labirintusban található szobákat és irányítja azok osztódá
 egyesülését. A Labirintus osztály feladata a szobák hálózatának kezelése. */
 public class Labirintus implements Idozitett {
     private static String nev;
-
     private static int timeLeft;
-
-    // HIANYOS!!!!
     private static List<Szoba> szobak = new ArrayList<>();
-
-    public static Szoba menny = new Szoba(Integer.MAX_VALUE, "Menny");
+    private static List<Ember> emberek = new ArrayList<>();
     private static Labirintus instance = null;
     private Labirintus() {
         this.nev = "l";
@@ -49,6 +44,7 @@ public class Labirintus implements Idozitett {
      */
     public void addSzoba(Szoba sz){
         szobak.add(sz);
+        emberek.addAll(sz.getEmberek());
         CustomLogger.info("A labirintushoz hozzáadva a: " + sz);
     }
 
@@ -158,7 +154,7 @@ public class Labirintus implements Idozitett {
     /**
      * A függvény, a játékból hátralévő időt csökkenti
      */
-    @Override
+
     public void tick() {
         timeLeft--;
         CustomLogger.info("A játékból még " + timeLeft + " kör van hátra.");
@@ -181,4 +177,5 @@ public class Labirintus implements Idozitett {
         szobak.clear();
         instance = null;
     }
+
 }

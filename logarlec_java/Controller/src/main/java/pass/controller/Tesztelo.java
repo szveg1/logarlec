@@ -71,6 +71,7 @@ public class Tesztelo {
             sb.append(elvartScanner.nextLine());
             sb.append(System.lineSeparator());
         }
+        elvartScanner.close();
 
         Scanner bemenetScanner;
         try {
@@ -91,12 +92,15 @@ public class Tesztelo {
             Consumer<String[]> command = commandMap.getOrDefault(cmd[0],Tesztelo::rosszBemenet);
             command.accept(cmd);
         }
+        bemenetScanner.close();
         System.setOut(old);
 
+        String testShortName = test.substring(test.lastIndexOf(File.separator) + 1);
+
         if(!sb.toString().equals(baos.toString())){
-            System.out.println("Bukott teszt: " + test);
+            System.out.println("Bukott teszt: " + testShortName);
         } else {
-            System.out.println("Teszt sikeres: " + test);
+            System.out.println("Teszt sikeres: " + testShortName);
         }
 
         System.out.println("----------------------\n"+ "Elvart: \n" +

@@ -9,10 +9,11 @@ szobak:
 	szoba2
 	szomszedok:szoba1
 	targyak:
-	emberek:oktato2
+	emberek:oktato1
 	allapot:tiszta
 
 ajto1
 szoba1 nyithato: igen
 szoba2 nyithato: igen
+hallgato1: atlep az ajto1 ajton, a szoba2 szobaba kerul.
 nincs ilyen ember: hallgato1

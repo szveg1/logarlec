@@ -1,0 +1,7 @@
+szoba1:szoba2,tiszta,2
+emberek:takarito,hallgato
+targyak:maszk
+
+szoba2:szoba1,tiszta mergezo,2
+emberek:
+targyak:

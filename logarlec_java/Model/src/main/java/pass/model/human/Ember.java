@@ -39,6 +39,9 @@ public abstract class Ember implements TargyVisitor, Idozitett {
     public void setLepett(boolean b) {
         this.lepett = b;
     }
+    public boolean getLepett() {
+        return lepett;
+    }
 
     public void targyatFelvesz(Targy targy) {
         if(!jelenlegiSzoba.getItems().contains(targy))

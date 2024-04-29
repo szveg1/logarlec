@@ -1,6 +1,3 @@
 infoszoba szoba2
-tick 1
 ajtohasznalat ajto1 takarito1
-tick 1
 infoszoba szoba2
-tick 1

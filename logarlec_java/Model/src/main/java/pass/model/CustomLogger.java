@@ -5,10 +5,11 @@ import java.util.logging.*;
 
 public class CustomLogger {
     private static final Logger LOGGER = Logger.getLogger("LOG");
+    private static Handler handler;
     private static boolean isSuppressed = false;
     static {
         try {
-            Handler handler = new StreamHandler(System.out, new SimpleFormatter()) {
+            handler = new StreamHandler(System.out, new SimpleFormatter()) {
                 @Override
                 public synchronized void publish(final LogRecord record) {
                     super.publish(record);
@@ -43,9 +44,11 @@ public class CustomLogger {
 
     public static void suppress(){
         isSuppressed = true;
+        LOGGER.removeHandler(LOGGER.getHandlers()[0]);
     }
     public static void unsuppress(){
         isSuppressed = false;
+        LOGGER.addHandler(handler);
     }
 
 }
