@@ -30,6 +30,9 @@ public class Tesztelo {
         commandMap.put("szobaosszevon", Fuggvenyek::SzobaOsszevon);
         commandMap.put("teszt", Tesztelo::getTests);
     }
+
+    //a 10es teszt nagyon össze vissz avan a txt-ben is
+    //a kimenet és bemenet nem illik össze
     public static void getTests(String[] strings) {
         System.out.println("Tesztek:");
 
