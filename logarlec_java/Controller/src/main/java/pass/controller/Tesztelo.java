@@ -31,8 +31,6 @@ public class Tesztelo {
         commandMap.put("teszt", Tesztelo::getTests);
     }
 
-    //a 10es teszt nagyon össze vissz avan a txt-ben is
-    //a kimenet és bemenet nem illik össze
     public static void getTests(String[] strings) {
         System.out.println("Tesztek:");
 
@@ -58,9 +56,18 @@ public class Tesztelo {
         while(true){
             Scanner scanner = new Scanner(System.in);
             String test = scanner.nextLine();
-            if(test.equals(String.valueOf(testNum))) break;
-            runTest(files[Integer.parseInt(test) - 1].getAbsolutePath());
-            Controller.reset();
+            try {
+                int testIndex = Integer.parseInt(test);
+                if(test.equals(String.valueOf(testNum))) break;
+                if(testIndex < 1 || testIndex > files.length) {
+                    System.out.println("Nem érvényes szám");
+                    continue;
+                }
+                runTest(files[testIndex - 1].getAbsolutePath());
+                Controller.reset();
+            } catch (NumberFormatException e) {
+                System.out.println("Kérlek, számot adj meg!");
+            }
         }
     }
     public static void runTest(String test){
