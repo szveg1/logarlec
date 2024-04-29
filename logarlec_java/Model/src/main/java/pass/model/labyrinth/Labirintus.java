@@ -175,6 +175,7 @@ public class Labirintus implements Idozitett {
 
     public static void reset(){
         szobak.clear();
+        timeLeft = 0;
         instance = null;
     }
 

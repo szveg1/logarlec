@@ -1,6 +1,7 @@
 targyfelvesz maszk1 hallgato1
 ajtohasznalat ajto1 hallgato1
+ajtohasznalat ajto1 hallgato2
 infoszoba szoba2
 infoember hallgato1
 ajtohasznalat ajto1 takarito1
-infoember hallgato1
+infoszoba szoba2

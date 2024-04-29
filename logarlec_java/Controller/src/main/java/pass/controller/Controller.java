@@ -419,7 +419,6 @@ public class Controller {
         int takaritoSzam = 1;
         for (Map.Entry<String, Ember> entry : emberMap.entrySet()) {
             String key = entry.getKey();
-            Ember value = entry.getValue();
             if (key.contains("hallgato")) {
                 hallgatoSzam++;
             }
@@ -437,14 +436,17 @@ public class Controller {
                 if(ember.startsWith("hallgato")){
                     e = new Hallgato(ember);
                     emberMap.put(ember + (hallgatoSzam), e);
+                    hallgatoSzam++;
                 }
                 else if(ember.startsWith("oktato")){
                     e = new Oktato(ember);
                     emberMap.put(ember + (oktatokSzam), e);
+                    oktatokSzam++;
                 }
                 else{
                     e = new Takarito(ember);
                     emberMap.put(ember + (takaritoSzam), e);
+                    takaritoSzam++;
                 }
 
                 e.masikSzobabaLep(szoba);
@@ -453,7 +455,10 @@ public class Controller {
         }
     }
     /**
-     * Kiírja a betöltött játék adatait a konzolra, beleértve a szobákat, azok szomszédait, a szobákban található tárgyakat és embereket, valamint a szobák állapotát.
+     * Kiírja a betöltött játék adatait a konzolra,
+     * beleértve a szobákat, azok szomszédait,
+     * a szobákban található tárgyakat és embereket,
+     * valamint a szobák állapotát.
      */
     private static void betoltesEredmenyKiir(){
         StringBuilder sb = new StringBuilder();
@@ -519,34 +524,9 @@ public class Controller {
      * @param e Az ember, aki átlép az ajtón.
      */
     public static void AjtoHasznalat(Ajto a, Ember e) {
-        String emberNev = null;
-        for (Map.Entry<String, Ember> entry : emberMap.entrySet()) {
-            String key = entry.getKey();
-            Ember value = entry.getValue();
-            if (value.equals(e)) {
-                emberNev = key;
-            }
-        }
-        String ajtoNev = null;
-        for (Map.Entry<String, Ajto> entry : ajtoMap.entrySet()) {
-            String key = entry.getKey();
-            Ajto value = entry.getValue();
-            if (value.equals(a)) {
-                ajtoNev = key;
-            }
-        }
         Szoba ujSzoba = a.getSzomszed(e.getJelenlegiSzoba());
-        String szobaNev = null;
-        for(Map.Entry<String, Szoba> entry : szobaMap.entrySet()){
-            String key = entry.getKey();
-            Szoba value = entry.getValue();
-            if(value.equals(ujSzoba)){
-                szobaNev = key;
-            }
-        }
-
         a.hasznal(e);
-        System.out.println(emberNev + ": atlep az " + ajtoNev + " ajton, a " + szobaNev + " szobaba kerul.");
+        System.out.println(getEmberNevFromMap(e) + ": atlep az " + getAjtoNevFromMap(a) + " ajton, a " + getSzobaNevFromMap(ujSzoba) + " szobaba kerul.");
     }
 
     /**
@@ -555,36 +535,18 @@ public class Controller {
      * @param e Az az ember, aki fel akarja venni a tárgyat.
      */
     public static void TargyFelvesz(Targy t, Ember e) {
-        String emberNev = null;
-        for (Map.Entry<String, Ember> entry : emberMap.entrySet()) {
-            String key = entry.getKey();
-            Ember value = entry.getValue();
-            if (value.equals(e)) {
-                emberNev = key;
-            }
-        }
-        String targyNev = null;
-        for (Map.Entry<String, Targy> entry : targyMap.entrySet()) {
-            String key = entry.getKey();
-            Targy value = entry.getValue();
-            if (value.equals(t)) {
-                targyNev = key;
-            }
-        }
         int prevItemNum = e.getItems().size();
         if(e.inventoryTeleE()){
-            System.out.println(emberNev + ": az inventoryd teli van, nem fer bele a " + targyNev + " targy.");
+            System.out.println(getEmberNevFromMap(e) + ": az inventoryd teli van, nem fer bele a " + getTargyNevFromMap(t) + " targy.");
         }
         e.targyatFelvesz(t);
         int currItemNum = e.getItems().size();
         if(currItemNum == prevItemNum && !e.inventoryTeleE()){
-            System.out.println(emberNev + ": a szoba ragacsos, a " + targyNev + " targy nem veheto fel.");
+            System.out.println(getEmberNevFromMap(e) + ": a szoba ragacsos, a " + getTargyNevFromMap(t) + " targy nem veheto fel.");
         }
         else if(currItemNum > prevItemNum){
-            System.out.println(emberNev + ": az inventorydba tetted a " + targyNev + " targyat.");
+            System.out.println(getEmberNevFromMap(e) + ": az inventorydba tetted a " + getTargyNevFromMap(t) + " targyat.");
         }
-
-
     }
 
     /**
@@ -593,24 +555,8 @@ public class Controller {
      * @param e Az az ember, aki használni akarja a tárgyat.
      */
     public static void Hasznal(Targy t, Ember e) {
-        String emberNev = null;
-        for (Map.Entry<String, Ember> entry : emberMap.entrySet()) {
-            String key = entry.getKey();
-            Ember value = entry.getValue();
-            if (value.equals(e)) {
-                emberNev = key;
-            }
-        }
-        String targyNev = null;
-        for (Map.Entry<String, Targy> entry : targyMap.entrySet()) {
-            String key = entry.getKey();
-            Targy value = entry.getValue();
-            if (value.equals(t)) {
-                targyNev = key;
-            }
-        }
         e.targyatHasznal(t);
-        System.out.println(emberNev + ": hasznaltad a " + targyNev + " targyat.");
+        System.out.println(getEmberNevFromMap(e) + ": hasznaltad a " + getTargyNevFromMap(t) + " targyat.");
     }
 
     /**
@@ -619,28 +565,12 @@ public class Controller {
      * @param e Az az ember, aki el akarja dobni a tárgyat.
      */
     public static void TargyEldob(Targy t, Ember e) {
-        String emberNev = null;
-        for (Map.Entry<String, Ember> entry : emberMap.entrySet()) {
-            String key = entry.getKey();
-            Ember value = entry.getValue();
-            if (value.equals(e)) {
-                emberNev = key;
-            }
-        }
-        String targyNev = null;
-        for (Map.Entry<String, Targy> entry : targyMap.entrySet()) {
-            String key = entry.getKey();
-            Targy value = entry.getValue();
-            if (value.equals(t)) {
-                targyNev = key;
-            }
-        }
         if(e.getItems().isEmpty()){
-            System.out.println(emberNev + ": az inventoryd ures nem dobhatsz el targyat.");
+            System.out.println(getEmberNevFromMap(e) + ": az inventoryd ures nem dobhatsz el targyat.");
         } else if (!e.getItems().contains(t)) {
-            System.out.println(emberNev + ": nincs ilyen targy az inventorydban.");
+            System.out.println(getEmberNevFromMap(e) + ": nincs ilyen targy az inventorydban.");
         } else {
-            System.out.println(emberNev + ": eldobtad a " + targyNev + " targyat.");
+            System.out.println(getEmberNevFromMap(e) + ": eldobtad a " + getTargyNevFromMap(t) + " targyat.");
         }
         e.targyatEldob(t);
     }
@@ -651,7 +581,7 @@ public class Controller {
     public static void InfoEmber(Ember e) {
         for(int i = 0; i < e.getItems().size(); i++){
             Targy t = e.getItems().get(i);
-            System.out.println(t.toString());
+            System.out.println(getTargyNevFromMap(t));
             if(i != e.getItems().size() - 1)
                 System.out.println(", ");
         }
@@ -676,15 +606,15 @@ public class Controller {
         System.out.println(s3);
         System.out.println("A szobaban levo targyak:");
         for (Targy t : sz.getItems()) {
-            System.out.println(t.toString());
+            System.out.println(getTargyNevFromMap(t));
         }
         System.out.println("A szobaban levo emberek:");
         for (Ember e : sz.getEmberek()) {
-            System.out.println(e.toString());
+            System.out.println(getEmberNevFromMap(e));
         }
         System.out.println("A szobabol nyilo ajtok:");
         for (Ajto a : sz.getAjtok()) {
-            System.out.println(a.toString());
+            System.out.println(getAjtoNevFromMap(a));
         }
         System.out.println("A jatekbol hatralevo ido:");
         System.out.println(Labirintus.getInstance().getTimeLeft());
@@ -733,7 +663,7 @@ public class Controller {
      */
     public static void SzobaOsszevon(Szoba sz1, Szoba sz2) {
         Labirintus.getInstance().szobakOsszevon(sz1, sz2);
-        System.out.println(sz1.getNev() + " es " + sz2.getNev() + " ossze lett vonva");
+        System.out.println(getSzobaNevFromMap(sz1) + " es " + getSzobaNevFromMap(sz2) + " ossze lett vonva");
         szobaMap.remove(sz2.getNev());
 
         for (Ajto ajto : sz2.getAjtok()) {
@@ -756,29 +686,105 @@ public class Controller {
         }
     }
     /**
-     * Getter függvény ami visszaadja a kért ajtót
+     * Getter függvény ami visszaadja a kért ajtót a mapból
+     * @param s keresett ajtó neve
+     * @return a keresett ajtó
      */
     public static Ajto getAjto(String s){
         return ajtoMap.get(s);
     }
+
     /**
-     * Getter függvény ami visszaadja a kért embert
+     * Getter függvény ami visszaadja a kért ajtó nevét a mapból
+     * @param a keresett ajtó
+     * @return ajtó mapban tárolt neve
+     */
+    public static String getAjtoNevFromMap(Ajto a){
+        for (Map.Entry<String, Ajto> entry : ajtoMap.entrySet()) {
+            String key = entry.getKey();
+            Ajto value = entry.getValue();
+            if (value.equals(a)) {
+                return key;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Getter függvény ami visszaadja a kért embert a mapból
+     * @param s keresett ember neve
+     * @return a keresett ember
      */
     public static Ember getEmber(String s){
         return emberMap.get(s);
     }
+
     /**
-     * Getter függvény ami visszaadja a kért szobát
+     * Getter függvény ami visszaadja a kért ember nevét a mapból
+     * @param e keresett ember
+     * @return ember mapban tárolt neve
+     */
+    public static String getEmberNevFromMap(Ember e){
+        for (Map.Entry<String, Ember> entry : emberMap.entrySet()) {
+            String key = entry.getKey();
+            Ember value = entry.getValue();
+            if (value.equals(e)) {
+                return key;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Getter függvény ami visszaadja a kért szobát a mapból
+     * @param s keresett szoba neve
+     * @return a keresett szoba
      */
     public static Szoba getSzoba(String s) {
         return szobaMap.get(s);
     }
+
     /**
-     * Getter függvény ami visszaadja a kért tárgyat
+     * Getter függvény ami visszaadja a kért szoba nevét a mapból
+     * @param sz keresett szoba
+     * @return szoba mapban tárolt neve
+     */
+    public static String getSzobaNevFromMap(Szoba sz){
+        for (Map.Entry<String, Szoba> entry : szobaMap.entrySet()) {
+            String key = entry.getKey();
+            Szoba value = entry.getValue();
+            if (value.equals(sz)) {
+                return key;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Getter függvény ami visszaadja a kért tárgyat a mapból
+     * @param s keresett tárgy neve
+     * @return a keresett tárgy
      */
     public static Targy getTargy(String s) {
         return targyMap.get(s);
     }
+
+    /**
+     * Getter függvény ami visszaadja a kért tárgy nevét a mapból
+     * @param t keresett tárgy
+     * @return tárgy mapban tárolt neve
+     */
+    public static String getTargyNevFromMap(Targy t){
+        for (Map.Entry<String, Targy> entry : targyMap.entrySet()) {
+            String key = entry.getKey();
+            Targy value = entry.getValue();
+            if (value.equals(t)) {
+                return key;
+            }
+        }
+        return null;
+    }
+
     /**
      * A játék állapotát eltörli
      */

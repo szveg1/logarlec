@@ -1,7 +1,7 @@
-szoba1:szoba2,tiszta,2
-emberek:takarito,hallgato
+szoba1:szoba2,tiszta,3
+emberek:takarito,hallgato,hallgato
 targyak:maszk
 
-szoba2:szoba1,tiszta mergezo,2
+szoba2:szoba1,tiszta mergezo,3
 emberek:
 targyak:
