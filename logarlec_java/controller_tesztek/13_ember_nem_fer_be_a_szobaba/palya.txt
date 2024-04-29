@@ -1,7 +1,7 @@
-szoba2:szoba1,tiszta,2
-emberek:oktato,oktato,hallgato
+szoba1:szoba2,tiszta,3
+emberek:hallgato
 targyak:
 
-szoba1:szoba2,tiszta,1
-emberek:
+szoba2:szoba1,tiszta,2
+emberek:hallgato,hallgato
 targyak:

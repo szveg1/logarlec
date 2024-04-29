@@ -4,4 +4,4 @@ targyak:
 
 szoba2:szoba1,tiszta,1
 emberek:
-targyak
+targyak:

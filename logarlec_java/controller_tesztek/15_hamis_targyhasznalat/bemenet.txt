@@ -1,6 +1,6 @@
-targyfelvesz hamistvsz1
-targyfelvesz hamisllec1
-targyfelvesz hamismaszk1
+targyfelvesz hamistvsz1 hallgato1
+targyfelvesz hamislec1 hallgato1
+targyfelvesz hamismaszk1 hallgato1
 infoember hallgato1
-tick 1
+tick
 infoember hallgato1

@@ -36,19 +36,30 @@ public class Tesztelo {
     public static void getTests(String[] strings) {
         System.out.println("Tesztek:");
 
+        if (!testDir.exists() || !testDir.canRead() || !testDir.isDirectory()) {
+            System.out.println("A tesztkönyvtár nem létezik vagy nem olvasható: " + testDir.getAbsolutePath());
+            return;
+        }
+
+        File[] files = testDir.listFiles();
+        if (files == null) {
+            System.out.println("Nem sikerült beolvasni a tesztkönyvtár tartalmát: " + testDir.getAbsolutePath());
+            return;
+        }
         int i = 0;
+
         for(File file : testDir.listFiles()) {
             System.out.println((++i) + ". " + file.getName());
         }
 
-        int testNum = testDir.listFiles().length + 1;
+        int testNum = files.length + 1;
         System.out.println(testNum + " vissza");
 
         while(true){
             Scanner scanner = new Scanner(System.in);
             String test = scanner.nextLine();
             if(test.equals(String.valueOf(testNum))) break;
-            runTest(testDir.listFiles()[Integer.parseInt(test) - 1].getAbsolutePath());
+            runTest(files[Integer.parseInt(test) - 1].getAbsolutePath());
             Controller.reset();
         }
     }

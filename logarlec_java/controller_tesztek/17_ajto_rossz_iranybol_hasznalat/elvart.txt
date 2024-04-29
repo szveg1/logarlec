@@ -1,31 +1,54 @@
-a tesztpalya jatek betoltve.
+a jatek betoltve.
 szobak:
-szoba1:
-szomszedok:
-targyak:
-emberek:
-allapot: tiszta
-szoba2
-szomszedok: Szoba1
-targyak:
-emberek:
-allapot: tiszta
-a szoba allapota: tiszta
-a szobában levo targyak:
-a szobában levo oktatok száma: 0
-a szobából nyílo ajtok: 0
-a szoba allapota: tiszta
-a szobaban levo targyak:
-a szobaban levo oktatok szama: 0
-a szobabol nyilo ajtok: 1
-hallgato1 targyai:
-itt van: szoba1
+	szoba1
+	szomszedok
+	targyak:
+	emberek:hallgato1
+	allapot:tiszta
+
+	szoba2
+	szomszedok:szoba1
+	targyak:
+	emberek:
+	allapot:tiszta
+
+ajto1
+szoba2 nyithato: igen
+szoba1 nyithato: nem
+A szoba allapota:
+nem atkozott
+nem mergezett
+nem ragacsos
+A szobaban levo targyak:
+A szobaban levo emberek:
+hallgato :Hallgato
+A szobabol nyilo ajtok:
+A jatekbol hatralevo ido:
+0
+A szoba allapota:
+nem atkozott
+nem mergezett
+nem ragacsos
+A szobaban levo targyak:
+A szobaban levo emberek:
+A szobabol nyilo ajtok:
+ajto1 :Ajto
+A jatekbol hatralevo ido:
+0
+hallgato1 Targyai:
+szoba1
 eber
-az a1 ajto egyiranyu es nem tudsz rajta atmenni.
-a szoba allapota:
-a szobaban levo targyak:
-a szobaban levo oktatok szama: 0
-a szobabol nyílo ajtok: 1
-hallgato1 targyai:
-itt van: szoba1
+hallgato1: atlep az ajto1 ajton, a null szobaba kerul.
+A szoba allapota:
+nem atkozott
+nem mergezett
+nem ragacsos
+A szobaban levo targyak:
+A szobaban levo emberek:
+A szobabol nyilo ajtok:
+ajto1 :Ajto
+A jatekbol hatralevo ido:
+0
+hallgato1 Targyai:
+null
 eber

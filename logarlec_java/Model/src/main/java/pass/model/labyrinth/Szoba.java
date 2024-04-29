@@ -145,7 +145,7 @@ public class Szoba implements Idozitett {
     public Szoba(Szoba masikSzoba) {
         this.meregIdo = masikSzoba.meregIdo;
         this.ferohely = masikSzoba.ferohely;
-        this.nev = "szoba" + Labirintus.getInstance().getSzobak().size();
+        this.nev = "szoba" + (Labirintus.getInstance().getSzobak().size() + 1);
         // Szoba targyainak fele masik szobaba
         int targyakFele = masikSzoba.targyak.size() / 2;
         ArrayList<Targy> felezettTargyak = new ArrayList<>(masikSzoba.targyak.subList(0, targyakFele));

@@ -1,18 +1,31 @@
-a tesztpalya.txt jatek betoltve
+a jatek betoltve.
 szobak:
-szoba1
-szomszedok: szoba2
-targyak:tvsz1,
-emberek:oktato1
-allapot:tiszta
-szoba2
-szomszedok: szoba1
-targyak: logarlec1
-emberek: oktato2,oktato3
-allapot:tiszta
+	szoba1
+	szomszedok:szoba2
+	targyak:tvsz1
+	emberek:oktato1
+	allapot:tiszta
+
+	szoba2
+	szomszedok:szoba1
+	targyak:logarlec2
+	emberek:oktato2,oktato3
+	allapot:tiszta
+
+ajto1
+szoba1 nyithato: igen
+szoba2 nyithato: igen
 szoba1 es szoba2 ossze lett vonva
-a szoba allapota: tiszta
-a szobaban levo targyak: tvsz1, logarlec1
-a szobaban levo oktatok: oktato1,oktato2,oktato3
-a szobabol nyilo ajtok:
-nincs ilyen szoba szoba2
+A szoba allapota:
+nem atkozott
+nem mergezett
+nem ragacsos
+A szobaban levo targyak:
+tvsz0 :TVSZ
+A szobaban levo emberek:
+oktato :Oktato
+A szobabol nyilo ajtok:
+ajto1 :Ajto
+A jatekbol hatralevo ido:
+0
+nincs ilyen szoba: szoba2
