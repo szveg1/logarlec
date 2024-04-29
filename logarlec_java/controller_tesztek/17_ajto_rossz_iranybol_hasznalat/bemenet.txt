@@ -1,4 +1,3 @@
 infoember hallgato1
 ajtohasznalat ajto1 hallgato1
-infoszoba szoba2
 infoember hallgato1

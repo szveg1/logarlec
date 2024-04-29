@@ -15,7 +15,7 @@ szobak:
 ajto1
 szoba0 nyithato: igen
 szoba1 nyithato: igen
-A szoba allapota:
+A szoba0 allapota:
 nem atkozott
 nem mergezett
 nem ragacsos
@@ -28,7 +28,7 @@ ajto1
 A jatekbol hatralevo ido:
 20
 hallgato1: az inventorydba tetted a legfrissito1 targyat.
-A szoba allapota:
+A szoba1 allapota:
 nem atkozott
 mergezett
 nem ragacsos
@@ -39,7 +39,7 @@ ajto1
 A jatekbol hatralevo ido:
 20
 hallgato1: atlep az ajto1 ajton, a szoba1 szobaba kerul.
-A szoba allapota:
+A szoba1 allapota:
 nem atkozott
 nem mergezett
 nem ragacsos

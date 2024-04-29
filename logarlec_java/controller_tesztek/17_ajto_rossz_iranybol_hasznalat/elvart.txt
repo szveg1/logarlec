@@ -18,16 +18,6 @@ szoba1 nyithato: nem
 hallgato1 targyai:
 itt van: szoba1
 eber
-A szoba allapota:
-nem atkozott
-nem mergezett
-nem ragacsos
-A szobaban levo targyak:
-A szobaban levo emberek:
-A szobaban levo ajtok:
-ajto1
-A jatekbol hatralevo ido:
-20
 hallgato1 targyai:
 itt van: szoba1
 eber

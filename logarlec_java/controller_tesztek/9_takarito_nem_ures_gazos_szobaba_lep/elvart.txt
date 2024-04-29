@@ -18,7 +18,7 @@ szoba2 nyithato: igen
 hallgato1: az inventorydba tetted a maszk1 targyat.
 hallgato1: atlep az ajto1 ajton, a szoba2 szobaba kerul.
 hallgato2: atlep az ajto1 ajton, a szoba2 szobaba kerul.
-A szoba allapota:
+A szoba2 allapota:
 nem atkozott
 mergezett
 nem ragacsos
@@ -34,7 +34,7 @@ hallgato1 targyai:maszk1
 itt van: szoba2
 eber
 takarito1: atlep az ajto1 ajton, a szoba2 szobaba kerul.
-A szoba allapota:
+A szoba2 allapota:
 nem atkozott
 nem mergezett
 nem ragacsos

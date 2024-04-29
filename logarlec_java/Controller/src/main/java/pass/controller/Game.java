@@ -12,9 +12,9 @@ public class Game {
         Thread gameThread = new Thread(() -> {
             while (Labirintus.getInstance().getTimeLeft() >= 0) {
                 boolean korvege = true;
-                List<Szoba> szobak = new ArrayList<>(Labirintus.getInstance().getSzobak()); // Másolat készítése
+                List<Szoba> szobak = new ArrayList<>(Labirintus.getInstance().getSzobak());
                 for (Szoba sz : szobak) {
-                    List<Ember> emberek = new ArrayList<>(sz.getEmberek()); // Másolat készítése
+                    List<Ember> emberek = new ArrayList<>(sz.getEmberek());
                     for (Ember e : emberek) {
                         if (!e.getLepett())
                             korvege = false;

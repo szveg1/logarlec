@@ -15,7 +15,7 @@ szobak:
 ajto1
 szoba1 nyithato: igen
 szoba2 nyithato: igen
-A szoba allapota:
+A szoba1 allapota:
 nem atkozott
 nem mergezett
 nem ragacsos
@@ -36,7 +36,7 @@ hallgato1 targyai:hamistvsz1,hamislec2,hamismaszk3
 itt van: szoba1
 eber
 hallgato1: atlep az ajto1 ajton, a szoba2 szobaba kerul.
-A szoba allapota:
+A szoba2 allapota:
 nem atkozott
 mergezett
 nem ragacsos

@@ -8,7 +8,7 @@ szobak:
 
 hallgato1: az inventorydba tetted a camembert1 targyat.
 hallgato1: hasznaltad a camembert1 targyat.
-A szoba allapota:
+A szoba1 allapota:
 nem atkozott
 mergezett
 nem ragacsos

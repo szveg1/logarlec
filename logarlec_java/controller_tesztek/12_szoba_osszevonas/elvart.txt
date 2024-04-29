@@ -16,7 +16,7 @@ ajto1
 szoba1 nyithato: igen
 szoba2 nyithato: igen
 szoba1 es szoba2 ossze lett vonva
-A szoba allapota:
+A szoba1 allapota:
 nem atkozott
 nem mergezett
 nem ragacsos

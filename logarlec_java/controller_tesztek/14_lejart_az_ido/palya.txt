@@ -1,3 +1,3 @@
-szoba1:tiszta,1
+szoba1:,tiszta,1
 emberek:
 targyak:

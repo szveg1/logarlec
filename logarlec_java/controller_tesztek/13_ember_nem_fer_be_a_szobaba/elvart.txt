@@ -19,7 +19,7 @@ hallgato1 targyai:
 itt van: szoba1
 eber
 hallgato1: atlep az ajto1 ajton, a szoba2 szobaba kerul.
-A szoba allapota:
+A szoba2 allapota:
 nem atkozott
 nem mergezett
 nem ragacsos

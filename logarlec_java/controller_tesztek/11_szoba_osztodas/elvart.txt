@@ -16,7 +16,7 @@ ajto1
 szoba1 nyithato: igen
 szoba2 nyithato: igen
 uj szoba jott letre: szoba3
-A szoba allapota:
+A szoba1 allapota:
 nem atkozott
 nem mergezett
 nem ragacsos
@@ -30,7 +30,7 @@ ajto1
 ajto2
 A jatekbol hatralevo ido:
 20
-A szoba allapota:
+A szoba3 allapota:
 nem atkozott
 nem mergezett
 nem ragacsos

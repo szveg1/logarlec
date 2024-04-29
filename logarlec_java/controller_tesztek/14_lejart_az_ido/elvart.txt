@@ -1,11 +1,9 @@
-a tesztpalya jatek betoltve.
+a jatek betoltve.
 szobak:
-szoba1:
-szomszedok:
-emberek:
-targyak:
-allapot: tiszta
-a palya legeneralva 1 fore.
-kezdo szoba: szoba1
-a jatek elindult, 1 korig tart.
+	szoba1
+	szomszedok
+	targyak:
+	emberek:
+	allapot:tiszta
+
 a jateknak vege, az ido lejart.

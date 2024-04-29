@@ -168,7 +168,7 @@ public class Controller {
             }
         }
         betoltesEredmenyKiir();
-        //Game.startGame();
+        Game.startGame();
     }
 
     /**
@@ -335,7 +335,7 @@ public class Controller {
         String s1 = sz.atkozottE() ? "atkozott" : "nem atkozott";
         String s2 = sz.mergezoE() ? "mergezett" : "nem mergezett";
         String s3 = sz.ragacsosE() ? "ragacsos" : "nem ragacsos";
-        System.out.println("A szoba allapota:");
+        System.out.println("A " + sz.getNev() + " allapota:");
         System.out.println(s1);
         System.out.println(s2);
         System.out.println(s3);
@@ -416,7 +416,8 @@ public class Controller {
         for (Szoba sz : Labirintus.getInstance().getSzobak()) {
             List<Ajto> ajtok = sz.getAjtok();
             Collections.shuffle(ajtok);
-            for (Ember e : sz.getEmberek()) {
+            ArrayList<Ember> emberek = new ArrayList<>(sz.getEmberek());
+            for (Ember e : emberek) {
                 if(!ajtok.isEmpty())
                     e.controllerLeptet(ajtok.get(0));
             }
