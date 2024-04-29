@@ -562,13 +562,15 @@ public class Controller {
      * @param e Az az ember, akiről információt szeretnénk kapni.
      */
     public static void InfoEmber(Ember e) {
+        String targyak = getEmberNevFromMap(e) + " targyai:";
         for(int i = 0; i < e.getItems().size(); i++){
             Targy t = e.getItems().get(i);
-            System.out.println(getTargyNevFromMap(t));
+            targyak += getTargyNevFromMap(t);
             if(i != e.getItems().size() - 1)
-                System.out.println(", ");
+                targyak+=",";
         }
-        System.out.println("Itt van: " + e.getJelenlegiSzoba().getNev());
+        System.out.println(targyak);
+        System.out.println("itt van: " + e.getJelenlegiSzoba().getNev());
 
         System.out.println(e.getAjult() ? "ajult" : "eber");
     }

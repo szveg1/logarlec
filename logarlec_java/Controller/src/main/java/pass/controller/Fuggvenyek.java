@@ -64,7 +64,6 @@ public class Fuggvenyek {
         if (!e.getEletbenVan()) {
             System.out.println("nincs ilyen ember: " + cmd[1]);
         } else {
-            System.out.println(cmd[1] + " Targyai:");
             Controller.InfoEmber(e);
         }
     }

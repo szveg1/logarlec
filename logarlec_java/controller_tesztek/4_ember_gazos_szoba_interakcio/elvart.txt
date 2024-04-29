@@ -16,6 +16,6 @@ ajto1
 szoba1 nyithato: igen
 szoba2 nyithato: igen
 hallgato1: atlep az ajto1 ajton, a szoba2 szobaba kerul.
-hallgato1 Targyai:
-szoba2
+hallgato1 targyai:
+itt van: szoba2
 ajult

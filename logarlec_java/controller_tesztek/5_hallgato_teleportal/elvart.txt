@@ -21,7 +21,6 @@ hallgato1: hasznaltad a tranzisztor1 targyat.
 hallgato1: eldobtad a tranzisztor1 targyat.
 hallgato1: atlep az ajto1 ajton, a szoba2 szobaba kerul.
 hallgato1: hasznaltad a tranzisztor2 targyat.
-hallgato1 Targyai:
-tranzisztor1 :Tranzisztor
-szoba1
+hallgato1 targyai:tranzisztor2
+itt van: szoba1
 eber
