@@ -1,0 +1,7 @@
+szoba1:szoba2,tiszta mergezo,1
+emberek:oktato,takarito,oktato
+targyak:tvsz,tvsz,tvsz,tvsz,tvsz,tvsz
+
+szoba2:szoba1,tiszta mergezo,1
+emberek:
+targyak:tvsz,tvsz,tvsz,tvsz,tvsz,tvsz

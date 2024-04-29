@@ -1,0 +1,10 @@
+a tesztpalya1 jatek betoltve. 
+a palya legeneralva 1 fore. 
+kezdo szoba: szoba1 
+a jatek elindult, 1 korig tart. 
+h1: az inventorydba tetted a t1 targyat. 
+h1: az inventorydba tetted a t2 targyat. 
+h1: az inventorydba tetted a t3 targyat. 
+h1: az inventorydba tetted a t4 targyat. 
+h1: az inventorydba tetted a t5 targyat. 
+h1: az inventoryd teli van, nem fer bele a t6 targy. 

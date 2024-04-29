@@ -1,0 +1,7 @@
+szoba1:szoba2,tiszta,1 
+oktatok: 
+targyak:
+
+szoba2:szoba1,tiszta,2
+oktatok:oktato1
+targyak:

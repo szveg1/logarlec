@@ -17,7 +17,11 @@ szoba1 nyithato: igen
 szoba2 nyithato: igen
 hallgato1: az inventorydba tetted a tranzisztor1 targyat.
 hallgato1: az inventorydba tetted a tranzisztor2 targyat.
-hallgato1: a tranzisztor1 tranzisztort parositja a masik taskaban levo tranzisztorral.
-hallgato1: az inventorydbol a foldre dobtad a tranzisztor1 targyat.
-hallgato1: atleptel az ajto12 ajton.
-hallgato1: a tranzisztor2 parjahoz teleportalunk
+hallgato1: hasznaltad a tranzisztor1 targyat.
+hallgato1: eldobtad a tranzisztor1 targyat.
+hallgato1: atlep az ajto1 ajton, a szoba2 szobaba kerul.
+hallgato1: hasznaltad a tranzisztor2 targyat.
+hallgato1 Targyai:
+tranzisztor1 :Tranzisztor
+szoba1
+eber

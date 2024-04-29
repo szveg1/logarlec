@@ -1,0 +1,3 @@
+load tesztpalya
+play 1 1 szoba1 
+targyeldob t1 h1

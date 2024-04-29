@@ -4,3 +4,4 @@ hasznal tranzisztor1 hallgato1
 targyeldob tranzisztor1 hallgato1
 ajtohasznalat ajto1 hallgato1
 hasznal tranzisztor2 hallgato1
+infoember hallgato1

@@ -1,0 +1,8 @@
+load tesztpalya
+play 1 1 szoba1
+targyfelvesz t1 h1 
+targyfelvesz t2 h1 
+targyfelvesz t3 h1 
+targyfelvesz t4 h1 
+targyfelvesz t5 h1 
+targyfelvesz t6 h1 

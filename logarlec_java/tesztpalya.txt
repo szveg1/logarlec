@@ -1,0 +1,11 @@
+szoba1:szoba2,tiszta,3
+emberek:oktato,takarito,oktato
+targyak:tvsz,tvsz,tvsz,tvsz,tvsz,tvsz
+
+szoba2:szoba3,tiszta,2
+emberek:hallgato,hallgato
+targyak:tvsz,tvsz,tvsz,tvsz,tvsz,tvsz
+
+szoba3:szoba1 szoba2,tiszta,1
+emberek:
+targyak:tvsz

@@ -2,6 +2,6 @@ szoba1:szoba2,tiszta,4
 emberek:hallgato,takarito
 targyak:
 
-szoba2:szoba1,tiszta,5
+szoba2:szoba1,tiszta mergezo,5
 emberek:oktato,oktato
 targyak:maszk,maszk,tvsz
