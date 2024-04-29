@@ -500,7 +500,34 @@ public class Controller {
      * @param e Az ember, aki átlép az ajtón.
      */
     public static void AjtoHasznalat(Ajto a, Ember e) {
+        String emberNev = null;
+        for (Map.Entry<String, Ember> entry : emberMap.entrySet()) {
+            String key = entry.getKey();
+            Ember value = entry.getValue();
+            if (value.equals(e)) {
+                emberNev = key;
+            }
+        }
+        String ajtoNev = null;
+        for (Map.Entry<String, Ajto> entry : ajtoMap.entrySet()) {
+            String key = entry.getKey();
+            Ajto value = entry.getValue();
+            if (value.equals(a)) {
+                ajtoNev = key;
+            }
+        }
+        Szoba ujSzoba = a.getSzomszed(e.getJelenlegiSzoba());
+        String szobaNev = null;
+        for(Map.Entry<String, Szoba> entry : szobaMap.entrySet()){
+            String key = entry.getKey();
+            Szoba value = entry.getValue();
+            if(value.equals(ujSzoba)){
+                szobaNev = key;
+            }
+        }
+
         a.hasznal(e);
+        System.out.println(emberNev + ": atlep az " + ajtoNev + " ajton, a " + szobaNev + " szobaba kerul.");
     }
 
     /**
@@ -547,7 +574,24 @@ public class Controller {
      * @param e Az az ember, aki használni akarja a tárgyat.
      */
     public static void Hasznal(Targy t, Ember e) {
+        String emberNev = null;
+        for (Map.Entry<String, Ember> entry : emberMap.entrySet()) {
+            String key = entry.getKey();
+            Ember value = entry.getValue();
+            if (value.equals(e)) {
+                emberNev = key;
+            }
+        }
+        String targyNev = null;
+        for (Map.Entry<String, Targy> entry : targyMap.entrySet()) {
+            String key = entry.getKey();
+            Targy value = entry.getValue();
+            if (value.equals(t)) {
+                targyNev = key;
+            }
+        }
         e.targyatHasznal(t);
+        System.out.println(emberNev + ": hasznaltad a " + targyNev + " targyat.");
     }
 
     /**
@@ -564,14 +608,22 @@ public class Controller {
                 emberNev = key;
             }
         }
-        e.targyatEldob(t);
+        String targyNev = null;
+        for (Map.Entry<String, Targy> entry : targyMap.entrySet()) {
+            String key = entry.getKey();
+            Targy value = entry.getValue();
+            if (value.equals(t)) {
+                targyNev = key;
+            }
+        }
         if(e.getItems().isEmpty()){
             System.out.println(emberNev + ": az inventoryd ures nem dobhatsz el targyat.");
         } else if (!e.getItems().contains(t)) {
             System.out.println(emberNev + ": nincs ilyen targy az inventorydban.");
         } else {
-            System.out.println(emberNev + ": eldobtad a " + t + " targyat.");
+            System.out.println(emberNev + ": eldobtad a " + targyNev + " targyat.");
         }
+        e.targyatEldob(t);
     }
     /**
      * Kiírja az adott ember tárgyait és jelenlegi tartózkodási helyét, valamint állapotát.
@@ -672,7 +724,8 @@ public class Controller {
             List<Ajto> ajtok = sz.getAjtok();
             Collections.shuffle(ajtok);
             for (Ember e : sz.getEmberek()) {
-                e.controllerLeptet(ajtok.get(0));
+                if(!ajtok.isEmpty())
+                    e.controllerLeptet(ajtok.get(0));
             }
         }
     }

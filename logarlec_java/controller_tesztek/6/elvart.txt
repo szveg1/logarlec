@@ -7,6 +7,7 @@ szobak:
 	allapot:tiszta
 
 hallgato1: az inventorydba tetted a camembert1 targyat.
+hallgato1: hasznaltad a camembert1 targyat.
 A szoba allapota:
 nem atkozott
 mergezett
@@ -16,4 +17,4 @@ A szobaban levo emberek:
 hallgato :Hallgato
 A szobabol nyilo ajtok:
 A jatekbol hatralevo ido:
--1
+0

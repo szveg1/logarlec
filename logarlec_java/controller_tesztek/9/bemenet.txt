@@ -1,8 +1,7 @@
 targyfelvesz maszk1 hallgato1
-targyfelvesz tvsz1 hallgato1
-targyfelvesz maszk2 oktato1
+targyfelvesz tvsz3 hallgato1
+targyfelvesz maszk2 oktato3
 infoember hallgato1
-infoember hallgato2
 infoember oktato1
 infoember oktato2
 ajtohasznalat ajto1 takarito1

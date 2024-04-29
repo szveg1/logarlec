@@ -1,0 +1,3 @@
+szoba1:,tiszta,1 
+oktatok: 
+targyak:
