@@ -59,8 +59,9 @@ public class Labirintus implements Idozitett {
     /**
      * Getter függvény ami beállítja a játékból hátralévő időt
      */
-    public int getTimeLeft(){
-        return timeLeft;}
+    public static int getTimeLeft(){
+        return timeLeft;
+    }
 
     /**
      * A függvény egy megadott szobát felbont több szobára
@@ -85,7 +86,9 @@ public class Labirintus implements Idozitett {
     /**
      * A függvény a CostumLogger segítségével kiírja hogy nyerték a játékot a hallgatók
      */
-    public static void jatekNyert(){CustomLogger.info("Játék vége, nyertek a Hallgatók");}
+    public static void jatekNyert(){
+        System.out.println("Játék vége, nyertek a Hallgatók");
+    }
 
     
     public static void jatekVeszt(){CustomLogger.info("Játék vége, vesztettek a Hallgatók");}
