@@ -61,6 +61,9 @@ public class MenuPanel extends JPanel {
         JButton playButton = new JButton("Play");
         playPanel.add(playButton);
 
+        JLabel disclabel = new JLabel("Játékosok száma:");
+        playPanel.add(disclabel);
+
         SpinnerNumberModel playerNumberModel = new SpinnerNumberModel(1,1,Integer.MAX_VALUE,1);
         JSpinner playerNumberSpinner = new JSpinner(playerNumberModel);
         playerNumberSpinner.setPreferredSize(new Dimension(50, 30));
