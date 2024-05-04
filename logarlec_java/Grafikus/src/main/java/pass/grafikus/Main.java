@@ -16,6 +16,11 @@ public class Main {
 
     public static void main(String[] args) {
         CustomLogger.suppress();
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
+        }
         SwingUtilities.invokeLater(Main::createAndShowGUI);
     }
 
