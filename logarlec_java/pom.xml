@@ -12,6 +12,7 @@
         <module>szkeleton</module>
         <module>model</module>
         <module>controller</module>
+        <module>Grafikus</module>
     </modules>
 
     <properties>

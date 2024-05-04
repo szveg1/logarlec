@@ -14,14 +14,14 @@ public class Main extends Fuggvenyek {
         Scanner scanner = new Scanner(System.in);
         Map<String, Consumer<String[]>> commandMap = new HashMap<>();
         fillMap(commandMap);
-        while (true) {
+
             String line = scanner.nextLine();
-            if (line == null) break;
+
             String[] cmd = line.split(" ");
 
             Consumer<String[]> command = commandMap.getOrDefault(cmd[0], Main::handleUnknownCommand);
             command.accept(cmd);
-        }
+
         scanner.close();
     }
 

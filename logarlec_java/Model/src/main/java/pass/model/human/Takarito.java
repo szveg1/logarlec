@@ -24,7 +24,6 @@ public class Takarito extends Ember{
     public boolean masikSzobabaLep(Szoba ujSzoba) {
         if(!ujSzoba.emberBetesz(this)) return false;
         jelenlegiSzoba = ujSzoba;
-        System.out.println(jelenlegiSzoba);
         CustomLogger.info(this + " belépett a " + ujSzoba + "-ba");
         // Embereket kitessekeli
         List<Ember> emberList = new ArrayList<>(jelenlegiSzoba.getEmberek());
