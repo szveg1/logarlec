@@ -1,0 +1,24 @@
+szoba1:szoba2 kezdoszoba szoba3 ,tiszta,7
+emberek:
+targyak:hamistvsz
+szoba2:kezdoszoba szoba5 szoba3 szoba1 ,tiszta,9
+emberek:oktato
+targyak:hamislec,hamismaszk,legfrissito,hamislec
+kezdoszoba:szoba3 szoba1 szoba2 szoba4 ,tiszta,1
+emberek:hallgato
+targyak:
+szoba3:szoba4 szoba2 kezdoszoba ,tiszta,6
+emberek:takarito
+targyak:pohar,pohar
+szoba4:kezdoszoba szoba5 szoba3 ,tiszta atkozott,6
+emberek:
+targyak:logarlec,camembert,legfrissito,camembert
+szoba5:szoba4 szoba3 szoba1 szoba6 ,tiszta mergezo,7
+emberek:
+targyak:tvsz,rongy,pohar
+szoba6:szoba5 szoba4 szoba7 szoba1 ,tiszta,8
+emberek:
+targyak:tvsz,maszk,pohar,hamistvsz
+szoba7:szoba6 ,tiszta atkozott,7
+emberek:
+targyak:tranzisztor,hamismaszk,tvsz

@@ -1,32 +1,84 @@
 package pass.grafikus;
 
+import pass.model.human.Ember;
+import pass.model.item.Targy;
 import pass.model.labyrinth.Szoba;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ItemEvent;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class SzobaPanel extends JPanel {
     private List<JButton> doorButtons;
+    private List<JButton> itemButtons;
+    private JPanel jobbpanel;
+    private JPanel balpanel;
     public SzobaPanel(Szoba szoba, Dimension size) {
         super();
-        //setBackground(Color.gray);
         this.setLayout(null);
         this.setSize(size);
         this.setPreferredSize(size);
         int doorCount = szoba.getAjtok().size();
 
+        int horizontalMargin = getWidth() * 5 / 100;
+        int verticalMargin = getHeight() * 5 / 100;
+
+        int roomWidth = getWidth() - 2 * horizontalMargin;
+        int roomHeight = getHeight() - 2 * verticalMargin;
+
+
+        jobbpanel = new JPanel();
+        jobbpanel.setBounds(horizontalMargin + roomWidth/2, verticalMargin + 10, roomWidth/2 - 10, roomHeight-20);
+        jobbpanel.setBackground(new Color(0,0,0,0));
+        balpanel = new JPanel();
+        balpanel.setBounds(horizontalMargin + 10, verticalMargin + 10, roomWidth/2 - 10, roomHeight-20);
+        balpanel.setBackground(new Color(0,0,0,0));
+
+        this.add(jobbpanel);
+        this.add(balpanel);
+
+
+
         doorButtons = new ArrayList<>();
+
+        itemButtons = new ArrayList<>();
+
+        for (Targy t : szoba.getItems()) {
+            JPanel b = new JPanel();
+            b.setPreferredSize(new Dimension(100, 100));
+            b.setBackground(new Color(0,0,0,0));
+
+            JLabel l = new JLabel();
+            String targy = t.getClass().getSimpleName().toLowerCase(Locale.ROOT);
+            l.setIcon(new ImageIcon(new ImageIcon("Grafikus/src/main/resources/"+ targy + ".png").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT)));
+            b.add(l);
+            balpanel.add(b);
+        }
+
+        for (Ember e : szoba.getEmberek()) {
+            JPanel b = new JPanel();
+            b.setPreferredSize(new Dimension(100, 100));
+            b.setBackground(new Color(0,0,0,0));
+
+            JLabel l = new JLabel();
+            String ember = e.getClass().getSimpleName().toLowerCase(Locale.ROOT);
+            l.setIcon(new ImageIcon(new ImageIcon("Grafikus/src/main/resources/"+ ember +".png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+            b.add(l);
+            balpanel.add(b);
+            jobbpanel.add(b);
+        }
+
+
 
         int doorsOnLeft = 0;
         int doorsOnTop = 0;
         int doorsOnRight = 0;
         int doorsOnBottom = 0;
 
-        int horizontalMargin = getWidth() * 5 / 100;
-        int verticalMargin = getHeight() * 5 / 100;
 
         for (int i = 0; i < doorCount; i++) {
             if (i % 4 == 0) {
@@ -39,9 +91,6 @@ public class SzobaPanel extends JPanel {
                 doorsOnBottom++;
             }
         }
-
-        int roomWidth = getWidth() - 2 * horizontalMargin;
-        int roomHeight = getHeight() - 2 * verticalMargin;
 
         int segmentWidthLeft = 0;
         int segmentWidthTop = 0;
@@ -90,6 +139,10 @@ public class SzobaPanel extends JPanel {
             doorIndex++;
             this.add(door);
         }
+
+
+
+
     }
 
     @Override

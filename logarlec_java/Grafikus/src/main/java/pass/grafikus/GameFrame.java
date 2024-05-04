@@ -20,7 +20,6 @@ public class GameFrame extends JFrame {
         setLayout(new BorderLayout());
 
         JPopupMenu popupMenu = getPopupMenu();
-
         Action escapeAction = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
