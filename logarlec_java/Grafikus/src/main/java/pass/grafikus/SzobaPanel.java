@@ -68,7 +68,6 @@ public class SzobaPanel extends JPanel {
             String ember = e.getClass().getSimpleName().toLowerCase(Locale.ROOT);
             l.setIcon(new ImageIcon(new ImageIcon("Grafikus/src/main/resources/"+ ember +".png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
             b.add(l);
-            balpanel.add(b);
             jobbpanel.add(b);
         }
 
