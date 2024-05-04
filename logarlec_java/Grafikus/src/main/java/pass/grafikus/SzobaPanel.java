@@ -73,7 +73,6 @@ public class SzobaPanel extends JPanel {
         for (int i = 0; i < doorsOnTop; i++) {
             DoorButton door = new DoorButton();
             door.setBounds(horizontalMargin + (i * 2 + 1) * segmentWidthTop, verticalMargin, segmentWidthTop, 10);
-            doorButtons.add(door);
             doorIndex++;
             this.add(door);
         }
@@ -81,7 +80,6 @@ public class SzobaPanel extends JPanel {
         for (int i = 0; i < doorsOnRight; i++) {
             DoorButton door = new DoorButton();
             door.setBounds(getWidth() - horizontalMargin - 10, verticalMargin + (i * 2 + 1) * segmentWidthRight, 10, segmentWidthRight);
-            doorButtons.add(door);
             doorIndex++;
             this.add(door);
         }
@@ -89,30 +87,8 @@ public class SzobaPanel extends JPanel {
         for (int i = 0; i < doorsOnBottom; i++) {
             DoorButton door = new DoorButton();
             door.setBounds(horizontalMargin + (i * 2 + 1) * segmentWidthBottom, getHeight() - verticalMargin - 10, segmentWidthBottom, 10);
-            doorButtons.add(door);
             doorIndex++;
             this.add(door);
-        }
-        if (doorCount > 30) {
-            String[] doorNumbers = new String[doorCount + 1];
-            doorNumbers[0] = "Ajtok";
-            for (int i = 1; i <= doorCount; i++) {
-                doorNumbers[i] = "Ajto " + (i - 1);
-            }
-
-            JComboBox<String> doorList = new JComboBox<>(doorNumbers);
-            doorList.setBounds(0, 0, 200, 30); // Adjust size and position as needed
-            doorList.setSelectedItem("Ajtok");
-            doorList.addItemListener(e -> {
-                if (e.getStateChange() == ItemEvent.SELECTED) {
-                    String selectedItem = (String) e.getItem();
-                    if (!selectedItem.equals("Ajtok")) {
-                        int doorIndex2 = Integer.parseInt(selectedItem.split(" ")[1]);
-                        doorButtons.get(doorIndex2).doClick();
-                    }
-                }
-            });
-            this.add(doorList);
         }
     }
 
