@@ -1,7 +1,6 @@
 package pass.grafikus;
 
 import pass.controller.Controller;
-import pass.controller.Fuggvenyek;
 
 import javax.swing.*;
 import java.awt.*;

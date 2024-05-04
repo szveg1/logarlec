@@ -8,6 +8,7 @@ import java.awt.*;
 public class SzobaPanel extends JPanel {
     public SzobaPanel(Szoba szoba, Dimension size) {
         super();
+        //setBackground(Color.gray);
         this.setLayout(null);
         this.setSize(size);
         this.setPreferredSize(size);
@@ -57,89 +58,54 @@ public class SzobaPanel extends JPanel {
 
         // Adjust the door position calculations to account for gaps
         for (int i = 0; i < doorsOnLeft; i++) {
-            JButton door = new JButton("Door " + doorIndex);
+            DoorButton door = new DoorButton();
             door.setBounds(horizontalMargin, verticalMargin + (i * 2 + 1) * segmentWidthLeft, 10, segmentWidthLeft);
             doorIndex++;
             this.add(door);
         }
 
         for (int i = 0; i < doorsOnTop; i++) {
-            JButton door = new JButton("Door " + doorIndex);
+            DoorButton door = new DoorButton();
             door.setBounds(horizontalMargin + (i * 2 + 1) * segmentWidthTop, verticalMargin, segmentWidthTop, 10);
             doorIndex++;
             this.add(door);
         }
 
         for (int i = 0; i < doorsOnRight; i++) {
-            JButton door = new JButton("Door " + doorIndex);
+            DoorButton door = new DoorButton();
             door.setBounds(getWidth() - horizontalMargin - 10, verticalMargin + (i * 2 + 1) * segmentWidthRight, 10, segmentWidthRight);
             doorIndex++;
             this.add(door);
         }
 
         for (int i = 0; i < doorsOnBottom; i++) {
-            JButton door = new JButton("Door " + doorIndex);
+            DoorButton door = new DoorButton();
             door.setBounds(horizontalMargin + (i * 2 + 1) * segmentWidthBottom, getHeight() - verticalMargin - 10, segmentWidthBottom, 10);
             doorIndex++;
             this.add(door);
         }
+    }
 
-        // Add walls
-        for (int i = 0; i <= doorsOnLeft; i++) {
-            JPanel gap = new JPanel();
-            gap.setBackground(Color.RED); // Set the color of the gap
-            gap.setBounds(horizontalMargin, verticalMargin + i * 2 * segmentWidthLeft, 10, segmentWidthLeft);
-            this.add(gap);
-        }
-
-        for (int i = 0; i <= doorsOnTop; i++) {
-            JPanel gap = new JPanel();
-            gap.setBackground(Color.RED); // Set the color of the gap
-            gap.setBounds(horizontalMargin + i * 2 * segmentWidthTop, verticalMargin, segmentWidthTop, 10);
-            this.add(gap);
-        }
-
-        for (int i = 0; i <= doorsOnRight; i++) {
-            JPanel gap = new JPanel();
-            gap.setBackground(Color.RED); // Set the color of the gap
-            gap.setBounds(getWidth() - horizontalMargin - 10, verticalMargin + i * 2 * segmentWidthRight, 10, segmentWidthRight);
-            this.add(gap);
-        }
-
-        for (int i = 0; i <= doorsOnBottom; i++) {
-            JPanel gap = new JPanel();
-            gap.setBackground(Color.RED); // Set the color of the gap
-            gap.setBounds(horizontalMargin + i * 2 * segmentWidthBottom, getHeight() - verticalMargin - 10, segmentWidthBottom, 10);
-            this.add(gap);
-        }
-
-        if(doorsOnLeft == 0){
-            JPanel gap = new JPanel();
-            gap.setBackground(Color.RED); // Set the color of the gap
-            gap.setBounds(horizontalMargin, verticalMargin, 10, roomHeight);
-            this.add(gap);
-        }
-        if(doorsOnTop == 0){
-            JPanel gap = new JPanel();
-            gap.setBackground(Color.RED); // Set the color of the gap
-            gap.setBounds(horizontalMargin, verticalMargin, roomWidth, 10);
-            this.add(gap);
-        }
-        if(doorsOnRight == 0){
-            JPanel gap = new JPanel();
-            gap.setBackground(Color.RED); // Set the color of the gap
-            gap.setBounds(getWidth() - horizontalMargin - 10, verticalMargin, 10, roomHeight);
-            this.add(gap);
-        }
-        if(doorsOnBottom == 0){
-            JPanel gap = new JPanel();
-            gap.setBackground(Color.RED); // Set the color of the gap
-            gap.setBounds(horizontalMargin, getHeight() - verticalMargin - 10, roomWidth, 10);
-            this.add(gap);
-        }
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
 
 
-        System.out.println(doorCount);
+
+        int horizontalMargin = getWidth() * 5 / 100;
+        int verticalMargin = getHeight() * 5 / 100;
+
+        int roomWidth = getWidth() - 2 * horizontalMargin;
+        int roomHeight = getHeight() - 2 * verticalMargin;
+
+        g.setColor(Color.GRAY);
+        g.fillRect(horizontalMargin, verticalMargin, roomWidth, roomHeight);
+
+        g.setColor(Color.BLACK);
+        g.fillRect(horizontalMargin, verticalMargin, 10, roomHeight);
+        g.fillRect(horizontalMargin, verticalMargin, roomWidth, 10);
+        g.fillRect(getWidth() - horizontalMargin - 10, verticalMargin, 10, roomHeight);
+        g.fillRect(horizontalMargin, getHeight() - verticalMargin - 10, roomWidth, 10);
 
     }
 
