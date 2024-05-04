@@ -19,19 +19,7 @@ public class GameFrame extends JFrame {
 
         setLayout(new BorderLayout());
 
-        JPopupMenu popupMenu = new JPopupMenu();
-        JMenuItem playItem = new JMenuItem("Play");
-        JMenuItem saveItem = new JMenuItem("Save Game");
-        JMenuItem loadItem = new JMenuItem("Load Game");
-        JMenuItem exitItem = new JMenuItem("Exit Game");
-        exitItem.addActionListener(e -> {
-            Controller.reset();
-            Main.setDisplayedFrame(new MenuFrame());
-        });
-        popupMenu.add(playItem);
-        popupMenu.add(saveItem);
-        popupMenu.add(loadItem);
-        popupMenu.add(exitItem);
+        JPopupMenu popupMenu = getPopupMenu();
 
         Action escapeAction = new AbstractAction() {
             @Override
@@ -54,5 +42,36 @@ public class GameFrame extends JFrame {
         add(new SzobaPanel(Labirintus.getInstance().getSzobak().get(0), getSize()), BorderLayout.CENTER);
         add(new JTextArea("Ez egy teszt szöveg"), BorderLayout.SOUTH);
         pack();
+    }
+
+    private JPopupMenu getPopupMenu() {
+        JPopupMenu popupMenu = new JPopupMenu();
+        JMenuItem saveItem = new JMenuItem("Save Game and Exit");
+        saveItem.addActionListener(e -> {
+
+            String fileName = JOptionPane.showInputDialog(GameFrame.this,
+                    "Enter the file name:", "Save As", JOptionPane.PLAIN_MESSAGE);
+
+            if (fileName != null && !fileName.trim().isEmpty()) {
+                Controller.Save(fileName);
+                Controller.reset();
+                Main.setDisplayedFrame(new MenuFrame());
+            } else {
+                JOptionPane.showMessageDialog(GameFrame.this,
+                        "No file name entered.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+
+        });
+
+
+        JMenuItem exitItem = new JMenuItem("Exit Game (without saving)");
+        exitItem.addActionListener(e -> {
+            Controller.reset();
+            Main.setDisplayedFrame(new MenuFrame());
+        });
+
+        popupMenu.add(saveItem);
+        popupMenu.add(exitItem);
+        return popupMenu;
     }
 }
