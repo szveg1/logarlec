@@ -126,7 +126,15 @@ public class SzobaPanel extends JPanel {
         int roomWidth = getWidth() - 2 * horizontalMargin;
         int roomHeight = getHeight() - 2 * verticalMargin;
 
-        g.setColor(Color.GRAY);
+        //sima
+        //g.setColor(Color.GRAY);
+        //mérgező
+        //Color myColor = new Color(0, 120, 0);
+        //g.setColor(myColor);
+        //g.setColor(Color.GREEN);
+        //ragacsos
+        Color myColor = new Color(255, 255, 205);
+        g.setColor(myColor);
         g.fillRect(horizontalMargin, verticalMargin, roomWidth, roomHeight);
 
         g.setColor(Color.BLACK);
