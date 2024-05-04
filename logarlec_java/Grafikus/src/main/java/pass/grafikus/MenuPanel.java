@@ -4,40 +4,53 @@ import pass.controller.Controller;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class MenuPanel extends JPanel {
     public MenuPanel(){
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+        this.setPreferredSize(new Dimension(800, 600));
+
+        this.setLayout(new BorderLayout());
 
         final JPanel playPanel = makePlayPanel();
-        final JPanel loadPanel = makeLoadPanel();
-
-        add(playPanel);
-        add(loadPanel);
-    }
-
-    private JPanel makeLoadPanel() {
-        JPanel loadPanel = new JPanel();
-        loadPanel.setLayout(new FlowLayout());
         JButton loadButton = new JButton("Load");
-        loadPanel.add(loadButton);
 
         loadButton.addActionListener(e -> {
             loadDialog();
-            Main.setDisplayedFrame(new GameFrame());
         });
+        final JButton exitButton = new JButton("Exit");
+        exitButton.addActionListener(e -> System.exit(0));
 
-        return loadPanel;
+        JLabel titleLabel = new JLabel("Logarléc");
+        Font font = new Font("Dialog", Font.BOLD, 50);
+
+        titleLabel.setForeground(Color.BLACK);
+        titleLabel.setFont(font);
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(titleLabel, BorderLayout.NORTH);
+
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(loadButton);
+        buttonPanel.add(exitButton);
+        buttonPanel.add(playPanel);
+
+
+        add(buttonPanel, BorderLayout.SOUTH);
     }
+
 
     private void loadDialog() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Load Game");
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
 
         int userSelection = fileChooser.showOpenDialog(this);
 
         if (userSelection == JFileChooser.APPROVE_OPTION) {
-            Controller.Load(fileChooser.getSelectedFile().getAbsolutePath());
+            File selectedFile = fileChooser.getSelectedFile();
+            Controller.Load(selectedFile.getAbsolutePath());
             Main.setDisplayedFrame(new GameFrame());
         }
     }
@@ -59,5 +72,18 @@ public class MenuPanel extends JPanel {
             Main.setDisplayedFrame(new GameFrame());
         });
         return playPanel;
+    }
+
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        URL url = null;
+        try {
+            url = new URL("https://i.ytimg.com/vi/5lMdGwmRcr0/maxresdefault.jpg");
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
+        }
+        g.drawImage(new ImageIcon(url).getImage(), 0, 0, getWidth(), getHeight(), this);
     }
 }

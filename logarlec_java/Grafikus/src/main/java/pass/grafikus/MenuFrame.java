@@ -8,7 +8,7 @@ public class MenuFrame extends JFrame {
         super("Logarlec");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(1280, 720);
-        setResizable(false);
+        setResizable(true);
         setLocationRelativeTo(null);
         add(new MenuPanel());
         pack();
