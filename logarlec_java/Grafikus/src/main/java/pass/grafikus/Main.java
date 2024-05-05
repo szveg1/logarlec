@@ -3,13 +3,7 @@ package pass.grafikus;
 import javax.swing.*;
 
 import pass.model.CustomLogger;
-import pass.model.labyrinth.Labirintus;
-import pass.model.labyrinth.Szoba;
 
-import java.awt.*;
-
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
 
     private static JFrame frame;

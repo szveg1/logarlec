@@ -6,11 +6,8 @@ import pass.model.labyrinth.Szoba;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class SzobaPanel extends JPanel {
     private List<JButton> doorButtons;
@@ -53,20 +50,19 @@ public class SzobaPanel extends JPanel {
             b.setBackground(new Color(0,0,0,0));
 
             JLabel l = new JLabel();
-            String targy = t.getClass().getSimpleName().toLowerCase(Locale.ROOT);
-            l.setIcon(new ImageIcon(new ImageIcon("Grafikus/src/main/resources/"+ targy + ".png").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT)));
+
             b.add(l);
             balpanel.add(b);
         }
 
         for (Ember e : szoba.getEmberek()) {
+
             JPanel b = new JPanel();
             b.setPreferredSize(new Dimension(100, 100));
             b.setBackground(new Color(0,0,0,0));
 
             JLabel l = new JLabel();
-            String ember = e.getClass().getSimpleName().toLowerCase(Locale.ROOT);
-            l.setIcon(new ImageIcon(new ImageIcon("Grafikus/src/main/resources/"+ ember +".png").getImage().getScaledInstance(100, 100, Image.SCALE_DEFAULT)));
+
             b.add(l);
             jobbpanel.add(b);
         }

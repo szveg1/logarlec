@@ -2,6 +2,7 @@ package pass.model.human;
 
 import pass.model.CustomLogger;
 import pass.model.CustomRecordFormatter;
+import pass.model.DrawObserver;
 import pass.model.item.*;
 import pass.model.labyrinth.Labirintus;
 
@@ -138,5 +139,15 @@ public class Hallgato extends Ember {
         for(Targy t : inventory){
             t.tick();
         }
+    }
+
+    @Override
+    public void changeObserver(DrawObserver drawObserver) {
+        observer = drawObserver;
+    }
+
+    @Override
+    public void notifyObserver() {
+        observer.update(this);
     }
 }

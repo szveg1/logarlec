@@ -1,20 +1,24 @@
 package pass.model.human;
 
 import pass.model.CustomRecordFormatter;
+import pass.model.DrawObservable;
 import pass.model.Idozitett;
 import pass.model.CustomLogger;
 import pass.model.item.*;
 import pass.model.labyrinth.Ajto;
 import pass.model.labyrinth.Szoba;
 
+import java.awt.*;
+import java.net.URL;
 import java.util.*;
+import java.util.List;
 import java.util.logging.*;
 
 /**
  * Az Ember osztály azonosítja a karaktert, valamint tárolja az
  * általuk birtokolt tárgyakat. Képesek tárgyak felvételére, eldobására és használatára.
  */
-public abstract class Ember implements TargyVisitor, Idozitett {
+public abstract class Ember extends DrawObservable implements TargyVisitor, Idozitett {
     // Csak a szkeletonhoz-------------
     protected String nev;
 
@@ -193,4 +197,5 @@ public abstract class Ember implements TargyVisitor, Idozitett {
     public Hallgato tamadasElszenved(Oktato oktato) { return null;}
 
     public boolean getEletbenVan() { return true; }
+    
 }

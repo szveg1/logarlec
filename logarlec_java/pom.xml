@@ -12,7 +12,7 @@
         <module>szkeleton</module>
         <module>model</module>
         <module>controller</module>
-        <module>Grafikus</module>
+        <module>grafikus</module>
     </modules>
 
     <properties>
@@ -30,7 +30,21 @@
     </dependencies>
     <build>
         <plugins>
-            <!-- Other plugins -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <mainClass>pass.grafikus.Main</mainClass>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>

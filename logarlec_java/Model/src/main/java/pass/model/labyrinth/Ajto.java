@@ -125,7 +125,7 @@ public class Ajto {
             lathato = false;
             CustomLogger.info(this + " láthatatlan lett.");
         }
-        else if (!lathato){
+        else {
             lathato = true;
             CustomLogger.info(this + " láthatóvá vált.");
         }
