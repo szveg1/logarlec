@@ -15,7 +15,7 @@ public class Controller {
     private static final HashMap<String,Szoba> szobaMap = new HashMap<>();
     private static final HashMap<String,Ajto> ajtoMap = new HashMap<>();
     private static final HashMap<String,Targy> targyMap = new HashMap<>();
-
+    private static final Queue<Ember> hallgatoQueue = new ArrayDeque<>();
     private static boolean deterministic = false;
     /**
      *  A függvény létrhozza a játékot
@@ -196,6 +196,7 @@ public class Controller {
             hallgato.masikSzobabaLep(kezdoSzoba);
             marSzobabanHallgato++;
             emberMap.put("hallgato" + marSzobabanHallgato, hallgato);
+            hallgatoQueue.add(hallgato);
         }
 
         int randomOktatokDB = random.ints(1, (int)Math.ceil(hallgatoDB * 0.5), (int)Math.ceil(hallgatoDB * 0.8) + 1).sum();
@@ -225,7 +226,7 @@ public class Controller {
         }
         Logarlec logarlec = new Logarlec("logarlec");
 
-        int logarlecSzobaszam = random.ints(1,0, szobaSzam).sum();
+        int logarlecSzobaszam = random.ints(1,1, szobaSzam).sum();
         labirintus.getSzobak().get(logarlecSzobaszam).addItem(logarlec);
         targyMap.put("logarlec", logarlec);
 
@@ -358,7 +359,6 @@ public class Controller {
         }
 
         HashMap<String,ArrayList<String>> szobaSzomszedMap = new HashMap<>();
-        HashMap<Szoba, ArrayList<Ember>> szobaEmberMap = new HashMap<>();
         HashMap<Szoba, ArrayList<Targy>> szobaTargyMap = new HashMap<>();
 
         Szoba szoba = null;
@@ -367,7 +367,7 @@ public class Controller {
                 szoba = szobaFeldolgoz(line, szobaSzomszedMap);
             }
             if(line.startsWith("emberek")){
-                emberekFeldolgoz(line, szoba, szobaEmberMap);
+                emberekFeldolgoz(line, szoba);
             }
             if(line.startsWith("targyak")){
                 targyakFeldolgoz(line, szobaTargyMap, szoba);
@@ -873,10 +873,8 @@ public class Controller {
      * Feldolgozza a bemeneti sort, és létrehozza az embereket az adatok alapján, majd hozzáadja őket a megfelelő szobához és az ember map-hez.
      * @param line           A bemeneti sor, amely tartalmazza az emberek adatait.
      * @param szoba          A szoba, amelyhez az embereket hozzá kell adni.
-     * @param szobaEmberMap  A szobák és az azokhoz tartozó emberek map.
      */
-    private static void emberekFeldolgoz(String line, Szoba szoba, HashMap<Szoba, ArrayList<Ember>> szobaEmberMap) {
-        szobaEmberMap.put(szoba, new ArrayList<>());
+    private static void emberekFeldolgoz(String line, Szoba szoba) {
         String[] parts = line.split(":");
 
         int hallgatoSzam = 1;
@@ -901,6 +899,7 @@ public class Controller {
                 if(ember.startsWith("hallgato")){
                     e = new Hallgato(ember);
                     emberMap.put(ember + (hallgatoSzam), e);
+                    hallgatoQueue.add(e);
                     hallgatoSzam++;
                 }
                 else if(ember.startsWith("oktato")){
@@ -915,7 +914,6 @@ public class Controller {
                 }
 
                 e.masikSzobabaLep(szoba);
-                szobaEmberMap.get(szoba).add(e);
             }
         }
     }
@@ -938,4 +936,11 @@ public class Controller {
         targyCount.put("tvsz",0);
         return targyCount;
     }
+
+    public static Ember getKovetkezoJatekos(){
+        Ember e = hallgatoQueue.remove();
+        hallgatoQueue.add(e);
+        return e;
+    }
 }
+
