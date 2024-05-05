@@ -47,6 +47,7 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
         return true;
     }
 
+
     public void targyatFelvesz(Targy targy) {
         if(!jelenlegiSzoba.getItems().contains(targy))
             return;

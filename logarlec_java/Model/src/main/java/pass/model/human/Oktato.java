@@ -1,6 +1,7 @@
 package pass.model.human;
 
 import pass.model.CustomLogger;
+import pass.model.DrawObserver;
 import pass.model.item.*;
 import pass.model.labyrinth.*;
 
@@ -89,4 +90,13 @@ public class Oktato extends Ember {
     }
 
 
+    @Override
+    public void changeObserver(DrawObserver drawObserver) {
+
+    }
+
+    @Override
+    public void notifyObserver() {
+
+    }
 }

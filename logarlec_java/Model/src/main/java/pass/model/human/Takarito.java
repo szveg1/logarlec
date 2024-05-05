@@ -1,6 +1,7 @@
 package pass.model.human;
 
 import pass.model.CustomLogger;
+import pass.model.DrawObserver;
 import pass.model.labyrinth.Ajto;
 import pass.model.labyrinth.Szoba;
 
@@ -51,4 +52,13 @@ public class Takarito extends Ember{
     @Override
     public void controllerLeptet(Ajto a) { a.hasznal(this);}
 
+    @Override
+    public void changeObserver(DrawObserver drawObserver) {
+
+    }
+
+    @Override
+    public void notifyObserver() {
+
+    }
 }
