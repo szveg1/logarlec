@@ -12,6 +12,7 @@ import java.util.List;
 public class SzobaPanel extends JPanel {
     private List<JButton> doorButtons;
     private List<JButton> itemButtons;
+    private List<EmberLabel> emberLabels;
     private JPanel jobbpanel;
     private JPanel balpanel;
     public SzobaPanel(Szoba szoba, Dimension size) {
@@ -38,31 +39,16 @@ public class SzobaPanel extends JPanel {
         this.add(jobbpanel);
         this.add(balpanel);
 
-
-
         doorButtons = new ArrayList<>();
 
         itemButtons = new ArrayList<>();
 
-        for (Targy t : szoba.getItems()) {
-            JPanel b = new JPanel();
-            b.setPreferredSize(new Dimension(100, 100));
-            b.setBackground(new Color(0,0,0,0));
-
-            JLabel l = new JLabel();
-
-            b.add(l);
-            balpanel.add(b);
-        }
+        emberLabels = new ArrayList<>();
 
         for (Ember e : szoba.getEmberek()) {
 
             JPanel b = new JPanel();
-            b.setPreferredSize(new Dimension(100, 100));
-            b.setBackground(new Color(0,0,0,0));
-
-            JLabel l = new JLabel();
-
+            EmberLabel l = new EmberLabel(e);
             b.add(l);
             jobbpanel.add(b);
         }

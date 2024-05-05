@@ -10,6 +10,10 @@ import pass.model.labyrinth.*;
  * osztály felelős azért, hogy megnehezítse a játékos dolgát a játék során.
  */
 public class Oktato extends Ember {
+    @Override
+    public void accept(EmberVisitor visitor) {
+        visitor.visitOktato(this);
+    }
     private static final int MAX_INVENTORY_MERET = 1;
     private int meddigBena = 0;
     private Hallgato kitTamad;

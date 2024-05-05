@@ -18,6 +18,11 @@ import java.util.logging.Logger;
  */
 public class Hallgato extends Ember {
 
+    @Override
+    public void accept(EmberVisitor visitor) {
+        visitor.visitHallgato(this);
+    }
+
     // Csak szkeletonhoz-------------
     public Hallgato(String nev) {
         super(nev);

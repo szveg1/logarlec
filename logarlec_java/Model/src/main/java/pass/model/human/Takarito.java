@@ -8,6 +8,10 @@ import pass.model.labyrinth.Szoba;
 import java.util.*;
 
 public class Takarito extends Ember{
+    @Override
+    public void accept(EmberVisitor visitor) {
+        visitor.visitTakarito(this);
+    }
 
     public Takarito(String nev) {
         super(nev);

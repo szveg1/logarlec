@@ -22,6 +22,8 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
     // Csak a szkeletonhoz-------------
     protected String nev;
 
+    public void accept(EmberVisitor visitor) {}
+
     /**
      * A függvény elnevezi az objektumot.
      * @param nev - az objektum neve
