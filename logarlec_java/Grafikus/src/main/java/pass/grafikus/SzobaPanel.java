@@ -50,6 +50,7 @@ public class SzobaPanel extends JPanel {
             JPanel b = new JPanel();
             EmberLabel l = new EmberLabel(e);
             b.add(l);
+            b.setBackground(new Color(0,0,0,0));
             jobbpanel.add(b);
         }
 
