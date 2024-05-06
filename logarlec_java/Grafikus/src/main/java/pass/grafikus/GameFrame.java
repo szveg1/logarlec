@@ -2,7 +2,6 @@ package pass.grafikus;
 
 import pass.controller.Controller;
 import pass.model.labyrinth.Labirintus;
-import pass.model.labyrinth.Szoba;
 
 import javax.swing.*;
 import java.awt.*;
@@ -37,7 +36,6 @@ public class GameFrame extends JFrame {
         GameFrame.this.setFocusable(true);
 
 
-
         add(new SzobaPanel(Labirintus.getInstance().getSzobak().get(0), getSize()), BorderLayout.CENTER);
 
 
@@ -48,15 +46,15 @@ public class GameFrame extends JFrame {
             JPanel cell = new JPanel();
             JLabel cellLabel = new JLabel();
             cell.setPreferredSize(itemSize);
-            cell.setBorder(BorderFactory.createLineBorder(new Color(139,69,19), 3)); // RGB for brown is (139,69,19), thickness is 3
+            cell.setBorder(BorderFactory.createLineBorder(new Color(139, 69, 19), 3)); // RGB for brown is (139,69,19), thickness is 3
             cell.setBackground(Color.WHITE);
 /////////////////////////////////////////////////////////////////// ITT VALTOZTASD AZ INVETORY TULAJAT
             if (i < Labirintus.getInstance().getSzobak().get(0).getEmberek().get(0).getItems().size()) {
                 String itemName = Labirintus.getInstance().getSzobak().get(0).getEmberek().get(0).getItems().get(i).getNev();
 
-                cellLabel.setIcon(new ImageIcon(new ImageIcon("Grafikus/src/main/resources/"+ itemName + ".png").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT)));
+                cellLabel.setIcon(new ImageIcon(new ImageIcon("Grafikus/src/main/resources/" + itemName + ".png").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT)));
 
-                cell.setBackground(new Color(134,216,131,255));
+                cell.setBackground(new Color(134, 216, 131, 255));
                 cell.add(cellLabel);
             } else {
                 cell.setBackground(Color.LIGHT_GRAY);

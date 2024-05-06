@@ -10,11 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SzobaPanel extends JPanel {
-    private List<JButton> doorButtons;
-    private List<JButton> itemButtons;
-    private List<EmberLabel> emberLabels;
-    private JPanel jobbpanel;
-    private JPanel balpanel;
+    private final List<JButton> doorButtons;
+    private final List<TargyLabel> targyFoldonLabels;
+    private final List<EmberLabel> emberLabels;
+    private final JPanel jobbpanel;
+    private final JPanel balpanel;
+
     public SzobaPanel(Szoba szoba, Dimension size) {
         super();
         this.setLayout(null);
@@ -30,30 +31,34 @@ public class SzobaPanel extends JPanel {
 
 
         jobbpanel = new JPanel();
-        jobbpanel.setBounds(horizontalMargin + roomWidth/2, verticalMargin + 10, roomWidth/2 - 10, roomHeight-20);
-        jobbpanel.setBackground(new Color(0,0,0,0));
+        jobbpanel.setBounds(horizontalMargin + roomWidth / 2, verticalMargin + 10, roomWidth / 2 - 10, roomHeight - 20);
+        jobbpanel.setBackground(new Color(0, 0, 0, 0));
         balpanel = new JPanel();
-        balpanel.setBounds(horizontalMargin + 10, verticalMargin + 10, roomWidth/2 - 10, roomHeight-20);
-        balpanel.setBackground(new Color(0,0,0,0));
+        balpanel.setBounds(horizontalMargin + 10, verticalMargin + 10, roomWidth / 2 - 10, roomHeight - 20);
+        balpanel.setBackground(new Color(0, 0, 0, 0));
 
         this.add(jobbpanel);
         this.add(balpanel);
 
         doorButtons = new ArrayList<>();
 
-        itemButtons = new ArrayList<>();
+        targyFoldonLabels = new ArrayList<>();
 
         emberLabels = new ArrayList<>();
 
         for (Ember e : szoba.getEmberek()) {
-
             JPanel b = new JPanel();
             EmberLabel l = new EmberLabel(e);
             b.add(l);
-            b.setBackground(new Color(0,0,0,0));
+            b.setBackground(new Color(0, 0, 0, 0));
             jobbpanel.add(b);
         }
 
+        for (Targy t : szoba.getItems()) {
+            TargyLabel tl = new TargyFoldonLabel(t);
+            targyFoldonLabels.add(tl);
+            balpanel.add(tl);
+        }
 
 
         int doorsOnLeft = 0;
@@ -121,8 +126,6 @@ public class SzobaPanel extends JPanel {
             doorIndex++;
             this.add(door);
         }
-
-
 
 
     }

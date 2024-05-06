@@ -1,8 +1,13 @@
 package pass.controller;
 
+import pass.model.human.Ember;
+import pass.model.human.Hallgato;
+import pass.model.human.Oktato;
+import pass.model.human.Takarito;
 import pass.model.item.*;
-import pass.model.human.*;
-import pass.model.labyrinth.*;
+import pass.model.labyrinth.Ajto;
+import pass.model.labyrinth.Labirintus;
+import pass.model.labyrinth.Szoba;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -11,19 +16,22 @@ import java.io.IOException;
 import java.util.*;
 
 public class Controller {
-    private static final HashMap<String,Ember> emberMap = new HashMap<>();
-    private static final HashMap<String,Szoba> szobaMap = new HashMap<>();
-    private static final HashMap<String,Ajto> ajtoMap = new HashMap<>();
-    private static final HashMap<String,Targy> targyMap = new HashMap<>();
+    private static final HashMap<String, Ember> emberMap = new HashMap<>();
+    private static final HashMap<String, Szoba> szobaMap = new HashMap<>();
+    private static final HashMap<String, Ajto> ajtoMap = new HashMap<>();
+    private static final HashMap<String, Targy> targyMap = new HashMap<>();
     private static final Queue<Ember> hallgatoQueue = new ArrayDeque<>();
+    private static Ember jelenlegLepoEmber = null;
     private static boolean deterministic = false;
+
     /**
-     *  A függvény létrhozza a játékot
-     *  a szobákat, ajtókat, tárgyakat és az embereket is létrehozza és elhelyezi a pályán
+     * A függvény létrhozza a játékot
+     * a szobákat, ajtókat, tárgyakat és az embereket is létrehozza és elhelyezi a pályán
+     *
      * @param hallgatoDB - hány játékos(hallgató) lesz a játékban
      */
 
-    public static void Play(int hallgatoDB){
+    public static void Play(int hallgatoDB) {
         Random random = deterministic ? new Random(0) : new Random();
         Labirintus labirintus = Labirintus.getInstance();
 
@@ -41,7 +49,7 @@ public class Controller {
 
         int marSzobabanHallgato = 0;
 
-        while(marSzobabanHallgato < hallgatoDB){
+        while (marSzobabanHallgato < hallgatoDB) {
             Hallgato hallgato = new Hallgato("hallgato" + (marSzobabanHallgato + 1));
             hallgato.masikSzobabaLep(kezdoSzoba);
             marSzobabanHallgato++;
@@ -49,14 +57,14 @@ public class Controller {
             hallgatoQueue.add(hallgato);
         }
 
-        int randomOktatokDB = random.ints(1, (int)Math.ceil(hallgatoDB * 0.5), (int)Math.ceil(hallgatoDB * 0.8) + 1).sum();
+        int randomOktatokDB = random.ints(1, (int) Math.ceil(hallgatoDB * 0.5), (int) Math.ceil(hallgatoDB * 0.8) + 1).sum();
         int marSzobabanOktato = 0;
-        while(marSzobabanOktato < randomOktatokDB){
+        while (marSzobabanOktato < randomOktatokDB) {
             Oktato oktato = new Oktato("oktato" + (marSzobabanOktato + 1));
             int randomSzobaIdx = 0;
             Szoba szoba;
-            do{
-                randomSzobaIdx = random.ints(1,0, szobaSzam).sum();
+            do {
+                randomSzobaIdx = random.ints(1, 0, szobaSzam).sum();
                 szoba = labirintus.getSzobak().get(randomSzobaIdx);
             } while (!oktato.masikSzobabaLep(szoba));
             emberMap.put("oktato" + ++marSzobabanOktato, oktato);
@@ -64,25 +72,25 @@ public class Controller {
 
         int randomTakaritoDB = random.ints(1, 1, 3).sum();
         int marSzobabanTakarito = 0;
-        while(marSzobabanTakarito < randomTakaritoDB){
+        while (marSzobabanTakarito < randomTakaritoDB) {
             Takarito takarito = new Takarito("Takarito" + (marSzobabanTakarito + 1));
             int randomSzobaIdx = 0;
             Szoba szoba;
-            do{
-                randomSzobaIdx = random.ints(1,0, szobaSzam).sum();
+            do {
+                randomSzobaIdx = random.ints(1, 0, szobaSzam).sum();
                 szoba = labirintus.getSzobak().get(randomSzobaIdx);
             } while (!takarito.masikSzobabaLep(szoba));
             emberMap.put("takarito" + ++marSzobabanTakarito, takarito);
         }
         Logarlec logarlec = new Logarlec("logarlec");
 
-        int logarlecSzobaszam = random.ints(1,1, szobaSzam).sum();
+        int logarlecSzobaszam = random.ints(1, 1, szobaSzam).sum();
         labirintus.getSzobak().get(logarlecSzobaszam).addItem(logarlec);
         targyMap.put("logarlec", logarlec);
 
         HashMap<String, Integer> targyCount = targyCountMapKeszit();
 
-        for(Szoba szoba : labirintus.getSzobak()) {
+        for (Szoba szoba : labirintus.getSzobak()) {
             int randomItemNum = random.nextInt(5);
             for (int p = 0; p < randomItemNum; p++) {
                 List<String> targyTipusok = new ArrayList<String>(targyCount.keySet());
@@ -100,19 +108,19 @@ public class Controller {
     private static Map<String, ArrayList<String>> randomSzomszedokGeneral(Labirintus labirintus, Random random, int szobaSzam) {
         Map<String, ArrayList<String>> szobaSzomszedMap = new HashMap<>();
         // Kor kialakitasa a grafban
-        for(int i = 0; i < labirintus.getSzobak().size(); i++){
+        for (int i = 0; i < labirintus.getSzobak().size(); i++) {
             Szoba szoba = labirintus.getSzobak().get(i);
             String szobaNev = getSzobaNevFromMap(szoba);
             szobaSzomszedMap.put(szobaNev, new ArrayList<>());
             ArrayList<String> szomszedok = new ArrayList<>();
 
-            if(i > 0) {
-                Szoba szomszed = labirintus.getSzobak().get(i-1);
+            if (i > 0) {
+                Szoba szomszed = labirintus.getSzobak().get(i - 1);
                 String szomszedNev = getSzobaNevFromMap(szomszed);
                 szomszedok.add(szomszedNev);
             }
-            if((i+1) < labirintus.getSzobak().size()){
-                Szoba szomszed = labirintus.getSzobak().get(i+1);
+            if ((i + 1) < labirintus.getSzobak().size()) {
+                Szoba szomszed = labirintus.getSzobak().get(i + 1);
                 String szomszedNev = getSzobaNevFromMap(szomszed);
                 szomszedok.add(szomszedNev);
             }
@@ -121,16 +129,16 @@ public class Controller {
         }
 
         // Veletlen szomszedok hozzaadasa
-        for(int i = 0; i < labirintus.getSzobak().size(); i++){
+        for (int i = 0; i < labirintus.getSzobak().size(); i++) {
             Szoba szoba = labirintus.getSzobak().get(i);
             String szobaNev = getSzobaNevFromMap(szoba);
 
-            int szomszedokSzama = random.ints(1,0, szobaSzam - 3).sum();
-            for(int j = 0; j < szomszedokSzama; j++){
+            int szomszedokSzama = random.ints(1, 0, szobaSzam - 3).sum();
+            for (int j = 0; j < szomszedokSzama; j++) {
                 int randomSzobaIdx = 0;
                 do {
-                    randomSzobaIdx = random.ints(1,0, szobaSzam).sum();
-                } while(randomSzobaIdx == i || randomSzobaIdx == (i-1) || randomSzobaIdx == (i+1));
+                    randomSzobaIdx = random.ints(1, 0, szobaSzam).sum();
+                } while (randomSzobaIdx == i || randomSzobaIdx == (i - 1) || randomSzobaIdx == (i + 1));
                 Szoba szomszed = labirintus.getSzobak().get(randomSzobaIdx);
                 String szomszedNev = getSzobaNevFromMap(szomszed);
                 szobaSzomszedMap.get(szobaNev).add(szomszedNev);
@@ -140,44 +148,45 @@ public class Controller {
     }
 
     private static void randomSzobakLegyart(int szobaSzam, Random random, Labirintus labirintus) {
-        for(int i = 0; i < szobaSzam; i++){
-            int randomFerohely = random.ints(1,5,10).sum();
-            Szoba szoba = new Szoba(randomFerohely, "szoba" + (i+1));
-            if(i % 3 == 0 && i != 0){
+        for (int i = 0; i < szobaSzam; i++) {
+            int randomFerohely = random.ints(1, 5, 10).sum();
+            Szoba szoba = new Szoba(randomFerohely, "szoba" + (i + 1));
+            if (i % 3 == 0 && i != 0) {
                 szoba.megAtkoz();
             }
-            if(i % 4 == 0 && i != 0){
+            if (i % 4 == 0 && i != 0) {
                 szoba.setMeregIdo(labirintus.getTimeLeft());
             }
             labirintus.addSzoba(szoba);
-            szobaMap.put("szoba" + (i+1), szoba);
+            szobaMap.put("szoba" + (i + 1), szoba);
         }
     }
 
     /**
      * A megadott fájlba menti a játékállapotot.
+     *
      * @param file A fájl elérési útja, ahova a játékállapotot menteni kívánjuk.
      * @throws RuntimeException Ha bármilyen hiba lép fel a fájl írása során.
      */
     public static void Save(String file) {
         try (FileWriter fw = new FileWriter(file)) {
-            for(Szoba s : szobaMap.values()){
+            for (Szoba s : szobaMap.values()) {
                 List<String> emberek = new ArrayList<>();
                 List<String> targyak = new ArrayList<>();
-                for(Ember e : s.getEmberek()){
+                for (Ember e : s.getEmberek()) {
                     emberMap.keySet().forEach(key -> {
-                        if(emberMap.get(key).equals(e)){
-                            while(Character.isDigit(key.charAt(key.length() - 1))){
+                        if (emberMap.get(key).equals(e)) {
+                            while (Character.isDigit(key.charAt(key.length() - 1))) {
                                 key = key.substring(0, key.length() - 1);
                             }
                             emberek.add(key);
                         }
                     });
                 }
-                for(Targy t : s.getItems()){
+                for (Targy t : s.getItems()) {
                     targyMap.keySet().forEach(key -> {
-                        if(targyMap.get(key).equals(t)){
-                            while(Character.isDigit(key.charAt(key.length() - 1))){
+                        if (targyMap.get(key).equals(t)) {
+                            while (Character.isDigit(key.charAt(key.length() - 1))) {
                                 key = key.substring(0, key.length() - 1);
                             }
                             targyak.add(key);
@@ -190,8 +199,10 @@ public class Controller {
             throw new RuntimeException(e);
         }
     }
+
     /**
      * Betölti a megadott fájlból a játékállapotot.
+     *
      * @param file A fájl elérési útja, ahonnan a játékállapotot betöltjük.
      * @throws RuntimeException Ha a fájl nem található, vagy bármilyen hiba lép fel a betöltés során.
      */
@@ -204,22 +215,22 @@ public class Controller {
         }
 
         ArrayList<String> lines = new ArrayList<>();
-        while(scanner.hasNext()){
+        while (scanner.hasNext()) {
             lines.add(scanner.nextLine());
         }
 
-        HashMap<String,ArrayList<String>> szobaSzomszedMap = new HashMap<>();
+        HashMap<String, ArrayList<String>> szobaSzomszedMap = new HashMap<>();
         HashMap<Szoba, ArrayList<Targy>> szobaTargyMap = new HashMap<>();
 
         Szoba szoba = null;
-        for(String line : lines){
-            if(line.contains("szoba")) {
+        for (String line : lines) {
+            if (line.contains("szoba")) {
                 szoba = szobaFeldolgoz(line, szobaSzomszedMap);
             }
-            if(line.startsWith("emberek")){
+            if (line.startsWith("emberek")) {
                 emberekFeldolgoz(line, szoba);
             }
-            if(line.startsWith("targyak")){
+            if (line.startsWith("targyak")) {
                 targyakFeldolgoz(line, szobaTargyMap, szoba);
             }
         }
@@ -227,7 +238,7 @@ public class Controller {
         ajtokLegyart(szobaSzomszedMap);
 
         Labirintus labirintus = Labirintus.getInstance();
-        for(Szoba sz : szobaMap.values()){
+        for (Szoba sz : szobaMap.values()) {
             labirintus.addSzoba(sz);
         }
 
@@ -236,38 +247,40 @@ public class Controller {
 
     /**
      * Az ajtó használatát végzi, azaz az embert az ajtón keresztül átvezeti a másik szobába.
+     *
      * @param a Az ajtó, amelyen keresztül az ember átlép.
      * @param e Az ember, aki átlép az ajtón.
      */
     public static void AjtoHasznalat(Ajto a, Ember e) {
         Szoba ujSzoba = a.getSzomszed(e.getJelenlegiSzoba());
         a.hasznal(e);
-        if(ujSzoba != null)
+        if (ujSzoba != null)
             System.out.println(getEmberNevFromMap(e) + ": atlep az " + getAjtoNevFromMap(a) + " ajton, a " + getSzobaNevFromMap(ujSzoba) + " szobaba kerul.");
     }
 
     /**
      * Egy tárgy felvételét végzi az adott személy által.
+     *
      * @param t A felvenni kívánt tárgy.
      * @param e Az az ember, aki fel akarja venni a tárgyat.
      */
     public static void TargyFelvesz(Targy t, Ember e) {
         int prevItemNum = e.getItems().size();
-        if(e.inventoryTeleE()){
+        if (e.inventoryTeleE()) {
             System.out.println(getEmberNevFromMap(e) + ": az inventoryd teli van, nem fer bele a " + getTargyNevFromMap(t) + " targy.");
         }
         e.targyatFelvesz(t);
         int currItemNum = e.getItems().size();
-        if(currItemNum == prevItemNum && !e.inventoryTeleE()){
+        if (currItemNum == prevItemNum && !e.inventoryTeleE()) {
             System.out.println(getEmberNevFromMap(e) + ": a szoba ragacsos, a " + getTargyNevFromMap(t) + " targy nem veheto fel.");
-        }
-        else if(currItemNum > prevItemNum){
+        } else if (currItemNum > prevItemNum) {
             System.out.println(getEmberNevFromMap(e) + ": az inventorydba tetted a " + getTargyNevFromMap(t) + " targyat.");
         }
     }
 
     /**
      * Egy tárgy használatát végzi az adott személy által.
+     *
      * @param t A használni kívánt tárgy.
      * @param e Az az ember, aki használni akarja a tárgyat.
      */
@@ -278,11 +291,12 @@ public class Controller {
 
     /**
      * Az adott személy eldob egy tárgyat az inventoryjából.
+     *
      * @param t A eldobni kívánt tárgy.
      * @param e Az az ember, aki el akarja dobni a tárgyat.
      */
     public static void TargyEldob(Targy t, Ember e) {
-        if(e.getItems().isEmpty()){
+        if (e.getItems().isEmpty()) {
             System.out.println(getEmberNevFromMap(e) + ": az inventoryd ures nem dobhatsz el targyat.");
         } else if (!e.getItems().contains(t)) {
             System.out.println(getEmberNevFromMap(e) + ": nincs ilyen targy az inventorydban.");
@@ -291,28 +305,32 @@ public class Controller {
         }
         e.targyatEldob(t);
     }
+
     /**
      * Kiírja az adott ember tárgyait és jelenlegi tartózkodási helyét, valamint állapotát.
+     *
      * @param e Az az ember, akiről információt szeretnénk kapni.
      */
     public static void InfoEmber(Ember e) {
         String targyak = getEmberNevFromMap(e) + " targyai:";
-        for(int i = 0; i < e.getItems().size(); i++){
+        for (int i = 0; i < e.getItems().size(); i++) {
             Targy t = e.getItems().get(i);
             targyak += getTargyNevFromMap(t);
-            if(i != e.getItems().size() - 1)
-                targyak+=",";
+            if (i != e.getItems().size() - 1)
+                targyak += ",";
         }
         System.out.println(targyak);
         System.out.println("itt van: " + e.getJelenlegiSzoba().getNev());
 
         System.out.println(e.getAjult() ? "ajult" : "eber");
     }
+
     /**
      * Kiírja a megadott szoba állapotát, a szobában található tárgyakat, embereket és azokat az ajtókat, amelyeken keresztül lehet elhagyni a szobát.
+     *
      * @param sz A szoba, amelyről információt szeretnénk kapni.
      */
-    public  static  void InfoSzoba(Szoba sz) {
+    public static void InfoSzoba(Szoba sz) {
 
         String s1 = sz.atkozottE() ? "atkozott" : "nem atkozott";
         String s2 = sz.mergezoE() ? "mergezett" : "nem mergezett";
@@ -346,20 +364,23 @@ public class Controller {
         if (deterministic) System.out.println("mostantol determinisztikus a jatek.");
         else System.out.println("mostantol veletlenszeru a jatek.");
     }
+
     /**
      * Minden játékmenet lépésnél hívódik meg, hogy frissítse a játék állapotát.
      */
     public static void Tick(int n) {
-        for (int i =0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             Labirintus.getInstance().tick();
             Leptetes();
             if (Labirintus.getInstance().getTimeLeft() == 0) System.out.println("a jateknak vege, az ido lejart.");
         }
     }
+
     /**
      * A paraméterként kapott szoba felosztását végzi el a labirintusban.
      * Az újonnan létrehozott szobát hozzáadja a szobaMap-hoz és kiírja a konzolra az új szoba nevét.
      * Ezután végigmegy az új szoba ajtóin, és ha az ajtó még nem szerepel az ajtoMap-ben, akkor hozzáadja.
+     *
      * @param sz A felosztandó szoba
      */
     public static void SzobaFeloszt(Szoba sz) {
@@ -373,10 +394,12 @@ public class Controller {
             }
         }
     }
+
     /**
      * A paraméterként kapott két szoba összevonását végzi el a labirintusban.
      * Az összevont szobát eltávolítja a szobaMap-ből és kiírja a konzolra az összevont szobák nevét.
      * Ezután végigmegy az egyik szoba ajtóin, és eltávolítja azokat az ajtokat az ajtoMap-ből, amelyek az összevont szobára mutatnak.
+     *
      * @param sz1 Az egyik összevont szoba
      * @param sz2 A másik összevont szoba
      */
@@ -400,26 +423,29 @@ public class Controller {
             Collections.shuffle(ajtok);
             ArrayList<Ember> emberek = new ArrayList<>(sz.getEmberek());
             for (Ember e : emberek) {
-                if(!ajtok.isEmpty())
+                if (!ajtok.isEmpty())
                     e.controllerLeptet(ajtok.get(0));
             }
         }
     }
+
     /**
      * Getter függvény ami visszaadja a kért ajtót a mapból
+     *
      * @param s keresett ajtó neve
      * @return a keresett ajtó
      */
-    public static Ajto getAjto(String s){
+    public static Ajto getAjto(String s) {
         return ajtoMap.get(s);
     }
 
     /**
      * Getter függvény ami visszaadja a kért ajtó nevét a mapból
+     *
      * @param a keresett ajtó
      * @return ajtó mapban tárolt neve
      */
-    private static String getAjtoNevFromMap(Ajto a){
+    private static String getAjtoNevFromMap(Ajto a) {
         for (Map.Entry<String, Ajto> entry : ajtoMap.entrySet()) {
             String key = entry.getKey();
             Ajto value = entry.getValue();
@@ -432,19 +458,21 @@ public class Controller {
 
     /**
      * Getter függvény ami visszaadja a kért embert a mapból
+     *
      * @param s keresett ember neve
      * @return a keresett ember
      */
-    public static Ember getEmber(String s){
+    public static Ember getEmber(String s) {
         return emberMap.get(s);
     }
 
     /**
      * Getter függvény ami visszaadja a kért ember nevét a mapból
+     *
      * @param e keresett ember
      * @return ember mapban tárolt neve
      */
-    private static String getEmberNevFromMap(Ember e){
+    private static String getEmberNevFromMap(Ember e) {
         for (Map.Entry<String, Ember> entry : emberMap.entrySet()) {
             String key = entry.getKey();
             Ember value = entry.getValue();
@@ -457,6 +485,7 @@ public class Controller {
 
     /**
      * Getter függvény ami visszaadja a kért szobát a mapból
+     *
      * @param s keresett szoba neve
      * @return a keresett szoba
      */
@@ -466,10 +495,11 @@ public class Controller {
 
     /**
      * Getter függvény ami visszaadja a kért szoba nevét a mapból
+     *
      * @param sz keresett szoba
      * @return szoba mapban tárolt neve
      */
-    private static String getSzobaNevFromMap(Szoba sz){
+    private static String getSzobaNevFromMap(Szoba sz) {
         for (Map.Entry<String, Szoba> entry : szobaMap.entrySet()) {
             String key = entry.getKey();
             Szoba value = entry.getValue();
@@ -482,6 +512,7 @@ public class Controller {
 
     /**
      * Getter függvény ami visszaadja a kért tárgyat a mapból
+     *
      * @param s keresett tárgy neve
      * @return a keresett tárgy
      */
@@ -491,10 +522,11 @@ public class Controller {
 
     /**
      * Getter függvény ami visszaadja a kért tárgy nevét a mapból
+     *
      * @param t keresett tárgy
      * @return tárgy mapban tárolt neve
      */
-    private static String getTargyNevFromMap(Targy t){
+    private static String getTargyNevFromMap(Targy t) {
         for (Map.Entry<String, Targy> entry : targyMap.entrySet()) {
             String key = entry.getKey();
             Targy value = entry.getValue();
@@ -508,7 +540,7 @@ public class Controller {
     /**
      * A játék állapotát eltörli
      */
-    public static void reset(){
+    public static void reset() {
         emberMap.clear();
         szobaMap.clear();
         ajtoMap.clear();
@@ -523,17 +555,17 @@ public class Controller {
      * a szobákban található tárgyakat és embereket,
      * valamint a szobák állapotát.
      */
-    private static void betoltesEredmenyKiir(){
+    private static void betoltesEredmenyKiir() {
         StringBuilder sb = new StringBuilder();
         sb.append("a jatek betoltve.").append(System.lineSeparator());
 
         sb.append("szobak:").append(System.lineSeparator());
-        for(Szoba sz : Labirintus.getInstance().getSzobak()){
+        for (Szoba sz : Labirintus.getInstance().getSzobak()) {
             sb.append("\t").append(sz.getNev()).append(System.lineSeparator());
 
             sb.append("\t").append("szomszedok:");
-            for(Ajto a : sz.getAjtok()){
-                if(a.getSzomszed(sz) != null){
+            for (Ajto a : sz.getAjtok()) {
+                if (a.getSzomszed(sz) != null) {
                     sb.append(a.getSzomszed(sz).getNev()).append(",");
                 }
             }
@@ -541,21 +573,21 @@ public class Controller {
             sb.append(System.lineSeparator());
 
             sb.append("\t").append("targyak:");
-            for(Targy t : sz.getItems()){
+            for (Targy t : sz.getItems()) {
                 targyMap.keySet().forEach(key -> {
-                    if(targyMap.get(key).equals(t)) {
+                    if (targyMap.get(key).equals(t)) {
                         sb.append(key);
                     }
                 });
                 sb.append(",");
             }
-            if(!sz.getItems().isEmpty()) sb.deleteCharAt(sb.length() - 1);
+            if (!sz.getItems().isEmpty()) sb.deleteCharAt(sb.length() - 1);
             sb.append(System.lineSeparator());
 
             sb.append("\t").append("emberek:");
-            for(Ember e : sz.getEmberek()){
+            for (Ember e : sz.getEmberek()) {
                 emberMap.keySet().forEach(key -> {
-                    if(emberMap.get(key).equals(e)) {
+                    if (emberMap.get(key).equals(e)) {
                         sb.append(key);
                     }
                 });
@@ -565,7 +597,7 @@ public class Controller {
             sb.append(System.lineSeparator());
 
             sb.append("\t").append("allapot:");
-            sb.append(sz.ragacsosE() ?  "ragacsos," : "tiszta,");
+            sb.append(sz.ragacsosE() ? "ragacsos," : "tiszta,");
             sb.append(sz.mergezoE() ? "mergezo," : "");
             sb.append(sz.atkozottE() ? "atkozott," : "");
             sb.deleteCharAt(sb.length() - 1);
@@ -576,21 +608,23 @@ public class Controller {
         for (String key : ajtoMap.keySet()) {
             System.out.println(key);
             Ajto a = getAjto(key);
-            for(String s : a.getOldalak()){
+            for (String s : a.getOldalak()) {
                 System.out.println(s + " nyithato: " + (a.getSzomszed(getSzoba(s)) == null ? "nem" : "igen"));
             }
         }
     }
+
     /**
      * Létrehozza és hozzáadja az ajtókat a szomszédos szobákhoz, a megadott szobák map-je alapján.
+     *
      * @param szobaSzomszedMap A szobák és szomszédjaik közötti kapcsolatokat tartalmazó map.
      */
     private static void ajtokLegyart(Map<String, ArrayList<String>> szobaSzomszedMap) {
         int i = 0;
-        for(String szobaNev : szobaSzomszedMap.keySet()){
+        for (String szobaNev : szobaSzomszedMap.keySet()) {
             ArrayList<String> szomszedokNevei = szobaSzomszedMap.get(szobaNev);
-            for(String szomszedNev : szomszedokNevei){
-                if(szomszedNev.isEmpty()) {
+            for (String szomszedNev : szomszedokNevei) {
+                if (szomszedNev.isEmpty()) {
                     break;
                 }
                 Szoba szoba = szobaMap.get(szobaNev);
@@ -599,15 +633,15 @@ public class Controller {
                     Ajto a = new Ajto(szoba, szomszed, "ajto" + (++i));
                     a.setMerreNyilik(true, false);
                     boolean ketiranyu = false;
-                    if(szobaSzomszedMap.containsKey(szomszedNev)){
-                        for(String szomszedSzomszedNev : szobaSzomszedMap.get(szomszedNev)){
-                            if(szomszedSzomszedNev.equals(szobaNev) && !szomszedSzomszedNev.isEmpty()){
+                    if (szobaSzomszedMap.containsKey(szomszedNev)) {
+                        for (String szomszedSzomszedNev : szobaSzomszedMap.get(szomszedNev)) {
+                            if (szomszedSzomszedNev.equals(szobaNev) && !szomszedSzomszedNev.isEmpty()) {
                                 ketiranyu = true;
                                 break;
                             }
                         }
                     }
-                    if(ketiranyu){
+                    if (ketiranyu) {
                         a.setMerreNyilik(true, true);
                     }
                     szoba.addAjto(a);
@@ -617,8 +651,10 @@ public class Controller {
             }
         }
     }
+
     /**
      * Ellenőrzi, hogy létezik-e már ajtó a két megadott szoba között.
+     *
      * @param szoba1 Az egyik szoba.
      * @param szoba2 A másik szoba.
      * @return Igaz, ha már létezik ajtó a két szoba között, különben hamis.
@@ -631,19 +667,21 @@ public class Controller {
         }
         return false;
     }
+
     /**
      * Feldolgozza a szobához tartozó tárgyakat, és hozzáadja őket a megfelelő szobához.
-     * @param line           A feldolgozandó sor.
-     * @param szobaTargyMap  A szobákhoz tartozó tárgyakat tároló térkép.
-     * @param szoba          Az aktuális szoba, amelyhez a tárgyak tartoznak.
+     *
+     * @param line          A feldolgozandó sor.
+     * @param szobaTargyMap A szobákhoz tartozó tárgyakat tároló térkép.
+     * @param szoba         Az aktuális szoba, amelyhez a tárgyak tartoznak.
      */
     private static void targyakFeldolgoz(String line, HashMap<Szoba, ArrayList<Targy>> szobaTargyMap, Szoba szoba) {
         szobaTargyMap.put(szoba, new ArrayList<>());
         String[] parts = line.split(":");
-        if(parts.length <= 1) return;
+        if (parts.length <= 1) return;
         String[] targyak = parts[1].split(",");
 
-        for(String targyTipus : targyak){
+        for (String targyTipus : targyak) {
             Targy t;
             t = ujTargyGyart(targyTipus);
             targyMap.put(targyTipus + (targyMap.size() + 1), t);
@@ -651,8 +689,10 @@ public class Controller {
             szoba.addItem(t);
         }
     }
+
     /**
      * Új tárgyat hoz létre a megadott típus alapján.
+     *
      * @param targy A tárgy típusa.
      * @return Az újonnan létrehozott tárgy.
      */
@@ -698,13 +738,15 @@ public class Controller {
         }
         return t;
     }
+
     /**
      * Feldolgozza a bemeneti sort, létrehoz egy új szobát a megadott adatok alapján, és hozzáadja a maphez.
-     * @param line           A bemeneti sor, amely tartalmazza a szoba adatait.
+     *
+     * @param line             A bemeneti sor, amely tartalmazza a szoba adatait.
      * @param szobaSzomszedMap A szomszédossági térkép, amelyhez hozzá kell adni a szoba szomszédait.
      * @return Az újonnan létrehozott szoba.
      */
-    private static Szoba szobaFeldolgoz(String line, HashMap<String,ArrayList<String>> szobaSzomszedMap) {
+    private static Szoba szobaFeldolgoz(String line, HashMap<String, ArrayList<String>> szobaSzomszedMap) {
         String[] parts = line.split(":");
         String nev = parts[0];
         String[] adatok = parts[1].split(",");
@@ -719,10 +761,12 @@ public class Controller {
         szobaSzomszedMap.put(nev, szomszedokList);
         return szoba;
     }
+
     /**
      * Feldolgozza a bemeneti sort, és létrehozza az embereket az adatok alapján, majd hozzáadja őket a megfelelő szobához és az ember map-hez.
-     * @param line           A bemeneti sor, amely tartalmazza az emberek adatait.
-     * @param szoba          A szoba, amelyhez az embereket hozzá kell adni.
+     *
+     * @param line  A bemeneti sor, amely tartalmazza az emberek adatait.
+     * @param szoba A szoba, amelyhez az embereket hozzá kell adni.
      */
     private static void emberekFeldolgoz(String line, Szoba szoba) {
         String[] parts = line.split(":");
@@ -744,20 +788,18 @@ public class Controller {
         }
         if (parts.length > 1) {
             String[] emberek = parts[1].split(",");
-            for(String ember : emberek){
+            for (String ember : emberek) {
                 Ember e;
-                if(ember.startsWith("hallgato")){
+                if (ember.startsWith("hallgato")) {
                     e = new Hallgato(ember);
                     emberMap.put(ember + (hallgatoSzam), e);
                     hallgatoQueue.add(e);
                     hallgatoSzam++;
-                }
-                else if(ember.startsWith("oktato")){
+                } else if (ember.startsWith("oktato")) {
                     e = new Oktato(ember);
                     emberMap.put(ember + (oktatokSzam), e);
                     oktatokSzam++;
-                }
-                else{
+                } else {
                     e = new Takarito(ember);
                     emberMap.put(ember + (takaritoSzam), e);
                     takaritoSzam++;
@@ -770,27 +812,31 @@ public class Controller {
 
     /**
      * Létrehoz és visszaad egy HashMap-et, amely az elem neveket társítja azok darabszámához, kezdetben nullát állítva be.
+     *
      * @return Az a HashMap, amely az elem neveket tartalmazza kulcsként, és ezekhez tartozó darabszámokat értékként.
      */
     private static HashMap<String, Integer> targyCountMapKeszit() {
         HashMap<String, Integer> targyCount = new HashMap<>();
-        targyCount.put("camembert",0);
-        targyCount.put("hamislec",0);
-        targyCount.put("hamismaszk",0);
-        targyCount.put("hamistvsz",0);
-        targyCount.put("legfrissito",0);
-        targyCount.put("maszk",0);
-        targyCount.put("pohar",0);
-        targyCount.put("rongy",0);
-        targyCount.put("tranzisztor",0);
-        targyCount.put("tvsz",0);
+        targyCount.put("camembert", 0);
+        targyCount.put("hamislec", 0);
+        targyCount.put("hamismaszk", 0);
+        targyCount.put("hamistvsz", 0);
+        targyCount.put("legfrissito", 0);
+        targyCount.put("maszk", 0);
+        targyCount.put("pohar", 0);
+        targyCount.put("rongy", 0);
+        targyCount.put("tranzisztor", 0);
+        targyCount.put("tvsz", 0);
         return targyCount;
     }
 
-    public static Ember getKovetkezoJatekos(){
-        Ember e = hallgatoQueue.remove();
-        hallgatoQueue.add(e);
-        return e;
+    public static Ember getJelenlegLepoEmber() {
+        Ember e = hallgatoQueue.peek();
+        if (jelenlegLepoEmber.getLepett() || jelenlegLepoEmber.getAjult() || jelenlegLepoEmber == null) {
+            hallgatoQueue.add(jelenlegLepoEmber);
+            jelenlegLepoEmber = hallgatoQueue.poll();
+        }
+        return jelenlegLepoEmber;
     }
 }
 

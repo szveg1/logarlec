@@ -2,9 +2,14 @@ package pass.szkeleton;
 
 
 import pass.model.CustomLogger;
-import pass.model.human.*;
-import pass.model.labyrinth.*;
-import pass.model.item.*;
+import pass.model.human.Hallgato;
+import pass.model.human.Oktato;
+import pass.model.item.Pohar;
+import pass.model.item.Rongy;
+import pass.model.item.TVSZ;
+import pass.model.item.Targy;
+import pass.model.labyrinth.Labirintus;
+import pass.model.labyrinth.Szoba;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,8 +22,9 @@ public class OktatoTamadTest {
     private static Szoba szoba;
     private static Oktato oktato;
     private static Hallgato hallgato;
-    private static Map<String, Oktato>  oktatoMap = new HashMap<>();
+    private static Map<String, Oktato> oktatoMap = new HashMap<>();
     private static Map<String, Targy> targyMap = new HashMap<>();
+
     public static void init_test(int oktatoSzam, String hallgatoVedekezik) {
         CustomLogger.suppress();
         labirintus = Labirintus.getInstance();
@@ -39,19 +45,19 @@ public class OktatoTamadTest {
         if (!targyMap.containsKey(hallgatoVedekezik)) {
             CustomLogger.log(Level.WARNING, "Ismeretlen tárgy: " + hallgatoVedekezik + ". A hallgató nem védekezik így.");
             szoba.emberBetesz(hallgato);
-        }else if(hallgatoVedekezik.equals("")){
+        } else if (hallgatoVedekezik.equals("")) {
             CustomLogger.log(Level.WARNING, "Nem választottál védekezési módot. A hallgató nem védekezik így.");
             szoba.emberBetesz(hallgato);
-        }else{
+        } else {
             hallgato.masikSzobabaLep(szoba);
             hallgato.targyatFelvesz(targyMap.get(hallgatoVedekezik));
         }
 
-            for (int i = 1; i <= oktatoSzam; i++) {
-                oktato = new Oktato("o"+i);
-                oktato.masikSzobabaLep(szoba);
-                oktatoMap.put("Oktató" + i, oktato);
-            }
+        for (int i = 1; i <= oktatoSzam; i++) {
+            oktato = new Oktato("o" + i);
+            oktato.masikSzobabaLep(szoba);
+            oktatoMap.put("Oktató" + i, oktato);
+        }
         CustomLogger.unsuppress();
     }
 
@@ -64,7 +70,7 @@ public class OktatoTamadTest {
 
         System.out.println("Hány oktató legyen a szobában (férőhely: 5)?");
         int oktatoSzam = scanner.nextInt();
-        if(oktatoSzam < 5){
+        if (oktatoSzam < 5) {
             init_test(oktatoSzam, hallgatoVedekezik);
         } else if (oktatoSzam >= 5) {
             oktatoSzam = 4;
@@ -72,17 +78,17 @@ public class OktatoTamadTest {
             init_test(oktatoSzam, hallgatoVedekezik);
         }
 
-        for(int i = 1; i <= oktatoSzam; i++){
+        for (int i = 1; i <= oktatoSzam; i++) {
             CustomLogger.info("Oktato" + i + " támadása");
             oktatoMap.get("Oktató" + i).hallgatotMegtamad(hallgato);
-            if(hallgato.getEletbenVan()){
+            if (hallgato.getEletbenVan()) {
                 CustomLogger.info("A hallgató túlélte az " + i + ". oktató támadását.");
             } else {
                 CustomLogger.info("A hallgató meghalt az " + i + ". oktató tamadásaban.");
                 break;
             }
         }
-        if(hallgato.getEletbenVan()){
+        if (hallgato.getEletbenVan()) {
             CustomLogger.info("A hallgató túlélte az összes oktato tamadását.");
         }
 

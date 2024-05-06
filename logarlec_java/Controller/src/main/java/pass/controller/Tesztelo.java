@@ -4,7 +4,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 import java.util.function.Consumer;
 
 public class Tesztelo {
@@ -13,6 +15,7 @@ public class Tesztelo {
     static File testDir = new File(workingDir, "controller_tesztek");
 
     static Map<String, Consumer<String[]>> commandMap = new HashMap<>();
+
     static {
         commandMap.put("play", Fuggvenyek::Play);
         commandMap.put("save", Fuggvenyek::Save);
@@ -46,20 +49,20 @@ public class Tesztelo {
         }
         int i = 0;
 
-        for(File file : testDir.listFiles()) {
+        for (File file : testDir.listFiles()) {
             System.out.println((++i) + ". " + file.getName());
         }
 
         int testNum = files.length + 1;
         System.out.println(testNum + " vissza");
 
-        while(true){
+        while (true) {
             Scanner scanner = new Scanner(System.in);
             String test = scanner.nextLine();
             try {
                 int testIndex = Integer.parseInt(test);
-                if(test.equals(String.valueOf(testNum))) break;
-                if(testIndex < 1 || testIndex > files.length) {
+                if (test.equals(String.valueOf(testNum))) break;
+                if (testIndex < 1 || testIndex > files.length) {
                     System.out.println("Nem érvényes szám");
                     continue;
                 }
@@ -70,7 +73,8 @@ public class Tesztelo {
             }
         }
     }
-    public static void runTest(String test){
+
+    public static void runTest(String test) {
         File selectedTestDir = new File(test);
         File bemenet = new File(selectedTestDir, "bemenet.txt");
         File elvart = new File(selectedTestDir, "elvart.txt");
@@ -84,7 +88,7 @@ public class Tesztelo {
         }
 
         StringBuilder sb = new StringBuilder();
-        while(elvartScanner.hasNextLine()) {
+        while (elvartScanner.hasNextLine()) {
             sb.append(elvartScanner.nextLine());
             sb.append(System.lineSeparator());
         }
@@ -93,7 +97,7 @@ public class Tesztelo {
         Scanner bemenetScanner;
         try {
             bemenetScanner = new Scanner(bemenet);
-        } catch(FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
 
@@ -103,10 +107,10 @@ public class Tesztelo {
         System.setOut(ps);
         Controller.Load(palya.getAbsolutePath());
 
-        while(bemenetScanner.hasNextLine()) {
+        while (bemenetScanner.hasNextLine()) {
             String line = bemenetScanner.nextLine();
             String[] cmd = line.split(" ");
-            Consumer<String[]> command = commandMap.getOrDefault(cmd[0],Tesztelo::rosszBemenet);
+            Consumer<String[]> command = commandMap.getOrDefault(cmd[0], Tesztelo::rosszBemenet);
             command.accept(cmd);
         }
         bemenetScanner.close();
@@ -114,7 +118,7 @@ public class Tesztelo {
 
         String testShortName = test.substring(test.lastIndexOf(File.separator) + 1);
 
-        if(!sb.toString().equals(baos.toString())){
+        if (!sb.toString().equals(baos.toString())) {
             System.out.println("Bukott teszt: " + testShortName);
         } else {
             System.out.println("Teszt sikeres: " + testShortName);
@@ -135,16 +139,16 @@ public class Tesztelo {
             String expectedLine = i < expectedLines.length ? expectedLines[i] : "";
             String actualLine = i < actualLines.length ? actualLines[i] : "";
             if (!expectedLine.equals(actualLine)) {
-                System.out.printf("%-5d *%-43s | *%-43s%n", i+1, expectedLine, actualLine); // Highlight different lines with *
+                System.out.printf("%-5d *%-43s | *%-43s%n", i + 1, expectedLine, actualLine); // Highlight different lines with *
             } else {
-                System.out.printf("%-5d  %-44s | %-44s%n", i+1, expectedLine, actualLine);
+                System.out.printf("%-5d  %-44s | %-44s%n", i + 1, expectedLine, actualLine);
             }
         }
     }
 
-    public static void rosszBemenet(String[] cmd){
+    public static void rosszBemenet(String[] cmd) {
         System.out.println("Hibas bemenet: ");
-        for(String s : cmd){
+        for (String s : cmd) {
             System.out.print(s + " ");
         }
     }

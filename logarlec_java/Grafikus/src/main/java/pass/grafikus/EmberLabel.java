@@ -6,10 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 
 public class EmberLabel extends JLabel implements EmberVisitor {
-    private Ember ember;
     EmberLabel(Ember e) {
         setPreferredSize(new Dimension(100, 100));
-        setBackground(new Color(0,0,0,0));
+        setBackground(new Color(0, 0, 0, 0));
         e.accept(this);
     }
 

@@ -1,22 +1,22 @@
 package pass.model.item;
 
 import pass.model.CustomLogger;
-import pass.model.human.Ember;
-import pass.model.human.Hallgato;
-import pass.model.human.Oktato;
-import pass.model.human.TargyVisitor;
-import pass.model.labyrinth.Szoba;
-/* A Pohár osztály felelős azért, hogy tárolja és kezelje a söröspohár tulajdonságait és
-funkcióit a labirintusban, mint például használható-e a tárgy védelem nyújtásra az
-oktatókkal szemben.  */
-public class Pohar implements Targy {
-    // Csak szkeletonhoz-------------
-    private String nev;
-    public String getNev() {
-        return nev;
-    }
+import pass.model.TargyVisitor;
+import pass.model.TargyVisitorGrafikus;
+import pass.model.graphichelper.DrawObserver;
+
+/**
+ * A Pohár osztály felelős azért, hogy tárolja és kezelje
+ * a söröspohár tulajdonságait és funkcióit a labirintusban,
+ * mint például használható-e a tárgy védelem nyújtásra az
+ * oktatókkal szemben.
+ */
+public class Pohar extends Targy {
+    private int vedIdo = 3;
+
     /**
      * A függvény elnevezi az objektumot
+     *
      * @param nev - Az objektum neve
      */
     public Pohar(String nev) {
@@ -24,30 +24,17 @@ public class Pohar implements Targy {
     }
 
     /**
-     * A függvény kiírja az objektum nevét
-     * @return String, Szkeleton kiiratashoz
+     * TODO!!!
+     *
+     * @param visitor
      */
-    @Override
-    public String toString() {
-        return nev + " :Pohar";
-    }
-
-    // -------------------------------
-    private int vedIdo = 3;
-
-    private Ember tulaj;
-
-    @Override
-    public void hasznal() {
-        tulaj.targyatEldob(tulaj.getItems().get(0));
-    }
-
-    public void emberValtasrolErtesit(Ember ember) {
-        tulaj = ember;
+    public void accept(TargyVisitorGrafikus visitor) {
+        visitor.visit(this);
     }
 
     /**
      * A függvény fogadja a visitet
+     *
      * @param visitor - A visitor, amit fogad
      */
     @Override
@@ -57,15 +44,45 @@ public class Pohar implements Targy {
     }
 
     /**
-     *
+     * TODO!!!
+     */
+    @Override
+    public void hasznal() {
+        tulajdonos.targyatEldob(tulajdonos.getItems().get(0));
+    }
+
+    /**
+     * TODO!!!
+     */
+    @Override
+    public void notifyObservers() {
+        for (DrawObserver observer : observers) {
+            observer.update(this);
+        }
+    }
+
+    /**
+     * TODO!!!
+     */
+    @Override
+    public void tick() {
+        vedIdo--;
+    }
+
+    /**
      * @return Visszaadja hogy a pohár használható-e
      */
     public boolean hasznalhatoE() {
         return vedIdo > 0;
     }
 
+    /**
+     * A függvény kiírja az objektum nevét
+     *
+     * @return String, Szkeleton kiiratashoz
+     */
     @Override
-    public void tick() {
-        vedIdo--;
+    public String toString() {
+        return nev + " :Pohar";
     }
 }

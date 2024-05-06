@@ -2,8 +2,12 @@ package pass.model.labyrinth;
 
 import pass.model.CustomLogger;
 import pass.model.human.Ember;
-import java.util.*;
-import java.util.logging.Level;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /* Az Ajtó osztály felelős az egyes szobákat összekötő ajtók kezeléséért és
 működtetéséért a labirintusban. Feladata az ajtók állapotának nyomon követése,
 valamint annak ellenőrzése, hogy nyitható-e a kért irányba az ajtó. Az Ajtó osztály
@@ -17,7 +21,21 @@ public class Ajto {
     private String nev;
 
     /**
+     * @param egyikOldal - Az egyik oldalán lévő szoba
+     * @param masikOldal - A másik oldalán lévő szoba
+     * @param nev        - Szkeleton érdekében logoláshoz
+     */
+    public Ajto(Szoba egyikOldal, Szoba masikOldal, String nev) {
+        this.egyikOldal = egyikOldal;
+        this.masikOldal = masikOldal;
+        merrolNyilik.put(egyikOldal, false);
+        merrolNyilik.put(masikOldal, false);
+        this.nev = nev;
+    }
+
+    /**
      * Getter fügvény ami visszaadja az ajtó két oldalán lévő szobák neveit
+     *
      * @return List<String>, a szobák neveit tároló lista
      */
     public List<String> getOldalak() {
@@ -28,50 +46,41 @@ public class Ajto {
     }
 
     /**
-     *
-     * @param egyikOldal - Az egyik oldalán lévő szoba
-     * @param masikOldal - A másik oldalán lévő szoba
-     * @param nev - Szkeleton érdekében logoláshoz
-     */
-    public Ajto(Szoba egyikOldal, Szoba masikOldal, String nev){
-        this.egyikOldal = egyikOldal;
-        this.masikOldal = masikOldal;
-        merrolNyilik.put(egyikOldal, false);
-        merrolNyilik.put(masikOldal, false);
-        this.nev = nev;
-    }
-
-    /**
      * A függvény kiírja az objektum nevét
+     *
      * @return String, Szkeleton kiiratashoz
      */
-    public String toString(){
+    public String toString() {
         return nev + " :Ajto";
     }
 
     /**
      * Getter fügvény ami visszaadja az ajtó nevét
+     *
      * @return String, az ajtó neve
      */
-    public String getNev() {return nev;}
+    public String getNev() {
+        return nev;
+    }
 
     /**
      * A függvény ha látható az ajtó akkor azpn keresztül a következő
      * szobába lépteti az embert és a kiinduló szobából eltávolítja
+     *
      * @param e - Az ember aki át kíván lépni a másik szobába, ez felelős a mozgatásáért.
      */
-    public void hasznal(Ember e){
-        if(e.getJelenlegiSzoba() != egyikOldal && e.getJelenlegiSzoba() != masikOldal) {
+    public void hasznal(Ember e) {
+        if (e.getJelenlegiSzoba() != egyikOldal && e.getJelenlegiSzoba() != masikOldal) {
             System.out.println("ezt az ajtot nem tudod ebbol a szobabol hasznalni");
             return;
         }
-        if(!lathato) {
-            System.out.println(e + " nem latja " + this +"-t, nem tud atmenni.");
+        if (!lathato) {
+            System.out.println(e + " nem latja " + this + "-t, nem tud atmenni.");
             return;
         }
-        Szoba jelenlegiSzoba =  e.getJelenlegiSzoba();
+        Szoba jelenlegiSzoba = e.getJelenlegiSzoba();
         Szoba hovaMegy = (egyikOldal == jelenlegiSzoba) ? masikOldal : egyikOldal;
-        if(merrolNyilik.get(jelenlegiSzoba)){
+        if (merrolNyilik.get(jelenlegiSzoba)) {
             e.masikSzobabaLep(hovaMegy);
             //jelenlegiSzoba.emberKivesz(e);
         }
@@ -79,6 +88,7 @@ public class Ajto {
 
     /**
      * Setter függvény ami beállítja hogy merre nyílhat az ajtó
+     *
      * @param b1 Az egyik irányba nyílik-e
      * @param b2 A másik irányba nyílik-e
      */
@@ -90,29 +100,33 @@ public class Ajto {
 
     /**
      * Getter függvény ami visszaadja hogy látható-e az ajtó
+     *
      * @return láthatóságot visszaadja
      */
-    public boolean getLathatosag(){
+    public boolean getLathatosag() {
         return lathato;
     }
 
     /**
-     *Setter függvény ami beállítja hogy látható-e az ajtó
+     * Setter függvény ami beállítja hogy látható-e az ajtó
+     *
      * @param a beállítja a láthatóságot
      */
-    public void setLathatosag(boolean a){
+    public void setLathatosag(boolean a) {
         lathato = a;
     }
 
     /**
-     *Ha az ajtó egyik oldalán egy átkozott szoba található
+     * Ha az ajtó egyik oldalán egy átkozott szoba található
      * a szoba láthatósága változik
      */
     public void villogas() {
-        if(!egyikOldal.atkozottE() && !masikOldal.atkozottE()){return;}
-        if(Labirintus.getInstance().getTimeLeft() % 10 == 0)
+        if (!egyikOldal.atkozottE() && !masikOldal.atkozottE()) {
+            return;
+        }
+        if (Labirintus.getInstance().getTimeLeft() % 10 == 0)
             lathato = false;
-        else if(Labirintus.getInstance().getTimeLeft() % 10 == 5)
+        else if (Labirintus.getInstance().getTimeLeft() % 10 == 5)
             lathato = true;
     }
 
@@ -120,12 +134,11 @@ public class Ajto {
     /**
      * Afüggvény megváltoztatja a láthatóságát az ajtónak
      */
-    public void lathatosagValtoztass(){
-        if (lathato){
+    public void lathatosagValtoztass() {
+        if (lathato) {
             lathato = false;
             CustomLogger.info(this + " láthatatlan lett.");
-        }
-        else {
+        } else {
             lathato = true;
             CustomLogger.info(this + " láthatóvá vált.");
         }
@@ -134,16 +147,16 @@ public class Ajto {
     /**
      * Getter függvény ami visszadja a megadott szobából,
      * ezen az ajtón keresztül elérhető szomszédját
+     *
      * @param sz - Egy adott szoba.
      * @return Megadja egy adott ajtó másik oldalán lévő szobát
      */
-    public Szoba getSzomszed(Szoba sz){
-        if (sz == egyikOldal){
-            if(merrolNyilik.get(egyikOldal)) return masikOldal;
+    public Szoba getSzomszed(Szoba sz) {
+        if (sz == egyikOldal) {
+            if (merrolNyilik.get(egyikOldal)) return masikOldal;
             else return null;
-        }
-        else if (sz == masikOldal){
-            if(merrolNyilik.get(masikOldal)) return egyikOldal;
+        } else if (sz == masikOldal) {
+            if (merrolNyilik.get(masikOldal)) return egyikOldal;
             else return null;
         }
         return null;
@@ -153,7 +166,7 @@ public class Ajto {
     /**
      * Az ajtó osztály tick függvénye ami az ajtók időtől függő funkcioit hivja meg
      */
-    public void tick(){
+    public void tick() {
         villogas();
     }
 
@@ -161,7 +174,7 @@ public class Ajto {
     /**
      * Két ajtót hasonlít össze
      */
-    public boolean equals(Ajto masikAjto){
+    public boolean equals(Ajto masikAjto) {
         return masikAjto.egyikOldal.equals(egyikOldal) && masikAjto.masikOldal.equals(masikOldal) ||
                 masikAjto.egyikOldal.equals(masikOldal) && masikAjto.masikOldal.equals(egyikOldal);
     }

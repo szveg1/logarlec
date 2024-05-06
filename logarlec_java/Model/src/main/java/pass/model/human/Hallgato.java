@@ -1,13 +1,9 @@
 package pass.model.human;
 
 import pass.model.CustomLogger;
-import pass.model.CustomRecordFormatter;
-import pass.model.DrawObserver;
+import pass.model.graphichelper.DrawObserver;
 import pass.model.item.*;
 import pass.model.labyrinth.Labirintus;
-
-import java.util.logging.ConsoleHandler;
-import java.util.logging.Logger;
 
 /**
  * A Hallgató osztály felelős a játékos karakterének kezeléséért a labirintusban. Ez az
@@ -17,39 +13,66 @@ import java.util.logging.Logger;
  * a felhasználói interakciót a játék során.
  */
 public class Hallgato extends Ember {
+    private boolean tudVedekezni = false;
+    private boolean eletbenVan = true;
 
+    public Hallgato(String nev) {
+        super(nev);
+    }
+
+    /**
+     * TODO!!!
+     *
+     * @param visitor
+     */
     @Override
     public void accept(EmberVisitor visitor) {
         visitor.visitHallgato(this);
     }
 
-    // Csak szkeletonhoz-------------
-    public Hallgato(String nev) {
-        super(nev);
-    }
-
+    /**
+     * TODO!!!
+     *
+     * @return
+     */
     @Override
     public String toString() {
         return nev + " :Hallgato";
     }
-    //--------------------------------
-    private boolean tudVedekezni = false;
-    private boolean eletbenVan = true;
-    public boolean getEletbenVan(){
+
+    /**
+     * TODO!!!
+     *
+     * @return
+     */
+    public boolean getEletbenVan() {
         return eletbenVan;
     }
 
-    public void setEletbenVan(boolean eletbenVan){
+    /**
+     * TODO!!!
+     *
+     * @param eletbenVan
+     */
+    public void setEletbenVan(boolean eletbenVan) {
         this.eletbenVan = eletbenVan;
     }
 
+    /**
+     * TODO!!!
+     *
+     * @return
+     */
     @Override
-    public boolean getLepett() {return lepett;}
+    public boolean getLepett() {
+        return lepett;
+    }
 
     /**
      * A függvény meglátogatja a megadott logarlécet
      * és a meghívja a labirintus játékNyert függvényét
      * amivel véget vet a játéknak
+     *
      * @param logarlec -  a logarléc amit meglátogat
      */
     @Override
@@ -61,6 +84,7 @@ public class Hallgato extends Ember {
     /**
      * A függvény meglátogatja a megadott tvsz-t
      * és megvédi a hallgatót ha a tvsz még működőképes
+     *
      * @param tvsz - a tbsz amit meglátogat
      */
     @Override
@@ -73,6 +97,7 @@ public class Hallgato extends Ember {
      * A függvény meglátogatja a megadott poharat
      * és megvédi a hallgatót ha
      * a pohár még nem járt le
+     *
      * @param pohar - a pohár amit meglátogat
      */
     @Override
@@ -84,6 +109,7 @@ public class Hallgato extends Ember {
     /**
      * A függvény meglátogatja a megadott ronygot
      * és megvédi a hallgatót a szükség esetén
+     *
      * @param rongy - a rongy amit melátogat
      */
     @Override
@@ -94,12 +120,13 @@ public class Hallgato extends Ember {
 
     /**
      * A függvény megmondja hogy van e még hely a hallgató inventoryban
+     *
      * @return boolean - igaz vagy hamis hogy az inventory tele van
      */
     @Override
     public boolean inventoryTeleE() {
         int MAX_INVENTORY_MERET = 5;
-        CustomLogger.info(this +  ((inventory.size() >= MAX_INVENTORY_MERET) ? " inventoryja tele van." : " inventoryja nincs tele."));
+        CustomLogger.info(this + ((inventory.size() >= MAX_INVENTORY_MERET) ? " inventoryja tele van." : " inventoryja nincs tele."));
         return inventory.size() >= MAX_INVENTORY_MERET;
     }
 
@@ -107,20 +134,21 @@ public class Hallgato extends Ember {
      * A függvény alkalmazza az oktató támadásából
      * eredő hatásokat a hallgatóra, majd ellenőrzi,
      * hogy van-e védelme ezekkel szemben.
+     *
      * @param oktato - a támadó oktató
      */
     public Hallgato tamadasElszenved(Oktato oktato) {
         int hasznalniKivant = 0;
-        for(Targy targy : inventory) {
+        for (Targy targy : inventory) {
             targy.accept(this);
-            if(tudVedekezni){
+            if (tudVedekezni) {
                 inventory.get(hasznalniKivant).hasznal(oktato);
                 CustomLogger.info(this + " a " + inventory.get(hasznalniKivant) + "-val védekezett.");
                 break;
             }
             hasznalniKivant++;
         }
-        if(!tudVedekezni){
+        if (!tudVedekezni) {
             CustomLogger.info(this + " nem tudott védekezni, ezért meghalt.");
             meghal();
         }
@@ -135,24 +163,21 @@ public class Hallgato extends Ember {
     }
 
     /**
-     * A függvény a hallgatónál lévő árgyakonmeghívja a tick függvény.
+     * A függvény a hallgatónál lévő tárgyakon meghívja a tick függvény.
      * Tehát a tárgyakon is lép az idő
      */
     @Override
     public void tick() {
         super.tick();
-        for(Targy t : inventory){
+        for (Targy t : inventory) {
             t.tick();
         }
     }
 
     @Override
-    public void changeObserver(DrawObserver drawObserver) {
-        observer = drawObserver;
-    }
-
-    @Override
-    public void notifyObserver() {
-        observer.update(this);
+    public void notifyObservers() {
+        for (DrawObserver observer : observers) {
+            observer.update(this);
+        }
     }
 }

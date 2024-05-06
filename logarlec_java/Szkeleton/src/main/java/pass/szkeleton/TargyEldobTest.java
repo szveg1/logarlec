@@ -1,11 +1,16 @@
 package pass.szkeleton;
 
 import pass.model.CustomLogger;
-import pass.model.human.*;
-import pass.model.labyrinth.*;
-import pass.model.item.*;
+import pass.model.human.Ember;
+import pass.model.human.Hallgato;
+import pass.model.human.Oktato;
+import pass.model.item.Rongy;
+import pass.model.item.Targy;
+import pass.model.labyrinth.Szoba;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 import java.util.logging.Level;
 
 public class TargyEldobTest {
@@ -13,7 +18,7 @@ public class TargyEldobTest {
     private static Map<String, Ember> emberMap = new HashMap<>();
     private static Map<String, Targy> targyMap = new HashMap<>();
 
-    public static void test(){
+    public static void test() {
         Ember e = null;
         Szoba sz = new Szoba(1, "sz");
         emberMap.put("oktato", new Oktato("o"));
@@ -21,7 +26,7 @@ public class TargyEldobTest {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hallgató vagy oktató dob el tárgyat? ");
-        for(String ember : emberMap.keySet()){
+        for (String ember : emberMap.keySet()) {
             System.out.print(" [" + ember + "]");
         }
         System.out.append("\n");
@@ -38,20 +43,20 @@ public class TargyEldobTest {
         e.masikSzobabaLep(sz);
         CustomLogger.unsuppress();
 
-        System.out.println( "Hány tárgy legyen az inventoryban? (oktato max 1, hallgato max 5)");
+        System.out.println("Hány tárgy legyen az inventoryban? (oktato max 1, hallgato max 5)");
         int targySzam = scanner.nextInt();
         scanner.nextLine();
-        for(int i = 1; i <= targySzam; i++){
-            Targy t = new Rongy("r"+i);
+        for (int i = 1; i <= targySzam; i++) {
+            Targy t = new Rongy("r" + i);
             CustomLogger.suppress();
             sz.addItem(t);
             CustomLogger.unsuppress();
             e.targyatFelvesz(t);
-            if(!sz.getItems().contains(t))
-            targyMap.put("r"+i, t);
+            if (!sz.getItems().contains(t))
+                targyMap.put("r" + i, t);
         }
         do {
-            System.out.println( "Melyik tárgyat dobja el?");
+            System.out.println("Melyik tárgyat dobja el?");
             for (String targy : targyMap.keySet()) {
                 System.out.print("[" + targy + "] ");
             }
@@ -59,10 +64,10 @@ public class TargyEldobTest {
             String targyNev = scanner.nextLine();
             Targy t = targyMap.get(targyNev);
             e.targyatEldob(t);
-            if(sz.getItems().contains(t)){
+            if (sz.getItems().contains(t)) {
                 targyMap.remove(targyNev, t);
             }
-        }while(!e.getItems().isEmpty());
+        } while (!e.getItems().isEmpty());
 
         System.out.println("Folytatashoz enter");
         scanner.nextLine();

@@ -1,10 +1,10 @@
 package pass.controller;
 
 import pass.model.CustomLogger;
-import pass.model.labyrinth.Labirintus;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Scanner;
-import java.util.*;
 import java.util.function.Consumer;
 
 public class Main extends Fuggvenyek {
@@ -15,12 +15,12 @@ public class Main extends Fuggvenyek {
         Map<String, Consumer<String[]>> commandMap = new HashMap<>();
         fillMap(commandMap);
 
-            String line = scanner.nextLine();
+        String line = scanner.nextLine();
 
-            String[] cmd = line.split(" ");
+        String[] cmd = line.split(" ");
 
-            Consumer<String[]> command = commandMap.getOrDefault(cmd[0], Main::handleUnknownCommand);
-            command.accept(cmd);
+        Consumer<String[]> command = commandMap.getOrDefault(cmd[0], Main::handleUnknownCommand);
+        command.accept(cmd);
 
         scanner.close();
     }
@@ -42,6 +42,7 @@ public class Main extends Fuggvenyek {
         commandMap.put("szobaosszevon", Fuggvenyek::SzobaOsszevon);
         commandMap.put("teszt", Tesztelo::getTests);
     }
+
     private static void handleUnknownCommand(String[] cmd) {
         System.out.println("Unknown command: " + cmd[0]);
     }

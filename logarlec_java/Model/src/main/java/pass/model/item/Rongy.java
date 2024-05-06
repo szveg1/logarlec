@@ -1,52 +1,37 @@
 package pass.model.item;
 
 import pass.model.CustomLogger;
+import pass.model.TargyVisitor;
+import pass.model.TargyVisitorGrafikus;
+import pass.model.graphichelper.DrawObserver;
 import pass.model.human.Oktato;
-import pass.model.human.TargyVisitor;
-import pass.model.labyrinth.Szoba;
+
 /* Az osztály felelős a nedves táblatörlő rongy kezeléséért a játék során. A tárgyat fel
 lehet venni szobákban, ahol található és el lehet őket használni védekezésre oktatók
 ellen. */
-public class Rongy implements Targy {
-    // Csak szkeletonhoz-------------
-    private String nev;
-    public String getNev() {
-        return nev;
-    }
+public class Rongy extends Targy {
+    private int meddigNedves = 3;
+
     /**
-     *  A függvény elnevezi az objektumot
+     * Konstruktor
+     *
      * @param nev - A tárgy neve, Szkeletonhoz
      */
-    public Rongy(String nev){
+    public Rongy(String nev) {
         this.nev = nev;
     }
 
     /**
-     * A függvény kiírjaaz objektum nevét
-     * @return String, Szkeleton kiiratashoz
-     */
-    @Override
-    public String toString() {
-        return nev + " :Rongy";
-    }
-
-    // -------------------------------
-
-    Szoba jelenlegiSzoba;
-
-    private int meddigNedves = 3;
-
-    /**
-     * A függvény minden a szobában tartózkodó emberre meghívja a ronygelszenved függvényt
-     * @param oktato - Az oktató, aki ellen használják
-     */
-    @Override
-    public void hasznal(Oktato oktato) {
-        jelenlegiSzoba.getEmberek().forEach(e -> e.rongyotElszenved(this));
-    }
-
-    /**
+     * TODO!!!
      *
+     * @param visitor
+     */
+    @Override
+    public void accept(TargyVisitorGrafikus visitor) {
+        visitor.visit(this);
+    }
+
+    /**
      * @param visitor - A visitor, amit fogad
      */
     @Override
@@ -55,30 +40,25 @@ public class Rongy implements Targy {
         visitor.visit(this);
     }
 
+
     /**
-     * A függyvény átállítja hogy a rongy
-     * tartózkodási helyét a megadott szobára
-     * @param newSzoba - Az új szoba, ahova átkerül
+     * A függvény minden a szobában tartózkodó emberre meghívja a ronygelszenved függvényt
+     *
+     * @param oktato - Az oktató, aki ellen használják
      */
     @Override
-    public void szobaValtasrolErtesit(Szoba newSzoba) {
-        jelenlegiSzoba = newSzoba;
+    public void hasznal(Oktato oktato) {
+        jelenlegiSzoba.getEmberek().forEach(e -> e.rongyotElszenved(this));
     }
 
     /**
-     * A függvény visszaadja hogy nedve-e a orngy
-     * @return Visszaadja hogy a rongy még nedves-e
+     * TODO!!!
      */
-    public boolean hasznalhatoE() {
-        return meddigNedves > 0;
-    }
-
-    /**
-     * Getter függvény ami visszaadja hogy meddig nedves még a rongy
-     * @return Visszaadja hogy meddig nedves a rongy
-     */
-    public int getMeddigNedves() {
-        return meddigNedves;
+    @Override
+    public void notifyObservers() {
+        for (DrawObserver observer : observers) {
+            observer.update(this);
+        }
     }
 
     /**
@@ -87,5 +67,33 @@ public class Rongy implements Targy {
     @Override
     public void tick() {
         meddigNedves--;
+    }
+
+    /**
+     * A függvény visszaadja hogy nedve-e a orngy
+     *
+     * @return Visszaadja hogy a rongy még nedves-e
+     */
+    public boolean hasznalhatoE() {
+        return meddigNedves > 0;
+    }
+
+    /**
+     * Getter függvény ami visszaadja hogy meddig nedves még a rongy
+     *
+     * @return Visszaadja hogy meddig nedves a rongy
+     */
+    public int getMeddigNedves() {
+        return meddigNedves;
+    }
+
+    /**
+     * A függvény kiírja az objektum nevét
+     *
+     * @return String, Szkeleton kiiratashoz
+     */
+    @Override
+    public String toString() {
+        return nev + " :Rongy";
     }
 }

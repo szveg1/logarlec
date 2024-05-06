@@ -1,17 +1,20 @@
 package pass.szkeleton;
 
 import pass.model.CustomLogger;
-import pass.model.human.*;
-import pass.model.labyrinth.*;
+import pass.model.human.Ember;
+import pass.model.human.Hallgato;
+import pass.model.human.Oktato;
+import pass.model.labyrinth.Ajto;
+import pass.model.labyrinth.Szoba;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.logging.*;
+import java.util.logging.Level;
 
 public class AjtoHasznalatTest {
 
-    private static Map<String, Ember>  emberMap = new HashMap<>();
+    private static Map<String, Ember> emberMap = new HashMap<>();
     private static Map<String, Boolean> choiceMap = new HashMap<>();
 
     public static void test() {

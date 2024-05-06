@@ -7,6 +7,7 @@ public class CustomLogger {
     private static final Logger LOGGER = Logger.getLogger("LOG");
     private static Handler handler;
     private static boolean isSuppressed = false;
+
     static {
         try {
             handler = new StreamHandler(System.out, new SimpleFormatter()) {
@@ -26,7 +27,7 @@ public class CustomLogger {
     }
 
     public static void info(String info) {
-        if(isSuppressed) return;
+        if (isSuppressed) return;
         String callerClassName = Thread.currentThread().getStackTrace()[3].getClassName();
         String callerSimpleClassName = callerClassName.substring(callerClassName.lastIndexOf('.') + 1);
 
@@ -42,11 +43,12 @@ public class CustomLogger {
         LOGGER.log(level, message);
     }
 
-    public static void suppress(){
+    public static void suppress() {
         isSuppressed = true;
         LOGGER.removeHandler(LOGGER.getHandlers()[0]);
     }
-    public static void unsuppress(){
+
+    public static void unsuppress() {
         isSuppressed = false;
         LOGGER.addHandler(handler);
     }

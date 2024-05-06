@@ -1,8 +1,8 @@
 package pass.grafikus;
 
-import javax.swing.*;
-
 import pass.model.CustomLogger;
+
+import javax.swing.*;
 
 public class Main {
 
@@ -12,7 +12,8 @@ public class Main {
         CustomLogger.suppress();
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
         SwingUtilities.invokeLater(Main::createAndShowGUI);

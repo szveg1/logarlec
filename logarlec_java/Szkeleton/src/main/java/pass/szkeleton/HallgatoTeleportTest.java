@@ -1,11 +1,13 @@
 package pass.szkeleton;
 
 import pass.model.CustomLogger;
-import pass.model.human.*;
-import pass.model.labyrinth.*;
-import pass.model.item.*;
+import pass.model.human.Ember;
+import pass.model.human.Hallgato;
+import pass.model.item.Targy;
+import pass.model.item.Tranzisztor;
+import pass.model.labyrinth.Szoba;
 
-import java.util.*;
+import java.util.Scanner;
 
 public class HallgatoTeleportTest {
 

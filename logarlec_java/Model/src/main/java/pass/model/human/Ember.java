@@ -1,73 +1,70 @@
 package pass.model.human;
 
-import pass.model.CustomRecordFormatter;
-import pass.model.DrawObservable;
-import pass.model.Idozitett;
 import pass.model.CustomLogger;
-import pass.model.item.*;
+import pass.model.Idozitett;
+import pass.model.TargyVisitor;
+import pass.model.graphichelper.DrawObservable;
+import pass.model.item.Legfrissito;
+import pass.model.item.Maszk;
+import pass.model.item.Rongy;
+import pass.model.item.Targy;
 import pass.model.labyrinth.Ajto;
 import pass.model.labyrinth.Szoba;
 
-import java.awt.*;
-import java.net.URL;
-import java.util.*;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.*;
+import java.util.logging.Level;
 
 /**
  * Az Ember osztály azonosítja a karaktert, valamint tárolja az
  * általuk birtokolt tárgyakat. Képesek tárgyak felvételére, eldobására és használatára.
  */
 public abstract class Ember extends DrawObservable implements TargyVisitor, Idozitett {
-    // Csak a szkeletonhoz-------------
+    protected final List<Targy> inventory = new ArrayList<>();
     protected String nev;
-
-    public void accept(EmberVisitor visitor) {}
+    protected Szoba jelenlegiSzoba = null;
+    protected boolean lepett = false;
+    private int ajult = 0;
+    private boolean gazEllenVedett = false;
 
     /**
-     * A függvény elnevezi az objektumot.
+     * Konstruktor
+     *
      * @param nev - az objektum neve
      */
-    public Ember(String nev){
+    public Ember(String nev) {
         this.nev = nev;
     }
-    public String toString(){
-        return nev + " :Ember";
-    }
-    //---------------------------------
-    protected final List<Targy> inventory = new ArrayList<>();
-    protected Szoba jelenlegiSzoba = null;
-    private boolean gazEllenVedett = false;
-    private int ajult = 0;
 
-    protected boolean lepett = false;
-
-    public void setLepett(boolean b) {
-        this.lepett = b;
+    public void accept(EmberVisitor visitor) {
     }
+
     public boolean getLepett() {
         return true;
     }
 
+    public void setLepett(boolean b) {
+        this.lepett = b;
+    }
 
     public void targyatFelvesz(Targy targy) {
-        if(!jelenlegiSzoba.getItems().contains(targy))
+        if (!jelenlegiSzoba.getItems().contains(targy))
             return;
-        if (ajult > 0){
+        if (ajult > 0) {
             CustomLogger.log(Level.WARNING, this + " ájult, nem tud felvenni targyat");
             return;
         }
-        if(inventoryTeleE()) {
-            CustomLogger.log(Level.WARNING,this + "-nek tele az inventoryja, nem tud felvenni targyat");
+        if (inventoryTeleE()) {
+            CustomLogger.log(Level.WARNING, this + "-nek tele az inventoryja, nem tud felvenni targyat");
             return;
         }
-        if(jelenlegiSzoba.ragacsosE()){
-            CustomLogger.log(Level.WARNING,this + " ragacsos szobaban van, nem tud felvenni targyat");
+        if (jelenlegiSzoba.ragacsosE()) {
+            CustomLogger.log(Level.WARNING, this + " ragacsos szobaban van, nem tud felvenni targyat");
             return;
         }
         CustomLogger.info(this + " felvette a " + targy + "-t");
 
-        if(jelenlegiSzoba != null) {
+        if (jelenlegiSzoba != null) {
             jelenlegiSzoba.removeItem(targy);
         }
         inventory.add(targy);
@@ -79,18 +76,20 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
      * A függvény a megadott tárgyat eldobja és kiszedi
      * az ember inventory-jából, miközben eltávolítja
      * a tárgyat a szobából
+     *
      * @param targy - az eldobandó tárgy
      */
     public void targyatEldob(Targy targy) {
-        if(!inventory.contains(targy)){
+        if (!inventory.contains(targy)) {
             return;
         }
-        if (ajult > 0){
-            CustomLogger.log(Level.WARNING,this + " ájult, nem tud eldobni targyat");
+        if (ajult > 0) {
+            CustomLogger.log(Level.WARNING, this + " ájult, nem tud eldobni targyat");
             return;
         }
 
-        inventory.remove(targy);;
+        inventory.remove(targy);
+        ;
         CustomLogger.info(this + " eldobta a " + targy + "-t");
         targy.emberValtasrolErtesit(null);
         jelenlegiSzoba.addItem(targy);
@@ -99,6 +98,7 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
     /**
      * A függvény meglátogatja a medaott maszkot
      * és a gáz elleni védelmét beállítja az embernek
+     *
      * @param maszk - a maszk amit meglátogat
      */
     @Override
@@ -108,32 +108,33 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
         gazEllenVedett = maszk.getVedIdo() > 0;
     }
 
-    public void visit(Legfrissito legfrissito){
+    public void visit(Legfrissito legfrissito) {
         CustomLogger.info(this + " meglátogatta a " + legfrissito + "-t");
         this.targyatEldob(legfrissito);
     }
 
     public void ajulas() {
-        if(gazEllenVedett) return;
+        if (gazEllenVedett) return;
         ajult = 3;
         CustomLogger.info(this + " elájult");
-        for(Targy targy : inventory) {
+        for (Targy targy : inventory) {
             targyatEldob(targy);
         }
     }
 
     /**
-     *  A függvény az embert átlépteti a megadott szobába,
-     *  amíg az ember nincs elájulva és
-     *  az új szobához hozzáadja az embert
+     * A függvény az embert átlépteti a megadott szobába,
+     * amíg az ember nincs elájulva és
+     * az új szobához hozzáadja az embert
+     *
      * @param ujSzoba - ebbe a szobába lép át az ember
      */
     public boolean masikSzobabaLep(Szoba ujSzoba) {
         if (ajult > 0) {
-            CustomLogger.log(Level.WARNING,this + " ájult, nem tud szobát váltani");
+            CustomLogger.log(Level.WARNING, this + " ájult, nem tud szobát váltani");
             return false;
         }
-        if(!ujSzoba.emberBetesz(this)) return false;
+        if (!ujSzoba.emberBetesz(this)) return false;
 
         jelenlegiSzoba = ujSzoba;
         CustomLogger.info(this + " belépett a " + ujSzoba + "-ba");
@@ -145,18 +146,19 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
     }
 
     public void kilepSzobajabol() {
-        if(jelenlegiSzoba == null) return;
-        CustomLogger.info(this + " elhagyta a " + jelenlegiSzoba +"-t");
+        if (jelenlegiSzoba == null) return;
+        CustomLogger.info(this + " elhagyta a " + jelenlegiSzoba + "-t");
         jelenlegiSzoba.emberKivesz(this);
     }
 
     /**
      * A függvény az ember által kiválasztott
      * tárgy ahsználatát hívja meg
+     *
      * @param targy - a használandó tárgy
      */
-    public void targyatHasznal(Targy targy){
-        if(!inventory.contains(targy))
+    public void targyatHasznal(Targy targy) {
+        if (!inventory.contains(targy))
             return;
         CustomLogger.info(this + " használta a " + targy + "-t");
         targy.hasznal();
@@ -179,26 +181,37 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
     /**
      * A függvény egy abstract függvény,
      * ami a rongy hatásait állítja be az emberen
+     *
      * @param rongy - a rongy aminek a hatása alá kerül az ember
      */
-    public void rongyotElszenved(Rongy rongy){
+    public void rongyotElszenved(Rongy rongy) {
         CustomLogger.info(this + " ellen rongyot használtak");
     }
 
-    public void tick(){
-        for(Targy t : inventory){
+    public void tick() {
+        for (Targy t : inventory) {
             t.accept(this);
             t.tick();
         }
-        if(ajult > 0)
+        if (ajult > 0)
             ajult--;
         setLepett(false);
     }
 
-    public void controllerLeptet(Ajto a) { }
+    public void controllerLeptet(Ajto a) {
+    }
 
-    public Hallgato tamadasElszenved(Oktato oktato) { return null;}
+    public Hallgato tamadasElszenved(Oktato oktato) {
+        return null;
+    }
 
-    public boolean getEletbenVan() { return true; }
-    
+    public boolean getEletbenVan() {
+        return true;
+    }
+
+
+    @Override
+    public String toString() {
+        return nev + " :Ember";
+    }
 }

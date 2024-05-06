@@ -1,15 +1,14 @@
 package pass.controller;
 
-import pass.model.human.*;
-import pass.model.labyrinth.*;
-import pass.model.item.*;
-
-import java.io.Console;
+import pass.model.human.Ember;
+import pass.model.item.Targy;
+import pass.model.labyrinth.Ajto;
+import pass.model.labyrinth.Szoba;
 
 public class Fuggvenyek {
 
     protected static void Play(String[] cmd) {
-        if(cmd.length != 2){
+        if (cmd.length != 2) {
             System.out.println("Nem megfelelő számú argumentum: play <db>");
             return;
         }
@@ -19,7 +18,7 @@ public class Fuggvenyek {
     }
 
     protected static void Save(String[] cmd) {
-        if(cmd.length != 2){
+        if (cmd.length != 2) {
             System.out.println("Nem megfelelő számú argumentum: save <file>");
             return;
         }
@@ -28,7 +27,7 @@ public class Fuggvenyek {
     }
 
     protected static void Load(String[] cmd) {
-        if(cmd.length != 2){
+        if (cmd.length != 2) {
             System.out.println("Nem megfelelő számú argumentum: load <file>");
             return;
         }
@@ -38,7 +37,7 @@ public class Fuggvenyek {
     }
 
     protected static void AjtoHasznalat(String[] cmd) {
-        if(cmd.length != 3){
+        if (cmd.length != 3) {
             System.out.println("Nem megfelelő számú argumentum: ajtohasznalat <ajto> <ember>");
             return;
         }
@@ -48,7 +47,7 @@ public class Fuggvenyek {
     }
 
     protected static void TargyHasznal(String[] cmd) {
-        if(cmd.length != 3){
+        if (cmd.length != 3) {
             System.out.println("Nem megfelelő számú argumentum: hasznal <targy> <ember>");
             return;
         }
@@ -59,7 +58,7 @@ public class Fuggvenyek {
     }
 
     protected static void TargyEldob(String[] cmd) {
-        if(cmd.length != 3){
+        if (cmd.length != 3) {
             System.out.println("Nem megfelelő számú argumentum: targyeldob <targy> <ember>");
             return;
         }
@@ -69,7 +68,7 @@ public class Fuggvenyek {
     }
 
     protected static void TargyFelvesz(String[] cmd) {
-        if(cmd.length != 3){
+        if (cmd.length != 3) {
             System.out.println("Nem megfelelő számú argumentum: targyfelvesz <targy> <ember>");
             return;
         }
@@ -79,7 +78,7 @@ public class Fuggvenyek {
     }
 
     protected static void Random(String[] cmd) {
-        if(cmd.length != 2){
+        if (cmd.length != 2) {
             System.out.println("Nem megfelelő számú argumentum: random <true/false>");
             return;
         }
@@ -88,7 +87,7 @@ public class Fuggvenyek {
     }
 
     protected static void Tick(String[] cmd) {
-        if(cmd.length != 2){
+        if (cmd.length != 2) {
             System.out.println("Nem megfelelő számú argumentum: tick <n>");
             return;
         }
@@ -99,7 +98,7 @@ public class Fuggvenyek {
     }
 
     public static void InfoEmber(String[] cmd) {
-        if(cmd.length != 2){
+        if (cmd.length != 2) {
             System.out.println("Nem megfelelő számú argumentum: infoember <ember>");
             return;
         }
@@ -112,7 +111,7 @@ public class Fuggvenyek {
     }
 
     public static void InfoSzoba(String[] cmd) {
-        if(cmd.length != 2){
+        if (cmd.length != 2) {
             System.out.println("Nem megfelelő számú argumentum: infoszoba <szoba>");
             return;
         }
@@ -123,15 +122,16 @@ public class Fuggvenyek {
             Controller.InfoSzoba(sz);
         }
     }
-    public static void reset(String[] cmd){
-        if(cmd.length != 1)
+
+    public static void reset(String[] cmd) {
+        if (cmd.length != 1)
             return;
 
         Controller.reset();
     }
 
     public static void SzobaFeloszt(String[] cmd) {
-        if(cmd.length != 2){
+        if (cmd.length != 2) {
             System.out.println("Nem megfelelő számú argumentum: szobafeloszt <szoba>");
             return;
         }
@@ -140,7 +140,7 @@ public class Fuggvenyek {
     }
 
     public static void SzobaOsszevon(String[] cmd) {
-        if(cmd.length != 3){
+        if (cmd.length != 3) {
             System.out.println("Nem megfelelő számú argumentum: szobaosszevon <szoba1> <szoba2>");
             return;
         }

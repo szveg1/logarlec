@@ -1,14 +1,14 @@
 package pass.grafikus;
 
-import pass.controller.Controller;
-
+import pass.model.item.Targy;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class TargyInventoryButton extends TargyButton {
+public class TargyInventoryLabel extends TargyLabel {
 
-    public TargyInventoryButton() {
+    public TargyInventoryLabel(Targy targy) {
+        super(targy);
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -20,4 +20,6 @@ public class TargyInventoryButton extends TargyButton {
             }
         });
     }
+
+
 }

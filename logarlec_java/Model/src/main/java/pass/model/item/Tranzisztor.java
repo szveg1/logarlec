@@ -1,22 +1,23 @@
 package pass.model.item;
 
 import pass.model.CustomLogger;
-import pass.model.human.Oktato;
-import pass.model.human.TargyVisitor;
-import pass.model.labyrinth.Szoba;
-import pass.model.human.Hallgato;
+import pass.model.TargyVisitorGrafikus;
+import pass.model.graphichelper.DrawObserver;
 import pass.model.human.Ember;
-/* A Tranzisztor osztály felelős a játékosok általi mozgás segítéséért. Segítségével a
-játékosok képesek összekapcsolni két különböző szobát, hogy gyorsabban
-mozoghassanak a labirintusban.  */
-public class Tranzisztor implements Targy {
-    // Csak szkeletonhoz-------------
-    private String nev;
-    public String getNev() {
-        return nev;
-    }
+import pass.model.labyrinth.Szoba;
+
+/**
+ * A Tranzisztor osztály felelős a játékosok általi mozgás segítéséért.
+ * Segítségével a játékosok képesek összekapcsolni két különböző szobát,
+ * hogy gyorsabban mozoghassanak a labirintusban.
+ */
+public class Tranzisztor extends Targy {
+    private Tranzisztor par = null;
+    private Ember tulaj;
+
     /**
-     * A függvény elnevezi az objektumot
+     * Konstruktor
+     *
      * @param nev - A tranzisztor neve, Szkeletonhoz.
      */
     public Tranzisztor(String nev) {
@@ -24,19 +25,14 @@ public class Tranzisztor implements Targy {
     }
 
     /**
-     * A függvény kiírjaaz objektum nevét
-     * @return String, Szkeleton kiiratashoz
+     * TODO!!!
+     *
+     * @param visitor - A visitor, amit fogad
      */
     @Override
-    public String toString() {
-        return nev + " :Tranzisztor";
+    public void accept(TargyVisitorGrafikus visitor) {
+        visitor.visit(this);
     }
-
-    // -------------------------------
-    private Szoba jelenlegiSzoba;
-    private Tranzisztor par = null;
-
-    private Ember tulaj;
 
     /**
      * A függvény a párosítatlan Tranzisztorokat párosítja,
@@ -51,8 +47,7 @@ public class Tranzisztor implements Targy {
                     tulaj.getItems().get(i).setPar(this);
                 }
             }
-        }
-        else {
+        } else {
             CustomLogger.info(this + " már párosítva van.");
             tulaj.masikSzobabaLep(par.getSzoba());
         }
@@ -60,42 +55,47 @@ public class Tranzisztor implements Targy {
     }
 
     /**
+     * TODO!!!
+     */
+    @Override
+    public void notifyObservers() {
+        for (DrawObserver observer : observers) {
+            observer.update(this);
+        }
+    }
+
+    /**
      * Setter függvény ami a tranzisztornak egy párt állít be
+     *
      * @param t - A párnak beállítandó másik tranzisztor
      */
     @Override
     public void setPar(Tranzisztor t) {
         this.par = t;
         CustomLogger.info(this + " összepárosítva " + t + "ral.");
-        if(t.par != this){
+        if (t.par != this) {
             t.setPar(this);
         }
     }
 
-    /**
-     * A függvény beállítja a tárgy új tartózkodási helyét a megadott szobára
-     * @param newSzoba - Az új szoba, ahova átkerült
-     */
-    @Override
-    public void szobaValtasrolErtesit(Szoba newSzoba) {
-        jelenlegiSzoba = newSzoba;
-    }
-
-    /**
-     * A függvény beállítja a tárgy új tulajdonosát a megadott emberre
-     * @param newEmber - Az új ember, akihez átkerült
-     */
-    @Override
-    public void emberValtasrolErtesit(Ember newEmber) {
-        tulaj = newEmber;
-    }
 
     /**
      * Getter függvény ami visszaadja a szobát amiben tartózkodik a tárgy
+     *
      * @return Visszaadja a szobát amiben tartózkodik a tárgy
      */
     public Szoba getSzoba() {
         return jelenlegiSzoba;
     }
 
+
+    /**
+     * A függvény kiírja az objektum nevét
+     *
+     * @return String, Szkeleton kiiratashoz
+     */
+    @Override
+    public String toString() {
+        return nev + " :Tranzisztor";
+    }
 }

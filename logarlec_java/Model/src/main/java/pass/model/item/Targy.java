@@ -2,51 +2,66 @@ package pass.model.item;
 
 import pass.model.CustomLogger;
 import pass.model.Idozitett;
-import pass.model.human.Oktato;
+import pass.model.TargyVisitor;
+import pass.model.TargyVisitorGrafikus;
+import pass.model.graphichelper.DrawObservable;
 import pass.model.human.Ember;
-import pass.model.human.TargyVisitor;
+import pass.model.human.Oktato;
 import pass.model.labyrinth.Szoba;
+
 /**
- *  A Tárgy osztály felelős a tárgyak használatát biztosító interface megvalósításáért
+ * A Tárgy osztály felelős a tárgyak használatát biztosító interface megvalósításáért
  */
-public interface Targy extends Idozitett {
-    default void hasznal(Oktato oktato) {
+public abstract class Targy extends DrawObservable implements Idozitett {
+    protected String nev;
+    protected Szoba jelenlegiSzoba;
+    protected Ember tulajdonos;
 
+    public String getNev() {
+        return nev;
     }
-    default void hasznal(){
 
-    }
+    public abstract void accept(TargyVisitorGrafikus visitor);
 
     /**
-     *
-     * @param newEmber - Az új tulajdonosa
-     */
-    default void emberValtasrolErtesit(Ember newEmber) {
-
-    }
-
-    /**
-     *
-     * @param tranz -A beállítani kívánt párja
-     */
-    default void setPar(Tranzisztor tranz) {
-
-    }
-
-    /**
-     *
      * @param visitor - A visitor, amit fogad
      */
-    default void accept(TargyVisitor visitor){
+    public void accept(TargyVisitor visitor) {
         CustomLogger.info(visitor + "-t " + this + " fogadta.");
     }
 
-    /**
-     * @param newSzoba - Az új szoba, ahova átkerült
-     */
-    default void szobaValtasrolErtesit(Szoba newSzoba) {
+    public void hasznal(Oktato oktato) {
 
     }
 
-    String getNev();
+    public void hasznal() {
+
+    }
+
+    /**
+     * A függvény a tárgynak új tulajdonost állít be
+     *
+     * @param ujTulajdonos - Az új tulajdonosa
+     */
+    public void emberValtasrolErtesit(Ember ujTulajdonos) {
+        tulajdonos = ujTulajdonos;
+    }
+
+    /**
+     * @param tranz -A beállítani kívánt párja
+     */
+    public void setPar(Tranzisztor tranz) {
+
+    }
+
+    /**
+     * A függvény a tárgy tartózkodási helyét frissíti
+     *
+     * @param ujSzoba - szobaváltás után ebbe a szobába kerül a tárgy
+     */
+    public void szobaValtasrolErtesit(Szoba ujSzoba) {
+        jelenlegiSzoba = ujSzoba;
+    }
+
+
 }

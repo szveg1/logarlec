@@ -1,19 +1,17 @@
 package pass.model.item;
 
 import pass.model.CustomLogger;
-import pass.model.labyrinth.Szoba;
+import pass.model.TargyVisitorGrafikus;
+import pass.model.graphichelper.DrawObserver;
 
 /* A Camembert osztály felelős a mérgező gáz ideiglenes kibocsátásáért a labirintus, egy
 a játékos által kiválasztott szobájába. */
-public class Camembert implements Targy {
-    // Csak szkeletonhoz-------------
-    private String nev;
+public class Camembert extends Targy {
+    private boolean mergezo = true;
 
-    public String getNev() {
-        return nev;
-    }
     /**
-     * A függvény elnevezi az objektumot
+     * Konstruktor
+     *
      * @param nev - az objektum neve
      */
     public Camembert(String nev) {
@@ -21,17 +19,14 @@ public class Camembert implements Targy {
     }
 
     /**
-     * A függvény kiírja az objektum nevét
-     * @return String, Szkeleton kiiratashoz
+     * A függvény hatására a tárgy meglátogatásra kerül
+     *
+     * @param visitor - a látogató
      */
     @Override
-    public String toString() {
-        return nev + " :Camembert";
+    public void accept(TargyVisitorGrafikus visitor) {
+        visitor.visit(this);
     }
-
-    // -------------------------------
-    private Szoba szoba;
-    private boolean mergezo = true;
 
     /**
      * A függvény a camambert használatát hajtja végre,
@@ -40,7 +35,7 @@ public class Camembert implements Targy {
     public void hasznal() {
         if (mergezo) {
             CustomLogger.info(this + " használva");
-            szoba.setMeregIdo(3);
+            jelenlegiSzoba.setMeregIdo(3);
             mergezo = false;
         } else {
             CustomLogger.info(this + " már nem használható");
@@ -48,13 +43,22 @@ public class Camembert implements Targy {
     }
 
     /**
-     * A függvény a tárgy tartzkodási helyét frissíti
-     * @param newSzoba - szobaváltás után ebbe a szobába kerül a tárgy
+     * TODO!!!
      */
     @Override
-    public void szobaValtasrolErtesit(Szoba newSzoba) {
-        this.szoba = newSzoba;
-        CustomLogger.info(this + " a " + szoba + "-ba került");
+    public void notifyObservers() {
+        for (DrawObserver observer : observers) {
+            observer.update(this);
+        }
     }
 
+    /**
+     * A függvény kiírja az objektum nevét
+     *
+     * @return String, Szkeleton kiiratashoz
+     */
+    @Override
+    public String toString() {
+        return nev + " :Camembert";
+    }
 }

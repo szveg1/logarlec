@@ -1,45 +1,61 @@
 package pass.model.item;
 
 import pass.model.CustomLogger;
-import pass.model.human.Oktato;
-import pass.model.labyrinth.Labirintus;
-import pass.model.labyrinth.Szoba;
-import pass.model.human.TargyVisitor;
- /* A Logarléc osztály felelős a játék céljának reprezentálásáért. A játékosok feladata a
-Logarléc felkutatása és megszerzése a labirintusban annak érdekében, hogy nyerjenek.  */
-public class Logarlec implements Targy {
-    // Csak szkeletonhoz-------------
-    private String nev;
-     public String getNev() {
-         return nev;
-     }
+import pass.model.TargyVisitor;
+import pass.model.TargyVisitorGrafikus;
+import pass.model.graphichelper.DrawObserver;
+
+/***
+ *  A Logarléc osztály felelős a játék céljának reprezentálásáért.
+ *  A játékosok feladata a Logarléc felkutatása és megszerzése a labirintusban,
+ *  annak érdekében, hogy nyerjenek.  */
+public class Logarlec extends Targy {
     /**
-     * A függvény elnevezi az objektumot
+     * Konstruktor
+     *
      * @param nev - az objektum neve
      */
     public Logarlec(String nev) {
         this.nev = nev;
     }
 
-     /**
-      * A függvény kiírjaaz objektum nevét
-      * @return String, Szkeleton kiiratashoz
-      */
+    /**
+     * TODO!!!
+     *
+     * @param visitor
+     */
     @Override
-    public String toString() {
-        return nev + " :Logarlec";
+    public void accept(TargyVisitorGrafikus visitor) {
+        visitor.visit(this);
     }
 
-    // -------------------------------
-
     /**
-     *
      * @param visitor -  a visitor amit fogad
      */
     @Override
     public void accept(TargyVisitor visitor) {
         CustomLogger.info(visitor + "-t " + this + " fogadta.");
         visitor.visit(this);
+    }
+
+    /**
+     * TODO!!!
+     */
+    @Override
+    public void notifyObservers() {
+        for (DrawObserver observer : observers) {
+            observer.update(this);
+        }
+    }
+
+    /**
+     * A függvény kiírja az objektum nevét
+     *
+     * @return String, Szkeleton kiiratashoz
+     */
+    @Override
+    public String toString() {
+        return nev + " :Logarlec";
     }
 
 }

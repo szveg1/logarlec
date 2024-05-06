@@ -1,17 +1,16 @@
 package pass.model.item;
 
 import pass.model.CustomLogger;
-import pass.model.human.TargyVisitor;
-import pass.model.labyrinth.Szoba;
+import pass.model.TargyVisitor;
+import pass.model.TargyVisitorGrafikus;
+import pass.model.graphichelper.DrawObserver;
 
-public class Legfrissito implements Targy {
-    // Csak szkeletonhoz-------------
-    private String nev;
-    public String getNev() {
-        return nev;
-    }
+public class Legfrissito extends Targy {
+    private boolean hasznalva = false;
+
     /**
      * A függvény elnevezi az objektumot
+     *
      * @param nev - az objektum neve
      */
     public Legfrissito(String nev) {
@@ -19,19 +18,14 @@ public class Legfrissito implements Targy {
     }
 
     /**
-     * A függvény kiírja az objektum nevét
-     * @return String, Szkeleton kiiratashoz
+     * TODO!!!
+     *
+     * @param visitor
      */
     @Override
-    public String toString() {
-        return nev + " :Legfrissito";
+    public void accept(TargyVisitorGrafikus visitor) {
+        visitor.visit(this);
     }
-
-
-    // -------------------------------
-
-    private boolean hasznalva = false;
-    private Szoba jelenlegiSzoba;
 
     /**
      * @param visitor - A visitor, amit fogad
@@ -39,23 +33,33 @@ public class Legfrissito implements Targy {
     @Override
     public void accept(TargyVisitor visitor) {
         CustomLogger.info(visitor + "-t " + this + " fogadta.");
-       if(!hasznalva && jelenlegiSzoba.mergezoE()){
+        if (!hasznalva && jelenlegiSzoba.mergezoE()) {
             visitor.visit(this);
             hasznalva = true;
             jelenlegiSzoba.setMeregIdo(0);
-        }
-        else{
+        } else {
             CustomLogger.info(this + " már nem használható");
         }
     }
 
     /**
-     * @param newSzoba - Az új szoba, ahova átkerült
+     * TODO!!!
      */
     @Override
-    public void szobaValtasrolErtesit(Szoba newSzoba) {
-        this.jelenlegiSzoba = newSzoba;
-        CustomLogger.info(this + " a " + jelenlegiSzoba + "-ba került");
+    public void notifyObservers() {
+        for (DrawObserver observer : observers) {
+            observer.update(this);
+        }
+    }
+
+    /**
+     * A függvény kiírja az objektum nevét
+     *
+     * @return String, Szkeleton kiiratashoz
+     */
+    @Override
+    public String toString() {
+        return nev + " :Legfrissito";
     }
 
 }

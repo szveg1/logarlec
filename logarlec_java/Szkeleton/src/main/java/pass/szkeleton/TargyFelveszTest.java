@@ -1,19 +1,24 @@
 package pass.szkeleton;
 
 import pass.model.CustomLogger;
-import pass.model.human.*;
-import pass.model.labyrinth.*;
+import pass.model.human.Ember;
+import pass.model.human.Hallgato;
+import pass.model.human.Oktato;
 import pass.model.item.*;
+import pass.model.labyrinth.Szoba;
 
-import java.util.*;
-import java.util.logging.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.logging.Level;
 
 public class TargyFelveszTest {
     private static Map<String, Ember> emberMap = new HashMap<>();
     private static Map<String, Targy> targyMap = new HashMap<>();
 
     private static Szoba sz;
-    public static void setUp(){
+
+    public static void setUp() {
         sz = new Szoba(1, "sz");
         emberMap.put("oktato", new Oktato("o"));
         emberMap.put("hallgato", new Hallgato("h"));
@@ -29,7 +34,7 @@ public class TargyFelveszTest {
         targyMap.put("hamismaszk", new HamisMaszk("hm"));
     }
 
-    public static void test(){
+    public static void test() {
         System.out.println("TargyFelveszTest");
         setUp();
 
@@ -65,8 +70,7 @@ public class TargyFelveszTest {
             String targyNev = scanner.nextLine();
             if (targyNev.equals("vege")) {
                 break;
-            }
-            else if(!targyMap.containsKey(targyNev)){
+            } else if (!targyMap.containsKey(targyNev)) {
                 CustomLogger.log(Level.WARNING, "Nem létező tárgy!");
                 continue;
             }
@@ -75,10 +79,10 @@ public class TargyFelveszTest {
             sz.addItem(t);
             CustomLogger.unsuppress();
             e.targyatFelvesz(t);
-            if(sz.getItems().contains(t)){
+            if (sz.getItems().contains(t)) {
                 targyMap.put(targyNev, t);
             }
-        } while(true);
+        } while (true);
 
         System.out.println("Folytatashoz enter");
         scanner.nextLine();

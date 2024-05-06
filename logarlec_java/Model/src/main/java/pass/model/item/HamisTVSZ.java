@@ -1,18 +1,12 @@
 package pass.model.item;
 
-import pass.model.CustomLogger;
-import pass.model.human.Oktato;
-import pass.model.human.TargyVisitor;
-import pass.model.labyrinth.Szoba;
+import pass.model.TargyVisitorGrafikus;
+import pass.model.graphichelper.DrawObserver;
 
-public class HamisTVSZ implements Targy{
-    // Csak szkeletonhoz-------------
-    private String nev;
-    public String getNev() {
-        return nev;
-    }
+public class HamisTVSZ extends Targy {
     /**
-     * A függvény elnevezi az objektumot
+     * Konstruktor
+     *
      * @param nev - az objektum neve
      */
     public HamisTVSZ(String nev) {
@@ -20,7 +14,28 @@ public class HamisTVSZ implements Targy{
     }
 
     /**
+     * TODO!!!
+     *
+     * @param visitor
+     */
+    @Override
+    public void accept(TargyVisitorGrafikus visitor) {
+        visitor.visit(this);
+    }
+
+    /**
+     * TODO!!!
+     */
+    @Override
+    public void notifyObservers() {
+        for (DrawObserver observer : observers) {
+            observer.update(this);
+        }
+    }
+
+    /**
      * A függvény kiírja az objektum nevét
+     *
      * @return String, Szkeleton kiiratashoz
      */
     @Override
@@ -28,5 +43,4 @@ public class HamisTVSZ implements Targy{
         return nev + " :HamisTVSZ";
     }
 
-    // -------------------------------
 }

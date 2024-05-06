@@ -1,11 +1,17 @@
 package pass.szkeleton;
 
 import pass.model.CustomLogger;
-import pass.model.human.*;
-import pass.model.labyrinth.*;
-import pass.model.item.*;
+import pass.model.human.Ember;
+import pass.model.human.Hallgato;
+import pass.model.human.Oktato;
+import pass.model.item.Maszk;
+import pass.model.item.Rongy;
+import pass.model.item.Targy;
+import pass.model.labyrinth.Szoba;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 import java.util.logging.Level;
 
 public class EmberElajulTest {
@@ -21,7 +27,7 @@ public class EmberElajulTest {
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("[Hallgató vagy oktató?] ");
-        for(String ember : emberMap.keySet()){
+        for (String ember : emberMap.keySet()) {
             System.out.print(" [" + ember + "]");
         }
         System.out.println();
@@ -56,7 +62,6 @@ public class EmberElajulTest {
         Szoba sz2 = new Szoba(1, "sz2");
 
         sz1.emberBetesz(e);
-
 
 
         Targy r = new Rongy("r");

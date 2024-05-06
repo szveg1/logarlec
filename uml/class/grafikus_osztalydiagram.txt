@@ -1,32 +1,37 @@
 @startuml
 
-left to right direction
+top to bottom direction
 scale 2480*3508
 skinparam linetype ortho
 
 interface IObservable {
-  + changeObserver(DrawObserver) : void
+  + addObserver(DrawObserver) : void
+  + removeObserver(DrawObserver) : void
   + notifyObserver() : void
 }
 
 abstract class DrawObservable implements IObservable {
-  # observer: ArrayList<DrawObserver>
 }
 
 class Ember extends DrawObservable {
-  + notfiyObserver() : void
-  + changeObserver() : void
+  + addObserver(DrawObserver) : void
+  + removeObserver(DrawObserver) : void
+  + notifyObserver() : void
+
 }
 
 class Targy extends DrawObservable {
-  + changeObserver() : void
+  + addObserver(DrawObserver) : void
+  + removeObserver(DrawObserver) : void
   + notifyObserver() : void
   + accept(TargyVisitorGrafikus) : void
 }
 
 class Szoba extends DrawObservable {
-  + changeObserver()
-  + notifyObserver()
+  + addObserver(DrawObserver) : void
+  + removeObserver(DrawObserver) : void
+  + notifyObserver() : void
+
 }
 
 interface DrawObserver {
@@ -47,6 +52,7 @@ interface TargyVisitorGrafikus {
 
 abstract class TargyButton implements TargyVisitorGrafikus{
   + TargyButton():
+  + update()
   # targy: Targy
   # paintComponent(Graphics): void
 }
@@ -55,14 +61,16 @@ abstract class TargyButton extends JButton implements DrawObserver
 
 class TargyFoldonButton extends TargyButton {
   + TargyFoldonButton():
+  + update()
 }
 
 class TargyInventoryButton extends TargyButton {
   + TargyInventoryButton():
+  + update()
 }
 
 class DoorButton extends JButton{
-  + door: Door
+  + door: Ajto
   + DoorButton(): 
   # paintComponent(Graphics): void
 }
@@ -86,7 +94,7 @@ class EmberLabel implements EmberVisitor
 
 class GameFrame extends JFrame {
   + GameFrame(): 
-  - getPopupMenu: JPopupMenu
+  - getPopupMenu(): JPopupMenu
 }
 
 class MenuFrame extends JFrame {
@@ -102,12 +110,7 @@ class MenuPanel extends JPanel{
 
 
 
-
 class SzobaPanel extends JPanel{
-  - List<JButton> doorButtons
-  - List<JButton> itemButtons
-  - JPanel jobbpanel
-  - JPanel balpanel
   # paintComponent(Graphics): void  
   + SzobaPanel(Szoba, Dimension)
   + update() : void
@@ -117,7 +120,6 @@ class SzobaPanel implements DrawObserver
 
 
 class InventoryPanel extends JPanel{
-  - cells : JLabel[5]
   + InventoryPanel()
   + update() : void
 }
@@ -125,8 +127,14 @@ class InventoryPanel implements DrawObserver
 
 
 
-DrawObservable "1" o--> DrawObserver : frissíti
+DrawObservable "1" o--> "*" DrawObserver : értesíti
 InventoryPanel --> Controller : elkéri a soron levő játékost
+InventoryPanel "1" *--> "5" JLabel : cells
 GameFrame "1" *--> "1" InventoryPanel
+SzobaPanel "1" *--> "*" DoorButton
+SzobaPanel "1" *--> "*" TargyButton
+SzobaPanel --> JPanel : jobbPanel
+SzobaPanel --> JPanel : balPanel
+
 
 @enduml

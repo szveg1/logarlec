@@ -1,17 +1,19 @@
 package pass.szkeleton;
 
 import pass.model.CustomLogger;
-import pass.model.human.*;
-import pass.model.labyrinth.*;
-import pass.model.item.*;
+import pass.model.human.Ember;
+import pass.model.human.Hallgato;
+import pass.model.human.Oktato;
+import pass.model.item.Maszk;
+import pass.model.labyrinth.Ajto;
+import pass.model.labyrinth.Szoba;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Level;
 
-public class EmberMasikSzobabaLep
-{
+public class EmberMasikSzobabaLep {
     private static Szoba sz1 = new Szoba(5, "sz1");
 
     private static Szoba sz2 = new Szoba(2, "sz2");
@@ -24,7 +26,7 @@ public class EmberMasikSzobabaLep
     private static Maszk m = new Maszk(10, "m");
 
 
-    private static Map<String, Ember>  emberMap = new HashMap<>();
+    private static Map<String, Ember> emberMap = new HashMap<>();
 
 
     public static void setUp() {
@@ -32,7 +34,7 @@ public class EmberMasikSzobabaLep
         emberMap.put("hallgato", h);
     }
 
-    public static void test(){
+    public static void test() {
         setUp();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Hallgató vagy oktató? [hallgato] [oktato]");
@@ -43,7 +45,7 @@ public class EmberMasikSzobabaLep
             if (e == null) {
                 CustomLogger.log(Level.WARNING, "Nem létező válasz!");
             }
-        }while(e == null);
+        } while (e == null);
 
         CustomLogger.suppress();
         e.masikSzobabaLep(sz1);
@@ -54,25 +56,25 @@ public class EmberMasikSzobabaLep
         String valasz;
         do {
             valasz = scanner.nextLine();
-            if(!valasz.equals("igen") && !valasz.equals("nem")) {
+            if (!valasz.equals("igen") && !valasz.equals("nem")) {
                 CustomLogger.log(Level.WARNING, "Nem létező válasz!");
             }
-        } while(!valasz.equals("igen") && !valasz.equals("nem"));
+        } while (!valasz.equals("igen") && !valasz.equals("nem"));
 
         a.setLathatosag(valasz.equals("igen"));
         a.hasznal(e);
 
-        if(valasz.equals("nem")) return;
+        if (valasz.equals("nem")) return;
 
         System.out.println("Van-e maszkja az embernek? [igen] [nem]");
         do {
             valasz = scanner.nextLine();
-            if(!valasz.equals("igen") && !valasz.equals("nem")) {
+            if (!valasz.equals("igen") && !valasz.equals("nem")) {
                 CustomLogger.log(Level.WARNING, "Nem létező válasz!");
             }
-        } while(!valasz.equals("igen") && !valasz.equals("nem"));
+        } while (!valasz.equals("igen") && !valasz.equals("nem"));
 
-        if(valasz.equals("igen")){
+        if (valasz.equals("igen")) {
             CustomLogger.suppress();
             e.targyatFelvesz(m);
             CustomLogger.unsuppress();
@@ -82,12 +84,12 @@ public class EmberMasikSzobabaLep
         System.out.println("Mérgező-e a következő szoba? [igen] [nem]");
         do {
             valasz = scanner.nextLine();
-            if(!valasz.equals("igen") && !valasz.equals("nem")) {
+            if (!valasz.equals("igen") && !valasz.equals("nem")) {
                 CustomLogger.log(Level.WARNING, "Nem létező válasz!");
             }
-        } while(!valasz.equals("igen") && !valasz.equals("nem"));
+        } while (!valasz.equals("igen") && !valasz.equals("nem"));
 
-        if(valasz.equals("igen")) {
+        if (valasz.equals("igen")) {
             CustomLogger.suppress();
             sz2.setMeregIdo(10);
             CustomLogger.unsuppress();

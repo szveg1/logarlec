@@ -1,6 +1,5 @@
-package pass.model.human;
+package pass.model;
 
-import pass.model.CustomLogger;
 import pass.model.item.*;
 
 public interface TargyVisitor {

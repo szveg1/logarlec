@@ -1,33 +1,35 @@
 package pass.model.human;
 
 import pass.model.CustomLogger;
-import pass.model.DrawObserver;
+import pass.model.graphichelper.DrawObserver;
 import pass.model.labyrinth.Ajto;
 import pass.model.labyrinth.Szoba;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Takarito extends Ember{
+public class Takarito extends Ember {
+    public Takarito(String nev) {
+        super(nev);
+    }
+
     @Override
     public void accept(EmberVisitor visitor) {
         visitor.visitTakarito(this);
-    }
-
-    public Takarito(String nev) {
-        super(nev);
     }
 
     @Override
     public String toString() {
         return nev + " :Takarito";
     }
+
     @Override
     public boolean inventoryTeleE() {
         return true;
     }
 
     public boolean masikSzobabaLep(Szoba ujSzoba) {
-        if(!ujSzoba.emberBetesz(this)) return false;
+        if (!ujSzoba.emberBetesz(this)) return false;
         jelenlegiSzoba = ujSzoba;
         CustomLogger.info(this + " belépett a " + ujSzoba + "-ba");
         // Embereket kitessekeli
@@ -42,7 +44,7 @@ public class Takarito extends Ember{
             }
         }
         // kiszelloztet
-        if(jelenlegiSzoba.mergezoE()){
+        if (jelenlegiSzoba.mergezoE()) {
             jelenlegiSzoba.setMeregIdo(0);
         }
         jelenlegiSzoba.setTiszta(true);
@@ -50,19 +52,19 @@ public class Takarito extends Ember{
     }
 
     @Override
-    public void ajulas(){
+    public void ajulas() {
         // nem csinal semmit
     }
-    @Override
-    public void controllerLeptet(Ajto a) { a.hasznal(this);}
 
     @Override
-    public void changeObserver(DrawObserver drawObserver) {
-
+    public void controllerLeptet(Ajto a) {
+        a.hasznal(this);
     }
 
     @Override
-    public void notifyObserver() {
-
+    public void notifyObservers() {
+        for (DrawObserver observer : observers) {
+            observer.update(this);
+        }
     }
 }

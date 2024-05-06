@@ -1,11 +1,8 @@
 package pass.szkeleton;
-import pass.model.CustomLogger;
-import pass.model.human.*;
-import pass.model.labyrinth.*;
-import pass.model.item.*;
 
-import java.util.*;
-import java.util.logging.Level;
+import pass.model.labyrinth.Labirintus;
+
+import java.util.Scanner;
 
 public class InitTest {
 

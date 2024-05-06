@@ -1,9 +1,11 @@
 package pass.szkeleton;
 
 import pass.model.CustomLogger;
-import pass.model.human.*;
-import pass.model.item.*;
-import pass.model.labyrinth.*;
+import pass.model.human.Ember;
+import pass.model.human.Hallgato;
+import pass.model.labyrinth.Ajto;
+import pass.model.labyrinth.Labirintus;
+import pass.model.labyrinth.Szoba;
 
 import java.util.*;
 import java.util.logging.Level;
@@ -35,39 +37,37 @@ public class SzobaOsszevonTest {
                 System.out.print("[" + sz + "] ");
             }
             szobak = sc.nextLine().split(" ");
-            if(szobak.length != 2) {
-                CustomLogger.log(Level.WARNING,"Két szobát kell választani!");
+            if (szobak.length != 2) {
+                CustomLogger.log(Level.WARNING, "Két szobát kell választani!");
+                invalid = true;
+            } else if (szobak[0].equals(szobak[1])) {
+                CustomLogger.log(Level.WARNING, "Két különböző szobát kell választani!");
+                invalid = true;
+            } else if (!szobaList.contains(szobak[0]) || !szobaList.contains(szobak[1])) {
+                CustomLogger.log(Level.WARNING, "Nem létező szoba!");
                 invalid = true;
             }
-            else if(szobak[0].equals(szobak[1])){
-                CustomLogger.log(Level.WARNING,"Két különböző szobát kell választani!");
-                invalid = true;
-            }
-            else if(!szobaList.contains(szobak[0]) || !szobaList.contains(szobak[1])){
-                CustomLogger.log(Level.WARNING,"Nem létező szoba!");
-                invalid = true;
-            }
-        } while(invalid);
+        } while (invalid);
 
         Szoba sz1 = szobaMap.get(szobak[0]);
         Szoba sz2 = szobaMap.get(szobak[1]);
         Ajto a = new Ajto(sz1, sz2, "a");
         sz1.addAjto(a);
         sz2.addAjto(a);
-        
-        for(Szoba sz : szobaMap.values()){
+
+        for (Szoba sz : szobaMap.values()) {
             System.out.println("Hány ember legyen az " + sz + "-ban?");
             int emberekSzama;
             do {
                 emberekSzama = sc.nextInt();
                 sc.nextLine();
-                if(emberekSzama < 0 || emberekSzama > 5){
+                if (emberekSzama < 0 || emberekSzama > 5) {
                     CustomLogger.log(Level.WARNING, "Az emberek száma 0 és 5 között lehet!");
                 }
 
-            } while(emberekSzama < 0 || emberekSzama > 5);
-            for(int i = 1; i <= emberekSzama; i++){
-                Ember e = new Hallgato("h" +i);
+            } while (emberekSzama < 0 || emberekSzama > 5);
+            for (int i = 1; i <= emberekSzama; i++) {
+                Ember e = new Hallgato("h" + i);
                 e.masikSzobabaLep(sz);
             }
         }
@@ -81,19 +81,17 @@ public class SzobaOsszevonTest {
             }
             System.out.append("\n");
             szobak = sc.nextLine().split(" ");
-            if(szobak.length != 2) {
-                CustomLogger.log(Level.WARNING,"Két szobát kell választani!");
+            if (szobak.length != 2) {
+                CustomLogger.log(Level.WARNING, "Két szobát kell választani!");
+                invalid = true;
+            } else if (szobak[0].equals(szobak[1])) {
+                CustomLogger.log(Level.WARNING, "Két különböző szobát kell választani!");
+                invalid = true;
+            } else if (!szobaList.contains(szobak[0]) || !szobaList.contains(szobak[1])) {
+                CustomLogger.log(Level.WARNING, "Nem létező szoba!");
                 invalid = true;
             }
-            else if(szobak[0].equals(szobak[1])){
-                CustomLogger.log(Level.WARNING,"Két különböző szobát kell választani!");
-                invalid = true;
-            }
-            else if(!szobaList.contains(szobak[0]) || !szobaList.contains(szobak[1])){
-                CustomLogger.log(Level.WARNING,"Nem létező szoba!");
-                invalid = true;
-            }
-        } while(invalid);
+        } while (invalid);
 
         sz1 = szobaMap.get(szobak[0]);
         sz2 = szobaMap.get(szobak[1]);
