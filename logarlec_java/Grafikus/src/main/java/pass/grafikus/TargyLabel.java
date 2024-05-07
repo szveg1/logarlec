@@ -1,12 +1,13 @@
 package pass.grafikus;
 
 import pass.model.TargyVisitorGrafikus;
+import pass.model.graphichelper.DrawObserver;
 import pass.model.item.*;
 
 import javax.swing.*;
 import java.awt.*;
 
-public abstract class TargyLabel extends JLabel implements TargyVisitorGrafikus {
+public abstract class TargyLabel extends JLabel implements TargyVisitorGrafikus, DrawObserver {
     protected Targy targy;
 
     public TargyLabel(Targy targy) {
@@ -14,6 +15,7 @@ public abstract class TargyLabel extends JLabel implements TargyVisitorGrafikus 
         setBackground(new Color(0, 0, 0, 0));
         this.targy = targy;
         targy.accept(this);
+        targy.addObserver(this);
     }
 
     @Override
@@ -70,4 +72,8 @@ public abstract class TargyLabel extends JLabel implements TargyVisitorGrafikus 
     public void visit(Tranzisztor tranzisztor) {
         setIcon(new ImageIcon(new ImageIcon("Grafikus/src/main/resources/tranzisztor.png").getImage().getScaledInstance(90, 90, 0)));
     }
+
+    @Override
+    public abstract void update();
+
 }

@@ -1,7 +1,6 @@
 package pass.model.human;
 
 import pass.model.CustomLogger;
-import pass.model.graphichelper.DrawObserver;
 import pass.model.labyrinth.Ajto;
 import pass.model.labyrinth.Szoba;
 
@@ -61,10 +60,5 @@ public class Takarito extends Ember {
         a.hasznal(this);
     }
 
-    @Override
-    public void notifyObservers() {
-        for (DrawObserver observer : observers) {
-            observer.update(this);
-        }
-    }
+
 }

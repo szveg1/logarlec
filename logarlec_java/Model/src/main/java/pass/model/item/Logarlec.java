@@ -3,7 +3,6 @@ package pass.model.item;
 import pass.model.CustomLogger;
 import pass.model.TargyVisitor;
 import pass.model.TargyVisitorGrafikus;
-import pass.model.graphichelper.DrawObserver;
 
 /***
  *  A Logarléc osztály felelős a játék céljának reprezentálásáért.
@@ -38,15 +37,6 @@ public class Logarlec extends Targy {
         visitor.visit(this);
     }
 
-    /**
-     * TODO!!!
-     */
-    @Override
-    public void notifyObservers() {
-        for (DrawObserver observer : observers) {
-            observer.update(this);
-        }
-    }
 
     /**
      * A függvény kiírja az objektum nevét

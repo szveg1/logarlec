@@ -3,7 +3,6 @@ package pass.model.item;
 import pass.model.CustomLogger;
 import pass.model.TargyVisitor;
 import pass.model.TargyVisitorGrafikus;
-import pass.model.graphichelper.DrawObserver;
 import pass.model.human.Oktato;
 
 /**
@@ -60,15 +59,7 @@ public class TVSZ extends Targy {
         jelenlegiSzoba.immunitastAd(oktato, oktato.getKitTamad());
     }
 
-    /**
-     * TODO!!!
-     */
-    @Override
-    public void notifyObservers() {
-        for (DrawObserver observer : observers) {
-            observer.update(this);
-        }
-    }
+
 
     /**
      * TODO!!!

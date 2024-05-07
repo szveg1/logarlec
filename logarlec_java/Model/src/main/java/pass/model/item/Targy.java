@@ -5,6 +5,7 @@ import pass.model.Idozitett;
 import pass.model.TargyVisitor;
 import pass.model.TargyVisitorGrafikus;
 import pass.model.graphichelper.DrawObservable;
+import pass.model.graphichelper.DrawObserver;
 import pass.model.human.Ember;
 import pass.model.human.Oktato;
 import pass.model.labyrinth.Szoba;
@@ -61,6 +62,16 @@ public abstract class Targy extends DrawObservable implements Idozitett {
      */
     public void szobaValtasrolErtesit(Szoba ujSzoba) {
         jelenlegiSzoba = ujSzoba;
+    }
+
+    public Ember getTulajdonos() {
+        return tulajdonos;
+    }
+
+    public void notifyObservers() {
+        for (DrawObserver observer : observers) {
+            observer.update();
+        }
     }
 
 

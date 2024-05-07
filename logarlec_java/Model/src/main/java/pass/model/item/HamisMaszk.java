@@ -1,7 +1,6 @@
 package pass.model.item;
 
 import pass.model.TargyVisitorGrafikus;
-import pass.model.graphichelper.DrawObserver;
 
 public class HamisMaszk extends Targy {
     /**
@@ -23,15 +22,7 @@ public class HamisMaszk extends Targy {
         visitor.visit(this);
     }
 
-    /**
-     * TODO!!!
-     */
-    @Override
-    public void notifyObservers() {
-        for (DrawObserver observer : observers) {
-            observer.update(this);
-        }
-    }
+
 
     /**
      * A függvény kiírja az objektum nevét

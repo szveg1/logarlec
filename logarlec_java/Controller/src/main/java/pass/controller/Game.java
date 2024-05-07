@@ -17,7 +17,7 @@ public class Game {
                     List<Ember> emberek = new ArrayList<>(sz.getEmberek());
                     for (Ember e : emberek) {
                         if (!e.getLepett()) {
-
+                            korvege = false;
                         }
                     }
                 }
@@ -32,18 +32,7 @@ public class Game {
         gameThread.start();
     }
 
-    public static void kovetkezoLepes(){
-        boolean mindenkiLepett = true;
-        for (Szoba sz : Labirintus.getInstance().getSzobak()) {
-            for (Ember e : sz.getEmberek()) {
-                if (!e.getLepett()) {
-                    mindenkiLepett = false;
-                    break;
-                }
-            }
-        }
-        if (mindenkiLepett) {
+    public static void kovetkezoLepes() {
 
-        }
     }
 }

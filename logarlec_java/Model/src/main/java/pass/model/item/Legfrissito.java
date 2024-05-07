@@ -3,7 +3,6 @@ package pass.model.item;
 import pass.model.CustomLogger;
 import pass.model.TargyVisitor;
 import pass.model.TargyVisitorGrafikus;
-import pass.model.graphichelper.DrawObserver;
 
 public class Legfrissito extends Targy {
     private boolean hasznalva = false;
@@ -42,15 +41,6 @@ public class Legfrissito extends Targy {
         }
     }
 
-    /**
-     * TODO!!!
-     */
-    @Override
-    public void notifyObservers() {
-        for (DrawObserver observer : observers) {
-            observer.update(this);
-        }
-    }
 
     /**
      * A függvény kiírja az objektum nevét

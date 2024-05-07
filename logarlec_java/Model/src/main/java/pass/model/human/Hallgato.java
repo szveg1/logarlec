@@ -1,7 +1,6 @@
 package pass.model.human;
 
 import pass.model.CustomLogger;
-import pass.model.graphichelper.DrawObserver;
 import pass.model.item.*;
 import pass.model.labyrinth.Labirintus;
 
@@ -174,10 +173,4 @@ public class Hallgato extends Ember {
         }
     }
 
-    @Override
-    public void notifyObservers() {
-        for (DrawObserver observer : observers) {
-            observer.update(this);
-        }
-    }
 }

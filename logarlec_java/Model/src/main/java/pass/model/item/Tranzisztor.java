@@ -2,7 +2,6 @@ package pass.model.item;
 
 import pass.model.CustomLogger;
 import pass.model.TargyVisitorGrafikus;
-import pass.model.graphichelper.DrawObserver;
 import pass.model.human.Ember;
 import pass.model.labyrinth.Szoba;
 
@@ -13,7 +12,6 @@ import pass.model.labyrinth.Szoba;
  */
 public class Tranzisztor extends Targy {
     private Tranzisztor par = null;
-    private Ember tulaj;
 
     /**
      * Konstruktor
@@ -42,27 +40,18 @@ public class Tranzisztor extends Targy {
     public void hasznal() {
         if (par == null) {
             CustomLogger.info(this + "-nek még nincs párja.");
-            for (int i = 0; i < tulaj.getItems().size(); i++) {
-                if (i != tulaj.getItems().indexOf(this)) {
-                    tulaj.getItems().get(i).setPar(this);
+            for (int i = 0; i < tulajdonos.getItems().size(); i++) {
+                if (i != tulajdonos.getItems().indexOf(this)) {
+                    tulajdonos.getItems().get(i).setPar(this);
                 }
             }
         } else {
             CustomLogger.info(this + " már párosítva van.");
-            tulaj.masikSzobabaLep(par.getSzoba());
+            tulajdonos.masikSzobabaLep(par.getSzoba());
         }
 
     }
 
-    /**
-     * TODO!!!
-     */
-    @Override
-    public void notifyObservers() {
-        for (DrawObserver observer : observers) {
-            observer.update(this);
-        }
-    }
 
     /**
      * Setter függvény ami a tranzisztornak egy párt állít be

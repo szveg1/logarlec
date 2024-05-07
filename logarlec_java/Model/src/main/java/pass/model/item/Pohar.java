@@ -3,7 +3,6 @@ package pass.model.item;
 import pass.model.CustomLogger;
 import pass.model.TargyVisitor;
 import pass.model.TargyVisitorGrafikus;
-import pass.model.graphichelper.DrawObserver;
 
 /**
  * A Pohár osztály felelős azért, hogy tárolja és kezelje
@@ -51,15 +50,6 @@ public class Pohar extends Targy {
         tulajdonos.targyatEldob(tulajdonos.getItems().get(0));
     }
 
-    /**
-     * TODO!!!
-     */
-    @Override
-    public void notifyObservers() {
-        for (DrawObserver observer : observers) {
-            observer.update(this);
-        }
-    }
 
     /**
      * TODO!!!

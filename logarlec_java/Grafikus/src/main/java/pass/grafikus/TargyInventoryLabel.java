@@ -21,5 +21,10 @@ public class TargyInventoryLabel extends TargyLabel {
         });
     }
 
+    @Override
+    public void update() {
+
+    }
+
 
 }

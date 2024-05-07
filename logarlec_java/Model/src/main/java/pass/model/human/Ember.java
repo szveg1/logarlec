@@ -4,6 +4,7 @@ import pass.model.CustomLogger;
 import pass.model.Idozitett;
 import pass.model.TargyVisitor;
 import pass.model.graphichelper.DrawObservable;
+import pass.model.graphichelper.DrawObserver;
 import pass.model.item.Legfrissito;
 import pass.model.item.Maszk;
 import pass.model.item.Rongy;
@@ -37,6 +38,12 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
     }
 
     public void accept(EmberVisitor visitor) {
+    }
+
+    public void notifyObservers() {
+        for(DrawObserver observer : observers) {
+            observer.update();
+        }
     }
 
     public boolean getLepett() {
@@ -89,7 +96,6 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
         }
 
         inventory.remove(targy);
-        ;
         CustomLogger.info(this + " eldobta a " + targy + "-t");
         targy.emberValtasrolErtesit(null);
         jelenlegiSzoba.addItem(targy);

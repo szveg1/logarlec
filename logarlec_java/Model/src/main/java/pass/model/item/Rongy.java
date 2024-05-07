@@ -3,7 +3,6 @@ package pass.model.item;
 import pass.model.CustomLogger;
 import pass.model.TargyVisitor;
 import pass.model.TargyVisitorGrafikus;
-import pass.model.graphichelper.DrawObserver;
 import pass.model.human.Oktato;
 
 /* Az osztály felelős a nedves táblatörlő rongy kezeléséért a játék során. A tárgyat fel
@@ -51,15 +50,6 @@ public class Rongy extends Targy {
         jelenlegiSzoba.getEmberek().forEach(e -> e.rongyotElszenved(this));
     }
 
-    /**
-     * TODO!!!
-     */
-    @Override
-    public void notifyObservers() {
-        for (DrawObserver observer : observers) {
-            observer.update(this);
-        }
-    }
 
     /**
      * A függvény csökkenti a hátralévő nedvességi időt

@@ -3,7 +3,7 @@ package pass.model.graphichelper;
 import java.util.ArrayList;
 
 public abstract class DrawObservable implements IObservable {
-    protected ArrayList<DrawObserver> observers;
+    protected final ArrayList<DrawObserver> observers = new ArrayList<>();
 
     public abstract void notifyObservers();
 

@@ -254,8 +254,10 @@ public class Controller {
     public static void AjtoHasznalat(Ajto a, Ember e) {
         Szoba ujSzoba = a.getSzomszed(e.getJelenlegiSzoba());
         a.hasznal(e);
-        if (ujSzoba != null)
+        if (ujSzoba != null) {
             System.out.println(getEmberNevFromMap(e) + ": atlep az " + getAjtoNevFromMap(a) + " ajton, a " + getSzobaNevFromMap(ujSzoba) + " szobaba kerul.");
+        }
+        getJelenlegLepoEmber().setLepett(true);
     }
 
     /**
@@ -269,12 +271,16 @@ public class Controller {
         if (e.inventoryTeleE()) {
             System.out.println(getEmberNevFromMap(e) + ": az inventoryd teli van, nem fer bele a " + getTargyNevFromMap(t) + " targy.");
         }
+        System.out.println("Előző tárgyak száma: " + prevItemNum);
         e.targyatFelvesz(t);
+        System.out.println("Felvéve: " + getTargyNevFromMap(t));
+        System.out.println("Az inventorydban lévő tárgyak száma: " + e.getItems().size());
         int currItemNum = e.getItems().size();
         if (currItemNum == prevItemNum && !e.inventoryTeleE()) {
             System.out.println(getEmberNevFromMap(e) + ": a szoba ragacsos, a " + getTargyNevFromMap(t) + " targy nem veheto fel.");
         } else if (currItemNum > prevItemNum) {
             System.out.println(getEmberNevFromMap(e) + ": az inventorydba tetted a " + getTargyNevFromMap(t) + " targyat.");
+            getJelenlegLepoEmber().setLepett(true);
         }
     }
 
@@ -287,6 +293,7 @@ public class Controller {
     public static void Hasznal(Targy t, Ember e) {
         e.targyatHasznal(t);
         System.out.println(getEmberNevFromMap(e) + ": hasznaltad a " + getTargyNevFromMap(t) + " targyat.");
+        getJelenlegLepoEmber().setLepett(true);
     }
 
     /**
@@ -302,8 +309,9 @@ public class Controller {
             System.out.println(getEmberNevFromMap(e) + ": nincs ilyen targy az inventorydban.");
         } else {
             System.out.println(getEmberNevFromMap(e) + ": eldobtad a " + getTargyNevFromMap(t) + " targyat.");
+            e.targyatEldob(t);
+            getJelenlegLepoEmber().setLepett(true);
         }
-        e.targyatEldob(t);
     }
 
     /**
@@ -545,6 +553,8 @@ public class Controller {
         szobaMap.clear();
         ajtoMap.clear();
         targyMap.clear();
+        hallgatoQueue.clear();
+        jelenlegLepoEmber = null;
         Labirintus.reset();
         System.out.println("a jatek visszaallt a kiindulo allapotba.");
     }
@@ -831,7 +841,9 @@ public class Controller {
     }
 
     public static Ember getJelenlegLepoEmber() {
-        Ember e = hallgatoQueue.peek();
+        if(jelenlegLepoEmber == null)
+            jelenlegLepoEmber = hallgatoQueue.peek();
+        System.out.println("Jelenlegi lepo ember: " + jelenlegLepoEmber);
         if (jelenlegLepoEmber.getLepett() || jelenlegLepoEmber.getAjult() || jelenlegLepoEmber == null) {
             hallgatoQueue.add(jelenlegLepoEmber);
             jelenlegLepoEmber = hallgatoQueue.poll();

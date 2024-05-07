@@ -73,7 +73,7 @@ public class Fuggvenyek {
             return;
         }
         Targy t = Controller.getTargy(cmd[1]);
-        Ember e = Controller.getEmber(cmd[2]);
+        Ember e = Controller.getJelenlegLepoEmber();
         Controller.TargyFelvesz(t, e);
     }
 

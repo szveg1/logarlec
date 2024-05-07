@@ -3,7 +3,6 @@ package pass.model.item;
 import pass.model.CustomLogger;
 import pass.model.TargyVisitor;
 import pass.model.TargyVisitorGrafikus;
-import pass.model.graphichelper.DrawObserver;
 
 /* A Maszk osztály felelős a játékosok védelméért a mérgező gázokkal teli szobákban. A
 maszk egy adott ideig tudja csak megakadályozni a mérges gázok belélegzését.  */
@@ -43,14 +42,6 @@ public class Maszk extends Targy {
             CustomLogger.info(this + " már nem használható");
         }
     }
-
-    @Override
-    public void notifyObservers() {
-        for (DrawObserver observer : observers) {
-            observer.update(this);
-        }
-    }
-
 
     public int getVedIdo() {
         return vedIdo;
