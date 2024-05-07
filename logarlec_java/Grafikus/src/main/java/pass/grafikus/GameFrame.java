@@ -30,11 +30,9 @@ public class GameFrame extends JFrame {
             }
         };
 
-        ((JComponent) GameFrame.this.getContentPane()).getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "ESCAPE");
-        ((JComponent) GameFrame.this.getContentPane()).getActionMap().put("ESCAPE", escapeAction);
-
-        GameFrame.this.setFocusable(true);
-
+        InputMap inputMap = getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW);
+        inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "ESCAPE");
+        getRootPane().getActionMap().put("ESCAPE", escapeAction);
 
         add(new SzobaPanel(Labirintus.getInstance().getSzobak().get(0), getSize()), BorderLayout.CENTER);
 
