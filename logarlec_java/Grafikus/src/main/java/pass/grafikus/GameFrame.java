@@ -36,30 +36,32 @@ public class GameFrame extends JFrame {
 
         add(new SzobaPanel(Labirintus.getInstance().getSzobak().get(0), getSize()), BorderLayout.CENTER);
 
+// TODO: InventoryPanel logikáját még implementálni kell ez alapján
 
-        JPanel inventoryPanel = new JPanel(new GridLayout(1, 5)); // 1 row, 5 columns
-        Dimension itemSize = new Dimension(100, 100);
-
-        for (int i = 0; i < 5; i++) {
-            JPanel cell = new JPanel();
-            JLabel cellLabel = new JLabel();
-            cell.setPreferredSize(itemSize);
-            cell.setBorder(BorderFactory.createLineBorder(new Color(139, 69, 19), 3)); // RGB for brown is (139,69,19), thickness is 3
-            cell.setBackground(Color.WHITE);
-/////////////////////////////////////////////////////////////////// ITT VALTOZTASD AZ INVETORY TULAJAT
-            if (i < Labirintus.getInstance().getSzobak().get(0).getEmberek().get(0).getItems().size()) {
-                String itemName = Labirintus.getInstance().getSzobak().get(0).getEmberek().get(0).getItems().get(i).getNev();
-
-                cellLabel.setIcon(new ImageIcon(new ImageIcon("Grafikus/src/main/resources/" + itemName + ".png").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT)));
-
-                cell.setBackground(new Color(134, 216, 131, 255));
-                cell.add(cellLabel);
-            } else {
-                cell.setBackground(Color.LIGHT_GRAY);
-            }
-
-            inventoryPanel.add(cell);
-        }
+//        JPanel inventoryPanel = new JPanel(new GridLayout(1, 5)); // 1 row, 5 columns
+//        Dimension itemSize = new Dimension(100, 100);
+//
+//        for (int i = 0; i < 5; i++) {
+//            JPanel cell = new JPanel();
+//            JLabel cellLabel = new JLabel();
+//            cell.setPreferredSize(itemSize);
+//            cell.setBorder(BorderFactory.createLineBorder(new Color(139, 69, 19), 3)); // RGB for brown is (139,69,19), thickness is 3
+//            cell.setBackground(Color.WHITE);
+///////////////////////////////////////////////////////////////////// ITT VALTOZTASD AZ INVETORY TULAJAT
+//            if (i < Labirintus.getInstance().getSzobak().get(0).getEmberek().get(0).getItems().size()) {
+//                String itemName = Labirintus.getInstance().getSzobak().get(0).getEmberek().get(0).getItems().get(i).getNev();
+//
+//                cellLabel.setIcon(new ImageIcon(new ImageIcon("Grafikus/src/main/resources/" + itemName + ".png").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT)));
+//
+//                cell.setBackground(new Color(134, 216, 131, 255));
+//                cell.add(cellLabel);
+//            } else {
+//                cell.setBackground(Color.LIGHT_GRAY);
+//            }
+//
+//            inventoryPanel.add(cell);
+//        }
+        InventoryPanel inventoryPanel = new InventoryPanel();
 
         add(inventoryPanel, BorderLayout.SOUTH);
 
