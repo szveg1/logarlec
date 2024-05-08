@@ -3,7 +3,7 @@ targyfelvesz hamistvsz1 hallgato1
 targyfelvesz hamislec2 hallgato1
 targyfelvesz hamismaszk3 hallgato1
 infoember hallgato1
-tick
+tick 1
 ajtohasznalat ajto1 hallgato1
 infoszoba szoba2
 infoember hallgato1
