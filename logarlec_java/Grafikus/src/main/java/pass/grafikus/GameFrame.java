@@ -61,9 +61,12 @@ public class GameFrame extends JFrame {
 //
 //            inventoryPanel.add(cell);
 //        }
-        InventoryPanel inventoryPanel = new InventoryPanel();
+        JPanel southPanel = new JPanel();
+        southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.X_AXIS));
+        southPanel.add(new InventoryPanel());
+        southPanel.add(Box.createHorizontalGlue());
 
-        add(inventoryPanel, BorderLayout.SOUTH);
+        add(southPanel, BorderLayout.SOUTH);
 
 
         pack();
