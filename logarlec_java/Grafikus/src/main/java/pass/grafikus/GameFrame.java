@@ -1,7 +1,6 @@
 package pass.grafikus;
 
 import pass.controller.Controller;
-import pass.model.human.Ember;
 import pass.model.labyrinth.Labirintus;
 
 import javax.swing.*;
@@ -62,13 +61,13 @@ public class GameFrame extends JFrame {
 //
 //            inventoryPanel.add(cell);
 //        }
-        InventoryPanel inventoryPanel = new InventoryPanel();
+        JPanel southPanel = new JPanel();
+        southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.X_AXIS));
+        southPanel.add(new InventoryPanel());
+        southPanel.add(Box.createHorizontalGlue());
 
-        for(Ember ember : Labirintus.getInstance().getSzobak().get(0).getEmberek()){
-            ember.addObserver(inventoryPanel);
-        }
+        add(southPanel, BorderLayout.SOUTH);
 
-        add(inventoryPanel, BorderLayout.SOUTH);
 
         pack();
     }
