@@ -9,6 +9,8 @@ public abstract class DrawObservable implements IObservable {
 
     public void addObserver(DrawObserver observer) {
         observers.add(observer);
+        // TODO: remove this line
+        System.out.println("Observer added " + observer.getClass().getName());
     }
 
     public void removeObserver(DrawObserver observer) {

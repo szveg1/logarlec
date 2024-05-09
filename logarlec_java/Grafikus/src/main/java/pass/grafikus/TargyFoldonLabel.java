@@ -18,16 +18,18 @@ public class TargyFoldonLabel extends TargyLabel {
              */
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                Ember e = Controller.getJelenlegLepoEmber();
+                Ember e = Controller.getSorosJatekos();
                 Controller.TargyFelvesz(targy, e);
                 targy.notifyObservers();
-                System.out.println("Tárgy felvéve: " + targy);
+                e.notifyObservers();
             }
         });
     }
 
     @Override
     public void update() {
-
+        // TODO: remove this
+        System.out.println("TargyFoldonLabel update");
+        getParent().remove(this);
     }
 }

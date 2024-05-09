@@ -9,27 +9,34 @@ import java.util.List;
 
 public class Game {
     public static void startGame() {
-        Thread gameThread = new Thread(() -> {
-            while (Labirintus.getTimeLeft() >= 0) {
-                boolean korvege = true;
-                List<Szoba> szobak = new ArrayList<>(Labirintus.getInstance().getSzobak());
-                for (Szoba sz : szobak) {
-                    List<Ember> emberek = new ArrayList<>(sz.getEmberek());
-                    for (Ember e : emberek) {
-                        if (!e.getLepett()) {
-                            korvege = false;
-                        }
-                    }
-                }
-                if (korvege) Controller.Tick(1);
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+        List<Szoba> szobak = new ArrayList<>(Labirintus.getInstance().getSzobak());
+        for (Szoba sz : szobak) {
+            List<Ember> emberek = new ArrayList<>(sz.getEmberek());
+            for (Ember e : emberek) {
+                e.setLepett(false);
             }
-        });
-        gameThread.start();
+        }
+//        Thread gameThread = new Thread(() -> {
+//            while (Labirintus.getTimeLeft() >= 0) {
+//                boolean korvege = true;
+//                List<Szoba> szobak = new ArrayList<>(Labirintus.getInstance().getSzobak());
+//                for (Szoba sz : szobak) {
+//                    List<Ember> emberek = new ArrayList<>(sz.getEmberek());
+//                    for (Ember e : emberek) {
+//                        if (!e.getLepett()) {
+//                            korvege = false;
+//                        }
+//                    }
+//                }
+//                if (korvege) Controller.Tick(1);
+//                try {
+//                    Thread.sleep(100);
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//        gameThread.start();
     }
 
     public static void kovetkezoLepes() {

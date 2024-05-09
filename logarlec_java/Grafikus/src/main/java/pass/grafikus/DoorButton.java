@@ -1,12 +1,14 @@
 package pass.grafikus;
 
+import pass.model.labyrinth.Ajto;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DoorButton extends JButton {
-    public DoorButton() {
+    public DoorButton(Ajto ajto) {
         setBackground(Color.WHITE);
         addActionListener(new ActionListener() {
             @Override

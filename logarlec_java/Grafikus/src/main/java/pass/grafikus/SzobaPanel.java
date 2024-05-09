@@ -1,7 +1,9 @@
 package pass.grafikus;
 
+import pass.model.graphichelper.DrawObserver;
 import pass.model.human.Ember;
 import pass.model.item.Targy;
+import pass.model.labyrinth.Ajto;
 import pass.model.labyrinth.Szoba;
 
 import javax.swing.*;
@@ -9,44 +11,61 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SzobaPanel extends JPanel {
-    private final List<JButton> doorButtons;
+public class SzobaPanel extends JPanel implements DrawObserver {
+    private final int MARGO_SZAZALEK = 5;
+    private final int vizszintesMargo;
+    private final int fuggolegesMargo;
+    private final int szobaSzelesseg;
+    private final int szobaMagassag;
+    private final List<JButton> ajtoGombok;
     private final List<TargyLabel> targyFoldonLabels;
     private final List<EmberLabel> emberLabels;
     private final JPanel jobbpanel;
     private final JPanel balpanel;
+
+    @Override
+    public void update() {
+
+    }
+
+    private enum Oldal {
+        BAL, FELSO, JOBB, ALSO
+    }
 
     public SzobaPanel(Szoba szoba, Dimension size) {
         super();
         this.setLayout(null);
         this.setSize(size);
         this.setPreferredSize(size);
-        int doorCount = szoba.getAjtok().size();
+        List<Ajto> modelAjtok = szoba.getAjtok();
+        int ajtoSzam = modelAjtok.size();
 
-        int horizontalMargin = getWidth() * 5 / 100;
-        int verticalMargin = getHeight() * 5 / 100;
+        vizszintesMargo = getWidth() * MARGO_SZAZALEK / 100;
+        fuggolegesMargo = getHeight() * MARGO_SZAZALEK / 100;
 
-        int roomWidth = getWidth() - 2 * horizontalMargin;
-        int roomHeight = getHeight() - 2 * verticalMargin;
+        szobaSzelesseg = getWidth() - 2 * vizszintesMargo;
+        szobaMagassag = getHeight() - 2 * fuggolegesMargo;
 
 
         jobbpanel = new JPanel();
-        jobbpanel.setBounds(horizontalMargin + roomWidth / 2, verticalMargin + 10, roomWidth / 2 - 10, roomHeight - 20);
+        jobbpanel.setBounds(vizszintesMargo + szobaSzelesseg / 2, fuggolegesMargo + 10, szobaSzelesseg / 2 - 10, szobaMagassag - 20);
         jobbpanel.setBackground(new Color(0, 0, 0, 0));
         balpanel = new JPanel();
-        balpanel.setBounds(horizontalMargin + 10, verticalMargin + 10, roomWidth / 2 - 10, roomHeight - 20);
+        balpanel.setBounds(vizszintesMargo + 10, fuggolegesMargo + 10, szobaSzelesseg / 2 - 10, szobaMagassag - 20);
         balpanel.setBackground(new Color(0, 0, 0, 0));
 
         this.add(jobbpanel);
         this.add(balpanel);
 
-        doorButtons = new ArrayList<>();
+        ajtoGombok = new ArrayList<>();
 
         targyFoldonLabels = new ArrayList<>();
 
         emberLabels = new ArrayList<>();
 
+        // Emberek megjelenítése
         for (Ember e : szoba.getEmberek()) {
+            e.addObserver(this);
             JPanel b = new JPanel();
             EmberLabel l = new EmberLabel(e);
             b.add(l);
@@ -54,91 +73,77 @@ public class SzobaPanel extends JPanel {
             jobbpanel.add(b);
         }
 
+        // Tárgyak megjelenítése
         for (Targy t : szoba.getItems()) {
+            t.addObserver(this);
             TargyLabel tl = new TargyFoldonLabel(t);
             targyFoldonLabels.add(tl);
             balpanel.add(tl);
         }
 
+        int[] oldalonHanyAjto = new int[4];
+        int[] ajtoSzegmensMeret = new int[4];
 
-        int doorsOnLeft = 0;
-        int doorsOnTop = 0;
-        int doorsOnRight = 0;
-        int doorsOnBottom = 0;
+        for (int i = 0; i < ajtoSzam; i++) {
+            oldalonHanyAjto[i % 4]++;
+        }
 
-
-        for (int i = 0; i < doorCount; i++) {
-            if (i % 4 == 0) {
-                doorsOnLeft++;
-            } else if (i % 4 == 1) {
-                doorsOnTop++;
-            } else if (i % 4 == 2) {
-                doorsOnRight++;
-            } else {
-                doorsOnBottom++;
+        for (int i = 0; i < 4; i++) {
+            if (oldalonHanyAjto[i] > 0) {
+                ajtoSzegmensMeret[i] = (i % 2 == 0 ? szobaMagassag : szobaSzelesseg) / (oldalonHanyAjto[i] * 2 + 1);
             }
         }
 
-        int segmentWidthLeft = 0;
-        int segmentWidthTop = 0;
-        int segmentWidthRight = 0;
-        int segmentWidthBottom = 0;
 
-        if (doorsOnLeft > 0)
-            segmentWidthLeft = roomHeight / (doorsOnLeft * 2 + 1);
+        for (Oldal oldal : Oldal.values()) {
+            int oldalIndex = oldal.ordinal();
+            for (int i = 0; i < oldalonHanyAjto[oldalIndex]; i++) {
+                Ajto modelAjto = modelAjtok.get(i * 4 + oldalIndex);
+                DoorButton ajtoGomb = new DoorButton(modelAjto);
+                int x0, y0, szelesseg, magassag;
 
-        if (doorsOnTop > 0)
-            segmentWidthTop = roomWidth / (doorsOnTop * 2 + 1);
+                final int yKezdo = fuggolegesMargo + (i * 2 + 1) * ajtoSzegmensMeret[oldalIndex];
+                final int xKezdo = vizszintesMargo + (i * 2 + 1) * ajtoSzegmensMeret[oldalIndex];
 
-        if (doorsOnRight > 0)
-            segmentWidthRight = roomHeight / (doorsOnRight * 2 + 1);
-
-        if (doorsOnBottom > 0)
-            segmentWidthBottom = roomWidth / (doorsOnBottom * 2 + 1);
-
-        int doorIndex = 0;
-
-        // Adjust the door position calculations to account for gaps
-        for (int i = 0; i < doorsOnLeft; i++) {
-            DoorButton door = new DoorButton();
-            door.setBounds(horizontalMargin, verticalMargin + (i * 2 + 1) * segmentWidthLeft, 10, segmentWidthLeft);
-            doorIndex++;
-            this.add(door);
+                switch (oldal) {
+                    case BAL:
+                        x0 = vizszintesMargo;
+                        y0 = yKezdo;
+                        szelesseg = 10;
+                        magassag = ajtoSzegmensMeret[oldalIndex];
+                        break;
+                    case FELSO:
+                        x0 = xKezdo;
+                        y0 = fuggolegesMargo;
+                        szelesseg = ajtoSzegmensMeret[oldalIndex];
+                        magassag = 10;
+                        break;
+                    case JOBB:
+                        x0 = getWidth() - vizszintesMargo - 10;
+                        y0 = yKezdo;
+                        szelesseg = 10;
+                        magassag = ajtoSzegmensMeret[oldalIndex];
+                        break;
+                    case ALSO:
+                        x0 = xKezdo;
+                        y0 = getHeight() - fuggolegesMargo - 10;
+                        szelesseg = ajtoSzegmensMeret[oldalIndex];
+                        magassag = 10;
+                        break;
+                    default:
+                        throw new IllegalStateException("Unexpected value: " + oldal);
+                }
+                ajtoGomb.setBounds(x0, y0, szelesseg, magassag);
+                this.add(ajtoGomb);
+                ajtoGombok.add(ajtoGomb);
+            }
         }
-
-        for (int i = 0; i < doorsOnTop; i++) {
-            DoorButton door = new DoorButton();
-            door.setBounds(horizontalMargin + (i * 2 + 1) * segmentWidthTop, verticalMargin, segmentWidthTop, 10);
-            doorIndex++;
-            this.add(door);
-        }
-
-        for (int i = 0; i < doorsOnRight; i++) {
-            DoorButton door = new DoorButton();
-            door.setBounds(getWidth() - horizontalMargin - 10, verticalMargin + (i * 2 + 1) * segmentWidthRight, 10, segmentWidthRight);
-            doorIndex++;
-            this.add(door);
-        }
-
-        for (int i = 0; i < doorsOnBottom; i++) {
-            DoorButton door = new DoorButton();
-            door.setBounds(horizontalMargin + (i * 2 + 1) * segmentWidthBottom, getHeight() - verticalMargin - 10, segmentWidthBottom, 10);
-            doorIndex++;
-            this.add(door);
-        }
-
 
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-
-        int horizontalMargin = getWidth() * 5 / 100;
-        int verticalMargin = getHeight() * 5 / 100;
-
-        int roomWidth = getWidth() - 2 * horizontalMargin;
-        int roomHeight = getHeight() - 2 * verticalMargin;
 
         //sima
         g.setColor(Color.GRAY);
@@ -149,14 +154,16 @@ public class SzobaPanel extends JPanel {
         //ragacsos
         //Color myColor = new Color(255, 255, 205);
         //g.setColor(myColor);
-        g.fillRect(horizontalMargin, verticalMargin, roomWidth, roomHeight);
+        g.fillRect(vizszintesMargo, fuggolegesMargo, szobaSzelesseg, szobaMagassag);
 
         g.setColor(Color.BLACK);
-        g.fillRect(horizontalMargin, verticalMargin, 10, roomHeight);
-        g.fillRect(horizontalMargin, verticalMargin, roomWidth, 10);
-        g.fillRect(getWidth() - horizontalMargin - 10, verticalMargin, 10, roomHeight);
-        g.fillRect(horizontalMargin, getHeight() - verticalMargin - 10, roomWidth, 10);
+        g.fillRect(vizszintesMargo, fuggolegesMargo, 10, szobaMagassag);
+        g.fillRect(vizszintesMargo, fuggolegesMargo, szobaSzelesseg, 10);
+        g.fillRect(getWidth() - vizszintesMargo - 10, fuggolegesMargo, 10, szobaMagassag);
+        g.fillRect(vizszintesMargo, getHeight() - fuggolegesMargo - 10, szobaSzelesseg, 10);
 
     }
+
+
 
 }

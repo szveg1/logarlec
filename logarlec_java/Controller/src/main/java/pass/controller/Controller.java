@@ -20,8 +20,9 @@ public class Controller {
     private static final HashMap<String, Szoba> szobaMap = new HashMap<>();
     private static final HashMap<String, Ajto> ajtoMap = new HashMap<>();
     private static final HashMap<String, Targy> targyMap = new HashMap<>();
-    private static final Queue<Ember> hallgatoQueue = new ArrayDeque<>();
-    private static Ember jelenlegLepoEmber = null;
+
+    private static EmberQueue jatekosSor = new EmberQueue();
+    private static EmberQueue npcSor = new EmberQueue();
     private static boolean deterministic = false;
 
     /**
@@ -54,7 +55,7 @@ public class Controller {
             hallgato.masikSzobabaLep(kezdoSzoba);
             marSzobabanHallgato++;
             emberMap.put("hallgato" + marSzobabanHallgato, hallgato);
-            hallgatoQueue.add(hallgato);
+            jatekosSor.add(hallgato);
         }
 
         int randomOktatokDB = random.ints(1, (int) Math.ceil(hallgatoDB * 0.5), (int) Math.ceil(hallgatoDB * 0.8) + 1).sum();
@@ -68,6 +69,7 @@ public class Controller {
                 szoba = labirintus.getSzobak().get(randomSzobaIdx);
             } while (!oktato.masikSzobabaLep(szoba));
             emberMap.put("oktato" + ++marSzobabanOktato, oktato);
+            npcSor.add(oktato);
         }
 
         int randomTakaritoDB = random.ints(1, 1, 3).sum();
@@ -81,6 +83,7 @@ public class Controller {
                 szoba = labirintus.getSzobak().get(randomSzobaIdx);
             } while (!takarito.masikSzobabaLep(szoba));
             emberMap.put("takarito" + ++marSzobabanTakarito, takarito);
+            npcSor.add(takarito);
         }
         Logarlec logarlec = new Logarlec("logarlec");
 
@@ -257,7 +260,7 @@ public class Controller {
         if (ujSzoba != null) {
             System.out.println(getEmberNevFromMap(e) + ": atlep az " + getAjtoNevFromMap(a) + " ajton, a " + getSzobaNevFromMap(ujSzoba) + " szobaba kerul.");
         }
-        getJelenlegLepoEmber().setLepett(true);
+        jatekosSor.getNext().setLepett(true);
     }
 
     /**
@@ -271,16 +274,12 @@ public class Controller {
         if (e.inventoryTeleE()) {
             System.out.println(getEmberNevFromMap(e) + ": az inventoryd teli van, nem fer bele a " + getTargyNevFromMap(t) + " targy.");
         }
-        System.out.println("Előző tárgyak száma: " + prevItemNum);
         e.targyatFelvesz(t);
-        System.out.println("Felvéve: " + getTargyNevFromMap(t));
-        System.out.println("Az inventorydban lévő tárgyak száma: " + e.getItems().size());
         int currItemNum = e.getItems().size();
         if (currItemNum == prevItemNum && !e.inventoryTeleE()) {
             System.out.println(getEmberNevFromMap(e) + ": a szoba ragacsos, a " + getTargyNevFromMap(t) + " targy nem veheto fel.");
         } else if (currItemNum > prevItemNum) {
             System.out.println(getEmberNevFromMap(e) + ": az inventorydba tetted a " + getTargyNevFromMap(t) + " targyat.");
-            getJelenlegLepoEmber().setLepett(true);
         }
     }
 
@@ -293,7 +292,7 @@ public class Controller {
     public static void Hasznal(Targy t, Ember e) {
         e.targyatHasznal(t);
         System.out.println(getEmberNevFromMap(e) + ": hasznaltad a " + getTargyNevFromMap(t) + " targyat.");
-        getJelenlegLepoEmber().setLepett(true);
+        jatekosSor.getNext().setLepett(true);
     }
 
     /**
@@ -310,7 +309,7 @@ public class Controller {
         } else {
             System.out.println(getEmberNevFromMap(e) + ": eldobtad a " + getTargyNevFromMap(t) + " targyat.");
             e.targyatEldob(t);
-            getJelenlegLepoEmber().setLepett(true);
+            jatekosSor.getNext().setLepett(true);
         }
     }
 
@@ -553,8 +552,8 @@ public class Controller {
         szobaMap.clear();
         ajtoMap.clear();
         targyMap.clear();
-        hallgatoQueue.clear();
-        jelenlegLepoEmber = null;
+        jatekosSor.clear();
+        npcSor.clear();
         Labirintus.reset();
         System.out.println("a jatek visszaallt a kiindulo allapotba.");
     }
@@ -803,15 +802,17 @@ public class Controller {
                 if (ember.startsWith("hallgato")) {
                     e = new Hallgato(ember);
                     emberMap.put(ember + (hallgatoSzam), e);
-                    hallgatoQueue.add(e);
+                    jatekosSor.add(e);
                     hallgatoSzam++;
                 } else if (ember.startsWith("oktato")) {
                     e = new Oktato(ember);
                     emberMap.put(ember + (oktatokSzam), e);
+                    npcSor.add(e);
                     oktatokSzam++;
                 } else {
                     e = new Takarito(ember);
                     emberMap.put(ember + (takaritoSzam), e);
+                    npcSor.add(e);
                     takaritoSzam++;
                 }
 
@@ -840,15 +841,12 @@ public class Controller {
         return targyCount;
     }
 
-    public static Ember getJelenlegLepoEmber() {
-        if(jelenlegLepoEmber == null)
-            jelenlegLepoEmber = hallgatoQueue.peek();
-        System.out.println("Jelenlegi lepo ember: " + jelenlegLepoEmber);
-        if (jelenlegLepoEmber.getLepett() || jelenlegLepoEmber.getAjult() || jelenlegLepoEmber == null) {
-            hallgatoQueue.add(jelenlegLepoEmber);
-            jelenlegLepoEmber = hallgatoQueue.poll();
-        }
-        return jelenlegLepoEmber;
+    public static Ember getSorosJatekos() {
+        return jatekosSor.getNext();
+    }
+
+    public static Ember getSorosNpc() {
+        return npcSor.getNext();
     }
 }
 

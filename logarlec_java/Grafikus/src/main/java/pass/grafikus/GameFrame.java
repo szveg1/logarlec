@@ -1,6 +1,7 @@
 package pass.grafikus;
 
 import pass.controller.Controller;
+import pass.model.human.Ember;
 import pass.model.labyrinth.Labirintus;
 
 import javax.swing.*;
@@ -63,8 +64,11 @@ public class GameFrame extends JFrame {
 //        }
         InventoryPanel inventoryPanel = new InventoryPanel();
 
-        add(inventoryPanel, BorderLayout.SOUTH);
+        for(Ember ember : Labirintus.getInstance().getSzobak().get(0).getEmberek()){
+            ember.addObserver(inventoryPanel);
+        }
 
+        add(inventoryPanel, BorderLayout.SOUTH);
 
         pack();
     }
