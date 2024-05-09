@@ -25,7 +25,8 @@ public class SzobaPanel extends JPanel implements DrawObserver {
 
     @Override
     public void update() {
-
+        revalidate();
+        repaint();
     }
 
     private enum Oldal {

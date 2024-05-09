@@ -9,12 +9,12 @@ import javax.swing.*;
 import java.awt.*;
 
 public class InventoryPanel extends JPanel implements DrawObserver {
-    private JLabel[] inventoryItems = new JLabel[5];
+    private JPanel[] inventoryItems = new JPanel[5];
 
     public InventoryPanel() {
         super();
         for (int i = 0; i < 5; i++) {
-            inventoryItems[i] = new JLabel();
+            inventoryItems[i] = new JPanel();
             inventoryItems[i].setPreferredSize(new Dimension(100, 100));
             inventoryItems[i].setBorder(BorderFactory.createLineBorder(new Color(139, 69, 19), 3));
             inventoryItems[i].setBackground(Color.GRAY);
@@ -24,18 +24,22 @@ public class InventoryPanel extends JPanel implements DrawObserver {
 
     @Override
     public void update() {
+        System.out.println("InventoryPanel update");
         Ember jelenlegiJatekos = Controller.getSorosJatekos();
-        this.removeAll();
+        for(JPanel panel : inventoryItems) {
+            removeAll();
+        }
         for (int i = 0; i < 5; i++) {
             if (i < jelenlegiJatekos.getItems().size()) {
                 Targy targy = jelenlegiJatekos.getItems().get(i);
-                inventoryItems[i] = new TargyInventoryLabel(targy);
+                inventoryItems[i].add(new TargyInventoryLabel(targy));
+                inventoryItems[i].setBackground(new Color(134, 216, 131, 255));
             } else {
-                inventoryItems[i] = new JLabel();
-                inventoryItems[i].setPreferredSize(new Dimension(100, 100));
-                inventoryItems[i].setBorder(BorderFactory.createLineBorder(new Color(139, 69, 19), 3));
+                inventoryItems[i].add(new JLabel());
                 inventoryItems[i].setBackground(Color.GRAY);
             }
+            inventoryItems[i].setPreferredSize(new Dimension(100, 100));
+            inventoryItems[i].setBorder(BorderFactory.createLineBorder(new Color(139, 69, 19), 3));
             add(inventoryItems[i]);
         }
         this.revalidate();

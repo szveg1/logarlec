@@ -1,6 +1,7 @@
 package pass.grafikus;
 
 import pass.controller.Controller;
+import pass.model.human.Ember;
 import pass.model.labyrinth.Labirintus;
 
 import javax.swing.*;
@@ -63,9 +64,13 @@ public class GameFrame extends JFrame {
 //        }
         JPanel southPanel = new JPanel();
         southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.X_AXIS));
-        southPanel.add(new InventoryPanel());
+        InventoryPanel inventoryPanel = new InventoryPanel();
+        southPanel.add(inventoryPanel);
         southPanel.add(Box.createHorizontalGlue());
 
+        for(Ember e : Labirintus.getInstance().getSzobak().get(0).getEmberek()){
+            e.addObserver(inventoryPanel);
+        }
         add(southPanel, BorderLayout.SOUTH);
 
 

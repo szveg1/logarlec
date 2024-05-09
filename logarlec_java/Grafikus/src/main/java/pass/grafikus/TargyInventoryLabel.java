@@ -1,5 +1,6 @@
 package pass.grafikus;
 
+import pass.controller.Controller;
 import pass.model.item.Targy;
 
 import java.awt.event.MouseAdapter;
@@ -13,9 +14,9 @@ public class TargyInventoryLabel extends TargyLabel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getButton() == MouseEvent.BUTTON1) {
-                    //Controller.TargyHasznal();
+                    Controller.Hasznal(targy, Controller.getSorosJatekos());
                 } else if (e.getButton() == MouseEvent.BUTTON3) {
-                    //Controller.TargyEldob();
+                    Controller.TargyEldob(targy, Controller.getSorosJatekos());
                 }
             }
         });
