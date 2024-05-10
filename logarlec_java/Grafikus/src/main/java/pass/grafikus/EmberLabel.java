@@ -1,5 +1,6 @@
 package pass.grafikus;
 
+import pass.controller.Controller;
 import pass.model.human.*;
 
 import javax.swing.*;
@@ -10,6 +11,9 @@ public class EmberLabel extends JLabel implements EmberVisitor {
         setPreferredSize(new Dimension(100, 100));
         setBackground(new Color(0, 0, 0, 0));
         e.accept(this);
+        if (e == Controller.getSorosJatekos()) {
+            setBorder(BorderFactory.createLineBorder(Color.RED, 5));
+        }
     }
 
     @Override
