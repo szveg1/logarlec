@@ -19,6 +19,7 @@ public class Hallgato extends Ember {
         super(nev);
     }
 
+
     /**
      * TODO!!!
      *

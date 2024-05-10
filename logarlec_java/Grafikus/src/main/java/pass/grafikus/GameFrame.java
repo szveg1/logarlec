@@ -10,6 +10,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 public class GameFrame extends JFrame {
+    public static InventoryPanel inventoryPanel;
+    public static void setInvisibleinventoryPanel(boolean b){
+        inventoryPanel.setVisible(b);
+    }
     public GameFrame() {
         super("Logarlec");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,7 +68,7 @@ public class GameFrame extends JFrame {
 //        }
         JPanel southPanel = new JPanel();
         southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.X_AXIS));
-        InventoryPanel inventoryPanel = new InventoryPanel();
+        inventoryPanel = new InventoryPanel();
         southPanel.add(inventoryPanel);
         southPanel.add(Box.createHorizontalGlue());
 
@@ -72,7 +76,6 @@ public class GameFrame extends JFrame {
             e.addObserver(inventoryPanel);
         }
         add(southPanel, BorderLayout.SOUTH);
-
 
         pack();
     }
@@ -107,4 +110,5 @@ public class GameFrame extends JFrame {
         popupMenu.add(exitItem);
         return popupMenu;
     }
+
 }

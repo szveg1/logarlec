@@ -281,6 +281,7 @@ public class Controller {
         } else if (currItemNum > prevItemNum) {
             System.out.println(getEmberNevFromMap(e) + ": az inventorydba tetted a " + getTargyNevFromMap(t) + " targyat.");
         }
+
     }
 
     /**
@@ -847,6 +848,16 @@ public class Controller {
 
     public static Ember getSorosNpc() {
         return npcSor.getNext();
+    }
+
+    public static boolean checkForWin(Ember ember) {
+        for (Targy targy : ember.getItems()) {
+            if (targy.getNev().equals("logarlec")) {
+                System.out.println("Gratulálok, nyertél!");
+                return true;
+            }
+        }
+        return false;
     }
 }
 
