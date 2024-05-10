@@ -35,7 +35,7 @@ public class GameFrame extends JFrame {
         inputMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "ESCAPE");
         getRootPane().getActionMap().put("ESCAPE", escapeAction);
 
-        add(new SzobaPanel(Labirintus.getInstance().getSzobak().get(0), getSize()), BorderLayout.CENTER);
+        add(new SzobaPanel(), BorderLayout.CENTER);
 
 // TODO: InventoryPanel logikáját még implementálni kell ez alapján
 

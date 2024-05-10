@@ -1,5 +1,6 @@
 package pass.grafikus;
 
+import pass.controller.Controller;
 import pass.model.graphichelper.DrawObserver;
 import pass.model.human.Ember;
 import pass.model.item.Targy;
@@ -12,29 +13,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SzobaPanel extends JPanel implements DrawObserver {
-    private final int MARGO_SZAZALEK = 5;
-    private final int vizszintesMargo;
-    private final int fuggolegesMargo;
-    private final int szobaSzelesseg;
-    private final int szobaMagassag;
-    private final List<JButton> ajtoGombok;
-    private final List<TargyLabel> targyFoldonLabels;
-    private final List<EmberLabel> emberLabels;
-    private final JPanel jobbpanel;
-    private final JPanel balpanel;
+    private int MARGO_SZAZALEK = 5;
+    private int vizszintesMargo;
+    private int fuggolegesMargo;
+    private int szobaSzelesseg;
+    private int szobaMagassag;
+    private List<JButton> ajtoGombok;
+    private List<TargyLabel> targyFoldonLabels;
+    private List<EmberLabel> emberLabels;
+    private JPanel jobbpanel;
+    private JPanel balpanel;
 
     @Override
     public void update() {
-        revalidate();
-        repaint();
-    }
-
-    private enum Oldal {
-        BAL, FELSO, JOBB, ALSO
-    }
-
-    public SzobaPanel(Szoba szoba, Dimension size) {
-        super();
+        System.out.println("SzobaPanel update");
+        Szoba szoba = Controller.getSorosJatekos().getJelenlegiSzoba();
+        Dimension size = new Dimension(1280, 720);
+        removeAll();
         this.setLayout(null);
         this.setSize(size);
         this.setPreferredSize(size);
@@ -139,7 +134,17 @@ public class SzobaPanel extends JPanel implements DrawObserver {
                 ajtoGombok.add(ajtoGomb);
             }
         }
+        revalidate();
+        repaint();
+    }
 
+    private enum Oldal {
+        BAL, FELSO, JOBB, ALSO
+    }
+
+    public SzobaPanel() {
+        super();
+        update();
     }
 
     @Override
