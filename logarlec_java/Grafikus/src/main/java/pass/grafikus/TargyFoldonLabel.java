@@ -20,7 +20,7 @@ public class TargyFoldonLabel extends TargyLabel {
             public void mouseClicked(MouseEvent mouseEvent) {
                 Ember e = Controller.getSorosJatekos();
                 Controller.TargyFelvesz(targy, e);
-                targy.notifyObservers();
+                //targy.notifyObservers();
                 e.notifyObservers();
             }
         });

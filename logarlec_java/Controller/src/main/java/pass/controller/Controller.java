@@ -254,8 +254,7 @@ public class Controller {
      * @param a Az ajtó, amelyen keresztül az ember átlép.
      * @param e Az ember, aki átlép az ajtón.
      */
-    public static void AjtoHasznalat(Ajto a) {
-        Ember e = getSorosJatekos();
+    public static void AjtoHasznalat(Ajto a, Ember e) {
         Szoba ujSzoba = a.getSzomszed(e.getJelenlegiSzoba());
         a.hasznal(e);
         if (ujSzoba != null) {

@@ -41,7 +41,8 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
     }
 
     public void notifyObservers() {
-        for(DrawObserver observer : observers) {
+        List<DrawObserver> copyObservers = new ArrayList<>(observers);
+        for(DrawObserver observer : copyObservers) {
             observer.update();
         }
     }

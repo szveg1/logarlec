@@ -43,7 +43,7 @@ public class Fuggvenyek {
         }
         Ajto a = Controller.getAjto(cmd[1]);
         Ember e = Controller.getEmber(cmd[2]);
-        //Controller.AjtoHasznalat(a, e);
+        Controller.AjtoHasznalat(a, e);
     }
 
     protected static void TargyHasznal(String[] cmd) {
