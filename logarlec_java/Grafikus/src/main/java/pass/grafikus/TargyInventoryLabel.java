@@ -17,6 +17,7 @@ public class TargyInventoryLabel extends TargyLabel {
                 Ember em = Controller.getSorosJatekos();
                 if (e.getButton() == MouseEvent.BUTTON1) {
                     Controller.Hasznal(targy, em);
+                    em.notifyObservers();
                 } else if (e.getButton() == MouseEvent.BUTTON3) {
                     Controller.TargyEldob(targy, em);
                     //targy.notifyObservers();
