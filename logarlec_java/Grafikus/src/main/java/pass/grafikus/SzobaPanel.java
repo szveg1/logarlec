@@ -154,8 +154,21 @@ public class SzobaPanel extends JPanel implements DrawObserver {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
+
+        Szoba szoba  = Controller.getSorosJatekos().getJelenlegiSzoba();
+        boolean ragacsos = szoba.ragacsosE();
+        boolean mergezo = szoba.mergezoE();
+        if (ragacsos && mergezo)
+            g.setColor(new Color(255, 135, 205));
+        else if (ragacsos)
+            g.setColor(new Color(255, 255, 205));
+        else if (mergezo)
+            g.setColor(new Color(0, 120, 0));
+        else
+            g.setColor(Color.GRAY);
+
         //sima
-        g.setColor(Color.GRAY);
+        //g.setColor(Color.GRAY);
         //mérgező
         //Color myColor = new Color(0, 120, 0);
         //g.setColor(myColor);
