@@ -15,7 +15,7 @@ public abstract class TargyLabel extends JLabel implements TargyVisitorGrafikus,
         setBackground(new Color(0, 0, 0, 0));
         this.targy = targy;
         targy.accept(this);
-        targy.addObserver(this);
+        //targy.addObserver(this);
     }
 
     @Override

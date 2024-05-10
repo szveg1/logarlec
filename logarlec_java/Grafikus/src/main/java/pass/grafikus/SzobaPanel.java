@@ -5,6 +5,7 @@ import pass.model.graphichelper.DrawObserver;
 import pass.model.human.Ember;
 import pass.model.item.Targy;
 import pass.model.labyrinth.Ajto;
+import pass.model.labyrinth.Labirintus;
 import pass.model.labyrinth.Szoba;
 
 import javax.swing.*;
@@ -61,7 +62,7 @@ public class SzobaPanel extends JPanel implements DrawObserver {
 
         // Emberek megjelenítése
         for (Ember e : szoba.getEmberek()) {
-            e.addObserver(this);
+            //e.addObserver(this);
             JPanel b = new JPanel();
             EmberLabel l = new EmberLabel(e);
             b.add(l);
@@ -71,7 +72,7 @@ public class SzobaPanel extends JPanel implements DrawObserver {
 
         // Tárgyak megjelenítése
         for (Targy t : szoba.getItems()) {
-            t.addObserver(this);
+            //t.addObserver(this);
             TargyLabel tl = new TargyFoldonLabel(t);
             targyFoldonLabels.add(tl);
             balpanel.add(tl);
@@ -144,6 +145,8 @@ public class SzobaPanel extends JPanel implements DrawObserver {
 
     public SzobaPanel() {
         super();
+        for (Ember e : Labirintus.getInstance().getSzobak().get(0).getEmberek())
+            e.addObserver(this);
         update();
     }
 

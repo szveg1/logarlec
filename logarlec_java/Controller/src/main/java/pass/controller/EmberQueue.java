@@ -13,12 +13,13 @@ public class EmberQueue {
     }
 
     public Ember getNext() {
-        for(Ember e : queue) {
-            if(!e.getLepett()) {
-                return e;
-            }
-        }
-        return null;
+//        for(Ember e : queue) {
+//            if(!e.getLepett()) {
+//                return e;
+//            }
+//        }
+//        return null;
+        return queue.get(0);
     }
 
     public void reset() {
