@@ -30,7 +30,7 @@ public class TargyFoldonLabel extends TargyLabel {
     public void update() {
         // TODO: remove this
         System.out.println("TargyFoldonLabel update");
-        this.setIcon(null);
+        //this.setIcon(null);
         revalidate();
         repaint();
     }

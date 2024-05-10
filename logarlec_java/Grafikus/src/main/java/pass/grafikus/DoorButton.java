@@ -1,5 +1,6 @@
 package pass.grafikus;
 
+import pass.controller.Controller;
 import pass.model.labyrinth.Ajto;
 
 import javax.swing.*;
@@ -13,7 +14,8 @@ public class DoorButton extends JButton {
         addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Controller.AjtoHasznalat();
+                Controller.AjtoHasznalat(ajto);
+
             }
         });
     }
