@@ -167,15 +167,7 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         else
             g.setColor(Color.GRAY);
 
-        //sima
-        //g.setColor(Color.GRAY);
-        //mérgező
-        //Color myColor = new Color(0, 120, 0);
-        //g.setColor(myColor);
-        //g.setColor(Color.GREEN);
-        //ragacsos
-        //Color myColor = new Color(255, 255, 205);
-        //g.setColor(myColor);
+
         g.fillRect(vizszintesMargo, fuggolegesMargo, szobaSzelesseg, szobaMagassag);
 
         g.setColor(Color.BLACK);
