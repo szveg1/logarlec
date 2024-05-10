@@ -159,7 +159,7 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         boolean ragacsos = szoba.ragacsosE();
         boolean mergezo = szoba.mergezoE();
         if (ragacsos && mergezo)
-            g.setColor(new Color(255, 135, 205));
+            g.setColor(new Color(135, 135, 205));
         else if (ragacsos)
             g.setColor(new Color(255, 255, 205));
         else if (mergezo)
