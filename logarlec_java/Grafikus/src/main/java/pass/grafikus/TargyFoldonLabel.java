@@ -26,18 +26,6 @@ public class TargyFoldonLabel extends TargyLabel {
         });
     }
 
-    public TargyFoldonLabel(Targy targy, InventoryPanel inventoryPanel) {
-        super(targy);
-        addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent mouseEvent) {
-                Ember e = Controller.getSorosJatekos();
-                Controller.TargyFelvesz(targy, e);
-                inventoryPanel.update(); // update the InventoryPanel
-                System.out.println("Tárgy felvéve: " + targy);
-            }
-        });
-    }
     @Override
     public void update() {
         // TODO: remove this
