@@ -1,6 +1,7 @@
 package pass.grafikus;
 
 import pass.controller.Controller;
+import pass.model.human.Ember;
 import pass.model.item.Targy;
 
 import java.awt.event.MouseAdapter;
@@ -13,10 +14,14 @@ public class TargyInventoryLabel extends TargyLabel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                Ember em = Controller.getSorosJatekos();
                 if (e.getButton() == MouseEvent.BUTTON1) {
-                    Controller.Hasznal(targy, Controller.getSorosJatekos());
+                    Controller.Hasznal(targy, em);
                 } else if (e.getButton() == MouseEvent.BUTTON3) {
-                    Controller.TargyEldob(targy, Controller.getSorosJatekos());
+                    Controller.TargyEldob(targy, em);
+                    targy.notifyObservers();
+                    em.notifyObservers();
+
                 }
             }
         });
@@ -24,7 +29,10 @@ public class TargyInventoryLabel extends TargyLabel {
 
     @Override
     public void update() {
-
+        targy = null;
+        this.setIcon(null);
+        revalidate();
+        repaint();
     }
 
 

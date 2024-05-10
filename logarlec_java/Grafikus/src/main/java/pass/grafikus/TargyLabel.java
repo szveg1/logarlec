@@ -11,7 +11,7 @@ public abstract class TargyLabel extends JLabel implements TargyVisitorGrafikus,
     protected Targy targy;
 
     public TargyLabel(Targy targy) {
-        setPreferredSize(new Dimension(100, 100));
+        setPreferredSize(new Dimension(90, 90));
         setBackground(new Color(0, 0, 0, 0));
         this.targy = targy;
         targy.accept(this);
