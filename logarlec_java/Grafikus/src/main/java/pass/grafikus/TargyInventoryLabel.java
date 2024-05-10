@@ -19,7 +19,7 @@ public class TargyInventoryLabel extends TargyLabel {
                     Controller.Hasznal(targy, em);
                 } else if (e.getButton() == MouseEvent.BUTTON3) {
                     Controller.TargyEldob(targy, em);
-                    targy.notifyObservers();
+                    //targy.notifyObservers();
                     em.notifyObservers();
 
                 }

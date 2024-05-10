@@ -30,6 +30,7 @@ public class InventoryPanel extends JPanel implements DrawObserver {
             removeAll();
         }
         for (int i = 0; i < 5; i++) {
+            inventoryItems[i].removeAll();
             if (i < jelenlegiJatekos.getItems().size()) {
                 Targy targy = jelenlegiJatekos.getItems().get(i);
                 inventoryItems[i].add(new TargyInventoryLabel(targy));
