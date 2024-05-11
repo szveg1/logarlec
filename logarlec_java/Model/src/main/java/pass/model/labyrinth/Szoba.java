@@ -446,5 +446,7 @@ public class Szoba implements Idozitett {
      */
     public void setTiszta(boolean tiszta) {
         this.tiszta = tiszta;
+        tisztanBelepok = 0;
+        ragacsos = false;
     }
 }
