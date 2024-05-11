@@ -48,6 +48,9 @@ public class Tranzisztor extends Targy {
         } else {
             CustomLogger.info(this + " már párosítva van.");
             tulajdonos.masikSzobabaLep(par.getSzoba());
+            par.par = null;
+            par = null;
+
         }
 
     }
