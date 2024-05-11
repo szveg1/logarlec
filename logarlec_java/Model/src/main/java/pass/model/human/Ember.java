@@ -124,7 +124,8 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
         if (gazEllenVedett) return;
         ajult = 3;
         CustomLogger.info(this + " elájult");
-        for (Targy targy : inventory) {
+        List<Targy> copyOfInventory = new ArrayList<>(inventory);
+        for (Targy targy : copyOfInventory) {
             targyatEldob(targy);
         }
     }

@@ -4,6 +4,9 @@ import pass.model.CustomLogger;
 import pass.model.item.*;
 import pass.model.labyrinth.Labirintus;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * A Hallgató osztály felelős a játékos karakterének kezeléséért a labirintusban. Ez az
  * osztály rögzíti és kezeli a hallgatóval kapcsolatos információkat, a felvett tárgyak
@@ -160,6 +163,12 @@ public class Hallgato extends Ember {
      */
     private void meghal() {
         setEletbenVan(false);
+
+        List<Targy> copyOfInventory = new ArrayList<>(inventory);
+        for (Targy targy : copyOfInventory) {
+            targyatEldob(targy);
+        }
+
     }
 
     /**

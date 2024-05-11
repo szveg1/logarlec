@@ -155,6 +155,8 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         winLabel.setHorizontalAlignment(JLabel.CENTER);
         winLabel.setVerticalAlignment(JLabel.CENTER);
 
+
+
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2)); // Create a new panel to hold the buttons
 
         JPanel exitPanel = new JPanel();

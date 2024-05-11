@@ -20,7 +20,6 @@ public class TargyInventoryLabel extends TargyLabel {
                     em.notifyObservers();
                 } else if (e.getButton() == MouseEvent.BUTTON3) {
                     Controller.TargyEldob(targy, em);
-                    //targy.notifyObservers();
                     em.notifyObservers();
 
                 }
@@ -30,10 +29,6 @@ public class TargyInventoryLabel extends TargyLabel {
 
     @Override
     public void update() {
-        targy = null;
-        this.setIcon(null);
-        revalidate();
-        repaint();
     }
 
 
