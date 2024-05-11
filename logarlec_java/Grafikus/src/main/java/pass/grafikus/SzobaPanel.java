@@ -140,7 +140,6 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         ///////////////////////////////////////////////////////////////////////////
         if(Controller.checkForWin(Controller.getSorosJatekos())){
             showWinningMessageAndReturnToMainMenu();
-        }else if(!Controller.checkForWin(Controller.getSorosJatekos())){
         }
         ///////////////////////////////////////////////////////////////////////////
         revalidate();
