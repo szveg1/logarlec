@@ -86,7 +86,7 @@ public class Oktato extends Ember {
 
     @Override
     public void controllerLeptet(Ajto a) {
-        if (meddigBena > 0) {
+        if (meddigBena > 0 ) {
             return;
         }
 
