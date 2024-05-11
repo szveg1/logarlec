@@ -7,6 +7,7 @@ import java.util.List;
 
 public class EmberQueue {
     private List<Ember> queue = new ArrayList<>();
+    private int idx = 0;
 
     public void add(Ember e) {
         queue.add(e);
@@ -19,7 +20,7 @@ public class EmberQueue {
 //            }
 //        }
 //        return null;
-        return queue.get(0);
+        return queue.get(idx);
     }
 
     public void reset() {
@@ -30,6 +31,10 @@ public class EmberQueue {
 
     public void clear(){
         queue.clear();
+    }
+
+    public void next() {
+        idx = (idx + 1) % queue.size();
     }
 
 }

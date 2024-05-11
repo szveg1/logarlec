@@ -846,6 +846,8 @@ public class Controller {
         return jatekosSor.getNext();
     }
 
+    public static void nextPlayer() {jatekosSor.next(); jatekosSor.getNext().notifyObservers();}
+
     public static Ember getSorosNpc() {
         return npcSor.getNext();
     }
