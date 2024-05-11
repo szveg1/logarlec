@@ -35,6 +35,9 @@ public class EmberQueue {
 
     public void next() {
         idx = (idx + 1) % queue.size();
+        if (idx == 0) {
+            Controller.Tick(1);
+        }
     }
 
 }
