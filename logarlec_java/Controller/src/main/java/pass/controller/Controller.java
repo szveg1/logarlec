@@ -853,7 +853,6 @@ public class Controller {
     public static boolean checkForWin(Ember ember) {
         for (Targy targy : ember.getItems()) {
             if (targy.getNev().equals("logarlec")) {
-                System.out.println("Gratulálok, nyertél!");
                 return true;
             }
         }
