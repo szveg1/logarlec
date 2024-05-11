@@ -14,6 +14,9 @@ public class EmberLabel extends JLabel implements EmberVisitor {
         if (e == Controller.getSorosJatekos()) {
             setBorder(BorderFactory.createLineBorder(Color.RED, 5));
         }
+        if (!e.getEletbenVan()) {
+            setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
+        }
     }
 
     @Override
