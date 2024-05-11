@@ -77,6 +77,10 @@ public class GameFrame extends JFrame {
         }
         add(southPanel, BorderLayout.SOUTH);
 
+        JButton nextButton = new JButton("Next PLayer");
+        //nextButton.addActionListener(e -> Controller.nextPLayer);
+        southPanel.add(nextButton);
+
         pack();
     }
 
