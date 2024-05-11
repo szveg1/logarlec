@@ -66,7 +66,7 @@ public class Oktato extends Ember {
      * @param hallgato - A célzott hallgató, akit megtámad az oktató lélekelvétel céljával.
      */
     public void hallgatotMegtamad(Hallgato hallgato) {
-        if (meddigBena > 0) {
+        if (meddigBena > 0 || getAjult()) {
             CustomLogger.info(this + " nem tudja " + hallgato + "-t megtámadni, mert még " + meddigBena + " körig bénult.");
             return;
         }
@@ -86,7 +86,7 @@ public class Oktato extends Ember {
 
     @Override
     public void controllerLeptet(Ajto a) {
-        if (meddigBena > 0 ) {
+        if (meddigBena > 0 || getAjult()) {
             return;
         }
 
