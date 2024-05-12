@@ -37,6 +37,9 @@ public class Logarlec extends Targy {
         visitor.visit(this);
     }
 
+    public boolean hasznalhatoE() {
+        return true;
+    }
 
     /**
      * A függvény kiírja az objektum nevét

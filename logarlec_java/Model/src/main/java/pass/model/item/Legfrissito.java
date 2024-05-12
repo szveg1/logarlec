@@ -35,6 +35,9 @@ public class Legfrissito extends Targy {
         }
     }
 
+    public boolean hasznalhatoE() {
+        return !hasznalva;
+    }
 
     /**
      * A függvény kiírja az objektum nevét

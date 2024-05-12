@@ -35,6 +35,11 @@ public abstract class Targy extends DrawObservable implements Idozitett {
 
     }
 
+
+    public boolean hasznalhatoE() {
+        return true;
+    }
+
     public void hasznal() {
 
     }

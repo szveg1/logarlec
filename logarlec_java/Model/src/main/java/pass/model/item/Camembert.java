@@ -41,7 +41,9 @@ public class Camembert extends Targy {
         }
     }
 
-
+    public boolean hasznalhatoE() {
+        return mergezo;
+    }
 
     /**
      * A függvény kiírja az objektum nevét
