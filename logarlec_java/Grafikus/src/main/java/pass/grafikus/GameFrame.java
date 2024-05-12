@@ -11,6 +11,7 @@ import java.awt.event.KeyEvent;
 
 public class GameFrame extends JFrame {
     public static InventoryPanel inventoryPanel;
+    public static JButton nextButton;
     public static void setInvisibleinventoryPanel(boolean b){
         inventoryPanel.setVisible(b);
     }
@@ -77,7 +78,7 @@ public class GameFrame extends JFrame {
         }
         add(southPanel, BorderLayout.SOUTH);
 
-        JButton nextButton = new JButton("Next PLayer");
+        nextButton = new JButton("Next PLayer");
         nextButton.addActionListener(e -> Controller.nextPlayer());
         southPanel.add(nextButton);
 

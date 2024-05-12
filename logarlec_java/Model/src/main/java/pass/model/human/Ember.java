@@ -204,8 +204,10 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
             t.accept(this);
             t.tick();
         }
-        if (ajult > 0)
+        if (ajult > 0) {
             ajult--;
+        }
+
         setLepett(false);
     }
 
