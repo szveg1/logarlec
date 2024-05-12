@@ -26,18 +26,12 @@ public class Legfrissito extends Targy {
         visitor.visit(this);
     }
 
-    /**
-     * @param visitor - A visitor, amit fogad
-     */
     @Override
-    public void accept(TargyVisitor visitor) {
-        CustomLogger.info(visitor + "-t " + this + " fogadta.");
+    public void hasznal() {
         if (!hasznalva && jelenlegiSzoba.mergezoE()) {
-            visitor.visit(this);
             hasznalva = true;
             jelenlegiSzoba.setMeregIdo(0);
-        } else {
-            CustomLogger.info(this + " már nem használható");
+            tulajdonos.targyatEldob(this);
         }
     }
 
