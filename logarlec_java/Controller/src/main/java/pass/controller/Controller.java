@@ -860,5 +860,10 @@ public class Controller {
         }
         return false;
     }
+
+    public static boolean checkForLoss() {
+        Labirintus labirintus = Labirintus.getInstance();
+        return labirintus.getTimeLeft() == 0;
+    }
 }
 

@@ -141,6 +141,9 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         if(Controller.checkForWin(Controller.getSorosJatekos())){
             showWinningMessageAndReturnToMainMenu();
         }
+        if(Controller.checkForLoss()){
+            showLosingMessageAndReturnToMainMenu();
+        }
         ///////////////////////////////////////////////////////////////////////////
         revalidate();
         repaint();
@@ -185,6 +188,8 @@ public class SzobaPanel extends JPanel implements DrawObserver {
             }
         });
 
+
+
         buttonPanel.add(exitPanel);
         buttonPanel.add(menuPanel);
 
@@ -196,6 +201,59 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         repaint();
     }
     ///////////////////////////////////////////////////////////////////////////
+
+
+    public void showLosingMessageAndReturnToMainMenu() {
+        removeAll();
+        GameFrame.setInvisibleinventoryPanel(false);
+        GameFrame.nextButton.setVisible(false);
+        JLabel winLabel = new JLabel("Nem Gratulálok, nem nyertél!");
+        winLabel.setFont(new Font("Arial", Font.PLAIN, 50));
+        winLabel.setHorizontalAlignment(JLabel.CENTER);
+        winLabel.setVerticalAlignment(JLabel.CENTER);
+
+
+
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 2)); // Create a new panel to hold the buttons
+
+        JPanel exitPanel = new JPanel();
+        JLabel exitLabel = new JLabel("Exit");
+        exitLabel.setFont(new Font("Arial", Font.PLAIN, 30));
+        exitPanel.add(exitLabel);
+        exitPanel.setBackground(new Color(254, 79, 49));
+        exitPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.exit(0); // Kilép a programból
+            }
+        });
+
+        JPanel menuPanel = new JPanel();
+        JLabel menuLabel = new JLabel("Vissza a menübe");
+        menuLabel.setFont(new Font("Arial", Font.PLAIN, 30));
+        menuPanel.add(menuLabel);
+        menuPanel.setBackground(new Color(129, 122, 121));
+        menuPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                Controller.reset();
+                Main.setDisplayedFrame(new MenuFrame());
+            }
+        });
+
+
+
+        buttonPanel.add(exitPanel);
+        buttonPanel.add(menuPanel);
+
+        setLayout(new BorderLayout());
+        add(winLabel, BorderLayout.CENTER);
+        add(buttonPanel, BorderLayout.SOUTH);
+
+        revalidate();
+        repaint();
+    }
+
     private enum Oldal {
         BAL, FELSO, JOBB, ALSO
     }
