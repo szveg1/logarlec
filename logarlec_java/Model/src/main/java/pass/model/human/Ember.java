@@ -113,13 +113,17 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
         CustomLogger.info(this + " meglátogatta a " + maszk + "-ot");
         CustomLogger.info("védett lett " + maszk + "-tól: " + (maszk.getVedIdo() > 0));
         gazEllenVedett = maszk.getVedIdo() > 0;
-        if (jelenlegiSzoba.mergezoE()) maszk.csokkentVedIdo();
+        if (jelenlegiSzoba.mergezoE() && gazEllenVedett ) maszk.csokkentVedIdo();
     }
 
     public void ajulas() {
+        List<Targy> copyOfInventory= new ArrayList<>(inventory);
+        for (Targy t : copyOfInventory) {
+            t.accept(this);
+        }
         if (gazEllenVedett) return;
-        List<Targy> copyOfInventory = new ArrayList<>(inventory);
-        for (Targy targy : copyOfInventory) {
+        List<Targy> copyOfInventory2 = new ArrayList<>(inventory);
+        for (Targy targy : copyOfInventory2) {
             targyatEldob(targy);
         }
         ajult = 3;
@@ -198,7 +202,6 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
     public void tick() {
         List<Targy> copyOfInventory= new ArrayList<>(inventory);
         for (Targy t : copyOfInventory) {
-            t.accept(this);
             t.tick();
         }
         if (ajult > 0) {

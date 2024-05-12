@@ -29,15 +29,11 @@ public class Maszk extends Targy {
      * hátralévő védelmi időt
      *
      */
-    public void hasznalmaszk() {
-
-    }
+    public void csokkentVedIdo() {vedIdo--; }
 
     public int getVedIdo() {
         return vedIdo;
     }
-
-    public void csokkentVedIdo() {vedIdo--; }
 
     public boolean hasznalhatoE() {
         return vedIdo > 0;
