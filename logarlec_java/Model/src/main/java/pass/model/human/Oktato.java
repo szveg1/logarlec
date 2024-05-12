@@ -57,6 +57,9 @@ public class Oktato extends Ember {
     @Override
     public void tick() {
         if (!inventory.isEmpty()) inventory.get(0).accept(this);
+        if (ajult > 0) {
+            ajult--;
+        }
     }
 
     /**
