@@ -70,6 +70,8 @@ public class TVSZ extends Targy {
         return vedelmekSzama > 0;
     }
 
+    public int getVedelmekSzama() { return vedelmekSzama; }
+
     /**
      * A függvény kiírja az objektum nevét
      *

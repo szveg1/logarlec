@@ -63,6 +63,8 @@ public class Pohar extends Targy {
         return vedIdo > 0;
     }
 
+    public int getVedIdo() { return vedIdo; }
+
     /**
      * A függvény kiírja az objektum nevét
      *
