@@ -1,7 +1,7 @@
 package pass.model.item;
 
 import pass.model.CustomLogger;
-import pass.model.TargyVisitorGrafikus;
+import pass.model.TargyVisitor;
 
 /* A Camembert osztály felelős a mérgező gáz ideiglenes kibocsátásáért a labirintus, egy
 a játékos által kiválasztott szobájába. */
@@ -23,7 +23,7 @@ public class Camembert extends Targy {
      * @param visitor - a látogató
      */
     @Override
-    public void accept(TargyVisitorGrafikus visitor) {
+    public void accept(TargyVisitor visitor) {
         visitor.visit(this);
     }
 

@@ -3,7 +3,6 @@ package pass.model.item;
 import pass.model.CustomLogger;
 import pass.model.Idozitett;
 import pass.model.TargyVisitor;
-import pass.model.TargyVisitorGrafikus;
 import pass.model.graphichelper.DrawObservable;
 import pass.model.graphichelper.DrawObserver;
 import pass.model.human.Ember;
@@ -21,8 +20,6 @@ public abstract class Targy extends DrawObservable implements Idozitett {
     public String getNev() {
         return nev;
     }
-
-    public abstract void accept(TargyVisitorGrafikus visitor);
 
     /**
      * @param visitor - A visitor, amit fogad

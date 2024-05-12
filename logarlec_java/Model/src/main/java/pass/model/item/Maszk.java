@@ -2,7 +2,6 @@ package pass.model.item;
 
 import pass.model.CustomLogger;
 import pass.model.TargyVisitor;
-import pass.model.TargyVisitorGrafikus;
 
 /* A Maszk osztály felelős a játékosok védelméért a mérgező gázokkal teli szobákban. A
 maszk egy adott ideig tudja csak megakadályozni a mérges gázok belélegzését.  */
@@ -21,7 +20,7 @@ public class Maszk extends Targy {
     }
 
     @Override
-    public void accept(TargyVisitorGrafikus visitor) {
+    public void accept(TargyVisitor visitor) {
         visitor.visit(this);
     }
 
@@ -29,23 +28,16 @@ public class Maszk extends Targy {
      * A függvény csökkenti a maszkon
      * hátralévő védelmi időt
      *
-     * @param visitor - a visitor amit fogad
      */
-    @Override
-    public void accept(TargyVisitor visitor) {
-        CustomLogger.info(visitor + "-t " + this + " fogadta.");
-        if (vedIdo > 0) {
-            CustomLogger.info(this + " még használható");
-            visitor.visit(this);
-            vedIdo--;
-        } else {
-            CustomLogger.info(this + " már nem használható");
-        }
+    public void hasznalmaszk() {
+
     }
 
     public int getVedIdo() {
         return vedIdo;
     }
+
+    public void csokkentVedIdo() {vedIdo--; }
 
     public boolean hasznalhatoE() {
         return vedIdo > 0;

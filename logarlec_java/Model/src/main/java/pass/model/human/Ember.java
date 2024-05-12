@@ -113,6 +113,7 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
         CustomLogger.info(this + " meglátogatta a " + maszk + "-ot");
         CustomLogger.info("védett lett " + maszk + "-tól: " + (maszk.getVedIdo() > 0));
         gazEllenVedett = maszk.getVedIdo() > 0;
+        if (jelenlegiSzoba.mergezoE()) maszk.csokkentVedIdo();
     }
 
     public void ajulas() {

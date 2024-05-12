@@ -26,4 +26,15 @@ public interface TargyVisitor {
     default void visit(Legfrissito legfrissito) {
         CustomLogger.info(this + " meglátogatta a " + legfrissito + "-t.");
     }
+
+    default void visit(Tranzisztor tranzisztor) {}
+
+    default void visit(Camembert camembert) {}
+
+    default void visit(HamisLec hamisLec) {}
+
+    default void visit(HamisMaszk hamisMaszk) {}
+
+    default void visit(HamisTVSZ hamisTVSZ) {}
+
 }

@@ -2,7 +2,6 @@ package pass.model.item;
 
 import pass.model.CustomLogger;
 import pass.model.TargyVisitor;
-import pass.model.TargyVisitorGrafikus;
 
 public class Legfrissito extends Targy {
     private boolean hasznalva = false;
@@ -22,7 +21,7 @@ public class Legfrissito extends Targy {
      * @param visitor
      */
     @Override
-    public void accept(TargyVisitorGrafikus visitor) {
+    public void accept(TargyVisitor visitor) {
         visitor.visit(this);
     }
 

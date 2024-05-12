@@ -2,7 +2,6 @@ package pass.model.item;
 
 import pass.model.CustomLogger;
 import pass.model.TargyVisitor;
-import pass.model.TargyVisitorGrafikus;
 import pass.model.human.Oktato;
 
 /**
@@ -21,15 +20,6 @@ public class Pohar extends Targy {
      */
     public Pohar(String nev) {
         this.nev = nev;
-    }
-
-    /**
-     * TODO!!!
-     *
-     * @param visitor
-     */
-    public void accept(TargyVisitorGrafikus visitor) {
-        visitor.visit(this);
     }
 
     /**

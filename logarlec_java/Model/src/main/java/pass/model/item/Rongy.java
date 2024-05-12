@@ -2,7 +2,6 @@ package pass.model.item;
 
 import pass.model.CustomLogger;
 import pass.model.TargyVisitor;
-import pass.model.TargyVisitorGrafikus;
 import pass.model.human.Oktato;
 
 /* Az osztály felelős a nedves táblatörlő rongy kezeléséért a játék során. A tárgyat fel
@@ -18,16 +17,6 @@ public class Rongy extends Targy {
      */
     public Rongy(String nev) {
         this.nev = nev;
-    }
-
-    /**
-     * TODO!!!
-     *
-     * @param visitor
-     */
-    @Override
-    public void accept(TargyVisitorGrafikus visitor) {
-        visitor.visit(this);
     }
 
     /**

@@ -1,13 +1,13 @@
 package pass.grafikus;
 
-import pass.model.TargyVisitorGrafikus;
+import pass.model.TargyVisitor;
 import pass.model.graphichelper.DrawObserver;
 import pass.model.item.*;
 
 import javax.swing.*;
 import java.awt.*;
 
-public abstract class TargyLabel extends JLabel implements TargyVisitorGrafikus, DrawObserver {
+public abstract class TargyLabel extends JLabel implements TargyVisitor, DrawObserver {
     protected Targy targy;
 
     public TargyLabel(Targy targy) {

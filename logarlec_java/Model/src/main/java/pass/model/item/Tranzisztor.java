@@ -1,7 +1,7 @@
 package pass.model.item;
 
 import pass.model.CustomLogger;
-import pass.model.TargyVisitorGrafikus;
+import pass.model.TargyVisitor;
 import pass.model.human.Ember;
 import pass.model.labyrinth.Szoba;
 
@@ -28,7 +28,7 @@ public class Tranzisztor extends Targy {
      * @param visitor - A visitor, amit fogad
      */
     @Override
-    public void accept(TargyVisitorGrafikus visitor) {
+    public void accept(TargyVisitor visitor) {
         visitor.visit(this);
     }
 

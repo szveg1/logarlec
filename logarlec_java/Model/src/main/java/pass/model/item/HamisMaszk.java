@@ -1,6 +1,6 @@
 package pass.model.item;
 
-import pass.model.TargyVisitorGrafikus;
+import pass.model.TargyVisitor;
 
 public class HamisMaszk extends Targy {
     /**
@@ -18,7 +18,7 @@ public class HamisMaszk extends Targy {
      * @param visitor - A visitor, amit fogad
      */
     @Override
-    public void accept(TargyVisitorGrafikus visitor) {
+    public void accept(TargyVisitor visitor) {
         visitor.visit(this);
     }
 

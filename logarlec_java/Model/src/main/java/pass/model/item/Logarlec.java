@@ -2,7 +2,6 @@ package pass.model.item;
 
 import pass.model.CustomLogger;
 import pass.model.TargyVisitor;
-import pass.model.TargyVisitorGrafikus;
 
 /***
  *  A Logarléc osztály felelős a játék céljának reprezentálásáért.
@@ -16,16 +15,6 @@ public class Logarlec extends Targy {
      */
     public Logarlec(String nev) {
         this.nev = nev;
-    }
-
-    /**
-     * TODO!!!
-     *
-     * @param visitor
-     */
-    @Override
-    public void accept(TargyVisitorGrafikus visitor) {
-        visitor.visit(this);
     }
 
     /**
