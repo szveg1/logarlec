@@ -429,8 +429,6 @@ public class Szoba implements Idozitett {
     @Override
     public void tick() {
         for (Ember ember : bentlevok) {
-            if (meregIdo > 0)
-                ember.ajulas();
             ember.tick();
         }
         if (tisztanBelepok >= 10) {
