@@ -67,7 +67,7 @@ public class GameFrame extends JFrame {
 //            }
 //
 //            inventoryPanel.add(cell);
-//        }
+//       }
         JPanel southPanel = new JPanel();
         southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.X_AXIS));
         inventoryPanel = new InventoryPanel();
