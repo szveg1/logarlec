@@ -5,12 +5,14 @@ import pass.model.human.Ember;
 import pass.model.labyrinth.Labirintus;
 
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
 public class GameFrame extends JFrame {
     public static InventoryPanel inventoryPanel;
+    public static JButton nextButton;
     public static void setInvisibleinventoryPanel(boolean b){
         inventoryPanel.setVisible(b);
     }
@@ -77,9 +79,21 @@ public class GameFrame extends JFrame {
         }
         add(southPanel, BorderLayout.SOUTH);
 
-        JButton nextButton = new JButton("Next PLayer");
+        nextButton = new JButton("Next Player");
+        nextButton.setPreferredSize(new Dimension(250, 100));
+        nextButton.setFont(new Font("Arial", Font.BOLD, 25));
+        nextButton.setBackground(new Color(144, 238, 144));
+        nextButton.setForeground(Color.BLACK);
+        nextButton.setBorder(new LineBorder(Color.BLACK, 3));
         nextButton.addActionListener(e -> Controller.nextPlayer());
+
+        southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.X_AXIS));
+        southPanel.add(inventoryPanel);
+
+        southPanel.add(Box.createHorizontalGlue());
+
         southPanel.add(nextButton);
+        southPanel.add(Box.createHorizontalGlue());
 
         pack();
     }
