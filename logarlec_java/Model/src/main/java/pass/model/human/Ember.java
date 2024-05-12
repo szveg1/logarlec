@@ -144,7 +144,6 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
         }
         if (!ujSzoba.emberBetesz(this)) return false;
 
-        jelenlegiSzoba = ujSzoba;
         CustomLogger.info(this + " belépett a " + ujSzoba + "-ba");
         for (Targy targy : inventory) {
             targy.szobaValtasrolErtesit(ujSzoba);
@@ -170,6 +169,10 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
             return;
         CustomLogger.info(this + " használta a " + targy + "-t");
         targy.hasznal();
+    }
+
+    public void setSzoba(Szoba sz) {
+        jelenlegiSzoba = sz;
     }
 
     public Szoba getJelenlegiSzoba() {
