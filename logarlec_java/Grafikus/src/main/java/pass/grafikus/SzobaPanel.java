@@ -207,7 +207,7 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         removeAll();
         GameFrame.setInvisibleinventoryPanel(false);
         GameFrame.nextButton.setVisible(false);
-        JLabel winLabel = new JLabel("Nem Gratulálok, nem nyertél!");
+        JLabel winLabel = new JLabel("De egy kula vagy!");
         winLabel.setFont(new Font("Arial", Font.PLAIN, 50));
         winLabel.setHorizontalAlignment(JLabel.CENTER);
         winLabel.setVerticalAlignment(JLabel.CENTER);
