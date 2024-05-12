@@ -3,6 +3,7 @@ package pass.model.item;
 import pass.model.CustomLogger;
 import pass.model.TargyVisitor;
 import pass.model.TargyVisitorGrafikus;
+import pass.model.human.Oktato;
 
 /**
  * A Pohár osztály felelős azért, hogy tárolja és kezelje
@@ -46,17 +47,13 @@ public class Pohar extends Targy {
      * TODO!!!
      */
     @Override
-    public void hasznal() {
-        tulajdonos.targyatEldob(tulajdonos.getItems().get(0));
-    }
-
-
-    /**
-     * TODO!!!
-     */
-    @Override
-    public void tick() {
-        vedIdo--;
+    public void hasznal(Oktato o) {
+        if (vedIdo > 0) {
+            vedIdo--;
+            tulajdonos.targyatEldob(tulajdonos.getItems().get(0));
+        } else {
+            return;
+        }
     }
 
     /**
