@@ -863,7 +863,21 @@ public class Controller {
 
     public static boolean checkForLoss() {
         Labirintus labirintus = Labirintus.getInstance();
-        return labirintus.getTimeLeft() == 0;
+        if(labirintus.getTimeLeft() == 0){
+            return true;
+        }
+        boolean vanvalakieletben = false;
+        for (Map.Entry<String, Ember> entry : emberMap.entrySet()) {
+            Ember value = entry.getValue();
+            String key = entry.getKey();
+            if(value.getEletbenVan() && key.contains("hallgato")) {
+                vanvalakieletben = true;
+            }
+        }
+        if(!vanvalakieletben){
+            return true;
+        }
+        return false;
     }
 }
 
