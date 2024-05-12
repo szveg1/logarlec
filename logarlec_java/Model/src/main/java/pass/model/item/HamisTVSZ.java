@@ -23,6 +23,9 @@ public class HamisTVSZ extends Targy {
     }
 
 
+    public boolean hasznalhatoE() {
+        return true;
+    }
 
     /**
      * A függvény kiírja az objektum nevét

@@ -47,6 +47,10 @@ public class Maszk extends Targy {
         return vedIdo;
     }
 
+    public boolean hasznalhatoE() {
+        return vedIdo > 0;
+    }
+
     /**
      * A függvény kiírja az objektum nevét
      *

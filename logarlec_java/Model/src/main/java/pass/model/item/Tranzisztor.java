@@ -55,6 +55,10 @@ public class Tranzisztor extends Targy {
 
     }
 
+    public boolean hasznalhatoE() {
+        return true;
+    }
+
 
     /**
      * Setter függvény ami a tranzisztornak egy párt állít be

@@ -77,6 +77,7 @@ public class Rongy extends Targy {
         return meddigNedves;
     }
 
+
     /**
      * A függvény kiírja az objektum nevét
      *
