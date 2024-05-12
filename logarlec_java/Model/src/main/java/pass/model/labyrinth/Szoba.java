@@ -247,6 +247,9 @@ public class Szoba implements Idozitett {
     public void setMeregIdo(int meregIdo) {
         CustomLogger.info(this + " mérgezővé vált " + meregIdo + " időre");
         this.meregIdo = meregIdo;
+        for (Ember e : bentlevok) {
+            e.ajulas();
+        }
     }
 
     /**
