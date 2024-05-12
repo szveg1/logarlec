@@ -10,7 +10,6 @@ import pass.model.labyrinth.Ajto;
  */
 public class Oktato extends Ember {
     private static final int MAX_INVENTORY_MERET = 1;
-    private int meddigBena = 0;
     private Hallgato kitTamad;
     // Csak szkeletonhoz-------------
     public Oktato(String nev) {
@@ -47,9 +46,9 @@ public class Oktato extends Ember {
      */
     @Override
     public void rongyotElszenved(Rongy rongy) {
-        meddigBena = rongy.getMeddigNedves();
-        if (meddigBena > 0) {
-            CustomLogger.info(this + " megbénult a " + rongy + " miatt." + meddigBena + " körig.");
+        ajulas();
+        if (ajult > 0) {
+            CustomLogger.info(this + " megbénult a " + rongy + " miatt." + ajult + " körig.");
         } else {
             CustomLogger.info(this + "-ra nem hatott a " + rongy + ".");
         }
@@ -66,8 +65,8 @@ public class Oktato extends Ember {
      * @param hallgato - A célzott hallgató, akit megtámad az oktató lélekelvétel céljával.
      */
     public void hallgatotMegtamad(Hallgato hallgato) {
-        if (meddigBena > 0 || getAjult()) {
-            CustomLogger.info(this + " nem tudja " + hallgato + "-t megtámadni, mert még " + meddigBena + " körig bénult.");
+        if (getAjult()) {
+            CustomLogger.info(this + " nem tudja " + hallgato + "-t megtámadni, mert még " + ajult + " körig bénult.");
             return;
         }
         hallgato.tamadasElszenved(this);
@@ -86,7 +85,7 @@ public class Oktato extends Ember {
 
     @Override
     public void controllerLeptet(Ajto a) {
-        if (meddigBena > 0 || getAjult()) {
+        if (getAjult()) {
             return;
         }
 

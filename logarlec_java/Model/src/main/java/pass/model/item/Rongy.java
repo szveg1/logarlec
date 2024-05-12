@@ -43,20 +43,13 @@ public class Rongy extends Targy {
     /**
      * A függvény minden a szobában tartózkodó emberre meghívja a ronygelszenved függvényt
      *
-     * @param oktato - Az oktató, aki ellen használják
      */
     @Override
-    public void hasznal(Oktato oktato) {
-        jelenlegiSzoba.getEmberek().forEach(e -> e.rongyotElszenved(this));
-    }
-
-
-    /**
-     * A függvény csökkenti a hátralévő nedvességi időt
-     */
-    @Override
-    public void tick() {
-        meddigNedves--;
+    public void hasznal() {
+        if (meddigNedves > 0) {
+            jelenlegiSzoba.getEmberek().forEach(e -> e.rongyotElszenved(this));
+            meddigNedves--;
+        }
     }
 
     /**

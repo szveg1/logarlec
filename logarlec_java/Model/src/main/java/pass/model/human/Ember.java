@@ -25,7 +25,7 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
     protected String nev;
     protected Szoba jelenlegiSzoba = null;
     protected boolean lepett = false;
-    private int ajult = 0;
+    protected int ajult = 0;
     private boolean gazEllenVedett = false;
 
     /**
