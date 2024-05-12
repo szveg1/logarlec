@@ -35,13 +35,13 @@ public class InventoryPanel extends JPanel implements DrawObserver {
                 Targy targy = jelenlegiJatekos.getItems().get(i);
                 inventoryItems[i].add(new TargyInventoryLabel(targy));
 
-                /*if(targy.hasznalhatoE()){
+                if(targy.hasznalhatoE()){
                     inventoryItems[i].setBackground(new Color(134, 216, 131, 255));
                 }
                 else if(!targy.hasznalhatoE()){
                     inventoryItems[i].setBackground(new Color(200, 0, 0, 255));
-                }*/
-                inventoryItems[i].setBackground(new Color(134, 216, 131, 255));
+                }
+                //inventoryItems[i].setBackground(new Color(134, 216, 131, 255));
             } else {
                 inventoryItems[i].add(new JLabel());
                 inventoryItems[i].setBackground(Color.GRAY);
