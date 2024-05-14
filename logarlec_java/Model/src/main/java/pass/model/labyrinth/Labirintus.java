@@ -72,6 +72,7 @@ public class Labirintus implements Idozitett {
     public static void reset() {
         szobak.clear();
         instance = null;
+        timeLeft = 20;
     }
 
     /**
