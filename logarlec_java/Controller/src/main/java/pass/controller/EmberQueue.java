@@ -33,6 +33,8 @@ public class EmberQueue {
         queue.clear();
     }
 
+    public int size() {return queue.size();}
+
     public void next() {
         idx = (idx + 1) % queue.size();
         if (idx == 0) {
