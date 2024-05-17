@@ -13,6 +13,7 @@ import java.awt.event.KeyEvent;
 public class GameFrame extends JFrame {
     public static InventoryPanel inventoryPanel;
     public static JButton nextButton;
+    public static JLabel remainingRoundsLabel;
     public static void setInvisibleinventoryPanel(boolean b){
         inventoryPanel.setVisible(b);
     }
@@ -43,31 +44,6 @@ public class GameFrame extends JFrame {
 
         add(new SzobaPanel(), BorderLayout.CENTER);
 
-// TODO: InventoryPanel logikáját még implementálni kell ez alapján
-
-//        JPanel inventoryPanel = new JPanel(new GridLayout(1, 5)); // 1 row, 5 columns
-//        Dimension itemSize = new Dimension(100, 100);
-//
-//        for (int i = 0; i < 5; i++) {
-//            JPanel cell = new JPanel();
-//            JLabel cellLabel = new JLabel();
-//            cell.setPreferredSize(itemSize);
-//            cell.setBorder(BorderFactory.createLineBorder(new Color(139, 69, 19), 3)); // RGB for brown is (139,69,19), thickness is 3
-//            cell.setBackground(Color.WHITE);
-///////////////////////////////////////////////////////////////////// ITT VALTOZTASD AZ INVETORY TULAJAT
-//            if (i < Labirintus.getInstance().getSzobak().get(0).getEmberek().get(0).getItems().size()) {
-//                String itemName = Labirintus.getInstance().getSzobak().get(0).getEmberek().get(0).getItems().get(i).getNev();
-//
-//                cellLabel.setIcon(new ImageIcon(new ImageIcon("Grafikus/src/main/resources/" + itemName + ".png").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT)));
-//
-//                cell.setBackground(new Color(134, 216, 131, 255));
-//                cell.add(cellLabel);
-//            } else {
-//                cell.setBackground(Color.LIGHT_GRAY);
-//            }
-//
-//            inventoryPanel.add(cell);
-//       }
         JPanel southPanel = new JPanel();
         southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.X_AXIS));
         inventoryPanel = new InventoryPanel();
@@ -85,8 +61,10 @@ public class GameFrame extends JFrame {
         nextButton.setBackground(new Color(144, 238, 144));
         nextButton.setForeground(Color.BLACK);
         nextButton.setBorder(new LineBorder(Color.BLACK, 3));
-        nextButton.addActionListener(e -> Controller.nextPlayer());
-
+        nextButton.addActionListener(e -> {
+            Controller.nextPlayer();
+            updateRemainingRounds();
+        });
         southPanel.setLayout(new BoxLayout(southPanel, BoxLayout.X_AXIS));
         southPanel.add(inventoryPanel);
 
@@ -95,7 +73,17 @@ public class GameFrame extends JFrame {
         southPanel.add(nextButton);
         southPanel.add(Box.createHorizontalGlue());
 
+        remainingRoundsLabel = new JLabel("Remaining Rounds: " + Labirintus.getTimeLeft());
+        remainingRoundsLabel.setFont(new Font("Arial", Font.BOLD, 25));
+
+
+        southPanel.add(remainingRoundsLabel);
+        southPanel.add(Box.createHorizontalGlue());
+
         pack();
+    }
+    public void updateRemainingRounds() {
+        remainingRoundsLabel.setText("Remaining Rounds: " + Labirintus.getTimeLeft());
     }
 
     private JPopupMenu getPopupMenu() {

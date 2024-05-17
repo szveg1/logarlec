@@ -154,6 +154,7 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         removeAll();
         GameFrame.setInvisibleinventoryPanel(false);
         GameFrame.nextButton.setVisible(false);
+        GameFrame.remainingRoundsLabel.setVisible(false);
         JLabel winLabel = new JLabel("Gratulálok, nyertél!");
         winLabel.setFont(new Font("Arial", Font.PLAIN, 50));
         winLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -207,6 +208,7 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         removeAll();
         GameFrame.setInvisibleinventoryPanel(false);
         GameFrame.nextButton.setVisible(false);
+        GameFrame.remainingRoundsLabel.setVisible(false);
         JLabel winLabel = new JLabel("De egy kula vagy!");
         winLabel.setFont(new Font("Arial", Font.PLAIN, 50));
         winLabel.setHorizontalAlignment(JLabel.CENTER);
