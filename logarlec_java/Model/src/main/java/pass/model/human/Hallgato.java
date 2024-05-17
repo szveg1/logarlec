@@ -146,7 +146,7 @@ public class Hallgato extends Ember {
             targy.accept(this);
             if (tudVedekezni) {
                 inventory.get(hasznalniKivant).hasznal(oktato);
-                CustomLogger.info(this + " a " + inventory.get(hasznalniKivant) + "-val védekezett.");
+                //CustomLogger.info(this + " a " + inventory.get(hasznalniKivant) + "-val védekezett.");
                 break;
             }
             hasznalniKivant++;
