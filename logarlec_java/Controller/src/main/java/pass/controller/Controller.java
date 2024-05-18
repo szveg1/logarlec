@@ -260,7 +260,6 @@ public class Controller {
         if (ujSzoba != null) {
             System.out.println(getEmberNevFromMap(e) + ": atlep az " + getAjtoNevFromMap(a) + " ajton, a " + getSzobaNevFromMap(ujSzoba) + " szobaba kerul.");
         }
-        jatekosSor.getNext().setLepett(true);
     }
 
     /**
