@@ -43,6 +43,7 @@ public class Tranzisztor extends Targy {
             for (int i = 0; i < tulajdonos.getItems().size(); i++) {
                 if (i != tulajdonos.getItems().indexOf(this)) {
                     tulajdonos.getItems().get(i).setPar(this);
+                    break;
                 }
             }
         } else {
