@@ -9,6 +9,7 @@ import pass.model.item.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 
 /* A Labirintus osztály felelős a játékterület létrehozásáért és kezeléséért. Ez az osztály
@@ -102,7 +103,7 @@ public class Labirintus implements Idozitett {
      */
     public Szoba szobaFeloszt(Szoba szoba) {
         Szoba ujSzoba = new Szoba(szoba);
-        CustomLogger.info(this + " új szobával rendelkezik: " + ujSzoba);
+        CustomLogger.info(this + " új szobával rendelkezik: " + ujSzoba + " a " + szoba + " felosztása miatt.");
         szobak.add(ujSzoba);
         return ujSzoba;
     }
@@ -189,6 +190,24 @@ public class Labirintus implements Idozitett {
         if (timeLeft == 0) jatekVeszt();
         for (Szoba sz : szobak) {
             sz.tick();
+        }
+
+        // Szoba osszevonas/osztodas
+        if(timeLeft % 3 == 0){
+            Random rand = new Random();
+            Szoba szoba = szobak.get(rand.nextInt(szobak.size()));
+            boolean osszevonas = rand.nextBoolean();
+            if (osszevonas) {
+                Ajto a = szoba.getAjtok().get(rand.nextInt(szoba.getAjtok().size()));
+                for (Szoba sz : szobak) {
+                    if(sz.getAjtok().contains(a) && sz != szoba){
+                        szobakOsszevon(szoba, sz);
+                        break;
+                    }
+                }
+            } else {
+                szobaFeloszt(szoba);
+            }
         }
     }
 
