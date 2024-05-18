@@ -14,6 +14,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class SzobaPanel extends JPanel implements DrawObserver {
     private int MARGO_SZAZALEK = 5;
@@ -92,6 +93,22 @@ public class SzobaPanel extends JPanel implements DrawObserver {
                 ajtoSzegmensMeret[i] = (i % 2 == 0 ? szobaMagassag : szobaSzelesseg) / (oldalonHanyAjto[i] * 2 + 1);
             }
         }
+        // Osszes ajtot eltunteti
+        if(szoba.atkozottE()){
+            for(Ajto a : modelAjtok){
+                a.villogas();
+            }
+        }
+//        // Nehany ajtot tuntet el
+//        if(szoba.atkozottE()){
+//            Random rand = new Random();
+//            int eltuntettAjtokSzama = rand.nextInt(ajtoSzam);
+//            int[] eltuntetettAjtokIDX = rand.ints(eltuntettAjtokSzama, 0, ajtoSzam).toArray();
+//            for(int i : eltuntetettAjtokIDX){
+//                modelAjtok.get(i).lathatosagValtoztass();
+//            }
+//        }
+
 
 
         for (Oldal oldal : Oldal.values()) {
