@@ -853,6 +853,7 @@ public class Controller {
     }
 
     public static boolean checkForWin(Ember ember) {
+        // TODO: ez így egész ocsmány
         for (Targy targy : ember.getItems()) {
             if (targy.getNev().equals("logarlec")) {
                 return true;
@@ -866,11 +867,11 @@ public class Controller {
         if(labirintus.getTimeLeft() == 0){
             return true;
         }
+
         boolean vanvalakieletben = false;
-        for (Map.Entry<String, Ember> entry : emberMap.entrySet()) {
-            Ember value = entry.getValue();
-            String key = entry.getKey();
-            if(value.getEletbenVan() && key.contains("hallgato")) {
+        for (int i = 0; i < jatekosSor.size(); i++) {
+            Ember ember = jatekosSor.getNext();
+            if(ember.getEletbenVan()){
                 vanvalakieletben = true;
             }
         }
