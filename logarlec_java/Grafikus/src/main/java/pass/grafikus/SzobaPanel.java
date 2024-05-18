@@ -98,6 +98,9 @@ public class SzobaPanel extends JPanel implements DrawObserver {
             int oldalIndex = oldal.ordinal();
             for (int i = 0; i < oldalonHanyAjto[oldalIndex]; i++) {
                 Ajto modelAjto = modelAjtok.get(i * 4 + oldalIndex);
+                if (!modelAjto.getLathatosag()) {
+                    continue;
+                }
                 DoorButton ajtoGomb = new DoorButton(modelAjto);
                 int x0, y0, szelesseg, magassag;
 
@@ -148,6 +151,7 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         revalidate();
         repaint();
     }
+
     ///////////////////////////////////////////////////////////////////////////
     // Ezeket lehet nem ide kéne tenni, de most ide tettem!!!!!!!!!!!!!
     public void showWinningMessageAndReturnToMainMenu() {
@@ -159,7 +163,6 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         winLabel.setFont(new Font("Arial", Font.PLAIN, 50));
         winLabel.setHorizontalAlignment(JLabel.CENTER);
         winLabel.setVerticalAlignment(JLabel.CENTER);
-
 
 
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2)); // Create a new panel to hold the buttons
@@ -188,7 +191,6 @@ public class SzobaPanel extends JPanel implements DrawObserver {
                 Main.setDisplayedFrame(new MenuFrame());
             }
         });
-
 
 
         buttonPanel.add(exitPanel);
@@ -215,7 +217,6 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         winLabel.setVerticalAlignment(JLabel.CENTER);
 
 
-
         JPanel buttonPanel = new JPanel(new GridLayout(1, 2)); // Create a new panel to hold the buttons
 
         JPanel exitPanel = new JPanel();
@@ -242,7 +243,6 @@ public class SzobaPanel extends JPanel implements DrawObserver {
                 Main.setDisplayedFrame(new MenuFrame());
             }
         });
-
 
 
         buttonPanel.add(exitPanel);

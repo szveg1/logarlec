@@ -14,11 +14,11 @@ valamint annak ellenőrzése, hogy nyitható-e a kért irányba az ajtó. Az Ajt
 biztosítja a játékosok számára az átjutást a különböző szobák között azáltal, hogy
 lehetővé teszi az áthaladást az ajtókon keresztül.  */
 public class Ajto {
-    private Szoba egyikOldal;
-    private Szoba masikOldal;
+    private final Szoba egyikOldal;
+    private final Szoba masikOldal;
     private boolean lathato = true;
-    private Map<Szoba, Boolean> merrolNyilik = new HashMap<>();
-    private String nev;
+    private final Map<Szoba, Boolean> merrolNyilik = new HashMap<>();
+    private final String nev;
 
     /**
      * @param egyikOldal - Az egyik oldalán lévő szoba
@@ -124,10 +124,14 @@ public class Ajto {
         if (!egyikOldal.atkozottE() && !masikOldal.atkozottE()) {
             return;
         }
-        if (Labirintus.getInstance().getTimeLeft() % 10 == 0)
+        Labirintus.getInstance();
+        if (Labirintus.getTimeLeft() % 10 == 0)
             lathato = false;
-        else if (Labirintus.getInstance().getTimeLeft() % 10 == 5)
-            lathato = true;
+        else {
+            Labirintus.getInstance();
+            if (Labirintus.getTimeLeft() % 10 == 5)
+                lathato = true;
+        }
     }
 
 
