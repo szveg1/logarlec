@@ -48,7 +48,7 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
     }
 
     public boolean getLepett() {
-        return true;
+        return false;
     }
 
     public void setLepett(boolean b) {
@@ -139,8 +139,7 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
      * @param ujSzoba - ebbe a szobába lép át az ember
      */
     public boolean masikSzobabaLep(Szoba ujSzoba) {
-        if (ajult > 0) {
-            CustomLogger.log(Level.WARNING, this + " ájult, nem tud szobát váltani");
+        if (ajult > 0 || this.getLepett()) {
             return false;
         }
         if (!ujSzoba.emberBetesz(this)) return false;

@@ -1,13 +1,18 @@
 package pass.controller;
 
+import pass.model.TargyVisitor;
 import pass.model.human.Ember;
+import pass.model.item.Logarlec;
+import pass.model.item.Targy;
+import pass.model.labyrinth.Labirintus;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EmberQueue {
+public class EmberQueue implements TargyVisitor {
     private List<Ember> queue = new ArrayList<>();
     private int idx = 0;
+    private boolean end = false;
 
     public void add(Ember e) {
         queue.add(e);
@@ -39,7 +44,34 @@ public class EmberQueue {
         idx = (idx + 1) % queue.size();
         if (idx == 0) {
             Controller.Tick(1);
+            reset();
         }
+    }
+
+    public boolean checkForWin(Ember ember) {
+        for (Targy targy : ember.getItems()) {
+            targy.accept(this);
+        }
+        return end;
+    }
+
+    public boolean checkForLoss() {
+        if(Labirintus.getInstance().getTimeLeft() == 0){
+            return true;
+        }
+
+        boolean vanvalakieletben = false;
+        for (Ember ember : queue) {
+            if(ember.getEletbenVan()){
+                vanvalakieletben = true;
+            }
+        }
+        return !vanvalakieletben;
+    }
+
+    @Override
+    public void visit(Logarlec logarlec) {
+        end = true;
     }
 
 }

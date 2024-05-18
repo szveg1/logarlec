@@ -105,7 +105,7 @@ public class Controller {
             }
         }
         betoltesEredmenyKiir();
-        Game.startGame();
+        jatekosSor.reset();
     }
 
     private static Map<String, ArrayList<String>> randomSzomszedokGeneral(Labirintus labirintus, Random random, int szobaSzam) {
@@ -853,32 +853,11 @@ public class Controller {
     }
 
     public static boolean checkForWin(Ember ember) {
-        // TODO: ez így egész ocsmány
-        for (Targy targy : ember.getItems()) {
-            if (targy.getNev().equals("logarlec")) {
-                return true;
-            }
-        }
-        return false;
+        return jatekosSor.checkForWin(ember);
     }
 
     public static boolean checkForLoss() {
-        Labirintus labirintus = Labirintus.getInstance();
-        if(labirintus.getTimeLeft() == 0){
-            return true;
-        }
-
-        boolean vanvalakieletben = false;
-        for (int i = 0; i < jatekosSor.size(); i++) {
-            Ember ember = jatekosSor.getNext();
-            if(ember.getEletbenVan()){
-                vanvalakieletben = true;
-            }
-        }
-        if(!vanvalakieletben){
-            return true;
-        }
-        return false;
+        return jatekosSor.checkForLoss();
     }
 }
 
