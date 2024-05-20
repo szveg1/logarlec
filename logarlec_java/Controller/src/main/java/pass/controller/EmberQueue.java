@@ -32,6 +32,7 @@ public class EmberQueue implements TargyVisitor {
         for(Ember e : queue) {
             e.setLepett(false);
         }
+        end = false;
     }
 
     public void clear(){

@@ -75,6 +75,4 @@ public abstract class Targy extends DrawObservable implements Idozitett {
             observer.update();
         }
     }
-
-
 }
