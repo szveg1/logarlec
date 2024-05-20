@@ -29,10 +29,11 @@ public class EmberQueue implements TargyVisitor {
     }
 
     public void reset() {
-        for(Ember e : queue) {
+        for (Ember e : queue) {
             e.setLepett(false);
         }
         end = false;
+        idx = 0;
     }
 
     public void clear(){
@@ -42,9 +43,7 @@ public class EmberQueue implements TargyVisitor {
     public int size() {return queue.size();}
 
     public void next() {
-        while (!queue.get(idx).getEletbenVan()) {
-            idx = (idx + 1) % queue.size();
-        }
+        idx = (idx + 1) % queue.size();
         if (idx == 0) {
             Controller.Tick(1);
             reset();

@@ -143,7 +143,7 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
      * @param ujSzoba - ebbe a szobába lép át az ember
      */
     public boolean masikSzobabaLep(Szoba ujSzoba) {
-        if (ajult > 0 || this.getLepett()) {
+        if (ajult > 0 || this.getLepett() || !getEletbenVan()) {
             return false;
         }
         if (!ujSzoba.emberBetesz(this)) return false;

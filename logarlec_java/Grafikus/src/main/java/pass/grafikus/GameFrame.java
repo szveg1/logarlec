@@ -14,9 +14,11 @@ public class GameFrame extends JFrame {
     public static InventoryPanel inventoryPanel;
     public static JButton nextButton;
     public static JLabel remainingRoundsLabel;
+
     public static void setInvisibleinventoryPanel(boolean b){
         inventoryPanel.setVisible(b);
     }
+
     public GameFrame() {
         super("Logarlec");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,7 +84,8 @@ public class GameFrame extends JFrame {
 
         pack();
     }
-    public void updateRemainingRounds() {
+
+    private void updateRemainingRounds() {
         remainingRoundsLabel.setText("Remaining Rounds: " + Labirintus.getTimeLeft());
     }
 
