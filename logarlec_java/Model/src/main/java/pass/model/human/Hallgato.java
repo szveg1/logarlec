@@ -117,7 +117,7 @@ public class Hallgato extends Ember {
      */
     @Override
     public void visit(Rongy rongy) {
-        tudVedekezni = rongy.hasznalhatoE();
+        //tudVedekezni = rongy.hasznalhatoE();
         CustomLogger.info(this + (tudVedekezni ? " tud védekezni a " + rongy + " segítségével." : " nem tud védekezni, mert a " + rongy + " már nem használható."));
     }
 
