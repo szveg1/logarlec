@@ -70,6 +70,10 @@ public abstract class Ember extends DrawObservable implements TargyVisitor, Idoz
             CustomLogger.log(Level.WARNING, this + " ragacsos szobaban van, nem tud felvenni targyat");
             return;
         }
+        if (!getEletbenVan()){
+            CustomLogger.log(Level.WARNING, this + " halott, nem tud felvenni targyat");
+            return;
+        }
         CustomLogger.info(this + " felvette a " + targy + "-t");
 
         if (jelenlegiSzoba != null) {

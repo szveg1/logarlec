@@ -41,7 +41,9 @@ public class EmberQueue implements TargyVisitor {
     public int size() {return queue.size();}
 
     public void next() {
-        idx = (idx + 1) % queue.size();
+        while (!queue.get(idx).getEletbenVan()) {
+            idx = (idx + 1) % queue.size();
+        }
         if (idx == 0) {
             Controller.Tick(1);
             reset();
