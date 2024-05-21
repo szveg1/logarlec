@@ -6,6 +6,7 @@ import pass.model.item.Targy;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 
 /**
  * A TargyFoldonLabel osztály egy címkét valósít meg, amely egy tárgyat jelenít meg a földön.

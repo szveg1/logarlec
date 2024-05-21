@@ -37,7 +37,7 @@ public class EmberLabel extends JLabel implements EmberVisitor {
      */
     @Override
     public void visitHallgato(Hallgato h) {
-        setIcon(new ImageIcon(new ImageIcon("Grafikus/src/main/resources/hallgato.png").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT)));
+        setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/hallgato.png")).getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT)));
     }
 
     /**
@@ -47,7 +47,7 @@ public class EmberLabel extends JLabel implements EmberVisitor {
      */
     @Override
     public void visitTakarito(Takarito t) {
-        setIcon(new ImageIcon(new ImageIcon("Grafikus/src/main/resources/takarito.png").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT)));
+        setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/takarito.png")).getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT)));
     }
 
     /**
@@ -57,6 +57,6 @@ public class EmberLabel extends JLabel implements EmberVisitor {
      */
     @Override
     public void visitOktato(Oktato o) {
-        setIcon(new ImageIcon(new ImageIcon("Grafikus/src/main/resources/oktato.png").getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT)));
+        setIcon(new ImageIcon(new ImageIcon(getClass().getResource("/oktato.png")).getImage().getScaledInstance(90, 90, Image.SCALE_DEFAULT)));
     }
 }
