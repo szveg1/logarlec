@@ -32,7 +32,9 @@ public abstract class Targy extends DrawObservable implements Idozitett {
 
     }
 
-
+    /**
+     * A függvény igaz értéket ad vissza
+     */
     public boolean hasznalhatoE() {
         return true;
     }
@@ -55,6 +57,10 @@ public abstract class Targy extends DrawObservable implements Idozitett {
      */
     public void setPar(Tranzisztor tranz) {
 
+    }
+
+    public boolean vanEPar() {
+        return false;
     }
 
     /**

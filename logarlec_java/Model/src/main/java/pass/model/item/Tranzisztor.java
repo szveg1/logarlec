@@ -56,6 +56,10 @@ public class Tranzisztor extends Targy {
 
     }
 
+    public boolean vanEPar() {
+        return !(par == null);
+    }
+
     public boolean hasznalhatoE() {
         return true;
     }

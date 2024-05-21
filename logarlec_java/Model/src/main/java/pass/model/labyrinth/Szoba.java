@@ -57,7 +57,7 @@ public class Szoba implements Idozitett {
             this.atkozott = true;
         }
         if (allapotok.contains("mergezo")) {
-            this.meregIdo = 10;
+            this.meregIdo = 20;
         }
     }
 
@@ -114,12 +114,6 @@ public class Szoba implements Idozitett {
         return nev;
     }
 
-    /*public Szoba(int ferohely) {
-        this.ferohely = ferohely;
-        this.targyak = new ArrayList<>();
-        this.bentlevok = new ArrayList<>();
-        this.ajtok = new ArrayList<>();
-    }*/
 
     public void writeToFileFirstLine(FileWriter fw, List<String> emberek_list, List<String> targyak_list) throws IOException {
         try {
@@ -431,6 +425,7 @@ public class Szoba implements Idozitett {
         for (Ember ember : bentlevok) {
             ember.tick();
         }
+        if(meregIdo > 0) meregIdo--;
         if (tisztanBelepok >= 10) {
             ragacsos = true;
             tiszta = false;

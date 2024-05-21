@@ -8,9 +8,15 @@ import pass.model.item.Targy;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Az InventoryPanel osztály egy panelt valósít meg, amelyben az Ember objektumok tárgyait jelenítjük meg.
+ */
 public class InventoryPanel extends JPanel implements DrawObserver {
     private JPanel[] inventoryItems = new JPanel[5];
 
+    /**
+     * Konstruktor, amely létrehoz egy InventoryPanel objektumot.
+     */
     public InventoryPanel() {
         super();
         for (int i = 0; i < 5; i++) {
@@ -22,6 +28,9 @@ public class InventoryPanel extends JPanel implements DrawObserver {
         }
     }
 
+    /**
+     * Frissíti a panelt, amikor a DrawObserver interfész update metódusát meghívják.
+     */
     @Override
     public void update() {
         System.out.println("InventoryPanel update");
@@ -41,7 +50,9 @@ public class InventoryPanel extends JPanel implements DrawObserver {
                 else if(!targy.hasznalhatoE()){
                     inventoryItems[i].setBackground(new Color(200, 0, 0, 255));
                 }
-                //inventoryItems[i].setBackground(new Color(134, 216, 131, 255));
+                if(targy.vanEPar()){
+                    inventoryItems[i].setBackground(Color.blue);
+                }
             } else {
                 inventoryItems[i].add(new JLabel());
                 inventoryItems[i].setBackground(Color.GRAY);

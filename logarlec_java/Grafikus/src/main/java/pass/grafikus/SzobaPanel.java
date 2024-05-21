@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * A SzobaPanel osztály egy panelt valósít meg, amelyben a játék szobáit jelenítjük meg.
+ */
 public class SzobaPanel extends JPanel implements DrawObserver {
     private int MARGO_SZAZALEK = 5;
     private int vizszintesMargo;
@@ -28,6 +31,9 @@ public class SzobaPanel extends JPanel implements DrawObserver {
     private JPanel jobbpanel;
     private JPanel balpanel;
 
+    /**
+     * Frissíti a panelt, amikor a DrawObserver interfész update metódusát meghívják.
+     */
     @Override
     public void update() {
         System.out.println("SzobaPanel update");
@@ -63,9 +69,7 @@ public class SzobaPanel extends JPanel implements DrawObserver {
 
         emberLabels = new ArrayList<>();
 
-        // Emberek megjelenítése
         for (Ember e : szoba.getEmberek()) {
-            //e.addObserver(this);
             JPanel b = new JPanel();
             EmberLabel l = new EmberLabel(e);
             b.add(l);
@@ -73,9 +77,7 @@ public class SzobaPanel extends JPanel implements DrawObserver {
             jobbpanel.add(b);
         }
 
-        // Tárgyak megjelenítése
         for (Targy t : szoba.getItems()) {
-            //t.addObserver(this);
             TargyLabel tl = new TargyFoldonLabel(t);
             targyFoldonLabels.add(tl);
             balpanel.add(tl);
@@ -93,21 +95,11 @@ public class SzobaPanel extends JPanel implements DrawObserver {
                 ajtoSzegmensMeret[i] = (i % 2 == 0 ? szobaMagassag : szobaSzelesseg) / (oldalonHanyAjto[i] * 2 + 1);
             }
         }
-        // Osszes ajtot eltunteti
         if(szoba.atkozottE()){
             for(Ajto a : modelAjtok){
                 a.villogas();
             }
         }
-//        // Nehany ajtot tuntet el
-//        if(szoba.atkozottE()){
-//            Random rand = new Random();
-//            int eltuntettAjtokSzama = rand.nextInt(ajtoSzam);
-//            int[] eltuntetettAjtokIDX = rand.ints(eltuntettAjtokSzama, 0, ajtoSzam).toArray();
-//            for(int i : eltuntetettAjtokIDX){
-//                modelAjtok.get(i).lathatosagValtoztass();
-//            }
-//        }
 
 
 
@@ -157,33 +149,31 @@ public class SzobaPanel extends JPanel implements DrawObserver {
                 ajtoGombok.add(ajtoGomb);
             }
         }
-        ///////////////////////////////////////////////////////////////////////////
         if(Controller.checkForWin(Controller.getSorosJatekos())){
             showWinningMessageAndReturnToMainMenu();
         }
         if(Controller.checkForLoss()){
             showLosingMessageAndReturnToMainMenu();
         }
-        ///////////////////////////////////////////////////////////////////////////
         revalidate();
         repaint();
     }
 
-    ///////////////////////////////////////////////////////////////////////////
-    // Ezeket lehet nem ide kéne tenni, de most ide tettem!!!!!!!!!!!!!
+    /**
+     * Megjeleníti a győzelem üzenetét és visszatér a főmenübe.
+     */
     public void showWinningMessageAndReturnToMainMenu() {
         removeAll();
         GameFrame.setInvisibleinventoryPanel(false);
         GameFrame.nextButton.setVisible(false);
         GameFrame.remainingRoundsLabel.setVisible(false);
-        JLabel winLabel = new JLabel("Gratulálok, nyertél!");
+        JLabel winLabel = new JLabel("You won");
         winLabel.setFont(new Font("Arial", Font.PLAIN, 50));
         winLabel.setHorizontalAlignment(JLabel.CENTER);
         winLabel.setVerticalAlignment(JLabel.CENTER);
 
 
-        JPanel buttonPanel = new JPanel(new GridLayout(1, 2)); // Create a new panel to hold the buttons
-
+        JPanel buttonPanel = new JPanel(new GridLayout(1, 2));
         JPanel exitPanel = new JPanel();
         JLabel exitLabel = new JLabel("Exit");
         exitLabel.setFont(new Font("Arial", Font.PLAIN, 30));
@@ -197,7 +187,7 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         });
 
         JPanel menuPanel = new JPanel();
-        JLabel menuLabel = new JLabel("Vissza a menübe");
+        JLabel menuLabel = new JLabel("Back to menu");
         menuLabel.setFont(new Font("Arial", Font.PLAIN, 30));
         menuPanel.add(menuLabel);
         menuPanel.setBackground(new Color(129, 122, 121));
@@ -220,9 +210,10 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         revalidate();
         repaint();
     }
-    ///////////////////////////////////////////////////////////////////////////
 
-
+    /**
+     * Megjeleníti a vesztés üzenetét és visszatér a főmenübe.
+     */
     public void showLosingMessageAndReturnToMainMenu() {
         removeAll();
         GameFrame.setInvisibleinventoryPanel(false);
@@ -244,12 +235,12 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         exitPanel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                System.exit(0); // Kilép a programból
+                System.exit(0);
             }
         });
 
         JPanel menuPanel = new JPanel();
-        JLabel menuLabel = new JLabel("Vissza a menübe");
+        JLabel menuLabel = new JLabel("Back to menu");
         menuLabel.setFont(new Font("Arial", Font.PLAIN, 30));
         menuPanel.add(menuLabel);
         menuPanel.setBackground(new Color(129, 122, 121));
@@ -273,10 +264,16 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         repaint();
     }
 
+    /**
+     * Az Oldal enum a szoba négy oldalát reprezentálja.
+     */
     private enum Oldal {
         BAL, FELSO, JOBB, ALSO
     }
 
+    /**
+     * Konstruktor, amely létrehoz egy SzobaPanel objektumot.
+     */
     public SzobaPanel() {
         super();
         for (Ember e : Labirintus.getInstance().getSzobak().get(0).getEmberek())
@@ -284,6 +281,11 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         update();
     }
 
+    /**
+     * Kirajzolja a panel komponenseit.
+     *
+     * @param g A grafikus kontextus, amelyre rajzolunk.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -311,7 +313,4 @@ public class SzobaPanel extends JPanel implements DrawObserver {
         g.fillRect(vizszintesMargo, getHeight() - fuggolegesMargo - 10, szobaSzelesseg, 10);
 
     }
-
-
-
 }

@@ -51,7 +51,7 @@ public class TVSZ extends Targy {
 
 
     /**
-     * TODO!!!
+     * A függvény ellenőtzi hoyg a tárgy használható-e
      *
      * @return
      */

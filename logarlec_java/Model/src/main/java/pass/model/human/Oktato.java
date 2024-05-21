@@ -11,7 +11,6 @@ import pass.model.labyrinth.Ajto;
 public class Oktato extends Ember {
     private static final int MAX_INVENTORY_MERET = 1;
     private Hallgato kitTamad;
-    // Csak szkeletonhoz-------------
     public Oktato(String nev) {
         super(nev);
     }
@@ -25,7 +24,6 @@ public class Oktato extends Ember {
     public String toString() {
         return nev + " :Oktato";
     }
-    //--------------------------------
 
     /**
      * A függvény megnézi hogy az oktató zsebe tele van-e

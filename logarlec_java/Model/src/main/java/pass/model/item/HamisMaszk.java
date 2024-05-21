@@ -36,6 +36,4 @@ public class HamisMaszk extends Targy {
     public String toString() {
         return nev + " :HamisMaszk";
     }
-
-    // -------------------------------
 }

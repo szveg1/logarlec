@@ -8,7 +8,13 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+/**
+ * A MenuPanel osztály egy panelt valósít meg, amelyben a játék menüje fut.
+ */
 public class MenuPanel extends JPanel {
+    /**
+     * Konstruktor, amely létrehoz egy MenuPanel objektumot.
+     */
     public MenuPanel() {
         this.setPreferredSize(new Dimension(800, 600));
 
@@ -40,6 +46,11 @@ public class MenuPanel extends JPanel {
         add(buttonPanel, BorderLayout.SOUTH);
     }
 
+    /**
+     * Létrehoz egy panelt a játék indításához.
+     *
+     * @return A létrehozott panel.
+     */
     private static JPanel makePlayPanel() {
         JPanel playPanel = new JPanel();
         playPanel.setLayout(new FlowLayout());
@@ -62,6 +73,9 @@ public class MenuPanel extends JPanel {
         return playPanel;
     }
 
+    /**
+     * Megnyit egy párbeszédpanelt a játék betöltéséhez.
+     */
     private void loadDialog() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Load Game");
@@ -76,6 +90,11 @@ public class MenuPanel extends JPanel {
         }
     }
 
+    /**
+     * Kirajzolja a panel komponenseit.
+     *
+     * @param g A grafikus kontextus, amelyre rajzolunk.
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);

@@ -8,25 +8,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A Hallgató osztály felelős a játékos karakterének kezeléséért a labirintusban. Ez az
- * osztály rögzíti és kezeli a hallgatóval kapcsolatos információkat, a felvett tárgyak
- * listáját. Emellett felelős a hallgató cselekedeteinek végrehajtásáért, beleértve a tárgyak
- * felvételét és letételét, valamint a szobák közötti mozgást. A Hallgató osztály biztosítja
- * a felhasználói interakciót a játék során.
+ * A Hallgató osztály felelős a játékos karakterének kezeléséért a labirintusban.
+ * Ez az osztály rögzíti és kezeli a hallgatóval kapcsolatos információkat, a felvett tárgyak
+ * listáját.
+ * Emellett felelős a hallgató cselekedeteinek végrehajtásáért, beleértve a tárgyak
+ * felvételét és letételét, valamint a szobák közötti mozgást.
+ * A Hallgató osztály biztosítja a felhasználói interakciót a játék során.
  */
 public class Hallgato extends Ember {
     private boolean tudVedekezni = false;
     private boolean eletbenVan = true;
 
+    /**
+     * Konstruktor a Hallgato osztályhoz.
+     *
+     * @param nev A hallgató neve.
+     */
     public Hallgato(String nev) {
         super(nev);
     }
 
 
     /**
-     * TODO!!!
+     * Elfogad egy látogatót.
      *
-     * @param visitor
+     * @param visitor A fogadandó látogató.
      */
     @Override
     public void accept(EmberVisitor visitor) {
@@ -34,9 +40,9 @@ public class Hallgato extends Ember {
     }
 
     /**
-     * TODO!!!
+     * Visszaadja a hallgató sztring reprezentációját.
      *
-     * @return
+     * @return A hallgató sztring reprezentációja.
      */
     @Override
     public String toString() {
@@ -44,27 +50,28 @@ public class Hallgato extends Ember {
     }
 
     /**
-     * TODO!!!
+     * Ellenőrzi, hogy a hallgató él-e.
      *
-     * @return
+     * @return Igaz, ha a hallgató él, hamis egyébként.
      */
     public boolean getEletbenVan() {
         return eletbenVan;
     }
 
+
     /**
-     * TODO!!!
+     * Beállítja a hallgató életben lévő státuszát.
      *
-     * @param eletbenVan
+     * @param eletbenVan A beállítandó életben lévő státusz.
      */
     public void setEletbenVan(boolean eletbenVan) {
         this.eletbenVan = eletbenVan;
     }
 
     /**
-     * TODO!!!
+     * Ellenőrzi, hogy a hallgató lépett-e.
      *
-     * @return
+     * @return Igaz, ha a hallgató lépett, hamis egyébként.
      */
     @Override
     public boolean getLepett() {

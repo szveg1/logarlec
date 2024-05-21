@@ -10,15 +10,26 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+/**
+ * A GameFrame osztály egy keretet valósít meg, amelyben a játék fut.
+ */
 public class GameFrame extends JFrame {
     public static InventoryPanel inventoryPanel;
     public static JButton nextButton;
     public static JLabel remainingRoundsLabel;
 
+    /**
+     * Beállítja az inventoryPanel láthatóságát.
+     *
+     * @param b A láthatóság logikai értéke.
+     */
     public static void setInvisibleinventoryPanel(boolean b){
         inventoryPanel.setVisible(b);
     }
 
+    /**
+     * Konstruktor, amely létrehoz egy GameFrame objektumot.
+     */
     public GameFrame() {
         super("Logarlec");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,6 +41,11 @@ public class GameFrame extends JFrame {
 
         JPopupMenu popupMenu = getPopupMenu();
         Action escapeAction = new AbstractAction() {
+            /**
+             * Definiálja, hogy mi történik, amikor az ESC gombot megnyomják.
+             *
+             * @param e Az esemény, amely az ESC gomb megnyomását jelzi.
+             */
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (popupMenu.isVisible()) {
@@ -85,10 +101,18 @@ public class GameFrame extends JFrame {
         pack();
     }
 
+    /**
+     * Frissíti a hátralévő körök számát.
+     */
     private void updateRemainingRounds() {
         remainingRoundsLabel.setText("Remaining Rounds: " + Labirintus.getTimeLeft());
     }
 
+    /**
+     * Létrehoz egy felugró menüt.
+     *
+     * @return A létrehozott felugró menü.
+     */
     private JPopupMenu getPopupMenu() {
         JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem saveItem = new JMenuItem("Save Game and Exit");

@@ -7,9 +7,19 @@ import pass.model.item.*;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * A TargyLabel osztály egy absztrakt osztály, amely egy JLabel-t valósít meg,
+ * és implementálja a TargyVisitor és DrawObserver interfészeket.
+ * A TargyLabel osztályt a játékban lévő tárgyak megjelenítésére használjuk.
+ */
 public abstract class TargyLabel extends JLabel implements TargyVisitor, DrawObserver {
     protected Targy targy;
 
+    /**
+     * Konstruktor, amely létrehoz egy TargyLabel objektumot.
+     *
+     * @param targy A tárgy, amit a címke megjelenít.
+     */
     public TargyLabel(Targy targy) {
         setPreferredSize(new Dimension(90, 90));
         setBackground(new Color(0, 0, 0, 0));
@@ -17,12 +27,21 @@ public abstract class TargyLabel extends JLabel implements TargyVisitor, DrawObs
         targy.accept(this);
     }
 
+    /**
+     * Beállítja a címke számát.
+     *
+     * @param n A beállítandó szám.
+     */
     public void setNumber(int n) {
         JLabel numberLabel = new JLabel(Integer.toString(n));
         numberLabel.setBounds(0, 0, 20, 20);
         numberLabel.setForeground(Color.WHITE);
         add(numberLabel);
     }
+
+    // A visit metódusok a TargyVisitor interfész implementációi.
+    // Minden visit metódus beállítja a címke ikonját a megfelelő tárgy képére,
+    // és esetleg beállítja a címke számát a tárgy tulajdonságai alapján.
 
     @Override
     public void visit(Logarlec logarlec) {
@@ -89,6 +108,10 @@ public abstract class TargyLabel extends JLabel implements TargyVisitor, DrawObs
         setIcon(new ImageIcon(new ImageIcon("Grafikus/src/main/resources/tranzisztor.png").getImage().getScaledInstance(90, 90, 0)));
     }
 
+    /**
+     * Az update metódus a DrawObserver interfész implementációja.
+     * Az update metódus frissíti a címkét, amikor a DrawObserver interfész update metódusát meghívják.
+     */
     @Override
     public abstract void update();
 
