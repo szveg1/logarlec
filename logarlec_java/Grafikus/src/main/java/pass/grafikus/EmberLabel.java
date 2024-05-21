@@ -22,11 +22,11 @@ public class EmberLabel extends JLabel implements EmberVisitor {
         if (e == Controller.getSorosJatekos()) {
             setBorder(BorderFactory.createLineBorder(Color.RED, 5));
         }
-        if (!e.getEletbenVan()) {
-            setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
-        }
         if (e.getAjult()) {
             setBorder(BorderFactory.createLineBorder(Color.GREEN, 5));
+        }
+        if (!e.getEletbenVan()) {
+            setBorder(BorderFactory.createLineBorder(Color.BLACK, 5));
         }
     }
 

@@ -292,7 +292,6 @@ public class Controller {
     public static void Hasznal(Targy t, Ember e) {
         e.targyatHasznal(t);
         System.out.println(getEmberNevFromMap(e) + ": hasznaltad a " + getTargyNevFromMap(t) + " targyat.");
-        jatekosSor.getNext().setLepett(true);
     }
 
     /**
@@ -309,7 +308,6 @@ public class Controller {
         } else {
             System.out.println(getEmberNevFromMap(e) + ": eldobtad a " + getTargyNevFromMap(t) + " targyat.");
             e.targyatEldob(t);
-            jatekosSor.getNext().setLepett(true);
         }
     }
 
